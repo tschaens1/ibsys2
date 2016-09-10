@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from '../login/login.service';
 let styles = String(require('./navigation.component.css'));
 
 @Component({
@@ -6,4 +7,10 @@ let styles = String(require('./navigation.component.css'));
   templateUrl: './navigation.component.html',
   styles: [styles]  
 })
-export class Navigation { }
+export class Navigation { 
+    constructor(private loginService: LoginService){ }
+    
+    logout() {
+        this.loginService.logout();
+    }
+}
