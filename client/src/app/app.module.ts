@@ -5,8 +5,8 @@ import { Navigation } from '../navigation/navigation.component';
 import { WarehouseComponent } from '../warehouse/warehouse.component';
 import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../login/login.service';
-import { LoginGuard } from '../login/login.guard';
-import { LogoutGuard } from '../login/logout.guard';
+import { LoggedInGuard } from '../login/logged-in.guard';
+import { LoggedOutGuard } from '../login/logged-out.guard';
 import { StartComponent } from '../start/start.component';
 
 import { routing } from './app.routing';
@@ -25,8 +25,8 @@ import { routing } from './app.routing';
   ],
   providers: [
     LoginService,
-    LoginGuard,
-    LogoutGuard
+    LoggedInGuard,
+    LoggedOutGuard
   ],
   bootstrap: [ AppComponent ]
 })

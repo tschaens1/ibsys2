@@ -9,14 +9,14 @@ export class LoginService {
         this.loggedIn = !!localStorage.getItem('loggedIn');
     }
 
-    login(username: String, password: String) {
+    login() {
         localStorage.setItem('loggedIn', 'true');
         this.loggedIn = true;
-        this.router.navigate(['/start']);
+        return true;
     }
 
     logout() {
-        localStorage.setItem('loggedIn', 'false');
+        localStorage.removeItem('loggedIn');
         this.loggedIn = false;
         this.router.navigate(['/']);
     }

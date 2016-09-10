@@ -2,8 +2,8 @@ import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from '../login/login.component';
-import { LoginGuard } from '../login/login.guard';
-import { LogoutGuard } from '../login/logout.guard';
+import { LoggedInGuard } from '../login/logged-in.guard';
+import { LoggedOutGuard } from '../login/logged-out.guard';
 import { StartComponent } from '../start/start.component';
 import { WarehouseComponent } from '../warehouse/warehouse.component';
 
@@ -16,17 +16,17 @@ const appRoutes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
-        canActivate: [LogoutGuard]    
+        canActivate: [LoggedOutGuard]    
     },
     {
         path: 'start',
         component: StartComponent,
-        canActivate: [LoginGuard]
+        canActivate: [LoggedInGuard]
     },
     {
         path: 'warehouse',
         component: WarehouseComponent,
-        canActivate: [LoginGuard]
+        canActivate: [LoggedInGuard]
     },
     {
         path: '**',

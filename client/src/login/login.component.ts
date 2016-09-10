@@ -16,6 +16,6 @@ export class LoginComponent {
     constructor(private loginService: LoginService) { }
 
     submitLogin(){
-        this.loginService.login(this.username, this.password);
+        this.loginService.login();
     }
 }
