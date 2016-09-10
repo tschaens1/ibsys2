@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { Navigation } from '../navigation/navigation.component';
+import { WarehouseComponent } from '../warehouse/warehouse.component';
 import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../login/login.service';
 import { LoginGuard } from '../login/login.guard';
@@ -19,6 +20,7 @@ import { routing } from './app.routing';
     AppComponent,
     LoginComponent,
     StartComponent,
+    WarehouseComponent,
     Navigation
   ],
   providers: [

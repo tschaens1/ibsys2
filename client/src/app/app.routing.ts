@@ -5,6 +5,7 @@ import { LoginComponent } from '../login/login.component';
 import { LoginGuard } from '../login/login.guard';
 import { LogoutGuard } from '../login/logout.guard';
 import { StartComponent } from '../start/start.component';
+import { WarehouseComponent } from '../warehouse/warehouse.component';
 
 const appRoutes: Routes = [
     {
@@ -20,6 +21,11 @@ const appRoutes: Routes = [
     {
         path: 'start',
         component: StartComponent,
+        canActivate: [LoginGuard]
+    },
+    {
+        path: 'warehouse',
+        component: WarehouseComponent,
         canActivate: [LoginGuard]
     },
     {

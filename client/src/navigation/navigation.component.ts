@@ -12,5 +12,6 @@ export class Navigation {
     
     logout() {
         this.loginService.logout();
+        console.log('nav clicked on logout');
     }
 }
