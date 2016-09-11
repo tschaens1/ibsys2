@@ -1,5 +1,23 @@
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!" (click)="logout()">one</a></li>
+    <li><a href="#!">two</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">three</a></li>
+</ul>
+
 <nav>
-    <a routerLink="/start" routerLinkActive="active">Start</a>
-    <a routerLink="/warehouse" routerLinkActive="active">Lager</a>
-    <button (click)="logout()">Logout</button>
+    <div class="nav-wrapper">
+        <a href="#!" class="brand-logo center">Logo</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="left hide-on-med-and-down">
+            <li><a routerLink="/start" routerLinkActive="active">Start</a></li>
+            <li><a routerLink="/warehouse" routerLinkActive="active">Lager</a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+            <li><a routerLink="/start" routerLinkActive="active">Start</a></li>
+            <li><a routerLink="/warehouse" routerLinkActive="active">Lager</a></li>
+        </ul>
+    </div>
 </nav>

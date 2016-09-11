@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { Navigation } from '../navigation/navigation.component';
 
-import '../../public/css/styles.css';
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']  
+  styles: [ require('./app.component.scss') ] 
 })
 export class AppComponent {
     counter = 0;

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../login/login.service';
 
-let styles = String(require('./login.component.css'));
+// let styles = String(require('./login.component.scss'));
 
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
-    styleUrls: [styles]
+    styles: [ require('./login.component.scss') ] 
 })
 export class LoginComponent {
 
