@@ -48,7 +48,6 @@ Use colors in component styles:
 background-color: $theme-color;
 ```
 
-
 ### Links:
 - [MaterializeCSS](http://materializecss.com/)
 - [Google Icons](https://design.google.com/icons/)
