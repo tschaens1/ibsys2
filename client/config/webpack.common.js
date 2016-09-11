@@ -29,11 +29,6 @@ module.exports = {
         loader: 'file?name=assets/[name].[hash].[ext]'
       },
       {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        loader: 'raw-loader!sass-loader'
-      },
-      {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
         loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
@@ -42,6 +37,15 @@ module.exports = {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
         loader: 'raw'
+      },      
+      {
+        test: /\.scss$/,
+        exclude: [/\.global\.scss$/],
+        loaders: ['raw-loader', 'sass-loader']
+      },
+      {
+        test: /\.global\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   },
