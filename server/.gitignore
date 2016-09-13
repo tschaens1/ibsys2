@@ -1,6 +1,6 @@
-.idea/*
-build/*
-gradle/*
+/.idea/*
+/build/*
+/gradle/*
 
 gradle-app.setting
 
@@ -8,3 +8,5 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
+/build/
+/bin/

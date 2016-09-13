@@ -1,1 +1,5 @@
 npm-debug.log
+/build/
+server/.gradle/*
+server/.gradle/*
+server/.idea/*
