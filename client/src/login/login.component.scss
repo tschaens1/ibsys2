@@ -1,11 +1,27 @@
 @import '../../public/scss/colors';
 
 .loginContainer{
+    // background-color: transparentize($white, .11);
     background-color: $white;
     position: relative;
-    width: 500px;
-    margin: 0 auto;
-    margin-top: 5rem;  
+    width: 21rem;
+    height: 100%;
     padding: 1.5rem;
-    border-radius: .3rem;  
+    -webkit-box-shadow: -4px 0px 76px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 0px 76px 0px rgba(0,0,0,0.75);
+    box-shadow: -4px 0px 76px 0px rgba(0,0,0,0.75);
+}
+
+.loginBackgroundImage{
+    background: url(../../assets/images/bikes.jpeg) no-repeat center center fixed;     
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;  
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+	background-color:$white;
 }

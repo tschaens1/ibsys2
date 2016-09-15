@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { LoginService } from '../login/login.service';
 import { User } from './user';
 
-// let styles = String(require('./login.component.scss'));
+declare var jQuery: any;
 
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
     styles: [ require('./login.component.scss') ] 
 })
-export class LoginComponent {    
+export class LoginComponent implements AfterViewInit{    
     name: string;
     password: string;
 
@@ -17,5 +17,8 @@ export class LoginComponent {
 
     submitLogin(){        
         this.loginService.login();
+    }
+
+    ngAfterViewInit(){        
     }
 }
