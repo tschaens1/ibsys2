@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../login/login.service';
+import { User } from './user';
 
 // let styles = String(require('./login.component.scss'));
 
@@ -8,14 +9,13 @@ import { LoginService } from '../login/login.service';
     templateUrl: './login.component.html',
     styles: [ require('./login.component.scss') ] 
 })
-export class LoginComponent {
-
-    username: String;
-    password: String;
+export class LoginComponent {    
+    name: string;
+    password: string;
 
     constructor(private loginService: LoginService) { }
 
-    submitLogin(){
+    submitLogin(){        
         this.loginService.login();
     }
 }

@@ -1,5 +1,22 @@
-<form>
-    <input type="text" placeholder="Username">
-    <input type="password" placeholder="Password">
-    <input type="submit" value="Login" (click)="submitLogin()">
-</form>
+<div class="loginContainer">
+    <h3>Login</h3>
+    <div class="row">
+        <form class="col s12" (ngSubmit)="submitLogin()" #loginForm="ngForm">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input [(ngModel)]="username" id="username" name="first" type="text" class="validate" required>
+                    <label for="username">Username</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input [(ngModel)]="password" id="password" name="pw" type="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light" [disabled]="!loginForm.form.valid" type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>

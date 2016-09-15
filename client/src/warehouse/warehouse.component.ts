@@ -7,4 +7,6 @@ import { Navigation } from '../navigation/navigation.component';
     templateUrl: './warehouse.component.html',
     styles: [ require('./warehouse.component.scss') ] 
 })
-export class WarehouseComponent { }
+export class WarehouseComponent{     
+
+}
