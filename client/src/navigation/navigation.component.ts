@@ -13,8 +13,7 @@ export class Navigation implements AfterViewInit {
     constructor(private loginService: LoginService) { }
 
     logout() {
-        this.loginService.logout();
-        console.log('nav clicked on logout');
+        this.loginService.logout();        
     }
 
     ngAfterViewInit() {

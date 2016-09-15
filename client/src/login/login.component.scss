@@ -1,5 +1,6 @@
 @import '../../public/scss/colors';
 
+
 .loginContainer{
     // background-color: transparentize($white, .11);
     background-color: $white;
@@ -13,7 +14,7 @@
 }
 
 .loginBackgroundImage{
-    background: url(../../assets/images/bikes.jpeg) no-repeat center center fixed;     
+    // background: url(bikes.jpeg) no-repeat center center fixed;     
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -23,5 +24,5 @@
     left: 0;
     right: 0;
     bottom: 0;
-	background-color:$white;
+	background-color:$theme-color;
 }
