@@ -9,8 +9,10 @@ export class LoginService {
         this.loggedIn = !!localStorage.getItem('loggedIn');
     }
 
-    login() {
-        localStorage.setItem('loggedIn', 'true');
+    login(object: any) {
+        if(object.options.stayLoggedIn){
+            localStorage.setItem('loggedIn', 'true');            
+        }        
         this.loggedIn = true;
         this.router.navigate(['/start']);
     }

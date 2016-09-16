@@ -5,22 +5,30 @@
     // background-color: transparentize($white, .11);
     background-color: $white;
     position: relative;
-    width: 21rem;
+    width: 30rem;
     height: 100%;
     float: right;
     padding: 1.5rem;
 }
 
-.loginBackgroundImage{
-    // background: url(bikes.jpeg) no-repeat center center fixed;     
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;  
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-	background-color:$theme-color;
+img.backgroundImage{
+    min-height:100%;
+    min-width:100%;
+    height:auto;
+    width:auto;
+    position:absolute;
+    top:-100%; bottom:-100%;
+    left:-100%; right:-100%;
+    margin:auto; 
+}
+
+.stayLoggedIn{
+    float: right;
+    margin-right: 1rem;
+    margin-top: .3rem;
+}
+
+input[type="checkbox"]:checked+label:before {
+    border-right: 2px solid $theme-color;
+    border-bottom: 2px solid $theme-color;
 }

@@ -7,18 +7,27 @@ declare var jQuery: any;
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
-    styles: [ require('./login.component.scss') ] 
+    styles: [require('./login.component.scss')]
 })
-export class LoginComponent implements AfterViewInit{    
+export class LoginComponent implements AfterViewInit {
     name: string;
     password: string;
+    stayLoggedIn: boolean = true;
 
-    constructor(private loginService: LoginService) { }
-
-    submitLogin(){        
-        this.loginService.login();
+    constructor(private loginService: LoginService) { 
+        // this.stayLoggedIn = !!localStorage.getItem('loggedIn');
     }
 
-    ngAfterViewInit(){        
+    submitLogin() {
+        this.loginService.login({
+            username: '',
+            password: '',
+            options: {
+                stayLoggedIn: this.stayLoggedIn
+            }            
+        });
+    }
+
+    ngAfterViewInit() {
     }
 }

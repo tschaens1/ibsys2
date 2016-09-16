@@ -1,28 +1,33 @@
-<div class="loginBackgroundImage">
-    <div class="loginContainer">
-        <div class="row">
-            <div class="col s12">
-                <h3>Login</h3>
-            </div>
+<img class="backgroundImage" src="login-background.jpeg" alt="bikes" />
+<div class="loginContainer">
+    <div class="row">
+        <div class="col s12">
+            <h3>Login</h3>
         </div>
-        <div class="row">
-            <form class="col s12" (ngSubmit)="submitLogin()" #loginForm="ngForm">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input [(ngModel)]="username" id="username" name="username" type="text" class="validate" required>
-                        <label for="username">Username</label>
-                    </div>
+    </div>
+    <div class="row">
+        <form class="col s12" (ngSubmit)="submitLogin()" #loginForm="ngForm">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input [(ngModel)]="username" id="username" name="username" type="text" class="validate" required>
+                    <label for="username">Username</label>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input [(ngModel)]="password" id="password" name="pw" type="password" class="validate" required>
-                        <label for="password">Password</label>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input [(ngModel)]="password" id="password" name="pw" type="password" class="validate" required>
+                    <label for="password">Password</label>
                 </div>
-                <div class="row">
+            </div>
+            <div class="row">
+                <div class="col l6">
                     <button class="btn waves-effect  light-blue darken-4 waves-light" [disabled]="!loginForm.form.valid" type="submit">Login</button>
                 </div>
-            </form>
-        </div>
+                <div class="stayLoggedIn">
+                    <input type="checkbox" id="stayLoggedIn" [(ngModel)]="stayLoggedIn" name="stayLoggedIn" />
+                    <label for="stayLoggedIn">Stay logged in</label>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
