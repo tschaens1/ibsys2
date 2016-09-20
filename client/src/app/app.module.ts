@@ -14,12 +14,15 @@ import { StartComponent } from '../start/start.component';
 
 import { routing } from './app.routing';
 
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,    
-    routing
+    routing,
+    ChartsModule
   ],
   declarations: [
     AppComponent,
