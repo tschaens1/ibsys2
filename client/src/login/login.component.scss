@@ -9,8 +9,8 @@
 }
 
 .loginContainer{    
-    width: 25rem;
-    height: 31rem;
+    width: 22rem;
+    height: 28rem;
     margin: auto;
     position: absolute;
     top: 0;
@@ -20,9 +20,15 @@
     right: 0;
     background-color: $white;
     border-radius: 0;
-    -webkit-box-shadow: 0px 0px 15px -1px rgba(71,71,71,1);
-    -moz-box-shadow: 0px 0px 15px -1px rgba(71,71,71,1);
-    box-shadow: 0px 0px 15px -1px rgba(71,71,71,1);
+    -webkit-box-shadow: 0px 6px 27px -4px rgba(122,122,122,1);
+    -moz-box-shadow: 0px 6px 27px -4px rgba(122,122,122,1);
+    box-shadow: 0px 6px 27px -4px rgba(122,122,122,1);
+
+    .row {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1.1rem;
+    }
 
     .title{
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -33,6 +39,10 @@
         border-bottom: 2px solid $theme-color;
     }
 
+    .input-field {        
+        margin-top: 0rem;
+    }
+
     .input-field .prefix {        
         color: $theme-color;
         line-height: 3rem;                
@@ -41,5 +51,10 @@
     .btn{
         width: 100%;
         background-color: $theme-color;
+    }
+
+    .copy{
+        font-size: .8rem;
+        color: $gray;
     }
 }

@@ -2,7 +2,7 @@
     <div class="loginContainer col s12">
         <div class="row">
             <div class="col s12">
-                <h4 class="title center-align">IBSYS 2</h4>
+                <h4 class="title center-align">IBSYS 2</h4>                
             </div>
         </div>
         <div class="row">
@@ -22,17 +22,20 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col l12">
-                        <button class="btn waves-effect waves-light" [disabled]="!loginForm.form.valid" type="submit">Login</button>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="stayLoggedIn col l12">
                         <input type="checkbox" id="stayLoggedIn" [(ngModel)]="stayLoggedIn" name="stayLoggedIn" />
                         <label for="stayLoggedIn">Stay logged in</label>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col l12">
+                        <button class="btn waves-effect waves-light" [disabled]="!loginForm.form.valid" type="submit">Login</button>
+                    </div>
+                </div>
             </form>
+        </div>
+        <div class="row">
+            <p class="copy center-align">&copy; 2016 - Hochschule Karlsruhe</p>
         </div>
     </div>
 </div>
