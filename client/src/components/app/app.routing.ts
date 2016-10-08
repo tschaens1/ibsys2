@@ -5,6 +5,7 @@ import { LoginComponent } from '../login/login.component';
 import { LoggedInGuard } from '../login/logged-in.guard';
 import { LoggedOutGuard } from '../login/logged-out.guard';
 import { StartComponent } from '../start/start.component';
+import { DashBoardComponent } from '../dashboard/dashboard.component';
 import { WarehouseComponent } from '../warehouse/warehouse.component';
 
 const appRoutes: Routes = [
@@ -21,20 +22,29 @@ const appRoutes: Routes = [
     {
         path: 'app',        
         canActivate: [LoggedInGuard],
+        component: StartComponent,
         children: [
             {
                 path: '',
-                redirectTo: 'start'
-            },
-            {
-                path: 'start',
-                component: StartComponent
-            },
+                component: DashBoardComponent
+            },            
             {
                 path: 'warehouse',
                 component: WarehouseComponent
+            },
+            {
+                path: 'start',
+                redirectTo: '/app'
+            },
+            {
+                path: '**',
+                redirectTo: '/app'
             }
         ]
+    },
+    {
+        path: '**',
+        redirectTo: '/app'
     }
 ];
 

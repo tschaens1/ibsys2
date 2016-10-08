@@ -10,6 +10,7 @@ import { LoginService } from '../login/login.service';
 import { LoggedInGuard } from '../login/logged-in.guard';
 import { LoggedOutGuard } from '../login/logged-out.guard';
 import { StartComponent } from '../start/start.component';
+import { DashBoardComponent } from '../dashboard/dashboard.component';
 
 import { routing } from './app.routing';
 
@@ -29,7 +30,8 @@ import { MaterialModule } from '@angular/material';
     AppComponent,
     LoginComponent,
     StartComponent,
-    WarehouseComponent,    
+    WarehouseComponent,  
+    DashBoardComponent,  
   ],
   providers: [
     LoginService,
