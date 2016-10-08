@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Navigation } from '../navigation/navigation.component';
-// let styles = String(require('./warehouse.component.scss'));
 
 @Component({
     selector: 'warehouse',

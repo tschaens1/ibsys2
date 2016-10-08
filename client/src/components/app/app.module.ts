@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { Navigation } from '../navigation/navigation.component';
 import { WarehouseComponent } from '../warehouse/warehouse.component';
 import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../login/login.service';
@@ -15,6 +14,7 @@ import { StartComponent } from '../start/start.component';
 import { routing } from './app.routing';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { MaterialModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -22,14 +22,14 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     FormsModule,
     HttpModule,    
     routing,
-    ChartsModule
+    ChartsModule,
+    MaterialModule.forRoot(),
   ],
   declarations: [
     AppComponent,
     LoginComponent,
     StartComponent,
-    WarehouseComponent,
-    Navigation
+    WarehouseComponent,    
   ],
   providers: [
     LoginService,

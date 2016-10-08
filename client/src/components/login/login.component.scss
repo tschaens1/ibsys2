@@ -36,8 +36,8 @@
     }
 
     input[type="checkbox"]:checked+label:before {
-        border-right: 2px solid $theme-color;
-        border-bottom: 2px solid $theme-color;
+        border-right: 2px solid $primary;
+        border-bottom: 2px solid $primary;
     }
 
     .input-field {        
@@ -45,13 +45,13 @@
     }
 
     .input-field .prefix {        
-        color: $theme-color;
+        color: $primary;
         line-height: 3rem;                
     }
 
     .btn{
         width: 100%;
-        background-color: $theme-color;
+        background-color: $primary;
     }
 
     .copy{

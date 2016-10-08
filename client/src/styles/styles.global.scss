@@ -5,7 +5,7 @@ GLOBAL STYLES
 @import "colors";
 
 html, body {
-    background-color: $white;
+    background-color: $light-gray;
     margin:0;
     height:100%;
     overflow:hidden;
@@ -27,27 +27,35 @@ html, body {
 }
 /* label underline focus color */
 .input-field input[type]:focus {
-    border-bottom: 1px solid $theme-color !important;
-    box-shadow: 0 1px 0 0 $theme-color !important;
+    border-bottom: 1px solid $primary !important;
+    box-shadow: 0 1px 0 0 $primary !important;
 }
 /* valid color */
 .input-field input[type].valid {
-    border-bottom: 1px solid $theme-color !important;
-    box-shadow: 0 1px 0 0 $theme-color !important;
+    border-bottom: 1px solid $primary !important;
+    box-shadow: 0 1px 0 0 $primary !important;
 }
 /* invalid color */
 .input-field input[type].invalid {
-    border-bottom: 1px solid $theme-color !important;
-    box-shadow: 0 1px 0 0 $theme-color !important;
+    border-bottom: 1px solid $primary !important;
+    box-shadow: 0 1px 0 0 $primary !important;
 }
 /* icon prefix focus color */
 .input-field .prefix.active {
-    color: $theme-color;
+    color: $primary;
 }
 
 /*
 * HEADERS
 */
 h1, h2, h3, h4, h5{
-    color: $theme-color;
+    color: $primary;
+}
+
+/**
+* ICONS
+*/
+i.mdi{
+    font-size: 1.3rem;
+    display: initial;
 }

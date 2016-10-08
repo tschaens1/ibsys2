@@ -1,18 +1,24 @@
-<navigation></navigation>
-<h3>Hello user for ibsys2</h3>
-<div class="row">
-    <div class="col m6">
-        <base-chart class="chart" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
-            [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></base-chart>
+<md-toolbar color="primary">
+    <a class="menu-icon-button" (click)="sidenav.toggle()">
+        <i class="mdi mdi-menu"></i>
+    </a> 
+    
+    <span class="app-title">IBSYS II - WS2016 ka6</span>
+
+    <a (click)="logout()">Logout</a>
+
+    <span class="app-toolbar-filler"></span>
+</md-toolbar>
+
+<md-sidenav-layout>
+
+    <md-sidenav #sidenav mode="side" class="app-sidenav" opened="true">
+        Sidenav
+    </md-sidenav>
+
+    <div class="app-content">
+
+        <router-outlet></router-outlet>
     </div>
-    <div class="col-md-6" style="margin-bottom: 10px;">
-        <table class="table table-responsive table-condensed">
-            <tr>
-                <th *ngFor="let label of lineChartLabels"></th>
-            </tr>
-            <tr *ngFor="let d of lineChartData">
-                <td *ngFor="let label of lineChartLabels; let j=index"></td>
-            </tr>
-        </table>        
-    </div>
-</div>
+
+</md-sidenav-layout>

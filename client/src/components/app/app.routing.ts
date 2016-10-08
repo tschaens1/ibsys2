@@ -10,8 +10,8 @@ import { WarehouseComponent } from '../warehouse/warehouse.component';
 const appRoutes: Routes = [
     {
         path: '',
-        redirectTo: '/login',
-        pathMatch: 'full'
+        redirectTo: '/app',
+        pathMatch: 'full',
     },
     {
         path: 'login',
@@ -19,24 +19,22 @@ const appRoutes: Routes = [
         canActivate: [LoggedOutGuard]
     },
     {
-        path: 'app',
+        path: 'app',        
         canActivate: [LoggedInGuard],
-        children: [{
-            path: 'start',
-            component: StartComponent
-        },
-        {
-            path: 'warehouse',
-            component: WarehouseComponent,
-        },
-        {
-            path: '**',
-            redirectTo: 'start'
-        }]
-    },
-    {
-        path: '**',
-        redirectTo: '/login'
+        children: [
+            {
+                path: '',
+                redirectTo: 'start'
+            },
+            {
+                path: 'start',
+                component: StartComponent
+            },
+            {
+                path: 'warehouse',
+                component: WarehouseComponent
+            }
+        ]
     }
 ];
 
