@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Navigation } from '../navigation/navigation.component';
 
-require('./../../public/scss/styles.global.scss');
-require('./../../assets/favicon.ico');
+require('./../../styles/styles.global.scss');
+require('./../../images/favicon.ico');
 
 @Component({
   selector: 'app',  
