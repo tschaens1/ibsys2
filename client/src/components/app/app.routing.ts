@@ -20,21 +20,21 @@ const appRoutes: Routes = [
         canActivate: [LoggedOutGuard]
     },
     {
-        path: 'app',        
+        path: 'app',
         canActivate: [LoggedInGuard],
         component: StartComponent,
         children: [
             {
                 path: '',
-                component: DashBoardComponent
-            },            
+                redirectTo: 'start'
+            },
             {
                 path: 'warehouse',
                 component: WarehouseComponent
             },
             {
                 path: 'start',
-                redirectTo: '/app'
+                component: DashBoardComponent
             },
             {
                 path: '**',
