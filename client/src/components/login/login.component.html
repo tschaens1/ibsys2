@@ -9,14 +9,14 @@
             <form class="col s12" (ngSubmit)="submitLogin()" #loginForm="ngForm">
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fa fa-fw fa-question"></i>
+                        <i class="mdi mdi-account prefix"></i>
                         <input [(ngModel)]="username" id="username" name="username" type="text" class="validate" required>
                         <label for="username">Username</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fa fa-fw fa-question"></i>
+                        <i class="mdi mdi-key prefix"></i>
                         <input [(ngModel)]="password" id="password" name="pw" type="password" class="validate" required>
                         <label for="password">Password</label>
                     </div>
