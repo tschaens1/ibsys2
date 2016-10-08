@@ -1,21 +1,21 @@
 <!-- Dropdown Structure -->
 <ul id="language_dropdown" class="dropdown-content">
     <li><a>Deutsch</a></li>
-    <li><a>Englisch</a></li>    
+    <li><a>Englisch</a></li>
 </ul>
 
 <ul id="profile_dropdown" class="dropdown-content">
     <li><a>Profil</a></li>
     <li class="divider"></li>
-    <li><a (click)="logout()">Logout</a></li>    
+    <li><a (click)="logout()">Logout</a></li>
 </ul>
 
 <div class="navbar-fixed">
     <nav>
-        <div class="nav-wrapper">                        
+        <div class="nav-wrapper">
             <ul class="left">
-                <li><a routerLink="/start" routerLinkActive="active">Start</a></li>
-                <li><a routerLink="/warehouse" routerLinkActive="active">Lager</a></li>
+                <li><a routerLink="../start" routerLinkActive="active">Start</a></li>
+                <li><a routerLink="../warehouse" routerLinkActive="active">Lager</a></li>
             </ul>
             <ul id="nav-mobile" class="right">
                 <li><a class="dropdown-button" data-activates="language_dropdown">Sprache<i class="material-icons right">arrow_drop_down</i></a></li>

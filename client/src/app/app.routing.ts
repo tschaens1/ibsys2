@@ -1,4 +1,4 @@
-import { ModuleWithProviders }  from '@angular/core';
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from '../login/login.component';
@@ -16,17 +16,23 @@ const appRoutes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
-        canActivate: [LoggedOutGuard]    
+        canActivate: [LoggedOutGuard]
     },
     {
-        path: 'start',
-        component: StartComponent,
-        canActivate: [LoggedInGuard]
-    },
-    {
-        path: 'warehouse',
-        component: WarehouseComponent,
-        canActivate: [LoggedInGuard]
+        path: 'app',
+        canActivate: [LoggedInGuard],
+        children: [{
+            path: 'start',
+            component: StartComponent
+        },
+        {
+            path: 'warehouse',
+            component: WarehouseComponent,
+        },
+        {
+            path: '**',
+            redirectTo: 'start'
+        }]
     },
     {
         path: '**',
