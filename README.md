@@ -11,7 +11,7 @@ npm install
 ```
 npm start
 ```
-goto localhost:8080
+goto localhost:3000
 
 ### Start application (prod mode)
 ```
