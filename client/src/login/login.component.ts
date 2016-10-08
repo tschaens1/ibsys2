@@ -1,21 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { LoginService } from '../login/login.service';
+import { User } from './user';
 
-// let styles = String(require('./login.component.scss'));
+declare var jQuery: any;
 
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
-    styles: [ require('./login.component.scss') ] 
+    styles: [require('./login.component.scss')]
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit {
+    name: string;
+    password: string;
+    stayLoggedIn: boolean = true;
 
-    username: String;
-    password: String;
+    constructor(private loginService: LoginService) { 
+        // this.stayLoggedIn = !!localStorage.getItem('loggedIn');
+    }
 
-    constructor(private loginService: LoginService) { }
+    submitLogin() {
+        this.loginService.login({
+            username: '',
+            password: '',
+            options: {
+                stayLoggedIn: this.stayLoggedIn
+            }            
+        });
+    }
 
-    submitLogin(){
-        this.loginService.login();
+    ngAfterViewInit() {
     }
 }

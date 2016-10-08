@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Navigation } from '../navigation/navigation.component';
 
 require('./../../public/scss/styles.global.scss');
+require('./../../assets/favicon.ico');
 
 @Component({
   selector: 'my-app',  

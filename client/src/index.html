@@ -17,10 +17,37 @@
   <!--Google icons-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.js"></script>
+
+  <style>
+    .preloader-wrapper {
+      display: inline-block;
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      left: calc(50% - 1rem);
+      top: calc(50% - 4rem);
+    }
+  </style>
+
 </head>
 
 <body>
-  <my-app>Loading...</my-app>
+  <my-app>
+    <div class="preloader-wrapper active">
+      <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+  </my-app>
 </body>
 
 </html>

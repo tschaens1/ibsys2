@@ -11,14 +11,14 @@ module.exports = webpackMerge(commonConfig, {
 
     output: {
         path: helpers.root('dist'),
-        publicPath: '/',
+        publicPath: './',
         filename: '[name].[hash].js',
         chunkFilename: '[id].[hash].chunk.js'
     },
 
     htmlLoader: {
         minimize: false // workaround for ng2
-    },
+    },  
 
     plugins: [
         new webpack.NoErrorsPlugin(),
@@ -26,12 +26,12 @@ module.exports = webpackMerge(commonConfig, {
         new webpack.optimize.UglifyJsPlugin({ // https://github.com/angular/angular/issues/10618
             mangle: {
                 keep_fnames: true,
-                screw_ie8: true                
+                screw_ie8: true
             },
             compress: {
                 screw_ie8: true,
                 warnings: false
-            },            
+            },
             output: {
                 comments: false,
                 screw_ie8: true

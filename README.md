@@ -51,6 +51,9 @@ background-color: $theme-color;
 ### Links:
 - [MaterializeCSS](http://materializecss.com/)
 - [Google Icons](https://design.google.com/icons/)
+- [ChartJS](http://www.chartjs.org/)
+- [ng2-charts](http://valor-software.com/ng2-charts/)
+
 
 ### Translation
 [Translation](https://github.com/ocombe/ng2-translate)

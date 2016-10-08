@@ -25,10 +25,6 @@ module.exports = {
         loader: 'html'
       },
       {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader: 'file?name=assets/[name].[hash].[ext]'
-      },
-      {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
         loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
@@ -37,7 +33,7 @@ module.exports = {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
         loader: 'raw'
-      },      
+      },
       {
         test: /\.scss$/,
         exclude: [/\.global\.scss$/],
@@ -46,6 +42,10 @@ module.exports = {
       {
         test: /\.global\.scss$/,
         loaders: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        loader: 'file?name=assets/[name].[hash].[ext]'
       }
     ]
   },
