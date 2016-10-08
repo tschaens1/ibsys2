@@ -10,11 +10,11 @@ export class LoginService {
     }
 
     login(object: any) {
-        if(object.options.stayLoggedIn){
-            localStorage.setItem('loggedIn', 'true');            
-        }        
+        if (object.options.stayLoggedIn) {
+            localStorage.setItem('loggedIn', 'true');
+        }
         this.loggedIn = true;
-        this.router.navigate(['/start']);
+        this.router.navigate(['/app/start']);
     }
 
     logout() {

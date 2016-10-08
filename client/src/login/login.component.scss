@@ -1,4 +1,5 @@
 @import '../../public/scss/colors';
+@import '../../public/scss/breakpoints';
 
 .loginpage{
     width: 100%;
@@ -57,4 +58,9 @@
         font-size: .8rem;
         color: $gray;
     }
+
+    @include breakpoint(mobileonly){
+		width: 100%;
+        height: 100%
+	}
 }

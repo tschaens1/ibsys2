@@ -14,9 +14,7 @@ export class LoginComponent implements AfterViewInit {
     password: string;
     stayLoggedIn: boolean = true;
 
-    constructor(private loginService: LoginService) { 
-        // this.stayLoggedIn = !!localStorage.getItem('loggedIn');
-    }
+    constructor(private loginService: LoginService) { }
 
     submitLogin() {
         this.loginService.login({
@@ -24,7 +22,7 @@ export class LoginComponent implements AfterViewInit {
             password: '',
             options: {
                 stayLoggedIn: this.stayLoggedIn
-            }            
+            }
         });
     }
 
