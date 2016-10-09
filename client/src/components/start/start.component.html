@@ -14,7 +14,7 @@
 <md-sidenav-layout>
 
     <md-sidenav #sidenav mode="side" class="app-sidenav" opened="true">
-        <a class="sidenav-link" routerLink="/app/start" routerLinkActive="active">Dashboard</a>
+        <a class="sidenav-link" routerLink="/app" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Dashboard</a>
         <a class="sidenav-link" routerLink="/app/warehouse" routerLinkActive="active">Warehouse</a>
     </md-sidenav>
 

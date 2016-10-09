@@ -27,12 +27,12 @@ const appRoutes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'start'
+                component: DashBoardComponent
             },
             {
                 path: 'start',
-                component: DashBoardComponent
-            },            
+                redirectTo: '/app'
+            },
             {
                 path: 'warehouse',
                 component: WarehouseComponent
@@ -46,7 +46,7 @@ const appRoutes: Routes = [
     {
         path: 'pagenotfound',
         component: PageNotFoundComponent
-    } 
+    }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
