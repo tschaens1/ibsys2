@@ -7,7 +7,7 @@ require('./../../images/favicon.ico');
 @Component({
     selector: 'start',
     templateUrl: './start.component.html',
-    styles: [require('./start.component.scss')]
+    styleUrls: ['./start.component.scss']
 })
 export class StartComponent {    
     openedSideNav:boolean;    

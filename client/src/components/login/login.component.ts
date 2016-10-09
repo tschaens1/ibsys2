@@ -5,7 +5,7 @@ import { User } from './user';
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
-    styles: [require('./login.component.scss')]
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements AfterViewInit {
     name: string;

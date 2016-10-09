@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'warehouse',
     templateUrl: './warehouse.component.html',
-    styles: [ require('./warehouse.component.scss') ] 
+    styleUrls: ['./warehouse.component.scss'] 
 })
 export class WarehouseComponent{     
 
