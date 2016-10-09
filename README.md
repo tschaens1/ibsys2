@@ -11,7 +11,7 @@ npm install
 ```
 npm start
 ```
-goto localhost:8080
+goto localhost:3000
 
 ### Start application (prod mode)
 ```
@@ -25,35 +25,54 @@ CSS-Preprocessor: SASS
 
 Change local styles:
 ```
-src/<componentName>/<componentName>.component.scss
+src/components/<componentName>/<componentName>.component.scss
 ```
 
 Change global styles:
 ```
-public/scss/styles.global.scss
+src/styles/styles.global.scss
 ```
 
 Change colors:
 ```
-public/scss/colors.scss
+src/styles/colors.scss
 ```
 ```css
 $theme-color: #01579b;
 ```
 
+Use breakpoints:
+```
+src/styles/breakpoints.scss
+```
+Use them in the component's sass-files:
+```css
+@import '../../styles/breakpoints';
+
+.sample{
+    widht: 50%;
+    height: 50%;
+
+    @include breakpoint(mobileonly){
+        width: 100%;
+        height: 100%
+    }
+}
+```
+
 Use colors in component styles:
 ```css
-@import '../../public/scss/colors';
+@import '../../styles/colors';
 
 background-color: $theme-color;
 ```
 
 ### Links:
 - [MaterializeCSS](http://materializecss.com/)
-- [Google Icons](https://design.google.com/icons/)
+- [Angular 2 Material](https://material.angular.io/)
+- [Material Design Icons](https://materialdesignicons.com/)
 - [ChartJS](http://www.chartjs.org/)
 - [ng2-charts](http://valor-software.com/ng2-charts/)
 
-
 ### Translation
-[Translation](https://github.com/ocombe/ng2-translate)
+- [ng2-translate](https://github.com/ocombe/ng2-translate)
