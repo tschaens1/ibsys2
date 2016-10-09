@@ -9,6 +9,7 @@ import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../login/login.service';
 import { LoggedInGuard } from '../login/logged-in.guard';
 import { LoggedOutGuard } from '../login/logged-out.guard';
+import { PageNotFoundComponent } from './../pagenotfound/pagenotfound.component';
 import { StartComponent } from '../start/start.component';
 import { DashBoardComponent } from '../dashboard/dashboard.component';
 
@@ -32,6 +33,7 @@ import { MaterialModule } from '@angular/material';
     StartComponent,
     WarehouseComponent,  
     DashBoardComponent,  
+    PageNotFoundComponent
   ],
   providers: [
     LoginService,

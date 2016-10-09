@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './../pagenotfound/pagenotfound.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -11,7 +12,7 @@ import { WarehouseComponent } from '../warehouse/warehouse.component';
 const appRoutes: Routes = [
     {
         path: '',
-        redirectTo: '/app',
+        redirectTo: 'app',
         pathMatch: 'full',
     },
     {
@@ -29,23 +30,23 @@ const appRoutes: Routes = [
                 redirectTo: 'start'
             },
             {
+                path: 'start',
+                component: DashBoardComponent
+            },            
+            {
                 path: 'warehouse',
                 component: WarehouseComponent
             },
-            {
-                path: 'start',
-                component: DashBoardComponent
-            },
-            {
-                path: '**',
-                redirectTo: '/app'
-            }
         ]
     },
     {
         path: '**',
-        redirectTo: '/app'
-    }
+        redirectTo: 'pagenotfound',
+    },
+    {
+        path: 'pagenotfound',
+        component: PageNotFoundComponent
+    } 
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
