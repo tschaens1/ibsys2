@@ -5,15 +5,25 @@
     <span routerLink="/app/start" class="app-title">IBSYS II - WS2016 ka6</span>
     <!--fills the rest of the toolbar-->
     <span class="fill-remaining-space"></span>
+    <!-- Dropdown Trigger -->
+    <a class='dropdown-button menu-button' href='#' data-activates='dropdown1'>EN</a>
+
+    <!-- Dropdown Structure -->
+    <ul id='dropdown1' class='dropdown-content'>
+        <li><a>German</a></li>
+        <li><a>English</a></li>        
+    </ul>
     <a (click)="logout()" title="Logout"><i class="mdi mdi-logout"></i></a>
 </md-toolbar>
 
 <div class="app-sidenav">
     <a class="sidenav-link" routerLink="/app" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <i class="mdi mdi-view-dashboard"></i><div class="link-text">Home</div>
+        <i class="mdi mdi-view-dashboard"></i>
+        <div class="link-text">Home</div>
     </a>
     <a class="sidenav-link" routerLink="/app/warehouse" routerLinkActive="active">
-        <i class="mdi mdi-chart-histogram"></i><div class="link-text">Warehouse</div>
+        <i class="mdi mdi-chart-histogram"></i>
+        <div class="link-text">Warehouse</div>
     </a>
 </div>
 
