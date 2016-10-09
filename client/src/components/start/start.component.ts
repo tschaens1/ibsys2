@@ -1,5 +1,5 @@
 import { LoginService } from './../login/login.service';
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 
 require('./../../styles/styles.global.scss');
 require('./../../images/favicon.ico');
@@ -9,22 +9,20 @@ require('./../../images/favicon.ico');
     templateUrl: './start.component.html',
     styleUrls: ['./start.component.scss']
 })
-export class StartComponent {    
-    openedSideNav:boolean;    
+export class StartComponent implements AfterViewInit{            
+    constructor(private loginService: LoginService) {        
+    }
     
-    constructor(private loginService: LoginService) {
-        this.openedSideNav = true;   
-    }
-
-    get loggedIn(){
-        return this.loginService.isLoggedIn();
-    }
-
-    setVar(){
-        this.openedSideNav = false;
-    }
-
     logout(){
         this.loginService.logout();
+    }
+
+    sideNavToggle(){        
+        $('.app-content').toggleClass('small-side-enabled');
+        $('.app-sidenav').toggleClass('show');
+    }
+
+    ngAfterViewInit(){        
+        $('.app-content').removeClass('small-side-enabled');
     }
 }
