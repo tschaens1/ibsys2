@@ -59,3 +59,12 @@ i.mdi{
     font-size: 1.3rem;
     display: initial;
 }
+
+/**
+* ELLIPSIS
+*/
+.ellipsis{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

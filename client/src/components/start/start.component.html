@@ -2,7 +2,7 @@
     <a class="menu-icon-button" (click)="sideNavToggle()">
         <i class="mdi mdi-menu"></i>
     </a>
-    <span routerLink="/app/start" class="app-title">IBSYS II - WS2016 ka6</span>
+    <span routerLink="/app/start" class="app-title ellipsis">IBSYS II - WS2016 ka6</span>
     <!--fills the rest of the toolbar-->
     <span class="fill-remaining-space"></span>
     <!-- Dropdown Trigger -->
@@ -27,6 +27,9 @@
     </a>
 </div>
 
-<div class="app-content">
+<!--if sidenav is opened in mobile view-->
+<div class="dimmer"></div>
+
+<div class="app-content" (window:resize)="onResize($event)">
     <router-outlet></router-outlet>
 </div>

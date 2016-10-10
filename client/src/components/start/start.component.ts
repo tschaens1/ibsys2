@@ -9,20 +9,30 @@ require('./../../images/favicon.ico');
     templateUrl: './start.component.html',
     styleUrls: ['./start.component.scss']
 })
-export class StartComponent implements AfterViewInit{            
-    constructor(private loginService: LoginService) {        
+export class StartComponent implements AfterViewInit {
+    constructor(private loginService: LoginService) {
     }
-    
-    logout(){
+
+    logout() {
         this.loginService.logout();
     }
 
-    sideNavToggle(){        
+    sideNavToggle() {
         $('.app-content').toggleClass('small-side-enabled');
         $('.app-sidenav').toggleClass('show');
     }
 
-    ngAfterViewInit(){        
+    onResize(event:any){
+        if($(window).width()<800){
+            $('.app-content').removeClass('small-side-enabled');
+            $('.app-sidenav').removeClass('show');
+        }
+    }
+
+    ngAfterViewInit() {
         $('.app-content').removeClass('small-side-enabled');
+        $('.dimmer').on('click', () => {
+            this.sideNavToggle();
+        })
     }
 }

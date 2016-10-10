@@ -12,7 +12,7 @@ md-toolbar{
     color: $white;
 
     .app-title{
-        cursor: pointer;
+        cursor: pointer;        
     }
 
     a{
@@ -33,10 +33,10 @@ md-toolbar{
 }
 .app-content{
     height: calc(100% - 2rem);
-    margin: 1rem 0 0 5rem;
+    margin: 1rem 0 0 1rem;
     transition: margin ease .2s;
-    @include breakpoint(mobileonly){
-		margin: 1rem 0 0 1rem;        
+    @include breakpoint(tablet){
+		margin: 1rem 0 0 5rem;        
 	}
 
     &.small-side-enabled{
@@ -49,21 +49,31 @@ md-toolbar{
   flex: 1 1 auto;
 }
 
+.dimmer {
+    position: absolute;
+    top: 4rem;
+    display: none;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(69, 90, 100, 0.75);
+    transition: background-color .5s ease;
+    &:hover{
+        background-color: rgba(69, 90, 100, 0.5);
+    }
+}
+
 .app-sidenav{
     position: fixed;
-    width: 3.6rem;
+    width: 0;
     background-color: darken($primary, 2);
     height: calc(100% - 4rem);
     transition: all .2s ease 0s;
     overflow-x: hidden;
-    @include breakpoint(mobileonly){
-		width: 0;        
+    z-index: 1;
+    @include breakpoint(tablet){
+		width: 3.6rem;        
 	} 
-
-    &.show{        
-        width: 16rem;
-        transition-delay: 0s;
-    }
 
     a.sidenav-link {
         background-color: darken($primary, 2);
@@ -98,4 +108,11 @@ md-toolbar{
     &.show a.sidenav-link .link-text{    
         opacity: 1;    
     }
+}
+
+.app-sidenav.show + .dimmer{
+    display: block;   
+    @include breakpoint(tablet){
+		display: none;        
+	} 
 }
