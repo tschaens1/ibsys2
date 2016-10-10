@@ -1,11 +1,14 @@
 @import '../../styles/colors';
 @import '../../styles/breakpoints';
 
+$app-sidenav-width: 14rem;
+
 // Navigation
 .menu-icon-button{
     i{color: $white}
-    padding: 0 1rem 0 0;
     cursor: pointer;
+    padding: 1rem;
+    margin-left: -1rem;        
 }
 md-toolbar{
     background-color: $primary;
@@ -40,7 +43,7 @@ md-toolbar{
 	}
 
     &.small-side-enabled{
-        margin-left: 18rem;
+        margin-left: $app-sidenav-width + 2;
     }
 }
 .fill-remaining-space {
@@ -62,6 +65,7 @@ md-toolbar{
         background-color: rgba(69, 90, 100, 0.5);
     }
 }
+
 
 .app-sidenav{
     position: fixed;
@@ -99,11 +103,18 @@ md-toolbar{
             transition: opacity .4s ease 0s;
         }
     }
-    &:hover, &.show{    
-        width: 16rem;
+    &:hover{    
+        @include breakpoint(tablet){
+            width: $app-sidenav-width;        
+        }         
+    }
+    &.show{            
+        width: $app-sidenav-width;                
     }
     &:hover a.sidenav-link .link-text{    
-        opacity: 1;    
+        @include breakpoint(tablet){
+            opacity: 1;        
+        } 
     }
     &.show a.sidenav-link .link-text{    
         opacity: 1;    

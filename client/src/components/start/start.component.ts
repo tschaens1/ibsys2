@@ -1,5 +1,6 @@
+import { Router } from '@angular/router';
 import { LoginService } from './../login/login.service';
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 
 require('./../../styles/styles.global.scss');
 require('./../../images/favicon.ico');
@@ -9,8 +10,17 @@ require('./../../images/favicon.ico');
     templateUrl: './start.component.html',
     styleUrls: ['./start.component.scss']
 })
-export class StartComponent implements AfterViewInit {
-    constructor(private loginService: LoginService) {
+export class StartComponent implements AfterViewInit, OnInit {
+    constructor(private loginService: LoginService, private router: Router) {
+    }
+
+    ngOnInit() {
+        // hide the sidenav if the route changes
+        this.router.events.subscribe(e => {
+            if ($(window).width() < 800) {
+                this.sideNavHide();
+            }
+        })
     }
 
     logout() {
@@ -22,17 +32,30 @@ export class StartComponent implements AfterViewInit {
         $('.app-sidenav').toggleClass('show');
     }
 
-    onResize(event:any){
-        if($(window).width()<800){
-            $('.app-content').removeClass('small-side-enabled');
-            $('.app-sidenav').removeClass('show');
+    sideNavHide() {
+        $('.app-content').removeClass('small-side-enabled');
+        $('.app-sidenav').removeClass('show');
+    }
+
+    sideNavShow() {
+        $('.app-content').addClass('small-side-enabled');
+        $('.app-sidenav').addClass('show');
+    }
+
+    onResize(event: any) {
+        // hide the sidenav if the user resizes the window on mobile devices
+        if ($(window).width() < 800) {
+            this.sideNavHide();
         }
     }
 
     ngAfterViewInit() {
         $('.app-content').removeClass('small-side-enabled');
         $('.dimmer').on('click', () => {
-            this.sideNavToggle();
-        })
+            this.sideNavHide();
+        });
+        if ($(window).width() > 1200) {
+            this.sideNavShow();
+        }
     }
 }
