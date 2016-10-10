@@ -6,7 +6,7 @@
     height: 100%;
     margin:0;
     padding:0;
-    background-color: $light-gray;
+    background-color: $primary;
 }
 
 .loginContainer{    
@@ -21,9 +21,9 @@
     right: 0;
     background-color: $white;
     border-radius: 0;
-    -webkit-box-shadow: 0px 6px 27px -4px rgba(122,122,122,1);
-    -moz-box-shadow: 0px 6px 27px -4px rgba(122,122,122,1);
-    box-shadow: 0px 6px 27px -4px rgba(122,122,122,1);
+    -webkit-box-shadow: 0px 6px 27px -4px rgba(16,16,16,1);
+    -moz-box-shadow: 0px 6px 27px -4px rgba(16,16,16,1);
+    box-shadow: 0px 6px 27px -4px rgba(16,16,16,1);    
 
     .row {
         margin-left: auto;
