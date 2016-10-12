@@ -1,9 +1,16 @@
-<h3>Dashboard</h3>
+<h1>Dashboard</h1>
 <div class="row">
+    <h2>Chart.js</h2>
     <div class="col m6">
         <div style="display: block">
             <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>
         </div>
+    </div>
+</div>
+<div class="row">
+    <h2>Highcharts</h2>
+    <div class="col m12">
+        <chart [options]="options"></chart>
     </div>
 </div>

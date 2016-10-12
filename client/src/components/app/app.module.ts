@@ -17,6 +17,7 @@ import { routing } from './app.routing';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { MaterialModule } from '@angular/material';
+import { ChartModule } from 'angular2-highcharts';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { MaterialModule } from '@angular/material';
     HttpModule,    
     routing,
     ChartsModule,
+    ChartModule,
     MaterialModule.forRoot(),
   ],
   declarations: [

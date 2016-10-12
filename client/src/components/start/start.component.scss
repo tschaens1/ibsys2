@@ -4,15 +4,19 @@
 $app-sidenav-width: 14rem;
 
 // Navigation
-.menu-icon-button{
-    i{color: $white}
-    cursor: pointer;
-    padding: 1rem;
-    margin-left: -1rem;        
-}
 md-toolbar{
     background-color: $primary;
     color: $white;
+
+    .menu-icon-button{
+        i{color: $white}
+        cursor: pointer;
+        padding: 1rem;
+        margin-left: -1rem;
+        @include breakpoint(tablet){
+            margin-left: -.7rem;
+        }        
+    }
 
     .app-title{
         cursor: pointer;        
@@ -35,15 +39,19 @@ md-toolbar{
     }
 }
 .app-content{
-    height: calc(100% - 2rem);
-    margin: 1rem 0 0 1rem;
-    transition: margin ease .2s;
+    height: calc(100% - 4rem);
+    margin: 0 0 0 0;
+    padding-left: 1rem;
+    overflow: auto;
+    transition: margin ease .2s;    
     @include breakpoint(tablet){
-		margin: 1rem 0 0 5rem;        
+		margin: 0 0 0 4rem;
+        padding-left: 1rem;        
 	}
 
     &.small-side-enabled{
-        margin-left: $app-sidenav-width + 2;
+        margin-left: $app-sidenav-width;
+        padding-left: 1rem;
     }
 }
 .fill-remaining-space {
@@ -59,6 +67,7 @@ md-toolbar{
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 100;
     background-color: rgba(69, 90, 100, 0.75);
     transition: background-color .5s ease;
     &:hover{
@@ -74,9 +83,9 @@ md-toolbar{
     height: calc(100% - 4rem);
     transition: all .2s ease 0s;
     overflow-x: hidden;
-    z-index: 1;
+    z-index: 200;
     @include breakpoint(tablet){
-		width: 3.6rem;        
+		width: 4rem;        
 	} 
 
     a.sidenav-link {
@@ -84,6 +93,9 @@ md-toolbar{
         width: 100%;
         float: left;
         padding: .7rem 1rem .7rem 1rem;
+        @include breakpoint(tablet){
+            padding-left: 1.3rem;
+        } 
         color: $white;
         &:hover{
             background-color: darken($primary, 3);
