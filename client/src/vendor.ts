@@ -21,3 +21,6 @@ import './../node_modules/chart.js/src/chart.js';
 
 // Icons
 import './../node_modules/mdi/css/materialdesignicons.css';
+
+// Animate.css
+import './../node_modules/animate.css/animate.css';

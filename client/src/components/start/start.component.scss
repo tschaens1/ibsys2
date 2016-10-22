@@ -10,7 +10,7 @@ $ease-speed: .2s;
 .app-navbar{
     background-color: $white;
     color: $dark;
-    height: $app-navbar-height;
+    height: calc(#{$app-navbar-height} + 1px);
     width: 100%;
     position: fixed;
     top: 0;
@@ -194,10 +194,11 @@ $ease-speed: .2s;
             width: 100%;
             
             span.category-name{
-                padding: 1rem;
+                padding: .5rem 1rem .5rem 1rem;
                 color: $gray;
                 font-size: .8rem;
                 opacity: 0;
+                float: left;
                 transition: opacity $ease-speed ease-in-out 0s;
             }
         }
