@@ -5,10 +5,10 @@ GLOBAL STYLES
 @import "colors";
 
 html, body {
-    background-color: $dirty-white;
+    background-color: $light-gray-basic;
     margin: 0;
     height: 100%;
-    overflow: hidden;
+    overflow: auto;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
 }
@@ -75,6 +75,7 @@ i.mdi{
 h1, h2, h3, h4, h5{
     line-height: 110%;
     margin: 1rem 0 1.68rem 0;
+    font-variant: small-caps;
 }
 h1 {
     font-size: 2rem;        
@@ -87,4 +88,41 @@ h3 {
 }
 h4 {
     font-size: 1.2rem;        
+}
+
+/**
+* PAGE LAYOUT
+*/
+.page-heading{
+    width: 100%;
+    min-height: 9rem;    
+    border-top: 1px solid $light-gray-basic;
+    border-bottom: 1px solid $light-gray-basic;
+    background-color: $dirty-white;
+    overflow: hidden;    
+
+    h1, h2, h3{
+        margin: 1.7rem  1rem .5rem 1.7rem;        
+    }
+
+    p{
+        margin: .7rem  2rem .5rem 1.7rem;
+    }
+}
+.page-content{
+    margin-left: 0rem;
+
+    .page-part{
+        overflow: auto;
+        background-color: $white;
+        padding: 1rem;
+        margin: 1rem;
+
+        h1{
+            margin: 0;
+            margin-bottom: 1rem;
+            font-style: normal;
+            font-size: 1.4rem;            
+        }
+    }
 }

@@ -2,20 +2,20 @@
 	<div class="app-navbar">
 		<a class="menu-icon-button" (click)="sideNavToggle()">
 			<i class="mdi mdi-menu"></i>
-		</a>		
+		</a>
 
 		<div class="search">
 			<input type="text" placeholder="Search">
 		</div>
 		<div class="right-part">
 			<a class='dropdown-button button' data-activates='settings-dropdown'><i class="mdi mdi-settings"></i></a>
-			<a class='dropdown-button button' data-activates='user-dropdown'>Philipp Kief</a>
+			<a class='dropdown-button button' data-activates='user-dropdown'>Robert</a>
 		</div>
-		
+
 		<ul id='user-dropdown' class='dropdown-content'>
 			<li><a (click)="logout()" title="Logout">Logout</a></li>
 		</ul>
-		
+
 		<ul id='settings-dropdown' class='dropdown-content'>
 			<li><a href="#!">Application</a></li>
 			<li><a href="#!">Profile</a></li>
@@ -34,14 +34,43 @@
 			</div>
 		</div>
 		<div class="sidenav-links">
-			<a class="sidenav-link waves-effect waves-dark" routerLink="/app" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-				<i class="mdi mdi-view-dashboard"></i>
-				<div class="link-text">Dashboard</div>
-			</a>
-			<a class="sidenav-link waves-effect waves-dark" routerLink="/app/warehouse" routerLinkActive="active">
-				<i class="mdi mdi-chart-histogram"></i>
-				<div class="link-text">Warehouse</div>
-			</a>
+			<div class="sidenav-category">
+				<span class="category-name">Navigation</span>
+				<a class="sidenav-link waves-effect waves-dark" routerLink="/app/dashboard" routerLinkActive="active">
+					<i class="mdi mdi-speedometer"></i>
+					<div class="link-text">Dashboard</div>
+				</a>
+				<a class="sidenav-link waves-effect waves-dark" routerLink="/app/profile" routerLinkActive="active">
+					<i class="mdi mdi-account-circle"></i>
+					<div class="link-text">Profile</div>
+				</a>
+			</div>
+			<div class="sidenav-category">
+				<span class="category-name">Warehouse</span>
+				<a class="sidenav-link waves-effect waves-dark" routerLink="/app/warehouse" routerLinkActive="active">
+					<i class="mdi mdi-chart-histogram"></i>
+					<div class="link-text">Warehouse</div>
+				</a>
+				<a class="sidenav-link waves-effect waves-dark" routerLink="/app/warehouse-statistics" routerLinkActive="active">
+					<i class="mdi mdi-chart-line"></i>
+					<div class="link-text">Warehouse statistcs</div>
+				</a>
+				<a class="sidenav-link waves-effect waves-dark" routerLink="/app/warehouse-settings" routerLinkActive="active">
+					<i class="mdi mdi-settings"></i>
+					<div class="link-text">Warehouse settings</div>
+				</a>
+			</div>
+			<div class="sidenav-category">
+				<span class="category-name">Files</span>
+				<a class="sidenav-link waves-effect waves-dark" routerLink="/app/uploads" routerLinkActive="active">
+					<i class="mdi mdi-upload"></i>
+					<div class="link-text">Fileupload</div>
+				</a>
+				<a class="sidenav-link waves-effect waves-dark" routerLink="/app/downloads" routerLinkActive="active">
+					<i class="mdi mdi-download"></i>
+					<div class="link-text">Downloads</div>
+				</a>
+			</div>
 		</div>
 	</div>
 

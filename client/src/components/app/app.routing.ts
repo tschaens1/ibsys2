@@ -30,6 +30,10 @@ const appRoutes: Routes = [
                 component: DashBoardComponent
             },
             {
+                path: 'dashboard',
+                redirectTo: '/app'
+            },
+            {
                 path: 'start',
                 redirectTo: '/app'
             },
