@@ -27,15 +27,15 @@ const appRoutes: Routes = [
         children: [
             {
                 path: '',
-                component: DashBoardComponent
+                redirectTo: 'dashboard'
             },
             {
                 path: 'dashboard',
-                redirectTo: '/app'
+                component: DashBoardComponent
             },
             {
                 path: 'start',
-                redirectTo: '/app'
+                redirectTo: 'dashboard'
             },
             {
                 path: 'warehouse',
