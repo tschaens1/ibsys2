@@ -2,45 +2,48 @@
 	<div class="app-navbar">
 		<a class="menu-icon-button" (click)="sideNavToggle()">
 			<i class="mdi mdi-menu"></i>
-		</a>
-		<span routerLink="/app/start" class="app-title ellipsis">IBSYS II - WS2016 ka6</span>
-		<!--fills the rest of the toolbar-->
-		<span class="fill-remaining-space"></span>
-		<!-- Dropdown Trigger -->
-		<a class='dropdown-button menu-button' data-activates='language-dropdown'>EN</a>
+		</a>		
 
-		<!-- Dropdown Structure -->
-		<ul id='language-dropdown' class='dropdown-content'>
-			<li><a>German</a></li>
-			<li><a>English</a></li>
+		<div class="search">
+			<input type="text" placeholder="Search">
+		</div>
+		<div class="right-part">
+			<a class='dropdown-button button' data-activates='settings-dropdown'><i class="mdi mdi-settings"></i></a>
+			<a class='dropdown-button button' data-activates='user-dropdown'>Philipp Kief</a>
+		</div>
+		
+		<ul id='user-dropdown' class='dropdown-content'>
+			<li><a (click)="logout()" title="Logout">Logout</a></li>
 		</ul>
-		<a (click)="logout()" title="Logout"><i class="mdi mdi-logout"></i></a>
-	</div>
-
-	<div id="app-menu">
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/about/">About us</a>
-				<ul>
-					<li><a href="/about/history/">History</a></li>
-					<li><a href="/about/team/">The team</a></li>
-					<li><a href="/about/address/">Our address</a></li>
-				</ul>
-			</li>
-			<li><a href="/contact/">Contact</a></li>
+		
+		<ul id='settings-dropdown' class='dropdown-content'>
+			<li><a href="#!">Application</a></li>
+			<li><a href="#!">Profile</a></li>
+			<li class="divider"></li>
+			<li><a href="#!">All settings</a></li>
 		</ul>
 	</div>
 
-	<!--<div class="app-sidenav">
-		<a class="sidenav-link waves-effect waves-dark" routerLink="/app" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-			<i class="mdi mdi-view-dashboard"></i>
-			<div class="link-text">Home</div>
-		</a>
-		<a class="sidenav-link waves-effect waves-dark" routerLink="/app/warehouse" routerLinkActive="active">
-			<i class="mdi mdi-chart-histogram"></i>
-			<div class="link-text">Warehouse</div>
-		</a>
-	</div>-->
+	<div class="app-sidenav">
+		<div class="sidenav-title" routerLink="/app/start">
+			<div class="logo">
+				<i class="mdi mdi-bike"></i>
+			</div>
+			<div class="title">
+				IBSYS II
+			</div>
+		</div>
+		<div class="sidenav-links">
+			<a class="sidenav-link waves-effect waves-dark" routerLink="/app" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+				<i class="mdi mdi-view-dashboard"></i>
+				<div class="link-text">Dashboard</div>
+			</a>
+			<a class="sidenav-link waves-effect waves-dark" routerLink="/app/warehouse" routerLinkActive="active">
+				<i class="mdi mdi-chart-histogram"></i>
+				<div class="link-text">Warehouse</div>
+			</a>
+		</div>
+	</div>
 
 	<!--if sidenav is opened in mobile view-->
 	<div class="dimmer"></div>

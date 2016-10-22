@@ -1,59 +1,99 @@
 @import '../../styles/colors';
 @import '../../styles/breakpoints';
 
+$app-navbar-height: 4rem;
 $app-sidenav-width: 14rem;
+$small-sidenav-width: 4rem;
+$ease-speed: .2s;
 
 // Navigation
 .app-navbar{
-    background-color: $primary;
-    color: $white;
-    height: 4rem;
+    background-color: $white;
+    color: $dark;
+    height: $app-navbar-height;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    // overflow: hidden;
     line-height: 3rem;
+    transition: left 0s ease-in-out;
+
+    @include breakpoint(tablet){
+        left: $small-sidenav-width; 
+        width: calc(100% - #{$small-sidenav-width});       
+    }  
+
+    &.small-side-enabled{
+        left: $app-sidenav-width;
+        transition: left 0s ease-in-out;
+    }    
 
     .menu-icon-button{
-        i{color: $white}
+        i{color: $dark}
         cursor: pointer;
-        padding: 1rem;
-        margin-left: -1rem;
-        @include breakpoint(tablet){
-            margin-left: -.7rem;
-        }        
+        margin-left: 1rem;
+        height: 100%;
+        width: 2rem;
+        line-height: 3.8rem;
+        display: block;
+        float: left;               
+    }    
+
+    .search{
+        float: left;
+        width: 25%;
+        margin-left: .5rem;
+
+        input{            
+            border: none;
+            margin-top: .8rem;
+            height: 2.2rem;            
+        }
+        input[type=text]:focus {
+            border-bottom: 0px solid $gray;
+            box-shadow: 0 1px 0 0 $gray;
+        }
     }
 
-    .app-title{
-        cursor: pointer;        
+    .right-part{
+        float: right;
+        width: 15rem;
+        .button{
+            float: right;
+            color: $dark;
+            line-height: 3.9rem;
+            margin-right: 1rem;
+            height: 100%;
+            float: right;            
+            display: block;
+            cursor: pointer;
+        }
     }
 
-    a{
-        cursor: pointer;
-        color: $white;
-    } 
-
-    // Language dropdown
-    .dropdown-content active{
-        top: 7px !important;
-    }
-    a.dropdown-button.menu-button {
-        margin: 0 2rem 0 2rem;
-    }
-    .dropdown-content li{
-        background-color: lighten($primary, 2);
+    .dropdown-content{
+        top: 3rem !important;
+        min-width: 9rem;
+        a{
+            color: $dark-gray;
+        }
     }
 }
 .app-content{
-    height: calc(100% - 4rem);
-    margin: 0 0 0 0;
+    height: calc(100% - $app-navbar-height);
+    margin-left: 0;
+    margin-top: $app-navbar-height;
     padding-left: 1rem;
     overflow: auto;
-    transition: margin ease .2s;    
+    transition: margin ease-in-out 0s;    
     @include breakpoint(tablet){
-		margin: 0 0 0 4rem;
+		margin-left: $small-sidenav-width;
         padding-left: 1rem;        
 	}
 
     &.small-side-enabled{
         margin-left: $app-sidenav-width;
-        padding-left: 1rem;
+        padding-left: 1rem;        
     }
 }
 .fill-remaining-space {
@@ -64,16 +104,16 @@ $app-sidenav-width: 14rem;
 
 .dimmer {
     position: absolute;
-    top: 4rem;
+    top: 0;
     display: none;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 100;
-    background-color: rgba(69, 90, 100, 0.75);
-    transition: background-color .5s ease;
+    background-color: rgba(38, 39, 39, 0.92);
+    transition: background-color $ease-speed ease-in-out;
     &:hover{
-        background-color: rgba(69, 90, 100, 0.5);
+        background-color: rgba(38, 39, 39, 0.85);
     }
 }
 
@@ -82,57 +122,97 @@ $app-sidenav-width: 14rem;
     position: fixed;
     width: 0;
     background-color: darken($primary, 2);
-    height: calc(100% - 4rem);
-    transition: all .2s ease 0s;
+    height: 100%;
+    transition: width $ease-speed ease-in-out 0s;
     overflow-x: hidden;
     z-index: 200;
+    top: 0;
     @include breakpoint(tablet){
-		width: 4rem;        
+		width: $small-sidenav-width;        
 	} 
 
-    a.sidenav-link {
-        background-color: darken($primary, 2);
-        width: 100%;
-        float: left;
-        padding: .7rem 1rem .7rem 1rem;
-        @include breakpoint(tablet){
-            padding-left: 1.3rem;
-        } 
-        color: $white;
-        &:hover{
-            background-color: darken($primary, 3);
-        }
-        &.active{            
-            background-color: darken($primary, 3);
-        }
-        i.mdi{
-            float: left;            
-        }
-        .link-text{            
-            opacity: 0;
-            position: absolute;
-            left: 2.2rem;
-            line-height: 2rem;
-            margin-left: 1rem;
-            transition: opacity .4s ease 0s;
-        }
-    }
     &:hover{    
         @include breakpoint(tablet){
             width: $app-sidenav-width;        
         }         
     }
     &.show{            
-        width: $app-sidenav-width;                
+        width: $app-sidenav-width;
+        transition: width 0s ease-in-out 0s; 
     }
-    &:hover a.sidenav-link .link-text{    
+    &:hover .sidenav-links a.sidenav-link .link-text, &:hover .sidenav-title .title{    
         @include breakpoint(tablet){
             opacity: 1;        
         } 
     }
-    &.show a.sidenav-link .link-text{    
+    &.show .sidenav-links a.sidenav-link .link-text, &.show .sidenav-title .title{    
         opacity: 1;    
     }
+
+    .sidenav-title{
+        width: 100%;
+        height: $small-sidenav-width;
+        background-color: lighten($primary, 2);
+        cursor: pointer;
+
+        .logo{
+            float: left;
+            padding: .9rem 1rem 0 1.3rem;
+            color: $white;
+            font-size: 1.1rem;
+        }
+
+        .title{            
+            overflow: hidden;
+            color: $white;
+            width: 9rem;  
+            font-weight: 600;          
+            text-overflow: ellipsis;
+            top: .9rem;
+            white-space: nowrap;
+            opacity: 0;
+            position: absolute;
+            left: 2.75rem;
+            line-height: 2rem;
+            margin-left: 1rem;
+            transition: opacity $ease-speed ease-in-out 0s;
+        }
+    }
+
+    a.sidenav-link {
+        background-color: darken($primary, 2);
+        width: 100%;
+        float: left;
+        opacity: .7;
+        padding: .5rem 1rem .5rem 1.3rem;
+        color: $white;
+        transition: opacity ease .05s;
+        @include breakpoint(tablet){
+            padding-left: 1.4rem;
+        } 
+        &:hover{
+            background-color: darken($primary, 3);
+            opacity: 1;
+        }
+        &.active{            
+            background-color: darken($primary, 3);
+            opacity: 1;
+        }
+        i.mdi{
+            float: left;
+            line-height: 2rem;
+            font-size: 1.1rem;
+        }
+        .link-text{            
+            opacity: 0;
+            position: absolute;
+            left: 2.8rem;
+            font-size: .93rem;
+            line-height: 2rem;
+            margin-left: 1rem;
+            transition: opacity $ease-speed ease-in-out 0s;
+        }
+    }    
 }
 
 .app-sidenav.show + .dimmer{
