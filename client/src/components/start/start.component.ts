@@ -25,7 +25,7 @@ export class StartComponent implements AfterViewInit, OnInit {
         // initialize mmenu
         // jQuery(document).ready(function ($) {
         //     $("#my-menu").mmenu();
-        // });        
+        // });                
     }
 
     logout() {

@@ -1,9 +1,6 @@
 import { LoginService } from './../login/login.service';
 import { Component } from '@angular/core';
 
-require('./../../styles/styles.global.scss');
-require('./../../images/favicon.ico');
-
 @Component({
     selector: 'dashboard',
     templateUrl: './dashboard.component.html',
@@ -18,7 +15,7 @@ export class DashBoardComponent {
             series: [{
                 data: [29.9, 71.5, 106.4, 129.2],
             }]
-        };
+        };        
     }
 
     public doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
