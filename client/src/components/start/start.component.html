@@ -1,35 +1,51 @@
-<md-toolbar>
-    <a class="menu-icon-button" (click)="sideNavToggle()">
-        <i class="mdi mdi-menu"></i>
-    </a>
-    <span routerLink="/app/start" class="app-title ellipsis">IBSYS II - WS2016 ka6</span>
-    <!--fills the rest of the toolbar-->
-    <span class="fill-remaining-space"></span>
-    <!-- Dropdown Trigger -->
-    <a class='dropdown-button menu-button' data-activates='language-dropdown'>EN</a>
+<div class="app">
+	<div class="app-navbar">
+		<a class="menu-icon-button" (click)="sideNavToggle()">
+			<i class="mdi mdi-menu"></i>
+		</a>
+		<span routerLink="/app/start" class="app-title ellipsis">IBSYS II - WS2016 ka6</span>
+		<!--fills the rest of the toolbar-->
+		<span class="fill-remaining-space"></span>
+		<!-- Dropdown Trigger -->
+		<a class='dropdown-button menu-button' data-activates='language-dropdown'>EN</a>
 
-    <!-- Dropdown Structure -->
-    <ul id='language-dropdown' class='dropdown-content'>
-        <li><a>German</a></li>
-        <li><a>English</a></li>        
-    </ul>
-    <a (click)="logout()" title="Logout"><i class="mdi mdi-logout"></i></a>
-</md-toolbar>
+		<!-- Dropdown Structure -->
+		<ul id='language-dropdown' class='dropdown-content'>
+			<li><a>German</a></li>
+			<li><a>English</a></li>
+		</ul>
+		<a (click)="logout()" title="Logout"><i class="mdi mdi-logout"></i></a>
+	</div>
 
-<div class="app-sidenav">
-    <a class="sidenav-link waves-effect waves-dark" routerLink="/app" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <i class="mdi mdi-view-dashboard"></i>
-        <div class="link-text">Home</div>
-    </a>
-    <a class="sidenav-link waves-effect waves-dark" routerLink="/app/warehouse" routerLinkActive="active">
-        <i class="mdi mdi-chart-histogram"></i>
-        <div class="link-text">Warehouse</div>
-    </a>
-</div>
+	<div id="app-menu">
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="/about/">About us</a>
+				<ul>
+					<li><a href="/about/history/">History</a></li>
+					<li><a href="/about/team/">The team</a></li>
+					<li><a href="/about/address/">Our address</a></li>
+				</ul>
+			</li>
+			<li><a href="/contact/">Contact</a></li>
+		</ul>
+	</div>
 
-<!--if sidenav is opened in mobile view-->
-<div class="dimmer"></div>
+	<!--<div class="app-sidenav">
+		<a class="sidenav-link waves-effect waves-dark" routerLink="/app" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+			<i class="mdi mdi-view-dashboard"></i>
+			<div class="link-text">Home</div>
+		</a>
+		<a class="sidenav-link waves-effect waves-dark" routerLink="/app/warehouse" routerLinkActive="active">
+			<i class="mdi mdi-chart-histogram"></i>
+			<div class="link-text">Warehouse</div>
+		</a>
+	</div>-->
 
-<div class="app-content" (window:resize)="onResize($event)">
-    <router-outlet></router-outlet>
+	<!--if sidenav is opened in mobile view-->
+	<div class="dimmer"></div>
+
+	<div class="app-content" (window:resize)="onResize($event)">
+		<router-outlet></router-outlet>
+	</div>
 </div>

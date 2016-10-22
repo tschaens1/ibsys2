@@ -4,9 +4,11 @@
 $app-sidenav-width: 14rem;
 
 // Navigation
-md-toolbar{
+.app-navbar{
     background-color: $primary;
     color: $white;
+    height: 4rem;
+    line-height: 3rem;
 
     .menu-icon-button{
         i{color: $white}

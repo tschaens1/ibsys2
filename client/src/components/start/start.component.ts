@@ -21,6 +21,11 @@ export class StartComponent implements AfterViewInit, OnInit {
                 this.sideNavHide();
             }
         })
+
+        // initialize mmenu
+        // jQuery(document).ready(function ($) {
+        //     $("#my-menu").mmenu();
+        // });        
     }
 
     logout() {
