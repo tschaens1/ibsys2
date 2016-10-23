@@ -2,7 +2,6 @@ import { Router } from '@angular/router';
 import { LoginService } from './../login/login.service';
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { SearchService } from './../search/search.service';
-import { TranslationService } from './../translate/translate.service';
 
 require('./../../styles/styles.global.scss');
 require('./../../images/favicon.ico');
@@ -19,8 +18,7 @@ export class StartComponent implements AfterViewInit, OnInit {
     constructor(
         private loginService: LoginService, 
         private router: Router, 
-        private searchService: SearchService, 
-        private translationService: TranslationService) { }
+        private searchService: SearchService) { }
 
     ngOnInit() {
         // hide the sidenav if the route changes
@@ -28,16 +26,7 @@ export class StartComponent implements AfterViewInit, OnInit {
             if ($(window).width() < 800) {
                 this.sideNavHide();
             }
-        });
-
-        // store all supported languages
-        this.supportedLanguages = [
-            { display: 'English', value: 'en' },
-            { display: 'German', value: 'de' },
-        ];
-
-        // set default language (todo -> use local browser settings)
-        this.selectLanguage('de');
+        });        
     }
     
     logout() {
@@ -106,22 +95,5 @@ export class StartComponent implements AfterViewInit, OnInit {
         if ($(window).width() > 1200) {
             this.sideNavShow();
         }
-    }
-
-    // translation settings
-    public translatedText: string;
-    public supportedLanguages: any[];
-
-    isCurrentLanguage(language: string) {
-        return language === this.translationService.currentLang;
-    }
-
-    selectLanguage(language: string) {
-        this.translationService.use(language);
-        this.refreshText();
-    }
-
-    refreshText() {
-        this.translatedText = this.translationService.instant('hello world');
-    }
+    }    
 }

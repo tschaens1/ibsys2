@@ -15,7 +15,7 @@ export class TranslationService {
 
     // set the current language
     public use(lang: string): void {
-        this._currentLang = lang;        
+        this._currentLang = lang;
     }
 
     private translate(key: string): any {
@@ -26,7 +26,23 @@ export class TranslationService {
         return translation;
     }
 
-    public instant(key: string){
-        return this.translate(key);
+    public instant(key: string, words?: string | string[]) {
+        const translation: string = this.translate(key);
+
+        if (!words) return translation;
+        return this.replace(translation, words);
+    }
+
+    private PLACEHOLDER = '%';
+
+    public replace(word: string = '', words: string | string[]) {
+        let translation: string = word;
+
+        const values: string[] = [].concat(words);
+        values.forEach((e, i) => {
+            translation = translation.replace(this.PLACEHOLDER.concat(<any>i), e)
+        });
+
+        return translation;
     }
 }
