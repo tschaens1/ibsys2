@@ -27,22 +27,22 @@ html, body {
 }
 /* label underline focus color */
 .input-field input[type]:focus {
-    border-bottom: 1px solid $primary !important;
-    box-shadow: 0 1px 0 0 $primary !important;
+    border-bottom: 1px solid $primary-theme !important;
+    box-shadow: 0 1px 0 0 $primary-theme !important;
 }
 /* valid color */
 .input-field input[type].valid {
-    border-bottom: 1px solid $primary !important;
-    box-shadow: 0 1px 0 0 $primary !important;
+    border-bottom: 1px solid $primary-theme !important;
+    box-shadow: 0 1px 0 0 $primary-theme !important;
 }
 /* invalid color */
 .input-field input[type].invalid {
-    border-bottom: 1px solid $primary !important;
-    box-shadow: 0 1px 0 0 $primary !important;
+    border-bottom: 1px solid $primary-theme !important;
+    box-shadow: 0 1px 0 0 $primary-theme !important;
 }
 /* icon prefix focus color */
 .input-field .prefix.active {
-    color: $primary;
+    color: $primary-theme;
 }
 
 /*
@@ -50,6 +50,9 @@ html, body {
 */
 .btn{
     background-color: $primary-theme;
+    &:hover{
+        background-color: lighten($primary-theme, 5);
+    }
 }
 
 /*

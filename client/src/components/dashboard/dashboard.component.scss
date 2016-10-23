@@ -15,6 +15,7 @@ chart {
         border: 1px solid $light-gray-basic;
         padding: 1rem;
         position: relative;
+        cursor: default;
 
         &.card-blue{
             background-color: $blue;

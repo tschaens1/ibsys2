@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
         this.searchTerm = 'sample search';
     }
 
-    ngOnInit() {        
+    ngOnInit() {
         this.router.events.subscribe(e => {
             this.loadSearch();
         });
@@ -30,5 +30,10 @@ export class SearchComponent implements OnInit {
 
         // load the search results
         this.searchResults = this.searchService.getResults(this.searchTerm);
+    }
+
+    searchNavigateTo(route: any) {
+        this.router.navigate(route);
+        this.searchTerm = '';
     }
 }

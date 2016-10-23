@@ -5,7 +5,8 @@
 		</a>
 
 		<div class="search">
-			<input type="text" placeholder="Search" [(ngModel)]="searchTerm" (keyup)="onSearchKeyUp()" (keyup.enter)="onSearchEnter()" (blur)="hideSearchResults()">
+			<input type="text" placeholder="Search" [(ngModel)]="searchTerm" (keyup)="onSearchKeyUp()" (keyup.enter)="onSearchEnter()"
+				(blur)="hideSearchResults()">
 			<div class="searchResults" *ngIf="searchResults && searchResults.length > 0">
 				<ul>
 					<li *ngFor="let result of searchResults" (click)="searchNavigateTo(result.route)">
@@ -19,7 +20,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="right-part">
+		<div class="right-part">										
 			<a class='dropdown-button button' data-activates='settings-dropdown'><i class="mdi mdi-settings"></i></a>
 			<a class='dropdown-button button' data-activates='user-dropdown'>Robert</a>
 		</div>
@@ -29,10 +30,10 @@
 		</ul>
 
 		<ul id='settings-dropdown' class='dropdown-content'>
-			<li><a href="#!">Application</a></li>
-			<li><a href="#!">Profile</a></li>
+			<li><a routerLink="/app/settings">Application</a></li>
+			<li><a routerLink="/app/settings">Profile</a></li>
 			<li class="divider"></li>
-			<li><a href="#!">All settings</a></li>
+			<li><a routerLink="/app/settings">All settings</a></li>
 		</ul>
 	</div>
 

@@ -11,6 +11,7 @@ import { LoggedInGuard } from '../login/logged-in.guard';
 import { LoggedOutGuard } from '../login/logged-out.guard';
 import { PageNotFoundComponent } from './../pagenotfound/pagenotfound.component';
 import { StartComponent } from '../start/start.component';
+import { SettingsComponent } from './../settings/settings.component';
 import { DashBoardComponent } from '../dashboard/dashboard.component';
 import { SearchComponent } from './../search/search.component';
 import { SearchService } from './../search/search.service';
@@ -35,6 +36,7 @@ import { ChartModule } from 'angular2-highcharts';
     AppComponent,
     LoginComponent,
     StartComponent,
+    SettingsComponent,
     WarehouseComponent,
     DashBoardComponent,
     SearchComponent,

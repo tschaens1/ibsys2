@@ -6,6 +6,7 @@ import { LoginComponent } from '../login/login.component';
 import { LoggedInGuard } from '../login/logged-in.guard';
 import { LoggedOutGuard } from '../login/logged-out.guard';
 import { StartComponent } from '../start/start.component';
+import { SettingsComponent } from './../settings/settings.component';
 import { DashBoardComponent } from '../dashboard/dashboard.component';
 import { WarehouseComponent } from '../warehouse/warehouse.component';
 import { SearchComponent } from './../search/search.component';
@@ -45,6 +46,10 @@ const appRoutes: Routes = [
             {
                 path: 'search',
                 component: SearchComponent
+            },
+            {
+                path: 'settings',
+                component: SettingsComponent
             }
         ]
     },

@@ -8,7 +8,7 @@
 			<div class="col s12">
 				<ul>
 					<div class="row" *ngFor="let result of searchResults">
-						<li class="searchResult s12">
+						<li class="searchResult s12" (click)="searchNavigateTo(result.route)">
 							<div class="name">
 								{{result.name}}
 							</div>
