@@ -24,10 +24,12 @@ export class AppComponent implements OnInit {
 
         // set default language (todo -> use local browser settings)
         this.selectLanguage('de');
+        this.translationService.setDefaultLanguage('en');
+        this.translationService.enableFallback(true);
     }
 
     isCurrentLanguage(language: string){
-        return language === this.translationService.currentLang;
+        return language === this.translationService.currentLanguage;
     }
 
     selectLanguage(language: string){

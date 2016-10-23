@@ -6,6 +6,7 @@ export const LANG_EN_TRANSLATIONS = {
     },
     "settings": {
         "title": "Settings",
-        "description": "Change the behaviour of the application here."
+        "description": "Change the behaviour of the application here.",
+        "changeLanguage": "Change the application language:",
     }
 }
