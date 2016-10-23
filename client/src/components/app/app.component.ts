@@ -1,5 +1,5 @@
 import { LoginService } from './../login/login.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // require('./../../styles/styles.global.scss');
 // require('./../../images/favicon.ico');
@@ -9,4 +9,5 @@ import { Component } from '@angular/core';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent {}
+export class AppComponent{    
+}

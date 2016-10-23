@@ -17,7 +17,8 @@
       "jquery",
       "highcharts",
       "materialize-css",
-      "pickadate"
+      "pickadate",
+      "lodash"
     ]
   },
   "exclude": [

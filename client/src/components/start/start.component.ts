@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { LoginService } from './../login/login.service';
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { SearchService } from './../search/search.service';
+import { TranslationService } from './../translate/translate.service';
 
 require('./../../styles/styles.global.scss');
 require('./../../images/favicon.ico');
@@ -15,8 +16,11 @@ export class StartComponent implements AfterViewInit, OnInit {
     searchResults: any[] = [];
     searchTerm: any = '';
 
-    constructor(private loginService: LoginService, private router: Router, private searchService: SearchService) {
-    }
+    constructor(
+        private loginService: LoginService, 
+        private router: Router, 
+        private searchService: SearchService, 
+        private translationService: TranslationService) { }
 
     ngOnInit() {
         // hide the sidenav if the route changes
@@ -24,9 +28,18 @@ export class StartComponent implements AfterViewInit, OnInit {
             if ($(window).width() < 800) {
                 this.sideNavHide();
             }
-        })
-    }
+        });
 
+        // store all supported languages
+        this.supportedLanguages = [
+            { display: 'English', value: 'en' },
+            { display: 'German', value: 'de' },
+        ];
+
+        // set default language (todo -> use local browser settings)
+        this.selectLanguage('de');
+    }
+    
     logout() {
         this.loginService.logout();
     }
@@ -56,36 +69,59 @@ export class StartComponent implements AfterViewInit, OnInit {
         }
     }
 
-    // show search results in the results box
+    // show search results in the results box while typings sth into the search input
     onSearchKeyUp() {
         this.searchResults = this.searchService.getResults(this.searchTerm);
     }
 
+    // navigate to the search component after pressing 'Enter'-Key
     onSearchEnter() {
-        this.router.navigate(['/app/search', { term: this.searchTerm }])        
+        this.router.navigate(['/app/search', { term: this.searchTerm }])
         this.searchTerm = '';
         this.hideSearchResults();
     }
 
-    // hide the search results on blur
+    // hide the search results on blur (input loses focus)
     hideSearchResults() {
-        setTimeout(()=>{
+        setTimeout(() => {
             this.searchResults = [];
         }, 500);
     }
 
-    searchNavigateTo(route: any){
+    // navigates to a page if user clicked on a search result
+    searchNavigateTo(route: any) {
         this.router.navigate(route);
         this.searchTerm = '';
     }
 
     ngAfterViewInit() {
         $('.app-content').removeClass('small-side-enabled');
+
+        // set event handler to hide sidenav if user clicks on the dimmer
         $('.dimmer').on('click', () => {
             this.sideNavHide();
         });
+
+        // show the sidenav on a higher resolution
         if ($(window).width() > 1200) {
             this.sideNavShow();
         }
+    }
+
+    // translation settings
+    public translatedText: string;
+    public supportedLanguages: any[];
+
+    isCurrentLanguage(language: string) {
+        return language === this.translationService.currentLang;
+    }
+
+    selectLanguage(language: string) {
+        this.translationService.use(language);
+        this.refreshText();
+    }
+
+    refreshText() {
+        this.translatedText = this.translationService.instant('hello world');
     }
 }

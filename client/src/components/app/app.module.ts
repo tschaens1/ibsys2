@@ -16,6 +16,10 @@ import { DashBoardComponent } from '../dashboard/dashboard.component';
 import { SearchComponent } from './../search/search.component';
 import { SearchService } from './../search/search.service';
 
+import { TRANSLATION_PROVIDERS } from './../translate/translations';
+import { TranslatePipe } from './../translate/translate.pipe';
+import { TranslationService } from './../translate/translate.service';
+
 import { routing } from './app.routing';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
@@ -41,12 +45,15 @@ import { ChartModule } from 'angular2-highcharts';
     DashBoardComponent,
     SearchComponent,
     PageNotFoundComponent,
+    TranslatePipe,
   ],
   providers: [
     LoginService,
     LoggedInGuard,
     LoggedOutGuard,
     SearchService,
+    TRANSLATION_PROVIDERS,
+    TranslationService,
   ],
   bootstrap: [AppComponent]
 })
