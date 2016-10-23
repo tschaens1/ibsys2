@@ -18,10 +18,10 @@ export class TranslationService {
         this._currentLang = lang;        
     }
 
-    private translate(key: string): string {
+    private translate(key: string): any {
         let translation = key;
         if (this._translations[this._currentLang] && _.get(this._translations[this.currentLang], key)) {
-            return this._translations[this.currentLang][key];
+            return _.get(this._translations[this.currentLang], key);
         }
         return translation;
     }
