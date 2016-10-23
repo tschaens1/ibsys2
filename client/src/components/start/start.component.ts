@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { LoginService } from './../login/login.service';
 import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { SearchService } from './../search/search.service';
 
 require('./../../styles/styles.global.scss');
 require('./../../images/favicon.ico');
@@ -11,7 +12,10 @@ require('./../../images/favicon.ico');
     styleUrls: ['./start.component.scss']
 })
 export class StartComponent implements AfterViewInit, OnInit {
-    constructor(private loginService: LoginService, private router: Router) {
+    searchResults: any[] = [];
+    searchTerm: any = '';
+
+    constructor(private loginService: LoginService, private router: Router, private searchService: SearchService) {
     }
 
     ngOnInit() {
@@ -20,7 +24,7 @@ export class StartComponent implements AfterViewInit, OnInit {
             if ($(window).width() < 800) {
                 this.sideNavHide();
             }
-        })                      
+        })
     }
 
     logout() {
@@ -35,7 +39,7 @@ export class StartComponent implements AfterViewInit, OnInit {
 
     sideNavHide() {
         $('.app-content').removeClass('small-side-enabled');
-        $('.app-navbar').removeClass('small-side-enabled');        
+        $('.app-navbar').removeClass('small-side-enabled');
         $('.app-sidenav').removeClass('show');
     }
 
@@ -50,6 +54,29 @@ export class StartComponent implements AfterViewInit, OnInit {
         if ($(window).width() < 800) {
             this.sideNavHide();
         }
+    }
+
+    // show search results in the results box
+    onSearchKeyUp() {
+        this.searchResults = this.searchService.getResults(this.searchTerm);
+    }
+
+    onSearchEnter() {
+        this.router.navigate(['/app/search', { term: this.searchTerm }])        
+        this.searchTerm = '';
+        this.hideSearchResults();
+    }
+
+    // hide the search results on blur
+    hideSearchResults() {
+        setTimeout(()=>{
+            this.searchResults = [];
+        }, 500);
+    }
+
+    searchNavigateTo(route: any){
+        this.router.navigate(route);
+        this.searchTerm = '';
     }
 
     ngAfterViewInit() {

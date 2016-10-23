@@ -5,7 +5,19 @@
 		</a>
 
 		<div class="search">
-			<input type="text" placeholder="Search">
+			<input type="text" placeholder="Search" [(ngModel)]="searchTerm" (keyup)="onSearchKeyUp()" (keyup.enter)="onSearchEnter()" (blur)="hideSearchResults()">
+			<div class="searchResults" *ngIf="searchResults && searchResults.length > 0">
+				<ul>
+					<li *ngFor="let result of searchResults" (click)="searchNavigateTo(result.route)">
+						<div class="result-title ellipsis">
+							{{result.name}}
+						</div>
+						<div class="result-description ellipsis">
+							{{result.description}}
+						</div>
+					</li>
+				</ul>
+			</div>
 		</div>
 		<div class="right-part">
 			<a class='dropdown-button button' data-activates='settings-dropdown'><i class="mdi mdi-settings"></i></a>

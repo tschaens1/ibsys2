@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -12,6 +12,8 @@ import { LoggedOutGuard } from '../login/logged-out.guard';
 import { PageNotFoundComponent } from './../pagenotfound/pagenotfound.component';
 import { StartComponent } from '../start/start.component';
 import { DashBoardComponent } from '../dashboard/dashboard.component';
+import { SearchComponent } from './../search/search.component';
+import { SearchService } from './../search/search.service';
 
 import { routing } from './app.routing';
 
@@ -23,7 +25,7 @@ import { ChartModule } from 'angular2-highcharts';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,    
+    HttpModule,
     routing,
     ChartsModule,
     ChartModule,
@@ -33,15 +35,17 @@ import { ChartModule } from 'angular2-highcharts';
     AppComponent,
     LoginComponent,
     StartComponent,
-    WarehouseComponent,  
-    DashBoardComponent,  
-    PageNotFoundComponent
+    WarehouseComponent,
+    DashBoardComponent,
+    SearchComponent,
+    PageNotFoundComponent,
   ],
   providers: [
     LoginService,
     LoggedInGuard,
-    LoggedOutGuard
+    LoggedOutGuard,
+    SearchService,
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

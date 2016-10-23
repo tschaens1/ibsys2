@@ -8,6 +8,7 @@ import { LoggedOutGuard } from '../login/logged-out.guard';
 import { StartComponent } from '../start/start.component';
 import { DashBoardComponent } from '../dashboard/dashboard.component';
 import { WarehouseComponent } from '../warehouse/warehouse.component';
+import { SearchComponent } from './../search/search.component';
 
 const appRoutes: Routes = [
     {
@@ -41,6 +42,10 @@ const appRoutes: Routes = [
                 path: 'warehouse',
                 component: WarehouseComponent
             },
+            {
+                path: 'search',
+                component: SearchComponent
+            }
         ]
     },
     {

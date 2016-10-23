@@ -1,0 +1,37 @@
+@import '../../styles/colors';
+// @import '../../styles/breakpoints';
+
+.searchResult{
+    background-color: $white;
+    height: 7rem;
+    padding: .6rem 1rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all ease .4s;
+
+    &:hover{
+        background-color: darken($white, 5);
+    }
+
+    &.not-found{
+        p{            
+            margin: .4rem 1rem 1rem 0;
+        }
+    }
+
+    .name {
+        color: $primary-theme;
+        font-size: 1.2rem;
+    }
+
+    .tag{        
+        float: left;
+        margin-right: 1rem;
+        font-size: .8rem;
+        background-color: $primary-theme;
+        opacity: .7;
+        color: white;
+        margin-top: .5rem;
+        padding: .1rem .4rem .3rem .4rem;    
+    }
+}
