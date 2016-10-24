@@ -7,7 +7,7 @@
 		<div class="search">
 			<input type="text" placeholder="Search" [(ngModel)]="searchTerm" (keyup)="onSearchKeyUp()" (keyup.enter)="onSearchEnter()"
 				(blur)="hideSearchResults()">
-			<div class="searchResults" *ngIf="searchResults && searchResults.length > 0">
+			<div class="searchResults animated slideInDown" *ngIf="searchResults && searchResults.length > 0">
 				<ul>
 					<li *ngFor="let result of searchResults" (click)="searchNavigateTo(result.route)">
 						<div class="result-title ellipsis">
