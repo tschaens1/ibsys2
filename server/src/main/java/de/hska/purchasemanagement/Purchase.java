@@ -1,5 +1,8 @@
 package de.hska.purchasemanagement;
 
+import de.hska.articlemanagement.domain.Article;
+import de.hska.periodmanagement.domain.Period;
+
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -11,11 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by andre on 26.10.2016.
- */
 @Entity
-@Table(name = "purchase")
 public class Purchase {
 
     @Id
@@ -28,7 +27,7 @@ public class Purchase {
     private PurchaseType purchaseType;
 
     @NotNull
-    @OneToOne()
+    @OneToOne
     @JoinColumn(name = "article_fk", nullable = false)
     private Article article;
 
@@ -37,7 +36,7 @@ public class Purchase {
     private Integer amount;
 
     @NotNull
-    @OneToOne()
+    @OneToOne
     @JoinColumn(name = "period_fk", nullable = false)
     private Period period;
 
