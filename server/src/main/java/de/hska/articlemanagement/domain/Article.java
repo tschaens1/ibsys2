@@ -3,9 +3,6 @@ package de.hska.articlemanagement.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by andre on 26.10.2016.
- */
 @Entity
 public class Article {
 
@@ -30,7 +27,6 @@ public class Article {
     private Double price;
 
     public Article(){
-
     }
 
     public Long getId() {

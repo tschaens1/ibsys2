@@ -1,13 +1,12 @@
 package de.hska.workplacemanagement.domain;
 
+import de.hska.ordermanagement.domain.Order;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
-/**
- * Created by andre on 26.10.2016.
- */
 @Entity
-@Table(name = "workplace")
 public class Workplace {
 
     @Id
