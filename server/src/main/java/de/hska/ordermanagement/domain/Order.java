@@ -1,7 +1,7 @@
 package de.hska.ordermanagement.domain;
 
 import de.hska.periodmanagement.domain.Period;
-import de.hska.workplace.domain.Workplace;
+import de.hska.workplacemanagement.domain.Workplace;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

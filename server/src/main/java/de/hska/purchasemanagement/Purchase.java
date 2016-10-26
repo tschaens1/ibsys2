@@ -1,14 +1,9 @@
 package de.hska.purchasemanagement;
 
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Enumerated;
-import javax.persistence.EnumType;
-import javax.persistence.Column;
-import javax.persistence.OneToOne;
-import javax.persistence.JoinColumn;
+import de.hska.articlemanagement.domain.Article;
+import de.hska.periodmanagement.domain.Period;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
