@@ -1,4 +1,4 @@
-package de.hska.workplace.domain;
+package de.hska.workplacemanagement.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
