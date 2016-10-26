@@ -30,7 +30,7 @@ public class Workplace {
     private Double workingTime;
 
     @NotNull
-    @Column(name = "order_fk", nullable = false)
+    @OneToMany(mappedBy = "workplace")
     private List <Order> orders;
 
     // TODO - erzeugnis_id:number;

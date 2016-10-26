@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "\"order\"")
 public class Order {
 
     public Order() {
@@ -21,12 +22,12 @@ public class Order {
     private Integer amount;
 
     @NotNull
-    @Column(name = "period_fk", nullable = false)
+    @OneToOne
     @JoinColumn(name = "period_fk", nullable = false)
     private Period period;
 
     @NotNull
-    @Column(name = "workplace_fk", nullable = false)
+    @ManyToOne
     @JoinColumn(name = "workplace_fk", nullable = false)
     private Workplace workplace;
 
