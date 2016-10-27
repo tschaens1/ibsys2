@@ -15,6 +15,10 @@ import { SettingsComponent } from './../settings/settings.component';
 import { DashBoardComponent } from '../dashboard/dashboard.component';
 import { SearchComponent } from './../search/search.component';
 import { SearchService } from './../search/search.service';
+import {PlanningComponent} from './../planning/planning.component';
+import {PlanningOverviewComponent} from './../planning_overview/planning_overview.component';
+import {PlanningProductionComponent} from './../planning_production/planning_production.component';
+import {PlanningMaterialComponent} from './../planning_material/planning_material.component';
 
 import { TRANSLATION_PROVIDERS } from './../translate/translations';
 import { TranslatePipe } from './../translate/translate.pipe';
@@ -46,6 +50,10 @@ import { ChartModule } from 'angular2-highcharts';
     SearchComponent,
     PageNotFoundComponent,
     TranslatePipe,
+    PlanningComponent,
+    PlanningOverviewComponent,
+    PlanningProductionComponent,
+    PlanningMaterialComponent,
   ],
   providers: [
     LoginService,

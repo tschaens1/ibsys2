@@ -8,5 +8,17 @@ export const LANG_EN_TRANSLATIONS = {
         "title": "Settings",
         "description": "Change the behaviour of the application here.",
         "changeLanguage": "Change the application language:",
+    },
+    "planning_production":{
+        "title": "Production program",
+        "description": "Auf dieser Seite wird die Produktion geplant."
+    },
+    "planning_material":{
+        "title": "Material program",
+        "description": "Auf dieser Seite wird die Produktion geplant."
+    },
+    "planning_overview":{
+        "title": "Overview planning",
+        "description": "Auf dieser Seite wird die Produktion geplant."
     }
 }
