@@ -5,47 +5,32 @@
 	</div>
 	<div class="page-content">
 
-		<select class="page-part">
-            <option value="asdfasdf" >Choose your option</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-        </select>
-
-		<br><br><br>
+		<div class="row page-part">
+			<select>
+				<option value="asdfasdf" >Choose your option</option>
+				<option value="1">Option 1</option>
+				<option value="2">Option 2</option>
+				<option value="3">Option 3</option>
+			</select>
+		</div>
 
 		<div class="row page-part">
-			<table>
-				<thead>
-					<tr>
-						<th data-field="Binding">Binding</th>
-						<th data-field="Forecast">Forecast</th>
-						<th data-field="Poduce">Poduce</th>
-						<th data-field="WarehouseStock">Warehouse stock</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Alvin</td>
-						<td>Eclair</td>
-						<td><input placeholder="P1" id="first_name" type="text" class="validate"></td>
-						<td>Eclair</td>
-
-					</tr>
-					<tr>
-						<td>Alvin</td>
-						<td>Eclair</td>
-						<td><input placeholder="P2" id="first_name" type="text" class="validate"></td>
-						<td>Eclair</td>
-					</tr>
-					<tr>
-						<td>Alvin</td>
-						<td>Eclair</td>
-						<td><input placeholder="P3" id="first_name" type="text" class="validate"></td>
-						<td>Eclair</td>
-					</tr>
-				</tbody>
-			</table>
+			<md-tab-group>
+				<md-tab>
+					<template md-tab-label>One</template>
+					<template md-tab-content>
+						<h1>Some tab content</h1>
+						<p>...</p>
+					</template>
+				</md-tab>
+				<md-tab>
+					<template md-tab-label>Two</template>
+					<template md-tab-content>
+						<h1>Some more tab content</h1>
+						<p>...</p>
+					</template>
+				</md-tab>
+			</md-tab-group>
 		</div>
 	</div>
 </div>
