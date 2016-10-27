@@ -1,0 +1,39 @@
+<div class="loginpage">
+    <div class="loginContainer col s12 animated fadeIn">
+        <div class="row">
+            <div class="col s12">
+                <h4 class="title center-align">IBSYS 2</h4>
+            </div>
+        </div>
+        <div class="row">
+            <form class="col s12" (ngSubmit)="submitLogin()" #loginForm="ngForm">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="mdi mdi-account prefix"></i>
+                        <input [(ngModel)]="username" id="username" name="username" type="text" class="validate" required>
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="mdi mdi-key prefix"></i>
+                        <input [(ngModel)]="password" id="password" name="pw" type="password" class="validate" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="stayLoggedIn col l12">
+                        <input type="checkbox" id="stayLoggedIn" [(ngModel)]="stayLoggedIn" name="stayLoggedIn" />
+                        <label for="stayLoggedIn">Stay logged in</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="btn waves-effect waves-light" [disabled]="!loginForm.form.valid" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <p class="copy center-align">&copy; 2016 - Hochschule Karlsruhe</p>
+        </div>
+    </div>
+</div>

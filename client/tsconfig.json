@@ -7,7 +7,21 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true
-  }
+    "noImplicitAny": false,
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
+    "types": [
+      "core-js",
+      "node",
+      "jquery",
+      "highcharts",
+      "materialize-css",
+      "pickadate",
+      "lodash"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -1,0 +1,25 @@
+@import '../../styles/colors';
+
+// Navigation
+md-sidenav {
+    width: 15rem;
+}
+md-sidenav-layout{
+    height: 100%;
+}
+md-sidenav.md-sidenav-side {    
+    background-color: #015356;
+}
+.menu-icon-button{
+    i{color: $white}
+    padding: 0 1rem 0 0;
+    cursor: pointer;
+}
+md-toolbar{
+    background-color: $primary;
+    color: $white; 
+}
+.app-content{
+    height: calc(100% - 2rem);
+    margin: 1rem 0 0 2rem;
+}

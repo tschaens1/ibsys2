@@ -1,0 +1,138 @@
+/*********************
+GLOBAL STYLES
+*********************/
+
+@import "colors";
+
+html, body {
+    background-color: $light-gray-basic;
+    margin: 0;
+    height: 100%;
+    overflow: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+}
+
+/*
+* FORMS
+*/
+
+ /* label color */
+.input-field label {
+    color: $gray;
+}
+/* label focus color */
+.input-field input[type]:focus + label {
+    color: $gray;
+}
+/* label underline focus color */
+.input-field input[type]:focus {
+    border-bottom: 1px solid $primary-theme !important;
+    box-shadow: 0 1px 0 0 $primary-theme !important;
+}
+/* valid color */
+.input-field input[type].valid {
+    border-bottom: 1px solid $primary-theme !important;
+    box-shadow: 0 1px 0 0 $primary-theme !important;
+}
+/* invalid color */
+.input-field input[type].invalid {
+    border-bottom: 1px solid $primary-theme !important;
+    box-shadow: 0 1px 0 0 $primary-theme !important;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: $primary-theme;
+}
+
+/*
+* Buttons
+*/
+.btn{
+    background-color: $primary-theme;
+    &:hover{
+        background-color: lighten($primary-theme, 5);
+    }
+}
+
+/*
+* HEADERS
+*/
+h1, h2, h3, h4, h5{
+    color: $primary;
+}
+
+/**
+* ICONS
+*/
+i.mdi{
+    font-size: 1.3rem;
+    display: initial;
+}
+
+/**
+* ELLIPSIS
+*/
+.ellipsis{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/**
+* HEADLINES
+*/
+h1, h2, h3, h4, h5{
+    line-height: 110%;
+    margin: 1rem 0 1.68rem 0;
+    font-variant: small-caps;
+}
+h1 {
+    font-size: 2rem;        
+}
+h2 {
+    font-size: 1.7rem;    
+}
+h3 {
+    font-size: 1.5rem;    
+}
+h4 {
+    font-size: 1.2rem;        
+}
+
+/**
+* PAGE LAYOUT
+*/
+.page-heading{
+    width: 100%;
+    min-height: 9rem;    
+    border-top: 1px solid $light-gray-basic;
+    border-bottom: 1px solid $light-gray-basic;
+    background-color: $dirty-white;
+    overflow: hidden;    
+
+    h1, h2, h3{
+        margin: 1.7rem  1rem .5rem 1.7rem;        
+    }
+
+    p{
+        margin: .7rem  2rem .5rem 1.7rem;
+    }
+}
+.page-content{
+    margin-left: 0rem;
+
+    .page-part{
+        overflow: auto;
+        background-color: $white;
+        padding: 1rem;
+        margin: 1rem;
+
+        h1{
+            margin: 0;
+            margin-bottom: 1rem;
+            font-style: normal;
+            font-size: 1.4rem;            
+        }
+    }
+}
