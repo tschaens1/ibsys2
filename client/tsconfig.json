@@ -15,6 +15,7 @@
       "core-js",
       "node",
       "jquery",
+      "hammerjs",
       "highcharts",
       "materialize-css",
       "pickadate",

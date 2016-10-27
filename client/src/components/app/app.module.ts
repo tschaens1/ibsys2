@@ -23,7 +23,7 @@ import { TranslationService } from './../translate/translate.service';
 import { routing } from './app.routing';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-// import { MaterialModule } from '@angular/material';
+import { MaterialModule } from '@angular/material';
 import { ChartModule } from 'angular2-highcharts';
 
 @NgModule({
@@ -34,7 +34,7 @@ import { ChartModule } from 'angular2-highcharts';
     routing,
     ChartsModule,
     ChartModule,
-    // MaterialModule.forRoot(),
+    MaterialModule.forRoot(),
   ],
   declarations: [
     AppComponent,

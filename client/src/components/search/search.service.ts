@@ -49,8 +49,8 @@ export class SearchService {
             return results;
         } else {
             this.searchEntries.forEach(entry => {
-                if (entry.name.toLowerCase().includes(term.trim().toLowerCase()) || 
-                    entry.tags.filter(e=> e.toLowerCase() === term.trim().toLowerCase()).length > 0) {
+                if (entry.name.toLowerCase().includes(term.trim().toLowerCase()) ||
+                    entry.tags.filter(e => e.toLowerCase().includes(term.trim().toLowerCase())).length > 0) {
                     results.push(entry);
                 }
             });
