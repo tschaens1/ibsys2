@@ -10,6 +10,11 @@ import { SettingsComponent } from './../settings/settings.component';
 import { DashBoardComponent } from '../dashboard/dashboard.component';
 import { WarehouseComponent } from '../warehouse/warehouse.component';
 import { SearchComponent } from './../search/search.component';
+import { PlanningComponent } from './../planning/planning.component';
+import { PlanningOverviewComponent } from './../planning_overview/planning_overview.component';
+import { PlanningProductionComponent } from './../planning_production/planning_production.component';
+import { PlanningMaterialComponent } from './../planning_material/planning_material.component';
+
 
 const appRoutes: Routes = [
     {
@@ -50,7 +55,30 @@ const appRoutes: Routes = [
             {
                 path: 'settings',
                 component: SettingsComponent
+            },
+            {
+                path: 'planning',
+                component: PlanningComponent,
+                children: [
+                    {
+                        path: '',
+                        redirectTo: 'overview'
+                    },
+                    {
+                        path: 'overview',
+                        component: PlanningOverviewComponent
+                    },
+                    {
+                        path: 'production',
+                        component: PlanningProductionComponent
+                    },
+                    {
+                        path: 'material',
+                        component: PlanningMaterialComponent
+                    },
+                ]
             }
+
         ]
     },
     {
