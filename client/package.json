@@ -6,8 +6,7 @@
     "start": "webpack-dev-server --inline --progress --port 3000",
     "test": "karma start",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail && npm run build-server",
-    "build-server": "node server.js",
-    "postinstall": "typings install"
+    "build-server": "node server.js"
   },
   "license": "MIT",
   "dependencies": {
