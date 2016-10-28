@@ -134,21 +134,23 @@ $ease-speed: .2s;
         }
     }
 }
-.app-content{
-    height: calc(100% - #{$app-navbar-height});
-    margin-left: 0;
-    margin-top: $app-navbar-height;
-    padding-left: 0;
-    overflow: auto;
+.app-content{    
+    height: 100%;
+    float: left;
+    top: $app-navbar-height;
+    left: 0;
+    width: 100%;
+    position: absolute;
     transition: margin ease-in-out 0s;    
     @include breakpoint(tablet){
-		margin-left: $small-sidenav-width - 1;
-        padding-left: 1rem;        
-	}
+		left: $small-sidenav-width;
+        width: calc(100% - #{$small-sidenav-width});   
+    }
 
     &.small-side-enabled{
-        margin-left: $app-sidenav-width - 1;
-        padding-left: 1rem;        
+        margin-left: $app-sidenav-width - 5;
+        padding-left: 1rem;
+        width: calc(100% - (#{$app-sidenav-width - 1rem}));   
     }    
 }
 .fill-remaining-space {

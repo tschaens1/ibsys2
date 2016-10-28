@@ -7,9 +7,11 @@
 	<div class="page-content">
 		<div class="row">
 			<div class="col s12">
-				<p>{{'settings.changeLanguage'|translate}}</p>
-				<a class="waves-effect waves-light btn" (click)="changeLanguage('en')">English</a>
-				<a class="waves-effect waves-light btn" (click)="changeLanguage('de')">German</a>
+				<div class="page-part">
+					<p>{{'settings.language.changeLanguage'|translate}}</p>
+					<a class="waves-effect waves-light btn" (click)="changeLanguage('en')">{{'settings.language.english'|translate}}</a>
+					<a class="waves-effect waves-light btn" (click)="changeLanguage('de')">{{'settings.language.german'|translate}}</a>
+				</div>
 			</div>
 		</div>
 	</div>

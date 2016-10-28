@@ -1,13 +1,21 @@
 export const LANG_EN_NAME = 'en';
 
 export const LANG_EN_TRANSLATIONS = {
-    "navbar": {
-        "username": 'hello %0'
+    "start": {
+        "navbar": {
+            "search": "Search",
+            "username": 'Hello %0',
+            "settings": "Settings"
+        }
     },
     "settings": {
         "title": "Settings",
         "description": "Change the behaviour of the application here.",
-        "changeLanguage": "Change the application language:",
+        "language": {
+            "changeLanguage": "Here you can change the language:",
+            "german": "German",
+            "english": "English",
+        }
     },
     "planning_production":{
         "title": "Production program",

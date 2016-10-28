@@ -16,8 +16,8 @@ export class StartComponent implements AfterViewInit, OnInit {
     searchTerm: any = '';
 
     constructor(
-        private loginService: LoginService, 
-        private router: Router, 
+        private loginService: LoginService,
+        private router: Router,
         private searchService: SearchService) { }
 
     ngOnInit() {
@@ -26,9 +26,20 @@ export class StartComponent implements AfterViewInit, OnInit {
             if ($(window).width() < 800) {
                 this.sideNavHide();
             }
-        });        
+        });
+
+        $('.dropdown-button').dropdown({
+            inDuration: 300,
+            outDuration: 225,
+            constrain_width: false, // Does not change width of dropdown to that of the activator
+            hover: true, // Activate on hover
+            gutter: 0, // Spacing from edge
+            belowOrigin: false, // Displays dropdown below the button
+            alignment: 'left' // Displays dropdown with edge aligned to the left of button
+        }
+        );
     }
-    
+
     logout() {
         this.loginService.logout();
     }
@@ -95,5 +106,5 @@ export class StartComponent implements AfterViewInit, OnInit {
         if ($(window).width() > 1200) {
             this.sideNavShow();
         }
-    }    
+    }
 }

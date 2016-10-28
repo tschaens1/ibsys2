@@ -5,7 +5,7 @@
 		</a>
 
 		<div class="search">
-			<input type="text" placeholder="Search" [(ngModel)]="searchTerm" (keyup)="onSearchKeyUp()" (keyup.enter)="onSearchEnter()"
+			<input type="text" placeholder="{{'start.navbar.search'|translate}}" [(ngModel)]="searchTerm" (keyup)="onSearchKeyUp()" (keyup.enter)="onSearchEnter()"
 				(blur)="hideSearchResults()">
 			<div class="searchResults" *ngIf="searchResults && searchResults.length > 0">
 				<ul>
@@ -22,18 +22,15 @@
 		</div>
 		<div class="right-part">										
 			<a class='dropdown-button button' data-activates='settings-dropdown'><i class="mdi mdi-settings"></i></a>
-			<a class='dropdown-button button' data-activates='user-dropdown'>{{'navbar.username'|translate:['Robert']}}</a>
+			<a class='dropdown-button button' data-activates='user-dropdown'>{{'start.navbar.username'|translate:['Robert']}}</a>
 		</div>
 
 		<ul id='user-dropdown' class='dropdown-content'>
 			<li><a (click)="logout()" title="Logout">Logout</a></li>
 		</ul>
 
-		<ul id='settings-dropdown' class='dropdown-content'>
-			<li><a routerLink="/app/settings">Application</a></li>
-			<li><a routerLink="/app/settings">Profile</a></li>
-			<li class="divider"></li>
-			<li><a routerLink="/app/settings">All settings</a></li>
+		<ul id='settings-dropdown' class='dropdown-content'>			
+			<li><a routerLink="/app/settings">{{'start.navbar.settings'|translate}}</a></li>
 		</ul>
 	</div>
 
