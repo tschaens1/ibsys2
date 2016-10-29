@@ -7,7 +7,7 @@
 		<div class="search">
 			<input type="text" placeholder="{{'start.navbar.search'|translate}}" [(ngModel)]="searchTerm" (keyup)="onSearchKeyUp()" (keyup.enter)="onSearchEnter()"
 				(blur)="hideSearchResults()">
-			<div class="searchResults" *ngIf="searchResults && searchResults.length > 0">
+			<div class="searchResults" *ngIf="searchResults && searchTerm.length > 0">
 				<ul>
 					<li *ngFor="let result of searchResults" (click)="searchNavigateTo(result.route)">
 						<div class="result-title ellipsis">
@@ -19,7 +19,7 @@
 					</li>
 					<li (click)="onSearchEnter()" class="advanced-search-link">
 						<div class="result-title ellipsis">
-							{{'start.navbar.advancedSearch'|translate}}
+							{{'start.navbar.advancedSearch'|translate:[searchTerm]}}
 						</div>						
 					</li>
 				</ul>			

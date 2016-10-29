@@ -4,7 +4,7 @@ export const LANG_EN_TRANSLATIONS = {
     "start": {
         "navbar": {
             "search": "Search",
-            "advancedSearch": "Advanced search",
+            "advancedSearch": "Search \"%0\"...",
             "username": 'Hello %0',
             "settings": "Settings"
         }

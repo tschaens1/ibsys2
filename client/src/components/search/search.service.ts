@@ -62,8 +62,8 @@ export class SearchService {
             return results;
         } else {
             this.searchEntries.forEach(entry => {
-                if ((entry.name.toLowerCase().includes(term.trim().toLowerCase()) ||
-                    entry.tags.filter(e => e.toLowerCase().includes(term.trim().toLowerCase())).length > 0) &&
+                if ((entry.name.toLowerCase().indexOf(term.trim().toLowerCase())===0 ||
+                    entry.tags.filter(e => e.toLowerCase().indexOf(term.trim().toLowerCase())===0).length > 0) &&
                     results.length <= (amount===undefined?Number.MAX_SAFE_INTEGER:amount)) {
                     results.push(entry);
                 }
