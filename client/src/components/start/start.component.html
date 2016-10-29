@@ -22,7 +22,7 @@
 		</div>
 		<div class="right-part">
 			<a class='dropdown-button button' data-activates='settings-dropdown'><i class="mdi mdi-settings"></i></a>
-			<a class='dropdown-button button' data-activates='user-dropdown'>{{'start.navbar.username'|translate:['Robert']}}</a>
+			<a class='dropdown-button button ellipsis' data-activates='user-dropdown'>{{'start.navbar.username'|translate:['Robert']}}</a>
 		</div>
 
 		<ul id='user-dropdown' class='dropdown-content'>
@@ -57,14 +57,17 @@
 					</a>
 				</div>
 				<div class="sidenav-category">
+					<span class="category-name">Planning</span>
 					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/planning" routerLinkActive="active">
-						<i class="mdi mdi-chart-histogram"></i>
+						<i class="mdi mdi-clipboard-outline"></i>
 						<div class="link-text">Production Planning</div>
 					</a>
 					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/purchasing" routerLinkActive="active">
 						<i class="mdi mdi-cart"></i>
 						<div class="link-text">Purchasing</div>
 					</a>
+				</div>
+				<div class="sidenav-category">
 					<span class="category-name">Warehouse</span>
 					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/warehouse" routerLinkActive="active">
 						<i class="mdi mdi-chart-histogram"></i>
