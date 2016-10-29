@@ -1,7 +1,8 @@
 <div class="app-page animated fadeIn">
 	<div class="page-heading">
-		<h1>Search</h1>
-		<p>Search results for "{{searchTerm}}". [{{searchResults.length}} results found]</p>
+		<h1>{{'search.title'|translate}}</h1>
+		<p>{{'search.description'|translate:[searchTerm, searchResults.length]}}</p>
+		<!--<p>Search results for "{{searchTerm}}". [{{searchResults.length}} results found]</p>-->
 	</div>
 	<div class="page-content">
 		<div class="row">

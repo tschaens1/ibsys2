@@ -4,6 +4,7 @@ export const LANG_EN_TRANSLATIONS = {
     "start": {
         "navbar": {
             "search": "Search",
+            "advancedSearch": "Advanced search",
             "username": 'Hello %0',
             "settings": "Settings"
         }
@@ -39,5 +40,9 @@ export const LANG_EN_TRANSLATIONS = {
         "buttons": {
             "startpage": "Startpage"
         }
+    },
+    "search": {
+        "title": "Search",
+        "description": 'Search results for "%0". [%1 results found]',        
     }
 }

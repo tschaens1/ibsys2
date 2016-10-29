@@ -17,7 +17,12 @@
 							{{result.description}}
 						</div>
 					</li>
-				</ul>
+					<li (click)="onSearchEnter()" class="advanced-search-link">
+						<div class="result-title ellipsis">
+							{{'start.navbar.advancedSearch'|translate}}
+						</div>						
+					</li>
+				</ul>			
 			</div>
 		</div>
 		<div class="right-part">

@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit {
 
     loadSearch() {
         this.route.params.forEach((params: Params) => {
-            this.searchTerm = params['term'] || 'nothing';
+            this.searchTerm = params['q'] || 'nothing';
         });
 
         // load the search results

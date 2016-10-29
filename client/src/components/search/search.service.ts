@@ -39,18 +39,32 @@ export class SearchService {
             tags: ['Settings'],
             route: ['/app/settings'],
             description: 'Go to the settings'
+        },
+        {
+            id: 5,
+            name: 'Settings',
+            tags: ['Settings'],
+            route: ['/app/settings'],
+            description: 'Go to the settings'
+        },
+        {
+            id: 6,
+            name: 'Settings',
+            tags: ['Settings'],
+            route: ['/app/settings'],
+            description: 'Go to the settings'
         }
-
     ]
 
-    getResults(term: string): Array<any> {
+    getResults(term: string, amount?: number): Array<any> {
         let results = [];
         if (term.trim().length === 0) {
             return results;
         } else {
             this.searchEntries.forEach(entry => {
-                if (entry.name.toLowerCase().includes(term.trim().toLowerCase()) ||
-                    entry.tags.filter(e => e.toLowerCase().includes(term.trim().toLowerCase())).length > 0) {
+                if ((entry.name.toLowerCase().includes(term.trim().toLowerCase()) ||
+                    entry.tags.filter(e => e.toLowerCase().includes(term.trim().toLowerCase())).length > 0) &&
+                    results.length <= (amount===undefined?Number.MAX_SAFE_INTEGER:amount)) {
                     results.push(entry);
                 }
             });

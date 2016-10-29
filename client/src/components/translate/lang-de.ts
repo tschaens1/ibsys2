@@ -4,6 +4,7 @@ export const LANG_DE_TRANSLATIONS = {
     "start": {
         "navbar": {
             "search": "Suche",
+            "advancedSearch": "Erweiterte Suche",
             "username": 'Hallo %0',
             "settings": "Einstellungen"
         }
@@ -39,5 +40,9 @@ export const LANG_DE_TRANSLATIONS = {
         "buttons": {
             "startpage": "Startseite"
         }
+    },
+    "search": {
+        "title": "Suche",
+        "description": 'Suchergebnisse für "%0". [%1 Ergebnisse gefunden]',
     }
 }

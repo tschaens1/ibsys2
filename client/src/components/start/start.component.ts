@@ -38,7 +38,7 @@ export class StartComponent implements AfterViewInit, OnInit {
             alignment: 'left' // Displays dropdown with edge aligned to the left of button
         }
         );
-        
+
     }
 
     logout() {
@@ -72,12 +72,12 @@ export class StartComponent implements AfterViewInit, OnInit {
 
     // show search results in the results box while typings sth into the search input
     onSearchKeyUp() {
-        this.searchResults = this.searchService.getResults(this.searchTerm);
+        this.searchResults = this.searchService.getResults(this.searchTerm, 10);        
     }
 
     // navigate to the search component after pressing 'Enter'-Key
     onSearchEnter() {
-        this.router.navigate(['/app/search', { term: this.searchTerm }])
+        this.router.navigate(['/app/search', { q: this.searchTerm }])
         this.searchTerm = '';
         this.hideSearchResults();
     }
@@ -93,7 +93,7 @@ export class StartComponent implements AfterViewInit, OnInit {
     searchNavigateTo(route: any) {
         this.router.navigate(route);
         this.searchTerm = '';
-    }
+    }    
 
     ngAfterViewInit() {
         $('.app-content').removeClass('small-side-enabled');

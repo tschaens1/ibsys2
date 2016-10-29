@@ -90,6 +90,14 @@ $ease-speed: .2s;
                         color: lighten($primary-theme, 2);
                     }
 
+                    &.advanced-search-link{
+                        color: $primary-theme;
+                        height: 3rem;
+                        float: left;
+                        padding-top: .25rem;                        
+                        border-top: 1px solid $light-gray-basic;
+                    }
+
                     .result-title {
                         float: left;
                         width: calc(100% - 1rem);
@@ -107,7 +115,7 @@ $ease-speed: .2s;
                         line-height: 1rem;
                     }
                 }
-            }
+            }                
         }
     }
 
