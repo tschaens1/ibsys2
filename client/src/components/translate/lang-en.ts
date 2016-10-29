@@ -32,5 +32,12 @@ export const LANG_EN_TRANSLATIONS = {
     "purchasing": {
         "title": "Purchase part disposition",
         "description": "On this page you can dispose the purchase parts."
+    },
+    "pagenotfound": {
+        "title": "404 Error",
+        "description": "Page could not be found.",
+        "buttons": {
+            "startpage": "Startpage"
+        }
     }
 }

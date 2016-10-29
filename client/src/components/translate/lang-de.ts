@@ -16,7 +16,6 @@ export const LANG_DE_TRANSLATIONS = {
             "german": "Deutsch",
             "english": "Englisch",
         }
-
     },
     "planning_production": {
         "title": "Produktionsprogramm",
@@ -33,5 +32,12 @@ export const LANG_DE_TRANSLATIONS = {
     "purchasing": {
         "title": "Kaufteildisposition",
         "description": "Auf dieser Seite können Sie die Kaufteile disponieren."
+    },
+    "pagenotfound": {
+        "title": "404 Error",
+        "description": "Die Seite konnte nicht gefunden werden.",
+        "buttons": {
+            "startpage": "Startseite"
+        }
     }
 }
