@@ -38,6 +38,7 @@ export class StartComponent implements AfterViewInit, OnInit {
             alignment: 'left' // Displays dropdown with edge aligned to the left of button
         }
         );
+        
     }
 
     logout() {

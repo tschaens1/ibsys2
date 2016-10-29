@@ -181,7 +181,7 @@ $ease-speed: .2s;
     background-color: darken($primary, 2);
     height: 100%;
     transition: width $ease-speed ease-in-out 0s;
-    overflow-x: hidden;
+    overflow: hidden;
     z-index: 200;
     top: 0;
     @include breakpoint(tablet){
@@ -208,6 +208,11 @@ $ease-speed: .2s;
     &.show .sidenav-links .sidenav-category .category-name, 
     &.show .sidenav-title .title{    
         opacity: 1;    
+    }
+
+    &:hover .sidenav-links{
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
     .sidenav-title{
@@ -241,6 +246,11 @@ $ease-speed: .2s;
     }
 
     .sidenav-links{
+        overflow-x: hidden;
+        overflow-y: hidden;
+        display: flex;
+        height: calc(100% - #{$app-navbar-height});
+
         .sidenav-category{
             margin-top: 1rem;    
             float: left;

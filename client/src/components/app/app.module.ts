@@ -31,6 +31,12 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { MaterialModule } from '@angular/material';
 import { ChartModule } from 'angular2-highcharts';
 
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'angular2-perfect-scrollbar';
+
+const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -40,6 +46,7 @@ import { ChartModule } from 'angular2-highcharts';
     ChartsModule,
     ChartModule,
     MaterialModule.forRoot(),
+    PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
   ],
   declarations: [
     AppComponent,

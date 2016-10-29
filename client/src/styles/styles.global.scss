@@ -136,3 +136,18 @@ h4 {
         }
     }
 }
+
+// scrollbar
+.scrollbar-element {
+    position: relative;
+    flex: 1 1 auto;        
+}
+.ps-scrollbar-y-rail {
+    z-index: 1;
+}
+.ps-container:hover>.ps-scrollbar-y-rail:hover {
+    background-color: lighten($primary,1) !important;
+}
+.ps-container.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail{
+    background-color: lighten($primary,2) !important;
+}
