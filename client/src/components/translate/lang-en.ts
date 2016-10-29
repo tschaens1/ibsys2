@@ -19,14 +19,18 @@ export const LANG_EN_TRANSLATIONS = {
     },
     "planning_production":{
         "title": "Production program",
-        "description": "Auf dieser Seite wird die Produktion geplant."
+        "description": "On this page you can plan the production."
     },
     "planning_material":{
         "title": "Material program",
-        "description": "Auf dieser Seite wird die Produktion geplant."
+        "description": "On this page you can plan the production."
     },
     "planning_overview":{
         "title": "Overview planning",
-        "description": "Auf dieser Seite wird die Produktion geplant."
+        "description": "On this page you can plan the production."
+    },
+    "purchasing": {
+        "title": "Purchase part disposition",
+        "description": "On this page you can dispose the purchase parts."
     }
 }

@@ -29,5 +29,9 @@ export const LANG_DE_TRANSLATIONS = {
     "planning_overview": {
         "title": "Übersicht Planung",
         "description": "Auf dieser Seite wird die Produktion geplant."
+    },
+    "purchasing": {
+        "title": "Kaufteildisposition",
+        "description": "Auf dieser Seite können Sie die Kaufteile disponieren."
     }
 }
