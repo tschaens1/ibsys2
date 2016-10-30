@@ -44,5 +44,11 @@ export const LANG_DE_TRANSLATIONS = {
     "search": {
         "title": "Suche",
         "description": 'Suchergebnisse für "%0". [%1 Ergebnisse gefunden]',
+        "noresultsmessage": "Keine Ergebnisse gefunden.",
+        "startpage": "Startseite",
+    },
+    "upload": {
+        "title": "XML hochladen",
+        "description": 'Hier kann das XML hochgeladen werden.',
     }
 }

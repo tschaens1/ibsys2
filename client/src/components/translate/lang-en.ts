@@ -18,15 +18,15 @@ export const LANG_EN_TRANSLATIONS = {
             "english": "English",
         }
     },
-    "planning_production":{
+    "planning_production": {
         "title": "Production program",
         "description": "On this page you can plan the production."
     },
-    "planning_material":{
+    "planning_material": {
         "title": "Material program",
         "description": "On this page you can plan the production."
     },
-    "planning_overview":{
+    "planning_overview": {
         "title": "Overview planning",
         "description": "On this page you can plan the production."
     },
@@ -43,6 +43,12 @@ export const LANG_EN_TRANSLATIONS = {
     },
     "search": {
         "title": "Search",
-        "description": 'Search results for "%0". [%1 results found]',        
+        "description": 'Search results for "%0". [%1 results found]',
+        "noresultsmessage": "No results found.",
+        "startpage": "Startpage",
+    },
+    "upload": {
+        "title": "Upload XML",
+        "description": 'Here you can upload the XML.',
     }
 }

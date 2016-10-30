@@ -27,8 +27,8 @@
 					</div>
 					<div class="row" *ngIf="searchResults && searchResults.length === 0">
 						<div class="searchResult not-found s12">
-                            <p>No results found.</p>
-                            <a class="waves-effect waves-light btn" routerLink="/app">Startpage</a>
+                            <p>{{'search.noresultsmessage'|translate}}</p>
+                            <a class="waves-effect waves-light btn" routerLink="/app">{{'search.startpage'|translate}}</a>
 						</div>
 					</div>
 				</ul>

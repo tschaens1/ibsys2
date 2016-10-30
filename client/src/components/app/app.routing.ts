@@ -15,6 +15,7 @@ import { PlanningOverviewComponent } from './../planning_overview/planning_overv
 import { PlanningProductionComponent } from './../planning_production/planning_production.component';
 import { PlanningMaterialComponent } from './../planning_material/planning_material.component';
 import { PurchasingComponent } from './../purchasing/purchasing.component';
+import { UploadComponent } from './../upload/upload.component';
 
 
 const appRoutes: Routes = [
@@ -82,6 +83,10 @@ const appRoutes: Routes = [
             {
                 path: 'purchasing',
                 component: PurchasingComponent
+            },
+            {
+                path: 'upload',
+                component: UploadComponent
             },
         ]
     },

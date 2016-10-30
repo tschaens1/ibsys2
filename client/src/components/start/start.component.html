@@ -7,9 +7,9 @@
 		<div class="search">
 			<input type="text" placeholder="{{'start.navbar.search'|translate}}" [(ngModel)]="searchTerm" (keyup)="onSearchKeyUp()" (keyup.enter)="onSearchEnter()"
 				(blur)="hideSearchResults()">
-			<div class="searchResults" *ngIf="searchResults && searchTerm.length > 0">
+			<div class="searchResults" *ngIf="searchResults && searchTerm.length > 0" (window:keydown)="searchArrowKeys($event)">
 				<ul>
-					<li *ngFor="let result of searchResults" (click)="searchNavigateTo(result.route)">
+					<li *ngFor="let result of searchResults" (click)="searchNavigateTo(result.route)" [attr.data-route]="result.route">
 						<div class="result-title ellipsis">
 							{{result.name}}
 						</div>
@@ -89,7 +89,7 @@
 				</div>
 				<div class="sidenav-category">
 					<span class="category-name">Files</span>
-					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/uploads" routerLinkActive="active">
+					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/upload" routerLinkActive="active">
 						<i class="mdi mdi-upload"></i>
 						<div class="link-text">Fileupload</div>
 					</a>

@@ -20,6 +20,8 @@ import { PlanningOverviewComponent } from './../planning_overview/planning_overv
 import { PlanningProductionComponent } from './../planning_production/planning_production.component';
 import { PlanningMaterialComponent } from './../planning_material/planning_material.component';
 import { PurchasingComponent } from './../purchasing/purchasing.component';
+import { UploadComponent } from './../upload/upload.component';
+import { FileUploadComponent } from './../upload/fileupload.component';
 
 import { TRANSLATION_PROVIDERS } from './../translate/translations';
 import { TranslatePipe } from './../translate/translate.pipe';
@@ -63,6 +65,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PlanningProductionComponent,
     PlanningMaterialComponent,
     PurchasingComponent,
+    UploadComponent,
+    FileUploadComponent,
   ],
   providers: [
     LoginService,
@@ -71,6 +75,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SearchService,
     TRANSLATION_PROVIDERS,
     TranslationService,
+    { provide: 'ApiEndpoint', useValue: 'http://localhost:1234' }
   ],
   bootstrap: [AppComponent]
 })
