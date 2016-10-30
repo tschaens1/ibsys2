@@ -24,7 +24,7 @@ export class SearchService {
             name: 'Warehouse',
             tags: ['Warehouse'],
             route: ['/app/warehouse'],
-            description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
+            description: 'Go to the warehouse overview',
         },
         {
             id: 3,
@@ -42,18 +42,25 @@ export class SearchService {
         },
         {
             id: 5,
-            name: 'Settings',
-            tags: ['Settings'],
-            route: ['/app/settings'],
-            description: 'Go to the settings'
+            name: 'Planning',
+            tags: ['planning', 'overview'],
+            route: ['/app/planning'],
+            description: 'Go to the planning'
         },
         {
             id: 6,
-            name: 'Settings',
-            tags: ['Settings'],
-            route: ['/app/settings'],
-            description: 'Go to the settings'
-        }
+            name: 'Material planning',
+            tags: ['Material planning', 'planning'],
+            route: ['/app/planning/material'],
+            description: 'Go to the material planning'
+        },
+        {
+            id: 7,
+            name: 'Production planning',
+            tags: ['production planning', 'planning'],
+            route: ['/app/planning/material'],
+            description: 'Go to the production planning'
+        },
     ]
 
     getResults(term: string, amount?: number): Array<any> {

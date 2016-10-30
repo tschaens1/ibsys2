@@ -83,8 +83,6 @@ export class StartComponent implements AfterViewInit, OnInit {
         if (!$('.searchResults ul li').hasClass('focused') || $('.searchResults ul li.advanced-search-link').hasClass('focused')) {
             this.router.navigate(['/app/search', { q: this.searchTerm }]);
         } else {
-            // console.log(this.route);
-            // console.log($('.searchResults ul li.focused').data('route'));             
             this.router.navigate([$('.searchResults ul li.focused').data('route')]);
         }
         this.searchTerm = '';
@@ -96,11 +94,14 @@ export class StartComponent implements AfterViewInit, OnInit {
             if (!$('.searchResults ul li').hasClass('focused')) {
                 $('.searchResults ul li').first().addClass('focused');
             } else {
-                console.log('test');
                 $('.searchResults ul li.focused').removeClass('focused').next().addClass('focused');
             }
         } else if (event.keyCode === 38) {
-            console.log('up');
+            if (!$('.searchResults ul li').hasClass('focused')) {
+                $('.searchResults ul li').last().addClass('focused');
+            } else {
+                $('.searchResults ul li.focused').removeClass('focused').prev().addClass('focused');
+            }
         }
     }
 
