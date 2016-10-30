@@ -1,6 +1,14 @@
 export const LANG_EN_NAME = 'en';
 
 export const LANG_EN_TRANSLATIONS = {
+    "login": {
+        "username": "Username",
+        "password": "Password",
+        "stayLoggedIn": "Stay logged in",
+        "button": {
+            "login": "Login"
+        }
+    },
     "start": {
         "navbar": {
             "search": "Search",
@@ -13,6 +21,7 @@ export const LANG_EN_TRANSLATIONS = {
         "title": "Settings",
         "description": "Change the behaviour of the application here.",
         "language": {
+            "title": "Language settings",
             "changeLanguage": "Here you can change the language:",
             "german": "German",
             "english": "English",

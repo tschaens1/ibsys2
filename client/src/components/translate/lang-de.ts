@@ -1,6 +1,14 @@
 export const LANG_DE_NAME = 'de';
 
 export const LANG_DE_TRANSLATIONS = {
+    "login": {
+        "username": "Benutzername",
+        "password": "Passwort",
+        "stayLoggedIn": "Eingeloggt bleiben",
+        "button": {
+            "login": "Einloggen"
+        }
+    },
     "start": {
         "navbar": {
             "search": "Suche",
@@ -13,6 +21,7 @@ export const LANG_DE_TRANSLATIONS = {
         "title": "Einstellungen",
         "description": "Auf dieser Seite können alle Einstellungen vorgenommen werden.",
         "language": {
+            "title": "Spracheinstellungen",
             "changeLanguage": "Hier kann die Sprache verändert werden:",
             "german": "Deutsch",
             "english": "Englisch",
