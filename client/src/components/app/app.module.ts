@@ -22,6 +22,7 @@ import { PlanningMaterialComponent } from './../planning_material/planning_mater
 import { PurchasingComponent } from './../purchasing/purchasing.component';
 import { UploadComponent } from './../upload/upload.component';
 import { FileUploadComponent } from './../upload/fileupload.component';
+import { SettingsService } from './../settings/settings.service';
 
 import { TRANSLATION_PROVIDERS } from './../translate/translations';
 import { TranslatePipe } from './../translate/translate.pipe';
@@ -73,6 +74,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LoggedInGuard,
     LoggedOutGuard,
     SearchService,
+    SettingsService,
     TRANSLATION_PROVIDERS,
     TranslationService,
     { provide: 'ApiEndpoint', useValue: 'http://localhost:1234' }
