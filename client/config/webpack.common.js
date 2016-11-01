@@ -42,10 +42,13 @@ module.exports = {
                 test: /\.(jpe?g|png|gif|svg)$/,
                 loader: 'url-loader?limit=10000&name=images/[name].[ext]'
             },
+            { 
+                test: /\.ico$/, 
+                loader: 'url-loader?limit=8192' },
             {
                 test: /\.scss$/,
                 exclude: [/\.global\.scss$/],
-                loaders: ['raw-loader', 'resolve-url','sass-loader']
+                loaders: ['raw-loader', 'resolve-url', 'sass-loader']
             },
             {
                 test: /\.global\.scss$/,
