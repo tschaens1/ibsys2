@@ -42,7 +42,15 @@ export const LANG_DE_TRANSLATIONS = {
     },
     "purchasing": {
         "title": "Kaufteildisposition",
-        "description": "Auf dieser Seite können Sie die Kaufteile disponieren."
+        "description": "Auf dieser Seite können Sie die Kaufteile disponieren.",
+        "table": {
+            "purchase_part": "Kaufteil",
+            "delivery_time": "Lieferfrist",
+            "deviation": "Abweichung",
+            "discount_quantity": "Diskontmenge",
+            "stock_last_period": "Lagerbestand letzte Periode",
+            "order_quantity": "Bestellmenge"
+        }
     },
     "pagenotfound": {
         "title": "404 Error",
