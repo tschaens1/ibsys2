@@ -108,8 +108,8 @@ export class StartComponent implements AfterViewInit, OnInit {
     // hide the search results on blur (input loses focus)
     hideSearchResults() {
         setTimeout(() => {
-            // this.searchResults = [];
-            // this.searchTerm = '';
+            this.searchResults = [];
+            this.searchTerm = '';
         }, 500);
     }
 
