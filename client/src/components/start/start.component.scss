@@ -306,8 +306,15 @@ $ease-speed: .2s;
                 opacity: 1;
             }
             &.active{            
-                background-color: darken($primary, 3);
+                background-color: darken($primary, 4);
                 opacity: 1;
+                padding: .5rem 1rem .5rem 1.2rem;
+                border-left: 0.2rem solid $primary-theme;
+
+                .link-text{                                                    
+                    left: 2.6rem;
+                    margin-left: 1rem;                    
+                }
             }
             i.mdi{
                 float: left;
