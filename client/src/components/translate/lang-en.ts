@@ -14,7 +14,8 @@ export const LANG_EN_TRANSLATIONS = {
             "search": "Search",
             "advancedSearch": "Search \"%0\"...",
             "username": 'Hello %0',
-            "settings": "Settings"
+            "settings": "Settings",
+            "logout": "Logout"
         }
     },
     "settings": {
