@@ -6,7 +6,7 @@
     overflow: hidden;
     position: absolute;
     padding: 0;
-    background: url('images/login-background.jpeg');
+    background: url('images/login-background_blur.jpeg');
     background-repeat:no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -17,11 +17,7 @@
     bottom: 0;    
 }
 
-.loginContainer{    
-    background: url('images/login-background_blur.jpeg');
-    background-repeat:no-repeat;
-    background-attachment: fixed;
-    background-size: cover;    
+.loginContainer{        
     width: 22rem;
     height: 28rem;
     margin: auto;
