@@ -66,6 +66,10 @@
         line-height: 3rem;                
     }
 
+    .label{
+        color: $primary;
+    }
+
     .btn{
         width: 100%;
         background-color: $primary-theme;
@@ -73,7 +77,7 @@
 
     .copy{
         font-size: .8rem;
-        color: $gray;
+        color: $primary;
     }
 
     @include breakpoint(mobileonly){

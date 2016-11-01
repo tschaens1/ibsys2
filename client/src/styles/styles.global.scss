@@ -19,11 +19,11 @@ html, body {
 
  /* label color */
 .input-field label {
-    color: $gray;
+    color: $primary;
 }
 /* label focus color */
 .input-field input[type]:focus + label {
-    color: $gray;
+    color: $primary;
 }
 /* label underline focus color */
 .input-field input[type]:focus {
