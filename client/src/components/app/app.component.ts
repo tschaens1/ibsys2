@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslationService } from './../translate/translate.service';
 import { SettingsService } from './../settings/settings.service';
 
-// require('./../../styles/styles.global.scss');
+require('./../../styles/styles.global.scss');
 // require('./../../images/favicon.ico');
 
 @Component({

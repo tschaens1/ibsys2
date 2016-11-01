@@ -4,7 +4,8 @@ import { Component, AfterViewInit, OnInit, Input } from '@angular/core';
 import { SearchService } from './../search/search.service';
 
 require('./../../styles/styles.global.scss');
-require('./../../images/favicon.ico');
+// require('./../../images/favicon.ico');
+
 @Component({
     selector: 'start',
     templateUrl: './start.component.html',
