@@ -30,7 +30,13 @@ export const LANG_DE_TRANSLATIONS = {
     },
     "planning_production": {
         "title": "Produktionsprogramm",
-        "description": "Auf dieser Seite wird die Produktion geplant."
+        "description": "Auf dieser Seite wird die Produktion geplant.",
+        "header_bindingOrders": "Verbindliche Aufträge",
+        "header_warehouseStockEnd": "Lagerbestand am Ende der Periode",
+        "header_warehouseStockBeginning": "Lagerbestand zu Beginn der Periode",
+        "header_tasksQueue": "Aufträge in Warteschlange",
+        "header_tasksProgress": "Aufträge in Bearbeitung",
+        "header_productionOrders": "Produktionsaufträge",
     },
     "planning_material": {
         "title": "Materialprogramm",
@@ -51,6 +57,24 @@ export const LANG_DE_TRANSLATIONS = {
             "stock_last_period": "Lagerbestand letzte Periode",
             "order_quantity": "Bestellmenge"
         }
+    },
+    "inserts": {
+        "title": "Eingangstabelle",
+        "description": "Hier werden alle Eingaben getätigt.",
+        "directPurchase": "Direktverkauf",
+        "purchaseOrders": "Einkaufsaufträge",
+        "productionOrders": "Produktionsaufträge",
+        "productionCapacity": "Produktionskapazität",
+        "bindingSales": "Verbindliche Verkäufe",
+        "componentNumber": "Nr.",
+        "componentAmount": "Anzahl",
+        "workplace": "Arbeitsplatz",
+        "workshift": "Schichten",
+        "overtime": "Überstunden",
+    },
+    "capacity": {
+        "title": "Kapazitätsplanung",
+        "description": "Hier werden die Kapazitäten geplant.",
     },
     "pagenotfound": {
         "title": "404 Error",

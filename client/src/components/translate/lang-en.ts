@@ -30,7 +30,14 @@ export const LANG_EN_TRANSLATIONS = {
     },
     "planning_production": {
         "title": "Production program",
-        "description": "On this page you can plan the production."
+        "description": "On this page you can plan the production.",
+        "header_bindingOrders": "Binding orders",
+        "header_warehouseStockEnd": "Warehouse stock at the end of the period",
+        "header_warehouseStockBeginning": "Warehouse stock at the beginning of the period",
+        "header_tasksQueue": "Tasks in queue",
+        "header_tasksProgress": "Task in Progross",
+        "header_productionOrders": "Production orders",
+
     },
     "planning_material": {
         "title": "Material program",
@@ -43,6 +50,24 @@ export const LANG_EN_TRANSLATIONS = {
     "purchasing": {
         "title": "Purchase part disposition",
         "description": "On this page you can dispose the purchase parts."
+    },
+    "inserts": {
+        "title": "Input table",
+        "description": "All entries are made here.",
+        "directPurchase": "Direct sales",
+        "purchaseOrders": "Purchasing orders",
+        "productionOrders": "Prodction orders",
+        "productionCapacity": "Production capacity",
+        "bindingSales": "Binding sales",
+        "componentNumber": "Nr.",
+        "componentAmount": "Amount",
+        "workplace": "Workplace",
+        "workshift": "Workshifts",
+        "overtime": "Overtime",
+    },
+        "capacity": {
+        "title": "Capacity planning",
+        "description": "Plan your capacitys here.",
     },
     "pagenotfound": {
         "title": "404 Error",
