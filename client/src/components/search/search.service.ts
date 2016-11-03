@@ -12,7 +12,7 @@ interface SearchEntry {
 @Injectable()
 export class SearchService {
 
-    constructor(private translationService: TranslationService){}
+    constructor(private translationService: TranslationService) { }
 
     // the search results are routes on which you can navigate
     private searchEntriesEN: SearchEntry[] = [
@@ -40,7 +40,7 @@ export class SearchService {
         {
             id: 4,
             name: 'Settings',
-            tags: ['Settings'],
+            tags: ['Settings', 'i18n', 'languages'],
             route: ['/app/settings'],
             description: 'Go to the settings'
         },
@@ -92,7 +92,7 @@ export class SearchService {
         {
             id: 4,
             name: 'Einstellungen',
-            tags: ['Einstellungen'],
+            tags: ['Einstellungen', 'Sprache', 'Internationalisierung', 'i18n'],
             route: ['/app/settings'],
             description: 'Verwalten der Einstellungen'
         },
@@ -124,11 +124,11 @@ export class SearchService {
         if (term.trim().length === 0) {
             return results;
         } else {
-            let searchEntries = this.translationService.currentLanguage==='de'?this.searchEntriesDE:this.searchEntriesEN;
+            let searchEntries = this.translationService.currentLanguage === 'de' ? this.searchEntriesDE : this.searchEntriesEN;
             searchEntries.forEach(entry => {
-                if ((entry.name.toLowerCase().indexOf(term.trim().toLowerCase())===0 ||
-                    entry.tags.filter(e => e.toLowerCase().indexOf(term.trim().toLowerCase())===0).length > 0) &&
-                    results.length <= (amount===undefined?Number.MAX_SAFE_INTEGER:amount)) {
+                if ((entry.name.toLowerCase().indexOf(term.trim().toLowerCase()) === 0 ||
+                    entry.tags.filter(e => e.toLowerCase().indexOf(term.trim().toLowerCase()) === 0).length > 0) &&
+                    results.length <= (amount === undefined ? Number.MAX_SAFE_INTEGER : amount)) {
                     results.push(entry);
                 }
             });
