@@ -50,6 +50,13 @@ let searchEntriesEN: SearchEntry[] = [
         route: ['/app/planning/material'],
         description: 'Go to the production planning'
     },
+    {
+        id: 8,
+        name: 'Parts',
+        tags: ['purchase parts'],
+        route: ['/app/parts'],        
+        description: 'Get information about all parts'
+    }, 
 ];
 
 export default searchEntriesEN;

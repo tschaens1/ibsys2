@@ -52,20 +52,11 @@ let searchEntriesDE: SearchEntry[] = [
     },
     {
         id: 8,
-        name: 'Eigenerzeugnisse',
-        tags: ['Teile'],
-        route: ['/app/parts'],
-        fragment: 'in_house_parts',
-        description: 'Liste der Eigenerzeugnisse'
-    },
-    {
-        id: 9,
-        name: 'Kaufteile',
-        tags: ['Teile'],
-        route: ['/app/parts'],
-        fragment: 'purchase_parts',
-        description: 'Liste der Kaufteile'
-    },
+        name: 'Teile',
+        tags: ['Kaufteile', 'Eigenerzeugnisse'],
+        route: ['/app/parts'],        
+        description: 'Liste der Teile'
+    },    
 ];
 
 export default searchEntriesDE;
