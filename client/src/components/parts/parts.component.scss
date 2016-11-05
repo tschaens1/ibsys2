@@ -23,14 +23,52 @@
         width: 100%;
     }    
 
-    .info-card {
-        float: left;
-        padding: .1rem;
-        margin: .3rem .4rem 0 .4rem;
+    .info.row {
+        margin-left: -.5rem;
 
+        .info-card {
+            float: left;
+            padding: .1rem;
+            margin: .3rem .4rem 0 .4rem;
+
+            .title{
+                font-size: .9rem !important;
+                color: $gray;
+            }            
+        }        
+    }
+
+    .workstations{
         .title{
             font-size: .9rem !important;
             color: $gray;
+        } 
+    }    
+
+    .workstation {
+        position: relative;
+        float: left;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        margin-top: .4rem;
+        margin-right: 1rem;
+        background-color: $gray;            
+        color: $white;
+        line-height: 1.9rem;
+        text-align: center;
+
+        &:after{
+            position: absolute;
+            width: 2rem;
+            height: .1rem;
+            margin-top: .9rem;
+            background-color: $gray;
+            content: '';
         }
+    }
+
+    .workstation:last-child:after{
+        display: none;
     }
 }

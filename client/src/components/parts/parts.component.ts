@@ -5,6 +5,7 @@ import { basic_claims_data_DE } from './../translate/master_data_DE';
 import { basic_claims_data_EN } from './../translate/master_data_EN';
 import { Part } from './part.interface';
 import { TranslationService } from './../translate/translate.service';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'parts',
@@ -18,22 +19,40 @@ export class PartsComponent {
 
     constructor(private translationService: TranslationService) {
         // select the language specific basic data
-        this.data = this.translationService.currentLanguage === 'de'? basic_claims_data_DE : basic_claims_data_EN;
-        this.filteredData = this.data;
+        this.data = this.translationService.currentLanguage === 'de' ? basic_claims_data_DE : basic_claims_data_EN;
+        this.filteredData = this.data;        
     }
 
     onSearchKeyUp() {
         this.filteredData = this.data.filter((item: Part) => {
-            return (item.Description.trim().toLowerCase().includes(this.searchTerm.trim().toLowerCase()                )
+            return (item.Description.trim().toLowerCase().includes(this.searchTerm.trim().toLowerCase())
                 || this.reverse(this.noWhiteSpace(item.id).trim().toLowerCase()).includes(this.searchTerm.trim().toLowerCase()));
         });
     }
 
     private reverse(s: string): string {
-        return s.split("").reverse().join("");
+        return s.substr(1) + s.substr(0, s.length-1);
     }
 
-    private noWhiteSpace(s: string): string{
-        return s.replace(/ /g,'');
+    private noWhiteSpace(s: string): string {
+        return s.replace(/ /g, '');
+    }
+
+    getWorkstations(id: string): string[] {
+        let idsOfWorkStations: string[];
+
+        for (let z = 0; z < this.data.length; z++) {
+            if (this.data[z].id === id) {
+                let keys = Object.keys(this.data[z]).filter(key => {
+                    return (key.indexOf('ProcessingTimeWS') !== -1 && _.get(this.data[z], key) > 0)
+                }).map(key => {
+                    return key.slice(key.indexOf('WS') + 2);
+                });
+                idsOfWorkStations = keys;
+                break;
+            }
+        }
+
+        return idsOfWorkStations;
     }
 }

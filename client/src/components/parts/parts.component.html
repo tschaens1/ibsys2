@@ -17,7 +17,7 @@
                     <div class="circle">{{reverse(noWhiteSpace(part.id))}}</div>
                     <span class="title">{{part.Description}}</span>
                     <div class="info row">
-                        <div class="info-card col l3 m6 s12" *ngIf="part.Usage">
+                        <div class="info-card col l2 m6 s12" *ngIf="part.Usage">
                             <div class="title">
                                 Usage
                             </div>
@@ -25,7 +25,7 @@
                                 {{part.Usage}}
                             </div>
                         </div>
-                        <div class="info-card col l3 m6 s12">
+                        <div class="info-card col l2 m6 s12">
                             <div class="title">
                                 StartAmount
                             </div>
@@ -33,7 +33,7 @@
                                 {{part.StartAmount}}
                             </div>
                         </div>
-                        <div class="info-card col l3 m6 s12">
+                        <div class="info-card col l2 m6 s12">
                             <div class="title">
                                 StartPrice
                             </div>
@@ -41,7 +41,7 @@
                                 {{part.StartPrice}}
                             </div>
                         </div>
-                        <div class="info-card col l3 m6 s12">
+                        <div class="info-card col l2 m6 s12">
                             <div class="title">
                                 CostOfDelivery
                             </div>
@@ -49,7 +49,7 @@
                                 {{part.CostOfDelivery}}
                             </div>
                         </div>
-                        <div class="info-card col l3 m6 s12">
+                        <div class="info-card col l2 m6 s12">
                             <div class="title">
                                 TimeOfDelivery
                             </div>
@@ -57,7 +57,7 @@
                                 {{part.TimeOfDelivery}}
                             </div>
                         </div>
-                        <div class="info-card col l3 m6 s12">
+                        <div class="info-card col l2 m6 s12">
                             <div class="title">
                                 DeviationOfDelivery
                             </div>
@@ -65,6 +65,16 @@
                                 {{part.DeviationOfDelivery}}
                             </div>
                         </div>
+                    </div>
+                    <div class="workstations row">
+                        <div class="title">
+                            Affected direct workstations
+                        </div>
+                        <ul>
+                            <li *ngFor="let ws of getWorkstations(part.id)" class="workstation">
+                                {{ws}}
+                            </li>
+                        </ul>
                     </div>
                 </li>
             </ul>
