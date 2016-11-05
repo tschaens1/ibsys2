@@ -25,6 +25,7 @@ import { CapacityComponent } from './../capacity/capacity.component';
 import { UploadComponent } from './../upload/upload.component';
 import { FileUploadComponent } from './../upload/fileupload.component';
 import { SettingsService } from './../settings/settings.service';
+import { PartsComponent } from './../parts/parts.component';
 
 import { TRANSLATION_PROVIDERS } from './../translate/translations';
 import { TranslatePipe } from './../translate/translate.pipe';
@@ -72,6 +73,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CapacityComponent,
     UploadComponent,
     FileUploadComponent,
+    PartsComponent,
   ],
   providers: [
     LoginService,

@@ -18,6 +18,7 @@ import { PurchasingComponent } from './../purchasing/purchasing.component';
 import { InsertsComponent } from './../inserts/inserts.component';
 import { CapacityComponent } from './../capacity/capacity.component';
 import { UploadComponent } from './../upload/upload.component';
+import { PartsComponent } from './../parts/parts.component';
 
 
 const appRoutes: Routes = [
@@ -97,6 +98,10 @@ const appRoutes: Routes = [
             {
                 path: 'upload',
                 component: UploadComponent
+            },
+            {
+                path: 'parts',
+                component: PartsComponent
             },
         ]
     },

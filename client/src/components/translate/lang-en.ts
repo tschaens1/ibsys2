@@ -85,5 +85,9 @@ export const LANG_EN_TRANSLATIONS = {
     "upload": {
         "title": "Upload XML",
         "description": 'Here you can upload the XML.',
-    }
+    },
+    "parts": {
+        "title": "Parts",
+        "description": "Overview over all parts of the bike.",
+    },
 }

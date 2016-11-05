@@ -92,5 +92,9 @@ export const LANG_DE_TRANSLATIONS = {
     "upload": {
         "title": "XML hochladen",
         "description": 'Hier kann das XML hochgeladen werden.',
-    }
+    },
+    "parts": {
+        "title": "Einzelteile",
+        "description": "Hier ist eine Übersicht über alle Teile.",
+    },
 }
