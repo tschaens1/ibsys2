@@ -89,5 +89,15 @@ export const LANG_EN_TRANSLATIONS = {
     "parts": {
         "title": "Parts",
         "description": "Overview over all parts of the bike.",
+        "searchPlaceholder": "Filter the parts",
+        "collection": {
+            "usage": "Usage",
+            "startAmount": "Start amount",
+            "startPrice": "Start price",
+            "costOfDelivery": "Cost of delivery",
+            "timeOfDelivery": "Time of Delivery",
+            "deviationOfDelivery": "Deviation of delivery",
+            "requiredWorkStations": "Required work stations"
+        }
     },
 }

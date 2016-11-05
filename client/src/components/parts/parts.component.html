@@ -6,7 +6,7 @@
     <div class="page-sub-heading">
         <div class="row">
             <div class="col s12">
-                <input type="search" placeholder="Search for parts" [(ngModel)]="searchTerm" (keyup)="onSearchKeyUp()">
+                <input type="search" placeholder="{{'parts.searchPlaceholder'|translate}}" [(ngModel)]="searchTerm" (keyup)="onSearchKeyUp()">
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
                     <div class="info row">
                         <div class="info-card col l2 m6 s12" *ngIf="part.Usage">
                             <div class="title">
-                                Usage
+                                {{'parts.collection.usage'|translate}}
                             </div>
                             <div class="value">
                                 {{part.Usage}}
@@ -27,7 +27,7 @@
                         </div>
                         <div class="info-card col l2 m6 s12">
                             <div class="title">
-                                StartAmount
+                                {{'parts.collection.startAmount'|translate}}
                             </div>
                             <div class="value">
                                 {{part.StartAmount}}
@@ -35,7 +35,7 @@
                         </div>
                         <div class="info-card col l2 m6 s12">
                             <div class="title">
-                                StartPrice
+                                {{'parts.collection.startPrice'|translate}}
                             </div>
                             <div class="value">
                                 {{part.StartPrice}} €
@@ -43,7 +43,7 @@
                         </div>
                         <div class="info-card col l2 m6 s12" *ngIf="part.CostOfDeliver > 0">
                             <div class="title">
-                                CostOfDelivery
+                                {{'parts.collection.costOfDelivery'|translate}}
                             </div>
                             <div class="value">
                                 {{part.CostOfDelivery}} €
@@ -51,7 +51,7 @@
                         </div>
                         <div class="info-card col l2 m6 s12" *ngIf="part.TimeOfDelivery > 0">
                             <div class="title">
-                                TimeOfDelivery
+                                {{'parts.collection.timeOfDelivery'|translate}}
                             </div>
                             <div class="value">
                                 {{part.TimeOfDelivery}}
@@ -59,7 +59,7 @@
                         </div>
                         <div class="info-card col l2 m6 s12" *ngIf="part.DeviationOfDelivery > 0">
                             <div class="title">
-                                DeviationOfDelivery
+                                {{'parts.collection.deviationOfDelivery'|translate}}
                             </div>
                             <div class="value">
                                 {{part.DeviationOfDelivery}}
@@ -68,7 +68,7 @@
                     </div>
                     <div class="workstations row" *ngIf="getWorkstations(part.id).length > 0">
                         <div class="title">
-                            Required work stations
+                            {{'parts.collection.requiredWorkStations'|translate}}
                         </div>
                         <ul>
                             <li *ngFor="let ws of getWorkstations(part.id)" class="workstation">

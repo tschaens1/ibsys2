@@ -96,5 +96,15 @@ export const LANG_DE_TRANSLATIONS = {
     "parts": {
         "title": "Einzelteile",
         "description": "Hier ist eine Übersicht über alle Teile.",
+        "searchPlaceholder": "Teile filtern",        
+        "collection": {
+            "usage": "Verwendung",
+            "startAmount": "Startmenge",
+            "startPrice": "Startpreis",
+            "costOfDelivery": "Lieferkosten",
+            "timeOfDelivery": "Lieferzeit",
+            "deviationOfDelivery": "Lieferabweichung",
+            "requiredWorkStations": "Benötigte Arbeitsplätze"
+        }
     },
 }
