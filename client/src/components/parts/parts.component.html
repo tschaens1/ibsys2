@@ -3,23 +3,73 @@
         <h1>{{'parts.title'|translate}}</h1>
         <p class="ellipsis">{{'parts.description'|translate}}</p>
     </div>
-    <div class="page-content">
-        <div class="row page-part">
-            <h2 id="in_house_parts">Eigenerzeugnisse</h2>
+    <div class="page-sub-heading">
+        <div class="row">
             <div class="col s12">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                <input type="search" placeholder="Search for parts" [(ngModel)]="searchTerm" (keyup)="onSearchKeyUp()">
             </div>
         </div>
-        <div class="row page-part">
-            <h2 id="purchase_parts">Kaufteile</h2>
-            <div class="col s12">
+    </div>
+    <div class="page-content">
+        <div class="page-part">
+            <ul class="collection" *ngIf="filteredData.length > 0">
+                <li class="collection-item avatar animated fadeIn" *ngFor="let part of filteredData">
+                    <div class="circle">{{reverse(noWhiteSpace(part.id))}}</div>
+                    <span class="title">{{part.Description}}</span>
+                    <div class="info row">
+                        <div class="info-card col l3 m6 s12" *ngIf="part.Usage">
+                            <div class="title">
+                                Usage
+                            </div>
+                            <div class="value">
+                                {{part.Usage}}
+                            </div>
+                        </div>
+                        <div class="info-card col l3 m6 s12">
+                            <div class="title">
+                                StartAmount
+                            </div>
+                            <div class="value">
+                                {{part.StartAmount}}
+                            </div>
+                        </div>
+                        <div class="info-card col l3 m6 s12">
+                            <div class="title">
+                                StartPrice
+                            </div>
+                            <div class="value">
+                                {{part.StartPrice}}
+                            </div>
+                        </div>
+                        <div class="info-card col l3 m6 s12">
+                            <div class="title">
+                                CostOfDelivery
+                            </div>
+                            <div class="value">
+                                {{part.CostOfDelivery}}
+                            </div>
+                        </div>
+                        <div class="info-card col l3 m6 s12">
+                            <div class="title">
+                                TimeOfDelivery
+                            </div>
+                            <div class="value">
+                                {{part.TimeOfDelivery}}
+                            </div>
+                        </div>
+                        <div class="info-card col l3 m6 s12">
+                            <div class="title">
+                                DeviationOfDelivery
+                            </div>
+                            <div class="value">
+                                {{part.DeviationOfDelivery}}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="nothingFound" *ngIf="filteredData.length === 0">
+                Nothing found!
             </div>
         </div>
     </div>

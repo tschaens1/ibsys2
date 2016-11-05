@@ -1,0 +1,36 @@
+@import '../../styles/colors';
+// @import '../../styles/breakpoints';
+
+.collection-item{
+    min-height: 84px;    
+    padding-left: 72px;
+    position: relative;
+    float: left;
+    width: 100%;
+    
+    .circle {
+        text-align: center;
+        background-color: $primary-theme;
+        padding-top: .5rem;
+        color: $white;
+        float: left;        
+    }
+
+    span.title {
+        font-weight: 500;
+        line-height: 2.5rem;
+        float: left;
+        width: 100%;
+    }    
+
+    .info-card {
+        float: left;
+        padding: .1rem;
+        margin: .3rem .4rem 0 .4rem;
+
+        .title{
+            font-size: .9rem !important;
+            color: $gray;
+        }
+    }
+}

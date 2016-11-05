@@ -18,6 +18,6 @@ export class SettingsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.translationService.onLanguageChanged.subscribe(language => console.info('language changed to ', language));
+        // this.translationService.onLanguageChanged.subscribe(language => console.info('language changed to ', language));
     }
 }

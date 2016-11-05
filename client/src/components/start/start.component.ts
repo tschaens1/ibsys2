@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { LoginService } from './../login/login.service';
 import { Component, AfterViewInit, OnInit, Input } from '@angular/core';
 import { SearchService } from './../search/search.service';
@@ -81,9 +81,21 @@ export class StartComponent implements AfterViewInit, OnInit {
     onSearchEnter() {
         // if no search result entry has the class 'focused'
         if (!$('.searchResults ul li').hasClass('focused') || $('.searchResults ul li.advanced-search-link').hasClass('focused')) {
-            this.router.navigate(['/app/search', { q: this.searchTerm }]);
+            let navigationExtras: NavigationExtras = {
+                queryParams: { q: this.searchTerm }
+            };
+            this.router.navigate(['/app/search'], navigationExtras);
         } else {
-            this.router.navigate([$('.searchResults ul li.focused').data('route')]);
+            let fragment = $('.searchResults ul li.focused').data('fragment');
+            console.log(fragment);
+            let navigationExtras: NavigationExtras = {
+                fragment
+            };
+            if (fragment) {
+                this.router.navigate([$('.searchResults ul li.focused').data('route')], navigationExtras);
+            } else {
+                this.router.navigate([$('.searchResults ul li.focused').data('route')]);
+            }
         }
         this.searchTerm = '';
         this.hideSearchResults();
@@ -114,8 +126,8 @@ export class StartComponent implements AfterViewInit, OnInit {
     }
 
     // navigates to a page if user clicked on a search result
-    searchNavigateTo(route: any) {
-        this.router.navigate(route);
+    searchNavigateTo(...args) {
+        this.router.navigate(args);
         this.searchTerm = '';
     }
 

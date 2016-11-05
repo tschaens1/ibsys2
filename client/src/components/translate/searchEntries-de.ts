@@ -5,27 +5,27 @@ let searchEntriesDE: SearchEntry[] = [
         id: 1,
         name: 'Dashboard',
         route: ['/app/dashboard'],
-        tags: ['Start', 'Home', 'Dashboard'],
+        tags: ['Start', 'Home'],
         description: 'Statistiken zur Planung anzeigen'
     },
     {
         id: 2,
         name: 'Lager',
-        tags: ['Lager'],
+        tags: [],
         route: ['/app/warehouse'],
         description: 'Lagerhaus Übersichtsseite',
     },
     {
         id: 3,
         name: 'Profile',
-        tags: ['Profile', 'Benutzer', 'Konto'],
+        tags: ['Benutzer', 'Konto', 'Account'],
         route: ['/app/profile'],
         description: 'Profileinstellungen'
     },
     {
         id: 4,
         name: 'Einstellungen',
-        tags: ['Einstellungen', 'Sprache', 'Internationalisierung', 'i18n'],
+        tags: ['Sprache', 'Internationalisierung', 'i18n'],
         route: ['/app/settings'],
         description: 'Verwalten der Einstellungen'
     },
@@ -39,16 +39,32 @@ let searchEntriesDE: SearchEntry[] = [
     {
         id: 6,
         name: 'Materialplanung',
-        tags: ['Materialplanung', 'planung'],
+        tags: ['Planung'],
         route: ['/app/planning/material'],
         description: 'Materialplanung durchführen'
     },
     {
         id: 7,
         name: 'Produktionsplanung',
-        tags: ['Produktionsplanung', 'planung'],
+        tags: ['Planung'],
         route: ['/app/planning/production'],
         description: 'Produktionsplanung durchführen'
+    },
+    {
+        id: 8,
+        name: 'Eigenerzeugnisse',
+        tags: ['Teile'],
+        route: ['/app/parts'],
+        fragment: 'in_house_parts',
+        description: 'Liste der Eigenerzeugnisse'
+    },
+    {
+        id: 9,
+        name: 'Kaufteile',
+        tags: ['Teile'],
+        route: ['/app/parts'],
+        fragment: 'purchase_parts',
+        description: 'Liste der Kaufteile'
     },
 ];
 

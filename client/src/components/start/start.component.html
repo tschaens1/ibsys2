@@ -9,7 +9,7 @@
 				(blur)="hideSearchResults()">
 			<div class="searchResults" *ngIf="searchResults && searchTerm.length > 0" (window:keydown)="searchArrowKeys($event)">
 				<ul>
-					<li *ngFor="let result of searchResults" (click)="searchNavigateTo(result.route)" [attr.data-route]="result.route">
+					<li *ngFor="let result of searchResults" (click)="searchNavigateTo(result.route)" [attr.data-route]="result.route" [attr.data-fragment]="result.fragment">
 						<div class="result-title ellipsis">
 							{{result.name}}
 						</div>
