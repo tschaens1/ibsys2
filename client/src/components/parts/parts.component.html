@@ -41,7 +41,7 @@
                                 {{part.StartPrice}} €
                             </div>
                         </div>
-                        <div class="info-card col l2 m6 s12">
+                        <div class="info-card col l2 m6 s12" *ngIf="part.CostOfDeliver > 0">
                             <div class="title">
                                 CostOfDelivery
                             </div>
@@ -49,7 +49,7 @@
                                 {{part.CostOfDelivery}} €
                             </div>
                         </div>
-                        <div class="info-card col l2 m6 s12">
+                        <div class="info-card col l2 m6 s12" *ngIf="part.TimeOfDelivery > 0">
                             <div class="title">
                                 TimeOfDelivery
                             </div>
@@ -57,7 +57,7 @@
                                 {{part.TimeOfDelivery}}
                             </div>
                         </div>
-                        <div class="info-card col l2 m6 s12">
+                        <div class="info-card col l2 m6 s12" *ngIf="part.DeviationOfDelivery > 0">
                             <div class="title">
                                 DeviationOfDelivery
                             </div>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="workstations row" *ngIf="getWorkstations(part.id).length > 0">
                         <div class="title">
-                            Production
+                            Required work stations
                         </div>
                         <ul>
                             <li *ngFor="let ws of getWorkstations(part.id)" class="workstation">
