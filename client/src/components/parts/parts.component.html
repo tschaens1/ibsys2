@@ -38,7 +38,7 @@
                                 StartPrice
                             </div>
                             <div class="value">
-                                {{part.StartPrice}}
+                                {{part.StartPrice}} €
                             </div>
                         </div>
                         <div class="info-card col l2 m6 s12">
@@ -46,7 +46,7 @@
                                 CostOfDelivery
                             </div>
                             <div class="value">
-                                {{part.CostOfDelivery}}
+                                {{part.CostOfDelivery}} €
                             </div>
                         </div>
                         <div class="info-card col l2 m6 s12">
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="workstations row">
+                    <div class="workstations row" *ngIf="getWorkstations(part.id).length > 0">
                         <div class="title">
                             Affected direct workstations
                         </div>

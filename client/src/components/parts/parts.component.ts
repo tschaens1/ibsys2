@@ -20,7 +20,7 @@ export class PartsComponent {
     constructor(private translationService: TranslationService) {
         // select the language specific basic data
         this.data = this.translationService.currentLanguage === 'de' ? basic_claims_data_DE : basic_claims_data_EN;
-        this.filteredData = this.data;        
+        this.filteredData = this.data;
     }
 
     onSearchKeyUp() {
@@ -31,7 +31,8 @@ export class PartsComponent {
     }
 
     private reverse(s: string): string {
-        return s.substr(1) + s.substr(0, s.length-1);
+        // return s.substr(1) + s.substr(0, s.length-1);
+        return s.substr(s.length - 1, 1) + s.substr(0, s.length - 1);
     }
 
     private noWhiteSpace(s: string): string {
