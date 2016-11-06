@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { TranslationService } from './../translate/translate.service';
-import { searchEntriesDE } from './../translate/searchEntries-de';
-import { searchEntriesEN } from './../translate/searchEntries-en';
 import { SearchEntries } from './searchEntries.service';
 
 @Injectable()
