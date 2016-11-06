@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { TranslationService } from './../translate/translate.service';
-import searchEntriesDE from './../translate/searchEntries-de';
-import searchEntriesEN from './../translate/searchEntries-en';
+import { searchEntriesDE } from './../translate/searchEntries-de';
+import { searchEntriesEN } from './../translate/searchEntries-en';
 
 @Injectable()
 export class SearchService {
 
     constructor(private translationService: TranslationService) { }
-    
+
     /**
      * Get the search results for a given search term
      * @param {string} term - The search term to filter the result

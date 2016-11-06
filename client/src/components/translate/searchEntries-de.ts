@@ -1,6 +1,6 @@
 import { SearchEntry } from './../search/searchEntry.interface';
 
-let searchEntriesDE: SearchEntry[] = [
+export const searchEntriesDE: SearchEntry[] = [
     {
         id: 1,
         name: 'Dashboard',
@@ -58,5 +58,3 @@ let searchEntriesDE: SearchEntry[] = [
         description: 'Liste der Teile'
     },    
 ];
-
-export default searchEntriesDE;

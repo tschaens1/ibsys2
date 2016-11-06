@@ -1,6 +1,6 @@
 import { SearchEntry } from './../search/searchEntry.interface';
 
-let searchEntriesEN: SearchEntry[] = [
+export const searchEntriesEN: SearchEntry[] = [
     {
         id: 1,
         name: 'Dashboard',
@@ -58,5 +58,3 @@ let searchEntriesEN: SearchEntry[] = [
         description: 'Get information about all parts'
     }, 
 ];
-
-export default searchEntriesEN;
