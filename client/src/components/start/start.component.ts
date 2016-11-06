@@ -87,7 +87,7 @@ export class StartComponent implements AfterViewInit, OnInit {
             this.router.navigate(['/app/search'], navigationExtras);
         } else {
             let fragment = $('.searchResults ul li.focused').data('fragment');
-            console.log(fragment);
+            // console.log(fragment);
             let navigationExtras: NavigationExtras = {
                 fragment
             };
