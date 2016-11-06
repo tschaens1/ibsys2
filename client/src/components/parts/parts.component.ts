@@ -17,10 +17,15 @@ export class PartsComponent {
     filteredData: Part[];
     searchTerm: string;
 
-    constructor(private translationService: TranslationService) {
+    constructor(private translationService: TranslationService, private route: ActivatedRoute) {
         // select the language specific basic data
         this.data = this.translationService.currentLanguage === 'de' ? basic_claims_data_DE : basic_claims_data_EN;
         this.filteredData = this.data;
+
+        this.route.fragment.subscribe(value => {
+            this.searchTerm = value;
+            this.onSearchKeyUp();
+        })
     }
 
     onSearchKeyUp() {

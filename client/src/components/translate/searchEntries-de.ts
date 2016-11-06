@@ -1,4 +1,5 @@
 import { SearchEntry } from './../search/searchEntry.interface';
+import { basic_claims_data_DE } from './basic_claims_data_de';
 
 export const searchEntriesDE: SearchEntry[] = [
     {
@@ -54,7 +55,7 @@ export const searchEntriesDE: SearchEntry[] = [
         id: 8,
         name: 'Teile',
         tags: ['Kaufteile', 'Eigenerzeugnisse'],
-        route: ['/app/parts'],        
+        route: ['/app/parts'],
         description: 'Liste der Teile'
     },    
 ];

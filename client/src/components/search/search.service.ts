@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { TranslationService } from './../translate/translate.service';
 import { searchEntriesDE } from './../translate/searchEntries-de';
 import { searchEntriesEN } from './../translate/searchEntries-en';
+import { SearchEntries } from './searchEntries.service';
 
 @Injectable()
 export class SearchService {
 
-    constructor(private translationService: TranslationService) { }
+    constructor(private translationService: TranslationService, private searchEntries: SearchEntries) { }
 
     /**
      * Get the search results for a given search term
@@ -19,7 +20,7 @@ export class SearchService {
         if (term.trim().length === 0) {
             return results;
         } else {
-            let searchEntries = this.translationService.currentLanguage === 'de' ? searchEntriesDE : searchEntriesEN;
+            let searchEntries = this.searchEntries.getEntries();
             searchEntries.forEach(entry => {
                 if ((
                     // searchterm is part of the entry name
