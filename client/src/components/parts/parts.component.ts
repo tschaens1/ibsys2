@@ -26,7 +26,7 @@ export class PartsComponent {
     onSearchKeyUp() {
         this.filteredData = this.data.filter((item: Part) => {
             return (item.Description.trim().toLowerCase().includes(this.searchTerm.trim().toLowerCase())
-                || reverse(noWhiteSpace(item.id).trim().toLowerCase()).includes(this.searchTerm.trim().toLowerCase()));
+                || this.reverse(this.noWhiteSpace(item.id).trim().toLowerCase()).includes(this.searchTerm.trim().toLowerCase()));
         });
     }
 
@@ -47,18 +47,18 @@ export class PartsComponent {
 
         return idsOfWorkStations;
     }
-}
 
-/**
- * reverse the id of the basic claim data
- */
-export function reverse(s: string): string {
-    return s.substr(s.length - 1, 1) + s.substr(0, s.length - 1);
-}
+    /**
+     * reverse the id of the basic claim data
+     */
+    reverse(s: string): string {
+        return s.substr(s.length - 1, 1) + s.substr(0, s.length - 1);
+    }
 
-/**
- * remove the whitespace of the ids of some data entries
- */
-export function noWhiteSpace(s: string): string {
-    return s.replace(/ /g, '');
+    /**
+     * remove the whitespace of the ids of some data entries
+     */
+    noWhiteSpace(s: string): string {
+        return s.replace(/ /g, '');
+    }
 }

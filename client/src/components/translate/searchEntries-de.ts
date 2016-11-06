@@ -17,7 +17,7 @@ export const searchEntriesDE: SearchEntry[] = [
     },
     {
         id: 3,
-        name: 'Profile',
+        name: 'Profil',
         tags: ['Benutzer', 'Konto', 'Account'],
         route: ['/app/profile'],
         description: 'Profileinstellungen'
