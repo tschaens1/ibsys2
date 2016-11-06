@@ -18,9 +18,10 @@ export class SettingsService {
     getLoginBehaviour = () => this.settings.stayLoggedIn;
 
     // language settings
-    setLanguage(language: string) {
-        this.settings.language = language;
+    setLanguage(language: string) {        
+        this.settings.language = language.toLowerCase();
         this.updateLocalStorage();
+        this.translationService.use(language.toLowerCase());
     }
     getLanguage = () => this.settings.language;
 

@@ -12,8 +12,7 @@ export class SettingsComponent implements OnInit {
 
     constructor(private translationService: TranslationService, private settingsService: SettingsService) { }
 
-    changeLanguage(language: string) {
-        this.translationService.use(language);
+    changeLanguage(language: string) {    
         this.settingsService.setLanguage(language);
     }
 
