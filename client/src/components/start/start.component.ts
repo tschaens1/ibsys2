@@ -34,7 +34,7 @@ export class StartComponent implements AfterViewInit, OnInit {
             inDuration: 300,
             outDuration: 225,
             constrain_width: false, // Does not change width of dropdown to that of the activator
-            hover: true, // Activate on hover
+            hover: false, // Activate on hover
             gutter: 0, // Spacing from edge
             belowOrigin: false, // Displays dropdown below the button
             alignment: 'left' // Displays dropdown with edge aligned to the left of button
@@ -79,42 +79,13 @@ export class StartComponent implements AfterViewInit, OnInit {
 
     // navigate to the search component after pressing 'Enter'-Key
     onSearchEnter() {
-        // if no search result entry has the class 'focused'
-        if (!$('.searchResults ul li').hasClass('focused') || $('.searchResults ul li.advanced-search-link').hasClass('focused')) {
-            let navigationExtras: NavigationExtras = {
-                queryParams: { q: this.searchTerm }
-            };
-            this.router.navigate(['/app/search'], navigationExtras);
-        } else {
-            let fragment = $('.searchResults ul li.focused').data('fragment');
-            console.log(fragment);
-            let navigationExtras: NavigationExtras = {
-                fragment
-            };
-            if (fragment) {
-                this.router.navigate([$('.searchResults ul li.focused').data('route')], navigationExtras);
-            } else {
-                this.router.navigate([$('.searchResults ul li.focused').data('route')]);
-            }
-        }
+        // if no search result entry has the class 'focused'        
+        let navigationExtras: NavigationExtras = {
+            queryParams: { q: this.searchTerm }
+        };
+        this.router.navigate(['/app/search'], navigationExtras);
         this.searchTerm = '';
         this.hideSearchResults();
-    }
-
-    searchArrowKeys(event) {
-        if (event.keyCode === 40) {
-            if (!$('.searchResults ul li').hasClass('focused')) {
-                $('.searchResults ul li').first().addClass('focused');
-            } else {
-                $('.searchResults ul li.focused').removeClass('focused').next().addClass('focused');
-            }
-        } else if (event.keyCode === 38) {
-            if (!$('.searchResults ul li').hasClass('focused')) {
-                $('.searchResults ul li').last().addClass('focused');
-            } else {
-                $('.searchResults ul li.focused').removeClass('focused').prev().addClass('focused');
-            }
-        }
     }
 
     // hide the search results on blur (input loses focus)
@@ -126,9 +97,16 @@ export class StartComponent implements AfterViewInit, OnInit {
     }
 
     // navigates to a page if user clicked on a search result
-    searchNavigateTo(...args) {
-        this.router.navigate(args);
-        this.searchTerm = '';
+    searchNavigateTo(route: any, fragment?: string) {
+        if (fragment === undefined) {
+            this.router.navigate(route);
+            this.searchTerm = '';
+        } else {
+            let navigationExtras: NavigationExtras = {
+                fragment: fragment
+            };
+            this.router.navigate(route, navigationExtras);
+        }
     }
 
     ngAfterViewInit() {

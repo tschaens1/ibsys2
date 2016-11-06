@@ -15,6 +15,7 @@ import { SettingsComponent } from './../settings/settings.component';
 import { DashBoardComponent } from '../dashboard/dashboard.component';
 import { SearchComponent } from './../search/search.component';
 import { SearchService } from './../search/search.service';
+import { SearchEntries } from './../search/searchEntries.service';
 import { PlanningComponent } from './../planning/planning.component';
 import { PlanningOverviewComponent } from './../planning_overview/planning_overview.component';
 import { PlanningProductionComponent } from './../planning_production/planning_production.component';
@@ -80,6 +81,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LoggedInGuard,
     LoggedOutGuard,
     SearchService,
+    SearchEntries,
     SettingsService,
     TRANSLATION_PROVIDERS,
     TranslationService,

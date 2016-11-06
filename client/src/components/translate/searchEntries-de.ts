@@ -1,6 +1,7 @@
 import { SearchEntry } from './../search/searchEntry.interface';
+import { basic_claims_data_DE } from './basic_claims_data_de';
 
-let searchEntriesDE: SearchEntry[] = [
+export const searchEntriesDE: SearchEntry[] = [
     {
         id: 1,
         name: 'Dashboard',
@@ -17,7 +18,7 @@ let searchEntriesDE: SearchEntry[] = [
     },
     {
         id: 3,
-        name: 'Profile',
+        name: 'Profil',
         tags: ['Benutzer', 'Konto', 'Account'],
         route: ['/app/profile'],
         description: 'Profileinstellungen'
@@ -54,9 +55,7 @@ let searchEntriesDE: SearchEntry[] = [
         id: 8,
         name: 'Teile',
         tags: ['Kaufteile', 'Eigenerzeugnisse'],
-        route: ['/app/parts'],        
+        route: ['/app/parts'],
         description: 'Liste der Teile'
     },    
 ];
-
-export default searchEntriesDE;

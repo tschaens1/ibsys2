@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { SearchService } from './../search/search.service';
-import { basic_claims_data_DE } from './../translate/master_data_DE';
-import { basic_claims_data_EN } from './../translate/master_data_EN';
+import { basic_claims_data_DE } from './../translate/basic_claims_data_de';
+import { basic_claims_data_EN } from './../translate/basic_claims_data_en';
 import { Part } from './part.interface';
 import { TranslationService } from './../translate/translate.service';
 import * as _ from 'lodash';
@@ -17,10 +17,15 @@ export class PartsComponent {
     filteredData: Part[];
     searchTerm: string;
 
-    constructor(private translationService: TranslationService) {
+    constructor(private translationService: TranslationService, private route: ActivatedRoute) {
         // select the language specific basic data
         this.data = this.translationService.currentLanguage === 'de' ? basic_claims_data_DE : basic_claims_data_EN;
         this.filteredData = this.data;
+
+        this.route.fragment.subscribe(value => {
+            this.searchTerm = value;
+            this.onSearchKeyUp();
+        })
     }
 
     onSearchKeyUp() {
@@ -28,15 +33,6 @@ export class PartsComponent {
             return (item.Description.trim().toLowerCase().includes(this.searchTerm.trim().toLowerCase())
                 || this.reverse(this.noWhiteSpace(item.id).trim().toLowerCase()).includes(this.searchTerm.trim().toLowerCase()));
         });
-    }
-
-    private reverse(s: string): string {
-        // return s.substr(1) + s.substr(0, s.length-1);
-        return s.substr(s.length - 1, 1) + s.substr(0, s.length - 1);
-    }
-
-    private noWhiteSpace(s: string): string {
-        return s.replace(/ /g, '');
     }
 
     getWorkstations(id: string): string[] {
@@ -55,5 +51,19 @@ export class PartsComponent {
         }
 
         return idsOfWorkStations;
+    }
+
+    /**
+     * reverse the id of the basic claim data
+     */
+    reverse(s: string): string {
+        return s.substr(s.length - 1, 1) + s.substr(0, s.length - 1);
+    }
+
+    /**
+     * remove the whitespace of the ids of some data entries
+     */
+    noWhiteSpace(s: string): string {
+        return s.replace(/ /g, '');
     }
 }
