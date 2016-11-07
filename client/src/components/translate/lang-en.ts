@@ -98,6 +98,7 @@ export const LANG_EN_TRANSLATIONS = {
             "timeOfDelivery": "Time of Delivery",
             "deviationOfDelivery": "Deviation of delivery",
             "requiredWorkStations": "Required work stations"
-        }
+        },
+        "nothingFound": "No parts found!",
     },
 }

@@ -15,7 +15,7 @@ import * as _ from 'lodash';
 export class PartsComponent {
     data: Part[];
     filteredData: Part[];
-    searchTerm: string;
+    searchTerm: string = '';
 
     constructor(private translationService: TranslationService, private route: ActivatedRoute) {
         // select the language specific basic data

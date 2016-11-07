@@ -105,6 +105,7 @@ export const LANG_DE_TRANSLATIONS = {
             "timeOfDelivery": "Lieferzeit",
             "deviationOfDelivery": "Lieferabweichung",
             "requiredWorkStations": "Benötigte Arbeitsplätze"
-        }
+        },
+        "nothingFound": "Keine Teile gefunden!",
     },
 }
