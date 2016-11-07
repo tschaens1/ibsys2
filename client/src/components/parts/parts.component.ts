@@ -23,6 +23,7 @@ export class PartsComponent {
         this.filteredData = this.data;
 
         this.route.fragment.subscribe(value => {
+            if (value === undefined) return;
             this.searchTerm = value;
             this.onSearchKeyUp();
         })
