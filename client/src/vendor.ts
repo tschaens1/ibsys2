@@ -24,3 +24,6 @@ import './../node_modules/mdi/css/materialdesignicons.css';
 
 // Animate.css
 import './../node_modules/animate.css/animate.css';
+
+// NoUISlider
+import './../node_modules/nouislider/distribute/nouislider.css';

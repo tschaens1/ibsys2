@@ -19,7 +19,9 @@
       "highcharts",
       "materialize-css",
       "pickadate",
-      "lodash"
+      "lodash",
+      "wnumb",
+      "nouislider"
     ]
   },
   "exclude": [

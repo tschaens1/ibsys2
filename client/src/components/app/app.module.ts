@@ -28,6 +28,8 @@ import { FileUploadComponent } from './../upload/fileupload.component';
 import { SettingsService } from './../settings/settings.service';
 import { PartsComponent } from './../parts/parts.component';
 
+import { NouisliderModule } from 'ng2-nouislider';
+
 import { TRANSLATION_PROVIDERS } from './../translate/translations';
 import { TranslatePipe } from './../translate/translate.pipe';
 import { TranslationService } from './../translate/translate.service';
@@ -52,6 +54,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     routing,
     ChartsModule,
     ChartModule,
+    NouisliderModule,
     MaterialModule.forRoot(),
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
   ],
