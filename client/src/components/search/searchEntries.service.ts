@@ -11,6 +11,24 @@ export class SearchEntries {
     searchEntries: SearchEntry[];
 
     constructor(private settings: SettingsService) {
+        this.searchEntries = this.getEntries();
+    }
+
+    /**
+     * reverse the id of the basic claim data
+     */
+    reverse(s: string): string {
+        return s.substr(s.length - 1, 1) + s.substr(0, s.length - 1);
+    }
+
+    /**
+     * remove the whitespace of the ids of some data entries
+     */
+    noWhiteSpace(s: string): string {
+        return s.replace(/ /g, '');
+    }
+
+    getEntries() {
         if (this.settings.getLanguage() === 'de') {
             this.searchEntries = [
                 ...searchEntriesDE,
@@ -38,23 +56,6 @@ export class SearchEntries {
                     }
                 })];
         }
-    }
-
-    /**
-     * reverse the id of the basic claim data
-     */
-    reverse(s: string): string {
-        return s.substr(s.length - 1, 1) + s.substr(0, s.length - 1);
-    }
-
-    /**
-     * remove the whitespace of the ids of some data entries
-     */
-    noWhiteSpace(s: string): string {
-        return s.replace(/ /g, '');
-    }
-
-    getEntries() {
         return this.searchEntries;
     }
 }
