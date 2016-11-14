@@ -27,6 +27,8 @@ import { UploadComponent } from './../upload/upload.component';
 import { FileUploadComponent } from './../upload/fileupload.component';
 import { SettingsService } from './../settings/settings.service';
 import { PartsComponent } from './../parts/parts.component';
+import { UploadService } from './../upload/upload.service';
+import { ArticleService } from './../RESTServices/ArticleService';
 
 import { NouisliderModule } from 'ng2-nouislider';
 
@@ -86,9 +88,11 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SearchService,
     SearchEntries,
     SettingsService,
+    UploadService,
+    ArticleService,
     TRANSLATION_PROVIDERS,
     TranslationService,
-    { provide: 'ApiEndpoint', useValue: 'http://localhost:8080' }
+    { provide: 'ApiEndpoint', useValue: 'http://192.168.56.101:8080' }
   ],
   bootstrap: [AppComponent]
 })

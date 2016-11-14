@@ -4,6 +4,7 @@ import { SearchService } from './../search/search.service';
 import { basic_claims_data_DE } from './../translate/basic_claims_data_de';
 import { basic_claims_data_EN } from './../translate/basic_claims_data_en';
 import { Part } from './part.interface';
+import { ArticleService } from './../RESTServices/ArticleService';
 import { TranslationService } from './../translate/translate.service';
 import * as _ from 'lodash';
 
@@ -17,23 +18,31 @@ export class PartsComponent {
     filteredData: Part[];
     searchTerm: string = '';
 
-    constructor(private translationService: TranslationService, private route: ActivatedRoute) {
+    constructor(private translationService: TranslationService, private route: ActivatedRoute, private articleService: ArticleService) {
         // select the language specific basic data
         this.data = this.translationService.currentLanguage === 'de' ? basic_claims_data_DE : basic_claims_data_EN;
         this.filteredData = this.data;
 
         this.route.fragment.subscribe(value => {
-            if (value === undefined) return;
+            if (value === undefined || value === null) return;
             this.searchTerm = value;
             this.onSearchKeyUp();
         })
+
+        // sample requests to server [TODO: PLEASE DELETE THIS LATER!!!!!]
+        // this.articleService.addArticle({ id: 5, amount: 100, startamount: 100, percentage: 0.9, price: 12.50 }).then(response => {
+        //     console.log(response);
+        // })
+        // this.articleService.getArticles().then(response => {
+        //     console.log(response);
+        // })
     }
 
     onSearchKeyUp() {
-        this.filteredData = this.data.filter((item: Part) => {
-            return (item.Description.trim().toLowerCase().includes(this.searchTerm.trim().toLowerCase())
-                || this.reverse(this.noWhiteSpace(item.id).trim().toLowerCase()).includes(this.searchTerm.trim().toLowerCase()));
-        });
+        // this.filteredData = this.data.filter((item: Part) => {
+        //     return (item.Description.trim().toLowerCase().includes(this.searchTerm.trim().toLowerCase())
+        //         || this.reverse(this.noWhiteSpace(item.id).trim().toLowerCase()).includes(this.searchTerm.trim().toLowerCase()));
+        // });
     }
 
     getWorkstations(id: string): string[] {
