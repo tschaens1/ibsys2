@@ -1,4 +1,4 @@
-package de.hska.waitingqueuemanagenment.domain;
+package de.hska.waitingqueuemanagement.domain;
 
 import javax.persistence.Id;
 import javax.persistence.Entity;
