@@ -88,7 +88,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SettingsService,
     TRANSLATION_PROVIDERS,
     TranslationService,
-    { provide: 'ApiEndpoint', useValue: 'http://localhost:1234' }
+    { provide: 'ApiEndpoint', useValue: 'http://localhost:8080' }
   ],
   bootstrap: [AppComponent]
 })
