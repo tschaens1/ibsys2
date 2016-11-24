@@ -7,7 +7,7 @@ export const LANG_DE_TRANSLATIONS = {
         "stayLoggedIn": "Eingeloggt bleiben",
         "button": {
             "login": "Einloggen"
-        }
+        },
     },
     "start": {
         "navbar": {
@@ -28,7 +28,7 @@ export const LANG_DE_TRANSLATIONS = {
             "files": "Dateien",
             "upload": "Datei hochladen",
             "downloads": "Datei herunterladen"
-        }
+        },
     },
     "settings": {
         "title": "Einstellungen",
@@ -38,7 +38,7 @@ export const LANG_DE_TRANSLATIONS = {
             "changeLanguage": "Hier kann die Sprache verändert werden:",
             "german": "Deutsch",
             "english": "Englisch",
-        }
+        },
     },
     "planning_material": {
         "title": "Materialplanung",
@@ -60,12 +60,13 @@ export const LANG_DE_TRANSLATIONS = {
             "header_bindingOrders": "Verbindlich",
             "header_forecast_one": "Prognose + 1",
             "header_forecast_two": "Prognose + 2",
-            "header_forecast_three": "Prognose +3",
+            "header_forecast_three": "Prognose + 3",
             "header_produce": "Produzieren",
             "header_warehouseStock": "Lagerbestand Ende der Planperiode",
         },
     },
-    "planning_capacity": {        
+    "planning_capacity": {
+        "title": "Kapazitätsplanung",               
         "table":{
             "workstation_number": "Arbeitsplatz",
             "workload": "Auslastung",
@@ -90,7 +91,7 @@ export const LANG_DE_TRANSLATIONS = {
             "order_quantity": "Bestellmenge",
         },
     },
-    "inserts": {
+    "planning_inserts": {
         "title": "Eingangstabelle",
         "description": "Hier werden alle Eingaben getätigt.",
         "directPurchase": "Direktverkauf",
@@ -100,6 +101,7 @@ export const LANG_DE_TRANSLATIONS = {
         "bindingSales": "Verbindliche Verkäufe",
         "componentNumber": "Nr.",
         "componentAmount": "Anzahl",
+        "orderType": "Bestellart",
         "workplace": "Arbeitsplatz",
         "workshift": "Schichten",
         "overtime": "Überstunden",
@@ -109,7 +111,7 @@ export const LANG_DE_TRANSLATIONS = {
         "description": "Die Seite konnte nicht gefunden werden.",
         "buttons": {
             "startpage": "Startseite"
-        }
+        },
     },
     "search": {
         "title": "Suche",

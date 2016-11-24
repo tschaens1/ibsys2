@@ -7,7 +7,7 @@ export const LANG_EN_TRANSLATIONS = {
         "stayLoggedIn": "Stay logged in",
         "button": {
             "login": "Login"
-        }
+        },
     },
     "start": {
         "navbar": {
@@ -28,7 +28,7 @@ export const LANG_EN_TRANSLATIONS = {
             "files": "Files",
             "upload": "Upload file",
             "downloads": "Download file"
-        }
+        },
     },
     "settings": {
         "title": "Settings",
@@ -38,7 +38,7 @@ export const LANG_EN_TRANSLATIONS = {
             "changeLanguage": "Here you can change the language:",
             "german": "German",
             "english": "English",
-        }
+        },
     },
     "planning_material": {
         "title": "Material program",
@@ -60,7 +60,7 @@ export const LANG_EN_TRANSLATIONS = {
             "header_bindingOrders": "Binding",
             "header_forecast_one": "Forecast + 1",
             "header_forecast_two": "Forecast + 2",
-            "header_forecast_three": "Forecast +3",
+            "header_forecast_three": "Forecast + 3",
             "header_produce": "Produce",
             "header_warehouseStock": "Expected warehouse stock",
         },
@@ -79,9 +79,10 @@ export const LANG_EN_TRANSLATIONS = {
             "discount_quantity": "Discount quantity",
             "stock_last_period": "Warehouse stock at the End of the period",
             "order_quantity": "Order quantity",
-        }
+        },
     },
-    "planning_capacity": {        
+    "planning_capacity": { 
+        "title": "Capacity planning",       
         "table":{
             "workstation_number": "Workstation",
             "workload": "Workload",
@@ -90,16 +91,17 @@ export const LANG_EN_TRANSLATIONS = {
             "overtime": "Overtime"
         },
     },
-    "inserts": {
+    "planning_inserts": {
         "title": "Input table",
         "description": "All entries are made here.",
         "directPurchase": "Direct sales",
         "purchaseOrders": "Purchasing orders",
-        "productionOrders": "Prodction orders",
+        "productionOrders": "Production orders",
         "productionCapacity": "Production capacity",
         "bindingSales": "Binding sales",
         "componentNumber": "Nr.",
         "componentAmount": "Amount",
+        "orderType": "Ordertype",
         "workplace": "Workplace",
         "workshift": "Workshifts",
         "overtime": "Overtime",
@@ -109,7 +111,7 @@ export const LANG_EN_TRANSLATIONS = {
         "description": "Page could not be found.",
         "buttons": {
             "startpage": "Startpage"
-        }
+        },
     },
     "search": {
         "title": "Search",

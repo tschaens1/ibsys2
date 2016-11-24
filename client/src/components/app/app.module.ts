@@ -21,7 +21,7 @@ import { PlanningOverviewComponent } from './../planning_overview/planning_overv
 import { PlanningProductionComponent } from './../planning_production/planning_production.component';
 import { PlanningMaterialComponent } from './../planning_material/planning_material.component';
 import { PlanningPurchasingComponent } from './../planning_purchasing/planning_purchasing.component';
-import { InsertsComponent } from './../inserts/inserts.component';
+import { PlanningInsertsComponent } from './../planning_inserts/planning_inserts.component';
 import { PlanningCapacityComponent } from './../planning_capacity/planning_capacity.component';
 import { UploadComponent } from './../upload/upload.component';
 import { FileUploadComponent } from './../upload/fileupload.component';
@@ -75,7 +75,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PlanningProductionComponent,
     PlanningMaterialComponent,
     PlanningPurchasingComponent,
-    InsertsComponent,
+    PlanningInsertsComponent,
     PlanningCapacityComponent,
     UploadComponent,
     FileUploadComponent,
