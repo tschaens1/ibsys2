@@ -14,8 +14,15 @@
     a.dropdown-button{
         float: left;
         margin: 1.2rem;
+        line-height: 2.1rem;
         background-color: $dirty-white;
         color: $dark-gray;
+
+        i.mdi {
+            font-size: 1.3rem;
+            display: initial;
+            float: right;
+        }
     }
 }
 
