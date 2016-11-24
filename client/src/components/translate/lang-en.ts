@@ -71,6 +71,15 @@ export const LANG_EN_TRANSLATIONS = {
         "title": "Purchase part disposition",
         "description": "On this page you can dispose the purchase parts."
     },
+    "planning_capacity": {        
+        "table":{
+            "workstation_number": "Workstation",
+            "workload": "Workload",
+            "capacity_requirements": "Capacity requirements",
+            "shift": "Shifts",
+            "overtime": "Overtime"
+        },
+    },
     "inserts": {
         "title": "Input table",
         "description": "All entries are made here.",
@@ -84,10 +93,6 @@ export const LANG_EN_TRANSLATIONS = {
         "workplace": "Workplace",
         "workshift": "Workshifts",
         "overtime": "Overtime",
-    },
-    "planning_capacity": {
-        "title": "Capacity planning",
-        "description": "Plan your capacitys here.",
     },
     "pagenotfound": {
         "title": "404 Error",
