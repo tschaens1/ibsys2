@@ -16,6 +16,18 @@ export const LANG_EN_TRANSLATIONS = {
             "username": 'Hello %0',
             "settings": "Settings",
             "logout": "Logout"
+        },
+        "navigation": {
+            "navigation": "Navigation",
+            "dashboard": "Dashboard",
+            "parts": "Parts overview",
+            "planning": "Planning",
+            "warehouse": "Warehouse",
+            "warehouse_statistics": "Warehouse statistics",
+            "warehouse_settings": "Warehouse settings",
+            "files": "Files",
+            "upload": "Upload file",
+            "downloads": "Download file"
         }
     },
     "settings": {
