@@ -57,8 +57,10 @@ export const LANG_EN_TRANSLATIONS = {
         "description": "On this page you can plan the production.",
          "table":{
             "header_product": "Product",
-            "header_bindingOrder": "Binding",
-            "header_forecast": "Forecast",
+            "header_bindingOrders": "Binding",
+            "header_forecast_one": "Forecast + 1",
+            "header_forecast_two": "Forecast + 2",
+            "header_forecast_three": "Forecast +3",
             "header_produce": "Produce",
             "header_warehouseStock": "Expected warehouse stock",
         },
@@ -69,7 +71,15 @@ export const LANG_EN_TRANSLATIONS = {
     },
     "planning_purchasing": {
         "title": "Purchase part disposition",
-        "description": "On this page you can dispose the purchase parts."
+        "description": "On this page you can dispose the purchase parts.",
+        "table": {
+            "purchase_part": "Purchased item",
+            "delivery_time": "Delivery time",
+            "deviation": "Deviation",
+            "discount_quantity": "Discount quantity",
+            "stock_last_period": "Warehouse stock at the End of the period",
+            "order_quantity": "Order quantity",
+        }
     },
     "inserts": {
         "title": "Input table",
