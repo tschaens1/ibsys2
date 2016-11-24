@@ -46,16 +46,37 @@ export const searchEntriesDE: SearchEntry[] = [
     },
     {
         id: 7,
+        name: 'Kapazitätsplanung',
+        tags: ['Kapazität', 'Planung'],
+        route: ['/app/planning/capacity'],
+        description: 'Kapazitätsplanung durchführen'
+    },
+    {
+        id: 8,
+        name: 'Eingaben',
+        tags: ['Eingaben', 'Planung'],
+        route: ['/app/planning/inserts'],
+        description: 'Eingaben zur Planung anzeigen'
+    },
+    {
+        id: 9,
         name: 'Produktionsplanung',
         tags: ['Planung'],
         route: ['/app/planning/production'],
         description: 'Produktionsplanung durchführen'
     },
     {
-        id: 8,
+        id: 10,
         name: 'Teile',
         tags: ['Kaufteile', 'Eigenerzeugnisse'],
         route: ['/app/parts'],
         description: 'Liste der Teile'
-    },    
+    },
+    {
+        id: 11,
+        name: 'Hilfe',
+        tags: ['Hilfe', 'FAQ'],
+        route: ['/app/help'],
+        description: 'Hilfe bekommen'
+    },
 ];
