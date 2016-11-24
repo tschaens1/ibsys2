@@ -11,14 +11,14 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController(value = "Waiting Queue Resource")
-@RequestMapping(value = "/api/rest/waitingqueues", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/api/rest/waitingqueues", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class WaitingQueueResource {
 
     @Autowired
     private IWaitingQueueRepository waitingQueueRepository;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public WaitingQueue save(@RequestBody @Valid final WaitingQueue waitingQueue) {
         return waitingQueueRepository.save(waitingQueue);
     }

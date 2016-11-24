@@ -11,14 +11,14 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController(value = "Workplace Resource")
-@RequestMapping(value = "/api/rest/workplaces", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/api/rest/workplaces", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class WorkplaceResource {
 
     @Autowired
     private IWorkplaceRepository workplaceRepository;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Workplace save(@RequestBody @Valid final Workplace waitingQueue) {
         return workplaceRepository.save(waitingQueue);
     }
