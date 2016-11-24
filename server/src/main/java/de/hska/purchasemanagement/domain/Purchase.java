@@ -3,22 +3,15 @@ package de.hska.purchasemanagement.domain;
 import de.hska.articlemanagement.domain.Article;
 import de.hska.periodmanagement.domain.Period;
 
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Enumerated;
-import javax.persistence.EnumType;
-import javax.persistence.Column;
-import javax.persistence.OneToOne;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Purchase {
 
     @Id
-    @GeneratedValue
-    private Long Id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -64,7 +57,7 @@ public class Purchase {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public PurchaseType getPurchaseType() {

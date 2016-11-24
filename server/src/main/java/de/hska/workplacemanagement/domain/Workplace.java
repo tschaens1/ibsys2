@@ -4,9 +4,11 @@ import de.hska.ordermanagement.domain.Order;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 @Entity
+@XmlRootElement
 public class Workplace {
 
     @Id

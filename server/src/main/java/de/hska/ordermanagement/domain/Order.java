@@ -1,21 +1,24 @@
 package de.hska.ordermanagement.domain;
 
+import de.hska.orderlistmanagement.domain.OrderList;
 import de.hska.periodmanagement.domain.Period;
 import de.hska.workplacemanagement.domain.Workplace;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@Table(name = "\"order\"")
+@XmlRootElement
 public class Order {
-
-    public Order() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name="orderlist_fk", nullable = false)
+    private OrderList orderlist;
 
     @NotNull
     @Column(name = "amount", nullable = false)
@@ -24,6 +27,7 @@ public class Order {
     @NotNull
     @OneToOne
     @JoinColumn(name = "period_fk", nullable = false)
+    // @XmlAttribute(name = "orderperiod")
     private Period period;
 
     @NotNull
@@ -39,6 +43,21 @@ public class Order {
     @Enumerated(EnumType.STRING)
     @Column(name = "priority", nullable = false)
     private Priority priority;
+
+    public Order() {
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public OrderList getOrderList() {
+        return orderlist;
+    }
+
+    public void setOrderList(OrderList orderList) {
+        this.orderlist = orderlist;
+    }
 
     public Long getId() {
         return id;

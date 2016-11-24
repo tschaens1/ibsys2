@@ -1,7 +1,10 @@
 package de.hska.articlemanagement.domain;
 
+import de.hska.warehousemanagement.domain.Warehousestock;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAttribute;
 
 @Entity
 public class Article {
@@ -19,6 +22,10 @@ public class Article {
     private Integer startamount;
 
     @NotNull
+    @Column(name = "stockvalue", nullable = false)
+    private Double stockvalue;
+
+    @NotNull
     @Column(name = "percentage", nullable = false)
     private Double percentage;
 
@@ -26,7 +33,11 @@ public class Article {
     @Column(name = "price", nullable = false)
     private Double price;
 
-    public Article(){
+    @ManyToOne
+    @JoinColumn(name = "warehousestock_fk")
+    private Warehousestock warehousestock;
+
+    public Article() {
     }
 
     public Long getId() {
@@ -53,6 +64,14 @@ public class Article {
         this.startamount = startamount;
     }
 
+    public Double getStockvalue() {
+        return stockvalue;
+    }
+
+    public void setStockvalue(Double stockvalue) {
+        this.stockvalue = stockvalue;
+    }
+
     public Double getPercentage() {
         return percentage;
     }
@@ -69,30 +88,39 @@ public class Article {
         this.price = price;
     }
 
+    public Warehousestock getWarehousestock() {
+        return warehousestock;
+    }
+
+    public void setWarehousestock(Warehousestock warehousestock) {
+        this.warehousestock = warehousestock;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Article)) return false;
 
         Article article = (Article) o;
 
-        if (getId() != null ? !getId().equals(article.getId()) : article.getId() != null) return false;
-        if (getAmount() != null ? !getAmount().equals(article.getAmount()) : article.getAmount() != null) return false;
-        if (getStartamount() != null ? !getStartamount().equals(article.getStartamount()) : article.getStartamount() != null)
-            return false;
-        if (getPercentage() != null ? !getPercentage().equals(article.getPercentage()) : article.getPercentage() != null)
-            return false;
-        return getPrice() != null ? getPrice().equals(article.getPrice()) : article.getPrice() == null;
+        if (id != null ? !id.equals(article.id) : article.id != null) return false;
+        if (amount != null ? !amount.equals(article.amount) : article.amount != null) return false;
+        if (startamount != null ? !startamount.equals(article.startamount) : article.startamount != null) return false;
+        if (stockvalue != null ? !stockvalue.equals(article.stockvalue) : article.stockvalue != null) return false;
+        if (percentage != null ? !percentage.equals(article.percentage) : article.percentage != null) return false;
+        return price != null ? price.equals(article.price) : article.price == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = getId() != null ? getId().hashCode() : 0;
-        result = 31 * result + (getAmount() != null ? getAmount().hashCode() : 0);
-        result = 31 * result + (getStartamount() != null ? getStartamount().hashCode() : 0);
-        result = 31 * result + (getPercentage() != null ? getPercentage().hashCode() : 0);
-        result = 31 * result + (getPrice() != null ? getPrice().hashCode() : 0);
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (amount != null ? amount.hashCode() : 0);
+        result = 31 * result + (startamount != null ? startamount.hashCode() : 0);
+        result = 31 * result + (stockvalue != null ? stockvalue.hashCode() : 0);
+        result = 31 * result + (percentage != null ? percentage.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
         return result;
     }
 
@@ -102,6 +130,7 @@ public class Article {
                 "id=" + id +
                 ", amount=" + amount +
                 ", startamount=" + startamount +
+                ", stockvalue=" + stockvalue +
                 ", percentage=" + percentage +
                 ", price=" + price +
                 '}';
