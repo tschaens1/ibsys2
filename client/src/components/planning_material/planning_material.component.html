@@ -4,38 +4,442 @@
 		<p>{{'planning_material.description' | translate}}</p>
 	</div>
 	<div class="page-content">
-		<div class="row page-part">
-			<table>
-				<thead>
-					<tr>
-						<th data-field="Binding">Binding</th>
-						<th data-field="Forecast">Forecast</th>
-						<th data-field="Poduce">Poduce</th>
-						<th data-field="WarehouseStock">Warehouse stock</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Alvin</td>
-						<td>Eclair</td>
-						<td><input placeholder="P1" id="first_name" type="text" class="validate"></td>
-						<td>Eclair</td>
 
-					</tr>
-					<tr>
-						<td>Alvin</td>
-						<td>Eclair</td>
-						<td><input placeholder="P2" id="first_name" type="text" class="validate"></td>
-						<td>Eclair</td>
-					</tr>
-					<tr>
-						<td>Alvin</td>
-						<td>Eclair</td>
-						<td><input placeholder="P3" id="first_name" type="text" class="validate"></td>
-						<td>Eclair</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="row page-part">
+			<select>
+				<option value="asdfasdf" >Choose your option</option>
+				<option value="1">Option 1</option>
+				<option value="2">Option 2</option>
+				<option value="3">Option 3</option>
+			</select>
+		</div>
+
+		<div class="row page-part">
+			<md-tab-group>
+				<md-tab>
+					<template md-tab-label>P1</template>
+					<template md-tab-content>
+						<table>
+							<thead>
+								<tr>
+									<th data-field="Article"></th>
+									<th data-field="BindingOrders">{{'planning_material.header_bindingOrders' | translate}}</th>
+									<th data-field="ToDo"></th>
+									<th data-field="stockEnd">{{'planning_material.header_warehouseStockEnd' | translate}}</th>
+									<th data-field="stockBegin">{{'planning_material.header_warehouseStockBeginning' | translate}}</th>
+									<th data-field="tasksQueue">{{'planning_material.header_tasksQueue' | translate}}</th>
+									<th data-field="tasksProgress">{{'planning_material.header_tasksProgress' | translate}}</th>
+									<th data-field="productionOrders">{{'planning_material.header_productionOrders' | translate}}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>P1</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E26</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E51</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E16</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E17</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E50</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E4</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E10</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E49</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E7</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E13</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E18</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+							</tbody>
+						</table>
+					</template>
+				</md-tab>
+				<md-tab>
+					<template md-tab-label>P2</template>
+					<template md-tab-content>
+						<table>
+							<thead>
+								<tr>
+									<th data-field="Article"></th>
+									<th data-field="BindingOrders">{{'planning_material.header_bindingOrders' | translate}}</th>
+									<th data-field="ToDo"></th>
+									<th data-field="stockEnd">{{'planning_material.header_warehouseStockEnd' | translate}}</th>
+									<th data-field="stockBegin">{{'planning_material.header_warehouseStockBeginning' | translate}}</th>
+									<th data-field="tasksQueue">{{'planning_material.header_tasksQueue' | translate}}</th>
+									<th data-field="tasksProgress">{{'planning_material.header_tasksProgress' | translate}}</th>
+									<th data-field="productionOrders">{{'planning_material.header_productionOrders' | translate}}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>P2</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E26</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E56</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E16</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E17</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E55</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E5</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E11</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E54</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E8</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E14</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E19</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+							</tbody>
+						</table>
+					</template>
+				</md-tab>
+				<md-tab>
+					<template md-tab-label>P3</template>
+					<template md-tab-content>
+						<table>
+							<thead>
+								<tr>
+									<th data-field="Article"></th>
+									<th data-field="BindingOrders">{{'planningmaterial.header_bindingOrders' | translate}}</th>
+									<th data-field="ToDo"></th>
+									<th data-field="stockEnd">{{'planning_material.header_warehouseStockEnd' | translate}}</th>
+									<th data-field="stockBegin">{{'planning_material.header_warehouseStockBeginning' | translate}}</th>
+									<th data-field="tasksQueue">{{'planning_material.header_tasksQueue' | translate}}</th>
+									<th data-field="tasksProgress">{{'planning_material.header_tasksProgress' | translate}}</th>
+									<th data-field="productionOrders">{{'planning_material.header_productionOrders' | translate}}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>P3</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E26</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E31</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E16</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E17</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E30</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E6</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E12</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E29</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E9</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E15</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+								<tr>
+									<td>E20</td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+									<td><input type="text" class="validate"></td>
+								</tr>
+							</tbody>
+						</table>
+					</template>
+				</md-tab>
+			</md-tab-group>
 		</div>
 	</div>
 </div>
