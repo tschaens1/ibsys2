@@ -111,6 +111,10 @@ export const LANG_EN_TRANSLATIONS = {
             "startpage": "Startpage"
         }
     },
+    "help": {
+        "title": "Help",
+        "description": "Here you can find some tips to use the application"
+    },
     "search": {
         "title": "Search",
         "description": 'Search results for "%0". [%1 results found]',

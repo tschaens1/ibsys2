@@ -17,6 +17,7 @@ import { SearchComponent } from './../search/search.component';
 import { SearchService } from './../search/search.service';
 import { SearchEntries } from './../search/searchEntries.service';
 import { PlanningComponent } from './../planning/planning.component';
+import { HelpComponent } from './../help/help.component';
 import { PlanningOverviewComponent } from './../planning_overview/planning_overview.component';
 import { PlanningProductionComponent } from './../planning_production/planning_production.component';
 import { PlanningMaterialComponent } from './../planning_material/planning_material.component';
@@ -65,6 +66,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LoginComponent,
     StartComponent,
     SettingsComponent,
+    HelpComponent,
     WarehouseComponent,
     DashBoardComponent,
     SearchComponent,

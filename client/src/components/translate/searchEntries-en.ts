@@ -52,9 +52,30 @@ export const searchEntriesEN: SearchEntry[] = [
     },
     {
         id: 8,
+        name: 'Capacity planning',
+        tags: ['Capacity', 'Planung'],
+        route: ['/app/planning/capacity'],
+        description: 'Go to the capacity planning'
+    },
+    {
+        id: 9,
+        name: 'Inserts',
+        tags: ['Inserts', 'Planung'],
+        route: ['/app/planning/inserts'],
+        description: 'Show insers for planning'
+    },
+    {
+        id: 10,
         name: 'Parts',
         tags: ['purchase parts'],
-        route: ['/app/parts'],        
+        route: ['/app/parts'],
         description: 'Get information about all parts'
-    }, 
+    },
+    {
+        id: 11,
+        name: 'Help',
+        tags: ['Help', 'FAQ'],
+        route: ['/app/help'],
+        description: 'Get some help'
+    },
 ];

@@ -10,6 +10,7 @@ import { SettingsComponent } from './../settings/settings.component';
 import { DashBoardComponent } from '../dashboard/dashboard.component';
 import { WarehouseComponent } from '../warehouse/warehouse.component';
 import { SearchComponent } from './../search/search.component';
+import { HelpComponent } from './../help/help.component';
 import { PlanningComponent } from './../planning/planning.component';
 import { PlanningOverviewComponent } from './../planning_overview/planning_overview.component';
 import { PlanningProductionComponent } from './../planning_production/planning_production.component';
@@ -60,6 +61,10 @@ const appRoutes: Routes = [
             {
                 path: 'settings',
                 component: SettingsComponent
+            },
+            {
+                path: 'help',
+                component: HelpComponent
             },
             {
                 path: 'planning',

@@ -111,6 +111,10 @@ export const LANG_DE_TRANSLATIONS = {
             "startpage": "Startseite"
         }
     },
+    "help": {
+        "title": "Hilfe",
+        "description": "Hier finden Sie Anweisungen zur Bedienung des Tools"
+    },
     "search": {
         "title": "Suche",
         "description": 'Suchergebnisse für "%0". [%1 Ergebnisse gefunden]',
