@@ -58,7 +58,9 @@ export const LANG_DE_TRANSLATIONS = {
         "table":{
             "header_product": "Produkt",
             "header_bindingOrders": "Verbindlich",
-            "header_forecast": "Prognose",
+            "header_forecast_one": "Prognose + 1",
+            "header_forecast_two": "Prognose + 2",
+            "header_forecast_three": "Prognose +3",
             "header_produce": "Produzieren",
             "header_warehouseStock": "Lagerbestand Ende der Planperiode",
         },
@@ -74,7 +76,7 @@ export const LANG_DE_TRANSLATIONS = {
     },
     "planning_overview": {
         "title": "Übersicht Planung",
-        "description": "Auf dieser Seite wird die Produktion geplant."
+        "description": "Auf dieser Seite wird die Produktion geplant.",
     },
     "planning_purchasing": {
         "title": "Kaufteildisposition",
@@ -85,8 +87,8 @@ export const LANG_DE_TRANSLATIONS = {
             "deviation": "Abweichung",
             "discount_quantity": "Diskontmenge",
             "stock_last_period": "Lagerbestand letzte Periode",
-            "order_quantity": "Bestellmenge"
-        }
+            "order_quantity": "Bestellmenge",
+        },
     },
     "inserts": {
         "title": "Eingangstabelle",

@@ -6,30 +6,41 @@
 					<tr>
 						<th data-field="Product">{{'planning_production.table.header_product' | translate}}</th>
 						<th data-field="Binding">{{'planning_production.table.header_bindingOrders' | translate}}</th>
-						<th data-field="Forecast">{{'planning_production.table.header_forecast' | translate}}</th>
+						<th data-field="ForecastOne">{{'planning_production.table.header_forecast_one' | translate}}</th>
+						<th data-field="ForecastTwo">{{'planning_production.table.header_forecast_two' | translate}}</th>
+						<th data-field="ForecastThree">{{'planning_production.table.header_forecast_three' | translate}}</th>
 						<th data-field="Poduce">{{'planning_production.table.header_produce' | translate}}</th>
 						<th data-field="WarehouseStock">{{'planning_production.table.header_warehouseStock' | translate}}</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>Alvin</td>
-						<td>Eclair</td>
-						<td><input placeholder="P1" id="first_name" type="text" class="validate"></td>
-						<td>Eclair</td>
+						<td>P1</td>
+						<td id="binding_P1"></td>
+						<td id="forecast_P1_one"></td>
+						<td id="forecast_P1_two"></td>
+						<td id="forecast_P1_three"></td>
+						<td><input placeholder="P1" id="produce_P1" type="text" class="validate"></td>
+						<td id="expected_warehouse_stock_P1"></td>
 
 					</tr>
 					<tr>
-						<td>Alvin</td>
-						<td>Eclair</td>
+						<td>P2</td>
+						<td id="binding_P2"></td>
+						<td id="forecast_P2_one"></td>
+						<td id="forecast_P2_two"></td>
+						<td id="forecast_P2_three"></td>
 						<td><input placeholder="P2" id="first_name" type="text" class="validate"></td>
-						<td>Eclair</td>
+						<td id="expected_warehouse_stock_P2"></td>
 					</tr>
 					<tr>
-						<td>Alvin</td>
-						<td>Eclair</td>
+						<td>P3</td>
+						<td id="binding_P3"></td>
+						<td id="forecast_P3_one"></td>
+						<td id="forecast_P3_two"></td>
+						<td id="forecast_P3_three"></td>
 						<td><input placeholder="P3" id="first_name" type="text" class="validate"></td>
-						<td>Eclair</td>
+						<td id="expected_warehouse_stock_P3"></td>
 					</tr>
 				</tbody>
 			</table>
