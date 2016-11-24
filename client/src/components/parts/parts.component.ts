@@ -39,10 +39,10 @@ export class PartsComponent {
     }
 
     onSearchKeyUp() {
-        // this.filteredData = this.data.filter((item: Part) => {
-        //     return (item.Description.trim().toLowerCase().includes(this.searchTerm.trim().toLowerCase())
-        //         || this.reverse(this.noWhiteSpace(item.id).trim().toLowerCase()).includes(this.searchTerm.trim().toLowerCase()));
-        // });
+        this.filteredData = this.data.filter((item: Part) => {
+            return (item.Description.trim().toLowerCase().includes(this.searchTerm.trim().toLowerCase())
+                || this.reverse(this.noWhiteSpace(item.id).trim().toLowerCase()).includes(this.searchTerm.trim().toLowerCase()));
+        });
     }
 
     getWorkstations(id: string): string[] {
