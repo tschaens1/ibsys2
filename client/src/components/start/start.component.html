@@ -9,7 +9,8 @@
 				(blur)="hideSearchResults()">
 			<div class="searchResults" *ngIf="searchResults && searchTerm.length > 0">
 				<ul>
-					<li *ngFor="let result of searchResults" (click)="searchNavigateTo(result.route, result.fragment)" [attr.data-route]="result.route" [attr.data-fragment]="result.fragment">
+					<li *ngFor="let result of searchResults" (click)="searchNavigateTo(result.route, result.fragment)" [attr.data-route]="result.route"
+						[attr.data-fragment]="result.fragment">
 						<div class="result-title ellipsis">
 							{{result.name}}
 						</div>
@@ -61,25 +62,10 @@
 						<div class="link-text">Parts</div>
 					</a>
 				</div>
-				<div class="sidenav-category">
-					<span class="category-name">Planning</span>
-					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/planning" routerLinkActive="active">
-						<i class="mdi mdi-clipboard-outline"></i>
-						<div class="link-text">Production Planning</div>
-					</a>
-					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/purchasing" routerLinkActive="active">
-						<i class="mdi mdi-cart"></i>
-						<div class="link-text">Purchasing</div>
-					</a>
-					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/inserts" routerLinkActive="active">
-						<i class="mdi mdi-pencil"></i>
-						<div class="link-text">Inserts</div>
-					</a>
-					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/capacity" routerLinkActive="active">
-						<i class="mdi mdi-poll"></i>
-						<div class="link-text">Capacity</div>
-					</a>
-				</div>
+				<a class="sidenav-link waves-effect waves-dark" routerLink="/app/planning" routerLinkActive="active">
+					<i class="mdi mdi-clipboard-outline"></i>
+					<div class="link-text">Planning</div>
+				</a>
 				<div class="sidenav-category">
 					<span class="category-name">Warehouse</span>
 					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/warehouse" routerLinkActive="active">

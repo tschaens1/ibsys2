@@ -67,12 +67,8 @@ const appRoutes: Routes = [
                 children: [
                     {
                         path: '',
-                        redirectTo: 'overview'
-                    },
-                    {
-                        path: 'overview',
-                        component: PlanningOverviewComponent
-                    },
+                        redirectTo: 'production'
+                    },                    
                     {
                         path: 'production',
                         component: PlanningProductionComponent
@@ -81,20 +77,20 @@ const appRoutes: Routes = [
                         path: 'material',
                         component: PlanningMaterialComponent
                     },
+                    {
+                        path: 'purchasing',
+                        component: PurchasingComponent
+                    },
+                    {
+                        path: 'capacity',
+                        component: CapacityComponent
+                    },
                 ]
-            },
-            {
-                path: 'purchasing',
-                component: PurchasingComponent
-            },
+            },            
             {
                 path: 'inserts',
                 component: InsertsComponent
-            },
-            {
-                path: 'capacity',
-                component: CapacityComponent
-            },
+            },            
             {
                 path: 'upload',
                 component: UploadComponent
