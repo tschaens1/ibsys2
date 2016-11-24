@@ -65,6 +65,15 @@ export const LANG_DE_TRANSLATIONS = {
             "header_warehouseStock": "Lagerbestand Ende der Planperiode",
         },
     },
+    "planning_capacity": {        
+        "table":{
+            "workstation_number": "Arbeitsplatz",
+            "workload": "Auslastung",
+            "capacity_requirements": "Kapazitätsbedarf",
+            "shift": "Schichten",
+            "overtime": "Überstunden"
+        },
+    },
     "planning_overview": {
         "title": "Übersicht Planung",
         "description": "Auf dieser Seite wird die Produktion geplant.",
@@ -94,10 +103,6 @@ export const LANG_DE_TRANSLATIONS = {
         "workplace": "Arbeitsplatz",
         "workshift": "Schichten",
         "overtime": "Überstunden",
-    },
-    "planning_capacity": {
-        "title": "Kapazitätsplanung",
-        "description": "Hier werden die Kapazitäten geplant.",
     },
     "pagenotfound": {
         "title": "404 Error",
