@@ -28,19 +28,28 @@ export const LANG_DE_TRANSLATIONS = {
             "english": "Englisch",
         }
     },
-    "planning_production": {
-        "title": "Produktionsprogramm",
-        "description": "Auf dieser Seite wird die Produktion geplant.",
-        "header_bindingOrders": "Verbindliche Aufträge",
-        "header_warehouseStockEnd": "Lagerbestand am Ende der Periode",
-        "header_warehouseStockBeginning": "Lagerbestand zu Beginn der Periode",
-        "header_tasksQueue": "Aufträge in Warteschlange",
-        "header_tasksProgress": "Aufträge in Bearbeitung",
-        "header_productionOrders": "Produktionsaufträge",
-    },
     "planning_material": {
-        "title": "Materialprogramm",
-        "description": "Auf dieser Seite wird die Produktion geplant."
+        "title": "Materialplanung",
+        "description": "Auf dieser Seite wird die Produktion geplant.",
+        "table":{
+            "header_bindingOrders": "Verbindliche Aufträge",
+            "header_warehouseStockEnd": "Lagerbestand am Ende der Periode",
+            "header_warehouseStockBeginning": "Lagerbestand zu Beginn der Periode",
+            "header_tasksQueue": "Aufträge in Warteschlange",
+            "header_tasksProgress": "Aufträge in Bearbeitung",
+            "header_productionOrders": "Produktionsaufträge",
+        },
+    },
+    "planning_production": {
+        "title": "Prouktionsplanung",
+        "description": "Auf dieser Seite wird die Produktion geplant.",
+        "table":{
+            "header_product": "Produkt",
+            "header_bindingOrders": "Verbindlich",
+            "header_forecast": "Prognose",
+            "header_produce": "Produzieren",
+            "header_warehouseStock": "Lagerbestand Ende der Planperiode",
+        },
     },
     "planning_overview": {
         "title": "Übersicht Planung",
