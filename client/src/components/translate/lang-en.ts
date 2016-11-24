@@ -28,20 +28,28 @@ export const LANG_EN_TRANSLATIONS = {
             "english": "English",
         }
     },
+    "planning_material": {
+        "title": "Material program",
+        "description": "On this page you can plan the production.",
+        "table": {
+            "header_bindingOrders": "Binding orders",
+            "header_warehouseStockEnd": "Warehouse stock at the end of the period",
+            "header_warehouseStockBeginning": "Warehouse stock at the beginning of the period",
+            "header_tasksQueue": "Tasks in queue",
+            "header_tasksProgress": "Task in Progross",
+            "header_productionOrders": "Production orders",
+        },
+    },
     "planning_production": {
         "title": "Production program",
         "description": "On this page you can plan the production.",
-        "header_bindingOrders": "Binding orders",
-        "header_warehouseStockEnd": "Warehouse stock at the end of the period",
-        "header_warehouseStockBeginning": "Warehouse stock at the beginning of the period",
-        "header_tasksQueue": "Tasks in queue",
-        "header_tasksProgress": "Task in Progross",
-        "header_productionOrders": "Production orders",
-
-    },
-    "planning_material": {
-        "title": "Material program",
-        "description": "On this page you can plan the production."
+         "table":{
+            "header_product": "Product",
+            "header_bindingOrder": "Binding",
+            "header_forecast": "Forecast",
+            "header_produce": "Produce",
+            "header_warehouseStock": "Expected warehouse stock",
+        },
     },
     "planning_overview": {
         "title": "Overview planning",
