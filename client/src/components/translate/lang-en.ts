@@ -12,7 +12,7 @@ export const LANG_EN_TRANSLATIONS = {
     "start": {
         "navbar": {
             "search": "Search",
-            "advancedSearch": "Search \"%0\"...",
+            "advancedSearch": "Show all results for \"%0\"",
             "username": 'Hello %0',
             "settings": "Settings",
             "logout": "Logout"

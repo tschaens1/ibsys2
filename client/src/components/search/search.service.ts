@@ -22,10 +22,10 @@ export class SearchService {
             searchEntries.forEach(entry => {
                 if ((
                     // searchterm is part of the entry name
-                    entry.name.toLowerCase().indexOf(term.trim().toLowerCase()) === 0 ||
+                    entry.name.toLowerCase().includes(term.trim().toLowerCase()) ||
 
                     // searchterm is part of one of the tags
-                    entry.tags.filter(e => e.toLowerCase().indexOf(term.trim().toLowerCase()) === 0).length > 0) &&
+                    entry.tags.filter(e => e.toLowerCase().includes(term.trim().toLowerCase())).length > 0) &&
 
                     // only return the wanted amount of results
                     results.length <= (amount === undefined ? Number.MAX_SAFE_INTEGER : amount)) {

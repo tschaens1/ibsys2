@@ -12,7 +12,7 @@ export const LANG_DE_TRANSLATIONS = {
     "start": {
         "navbar": {
             "search": "Suche",
-            "advancedSearch": "Nach \"%0\" suchen...",
+            "advancedSearch": "Alle Ergebnisse für \"%0\" anzeigen",
             "username": 'Hallo %0',
             "settings": "Einstellungen",
             "logout": "Ausloggen"
