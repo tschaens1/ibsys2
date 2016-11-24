@@ -47,7 +47,7 @@ export const LANG_EN_TRANSLATIONS = {
         "title": "Overview planning",
         "description": "On this page you can plan the production."
     },
-    "purchasing": {
+    "planning_purchasing": {
         "title": "Purchase part disposition",
         "description": "On this page you can dispose the purchase parts."
     },
@@ -65,7 +65,7 @@ export const LANG_EN_TRANSLATIONS = {
         "workshift": "Workshifts",
         "overtime": "Overtime",
     },
-        "capacity": {
+    "planning_capacity": {
         "title": "Capacity planning",
         "description": "Plan your capacitys here.",
     },
