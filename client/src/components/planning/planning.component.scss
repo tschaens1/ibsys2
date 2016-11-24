@@ -3,8 +3,8 @@
 
 .selectPeriod {
     width: 100%;
-    z-index: 2;
-    float: left;
+    height: 5rem;
+    z-index: 2;    
 
     h1{
         float: left;
@@ -14,12 +14,14 @@
     a.dropdown-button{
         float: left;
         margin: 1.2rem;
+        background-color: $dirty-white;
+        color: $dark-gray;
     }
 }
 
 .sections {
     background-color: $dirty-white;
-    height: 4rem;
+    height: 3rem;
     width: 100%;
     float: left;    
 
@@ -36,7 +38,8 @@
                 display: block;
                 color: $dark;
                 padding: .5rem;
-                line-height: 3rem;
+                line-height: 2rem;
+                background-color: $light-white;
 
                 &.active {
                     background-color: $primary-theme;
