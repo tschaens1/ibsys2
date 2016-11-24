@@ -16,6 +16,18 @@ export const LANG_DE_TRANSLATIONS = {
             "username": 'Hallo %0',
             "settings": "Einstellungen",
             "logout": "Ausloggen"
+        },
+        "navigation": {
+            "navigation": "Navigation",
+            "dashboard": "Dashboard",
+            "parts": "Teileübersicht",
+            "planning": "Planung",
+            "warehouse": "Lager",
+            "warehouse_statistics": "Lager Statistiken",
+            "warehouse_settings": "Lager Einstellungen",
+            "files": "Dateien",
+            "upload": "Datei hochladen",
+            "downloads": "Datei herunterladen"
         }
     },
     "settings": {
