@@ -8,4 +8,10 @@ import { Component } from '@angular/core';
 export class PlanningProductionComponent{     
     constructor(){
     }
+
+    saveInputs(event){
+        event.stopPropagation();
+        event.preventDefault();
+        alert('saved');
+    }
 }
