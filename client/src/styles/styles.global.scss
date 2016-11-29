@@ -163,3 +163,11 @@ h4 {
 .ps-container.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail{
     background-color: lighten($primary,2) !important;
 }
+
+/**
+* Table design
+*/
+th {
+    color: $primary;
+    font-weight: 400;
+}
