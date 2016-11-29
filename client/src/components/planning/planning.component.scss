@@ -37,7 +37,7 @@
 .sections {
     background-color: $dirty-white;
     height: 3rem;
-    width: calc(100% - 14rem);
+    width: calc(100% - 0rem);
     float: left;
     margin-bottom: 1rem;
     position: fixed;
@@ -47,8 +47,16 @@
     -moz-box-shadow: 0px 6px 2px -6px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 6px 2px -6px rgba(0, 0, 0, 0.75);    
 
+    @include breakpoint(tablet){
+		width: calc(100% - 4rem);  
+    }
+
+    @include breakpoint(laptop){
+		width: calc(100% - 14rem);  
+    }
+
     &.small-side-enabled{
-        width: calc(100% - 4rem);
+        width: calc(100% - 14rem);   
     }
 
     ul {
