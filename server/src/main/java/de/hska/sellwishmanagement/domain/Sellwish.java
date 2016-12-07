@@ -3,7 +3,10 @@ package de.hska.sellwishmanagement.domain;
 import de.hska.itemmanagement.domain.Item;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 @Entity
@@ -12,13 +15,12 @@ import java.util.List;
 public class Sellwish {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "sellwish")
-    @XmlElementWrapper
-    @XmlElement(name="item")
-    private List<Item> item;
+    @OneToMany(mappedBy = "sellwish", cascade = CascadeType.ALL)
+    @XmlElement(name = "item")
+    private List<Item> sellwishes;
 
     public Sellwish() {
     }
@@ -31,12 +33,11 @@ public class Sellwish {
         this.id = id;
     }
 
-    public List<Item> getItem() {
-        return item;
+    public List<Item> getSellwishes() {
+        return sellwishes;
     }
 
-    public void setItem(List<Item> item) {
-        this.item = item;
+    public void setSellwishes(List<Item> sellwishes) {
+        this.sellwishes = sellwishes;
     }
-
 }

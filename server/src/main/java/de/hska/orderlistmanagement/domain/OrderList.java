@@ -3,19 +3,25 @@ package de.hska.orderlistmanagement.domain;
 import de.hska.ordermanagement.domain.Order;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 @Entity
-@Table(name="orderlist")
+@Table(name = "orderlist")
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class OrderList {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "orderlist")
+    @OneToMany(mappedBy = "orderlist", cascade = CascadeType.ALL)
+    @XmlElement(name = "order")
+    @Column(name = "\"order\"")
     private List<Order> orders;
 
     public OrderList() {

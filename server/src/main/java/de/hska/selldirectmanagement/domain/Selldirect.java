@@ -3,7 +3,10 @@ package de.hska.selldirectmanagement.domain;
 import de.hska.itemmanagement.domain.Item;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 @Entity
@@ -12,13 +15,12 @@ import java.util.List;
 public class Selldirect {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "selldirect")
-    @XmlElementWrapper(name = "selldirect")
-    @XmlElement(name="item")
-    private List<Item> item;
+    @OneToMany(mappedBy = "selldirect", cascade = CascadeType.ALL)
+    @XmlElement(name = "item")
+    private List<Item> items;
 
     public Selldirect() {
     }
@@ -31,11 +33,11 @@ public class Selldirect {
         this.id = id;
     }
 
-    public List<Item> getItem() {
-        return item;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setItems(List<Item> item) {
-        this.item = item;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

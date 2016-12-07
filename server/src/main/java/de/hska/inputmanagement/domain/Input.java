@@ -8,35 +8,53 @@ import de.hska.sellwishmanagement.domain.Sellwish;
 import de.hska.workingtimelistmanagement.domain.WorkingtimeList;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Input {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @XmlElement
     private QualityControl qualitycontrol;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @XmlElement
     private Sellwish sellwish;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @XmlElement
     private Selldirect selldirect;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @XmlElement
     private OrderList orderlist;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @XmlElement
     private ProductionList productionlist;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @XmlElement
     private WorkingtimeList workingtimelist;
 
     public Input() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public QualityControl getQualitycontrol() {

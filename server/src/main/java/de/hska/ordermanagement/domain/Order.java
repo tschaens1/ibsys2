@@ -1,143 +1,76 @@
 package de.hska.ordermanagement.domain;
 
 import de.hska.orderlistmanagement.domain.OrderList;
-import de.hska.periodmanagement.domain.Period;
-import de.hska.workplacemanagement.domain.Workplace;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@Table(name = "\"order\"")
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="orderlist_fk", nullable = false)
+    @JoinColumn(name = "orderlist_fk")
     private OrderList orderlist;
 
-    @NotNull
-    @Column(name = "amount", nullable = false)
-    private Integer amount;
+    @XmlAttribute
+    private Integer article;
 
-    @NotNull
-    @OneToOne
-    @JoinColumn(name = "period_fk", nullable = false)
-    // @XmlAttribute(name = "orderperiod")
-    private Period period;
+    @XmlAttribute
+    private Integer quantity;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "workplace_fk", nullable = false)
-    private Workplace workplace;
-
-    @NotNull
-    @Column(name = "inwork", nullable = false)
-    private Boolean isInWork;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "priority", nullable = false)
-    private Priority priority;
+    @XmlAttribute
+    private Integer modus;
 
     public Order() {
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public OrderList getOrderList() {
-        return orderlist;
-    }
-
-    public void setOrderList(OrderList orderList) {
-        this.orderlist = orderlist;
     }
 
     public Long getId() {
         return id;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public OrderList getOrderlist() {
+        return orderlist;
     }
 
-    public Period getPeriod() {
-        return period;
+    public void setOrderlist(OrderList orderlist) {
+        this.orderlist = orderlist;
     }
 
-    public void setPeriod(Period period) {
-        this.period = period;
+    public Integer getArticle() {
+        return article;
     }
 
-    public Workplace getWorkplace() {
-        return workplace;
+    public void setArticle(Integer article) {
+        this.article = article;
     }
 
-    public void setWorkplace(Workplace workplace) {
-        this.workplace = workplace;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public Boolean getInWork() {
-        return isInWork;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public void setInWork(Boolean inWork) {
-        isInWork = inWork;
+    public Integer getModus() {
+        return modus;
     }
 
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Order)) return false;
-
-        Order order = (Order) o;
-
-        if (id != null ? !id.equals(order.id) : order.id != null) return false;
-        if (amount != null ? !amount.equals(order.amount) : order.amount != null) return false;
-        if (period != null ? !period.equals(order.period) : order.period != null) return false;
-        if (workplace != null ? !workplace.equals(order.workplace) : order.workplace != null) return false;
-        if (isInWork != null ? !isInWork.equals(order.isInWork) : order.isInWork != null) return false;
-        return priority == order.priority;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (amount != null ? amount.hashCode() : 0);
-        result = 31 * result + (period != null ? period.hashCode() : 0);
-        result = 31 * result + (workplace != null ? workplace.hashCode() : 0);
-        result = 31 * result + (isInWork != null ? isInWork.hashCode() : 0);
-        result = 31 * result + (priority != null ? priority.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", amount=" + amount +
-                ", period=" + period +
-                ", workplace=" + workplace +
-                ", isInWork=" + isInWork +
-                ", priority=" + priority +
-                '}';
+    public void setModus(Integer modus) {
+        this.modus = modus;
     }
 }

@@ -4,7 +4,6 @@ import de.hska.articlemanagement.domain.Article;
 import de.hska.productionlistmanagement.domain.ProductionList;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -12,12 +11,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Production {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="productionlist_fk")
-    private ProductionList productionList;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "productionlist_fk")
+    private ProductionList productionlist;
 
     @OneToOne
     private Article article;
@@ -51,11 +50,12 @@ public class Production {
         this.quantity = quantity;
     }
 
-    public ProductionList getProductionList() {
-        return productionList;
+    public ProductionList getProductionlist() {
+        return productionlist;
     }
 
-    public void setProductionList(ProductionList productionList) {
-        this.productionList = productionList;
+    public void setProductionlist(ProductionList productionlist) {
+        this.productionlist = productionlist;
     }
+
 }

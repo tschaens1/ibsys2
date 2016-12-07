@@ -5,6 +5,7 @@ import de.hska.workingtimemanagement.domain.Workingtime;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
@@ -14,10 +15,11 @@ import java.util.List;
 public class WorkingtimeList {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy="workingtimeList")
+    @OneToMany(mappedBy = "workingtimelist", cascade = CascadeType.ALL)
+    @XmlElement(name = "workingtime")
     private List<Workingtime> workingtimes;
 
     public WorkingtimeList() {

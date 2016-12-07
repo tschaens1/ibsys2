@@ -14,30 +14,31 @@ import javax.xml.bind.annotation.XmlAttribute;
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
     private Article article;
 
-    @XmlAttribute(name ="quantity")
+    @XmlAttribute(name = "quantity")
     private Integer quantity;
 
-    @XmlAttribute(name ="price")
+    @XmlAttribute(name = "price")
     private Double price;
 
-    @XmlAttribute(name ="penalty")
+    @XmlAttribute(name = "penalty")
     private Double penalty;
 
     @ManyToOne
-    @JoinColumn(name = "sellwish_id")
+    @JoinColumn(name = "sellwish_fk")
     private Sellwish sellwish;
 
     @ManyToOne
-    @JoinColumn(name = "selldirect_id")
+    @JoinColumn(name = "selldirect_fk")
     private Selldirect selldirect;
 
     public Item() {
+
     }
 
     public Long getId() {

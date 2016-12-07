@@ -3,23 +3,26 @@ package de.hska.workingtimemanagement.domain;
 import de.hska.workingtimelistmanagement.domain.WorkingtimeList;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Workingtime {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Integer station;
     private Integer shift;
     private Integer overtime;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="workingtimelist_fk")
-    private WorkingtimeList workingtimeList;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "workingtimelist_fk")
+    private WorkingtimeList workingtimelist;
 
     public Workingtime() {
     }
@@ -56,11 +59,11 @@ public class Workingtime {
         this.overtime = overtime;
     }
 
-    public WorkingtimeList getWorkingtimeList() {
-        return workingtimeList;
+    public WorkingtimeList getWorkingtimelist() {
+        return workingtimelist;
     }
 
-    public void setWorkingtimeList(WorkingtimeList workingtimeList) {
-        this.workingtimeList = workingtimeList;
+    public void setWorkingtimelist(WorkingtimeList workingtimelist) {
+        this.workingtimelist = workingtimelist;
     }
 }

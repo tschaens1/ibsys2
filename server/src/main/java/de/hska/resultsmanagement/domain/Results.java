@@ -9,13 +9,16 @@ import javax.persistence.*;
 public class Results {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
     private Warehousestock warehousestock;
     private Integer game;
+
+    @Column(name = "\"group\"")
     private Integer group;
+
     private Integer period;
 
     public Results() {

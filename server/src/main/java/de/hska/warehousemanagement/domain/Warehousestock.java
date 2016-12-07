@@ -10,11 +10,21 @@ import java.util.List;
 public class Warehousestock {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @OneToMany(mappedBy = "warehousestock")
     private List<Article> articles;
+
+    public String getTestname() {
+        return testname;
+    }
+
+    public void setTestname(String testname) {
+        this.testname = testname;
+    }
+
+    private String testname;
 
     public Warehousestock() {
     }

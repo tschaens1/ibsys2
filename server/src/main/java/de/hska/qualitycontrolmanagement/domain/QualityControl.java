@@ -15,16 +15,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class QualityControl {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @XmlAttribute(name ="type")
+    @XmlAttribute(name = "type")
     private String type;
 
-    @XmlAttribute(name ="losequantity")
+    @XmlAttribute(name = "losequantity")
     private Integer losequantity;
 
-    @XmlAttribute(name ="delay")
+    @XmlAttribute(name = "delay")
     private Integer delay;
 
     public QualityControl() {
