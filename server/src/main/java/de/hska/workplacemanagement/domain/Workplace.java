@@ -1,6 +1,5 @@
 package de.hska.workplacemanagement.domain;
 
-import de.hska.articlemanagement.domain.Article;
 import de.hska.batchmanagement.domain.Batch;
 import de.hska.idletimecostsmanagement.domain.Idletimecost;
 import de.hska.ordermanagement.domain.Order;
@@ -47,7 +46,7 @@ public class Workplace {
     private Batch batch;
 
     @XmlAttribute
-    private Article item;
+    private Integer item;
 
     @XmlAttribute
     private Integer amount;
@@ -98,14 +97,6 @@ public class Workplace {
         this.batch = batch;
     }
 
-    public Article getItem() {
-        return item;
-    }
-
-    public void setItem(Article item) {
-        this.item = item;
-    }
-
     public Integer getAmount() {
         return amount;
     }
@@ -128,5 +119,21 @@ public class Workplace {
 
     public void setIdletimecost(Idletimecost idletimecost) {
         this.idletimecost = idletimecost;
+    }
+
+    public Waitinglistworkstation getWaitinglistworkstation() {
+        return waitinglistworkstation;
+    }
+
+    public void setWaitinglistworkstation(Waitinglistworkstation waitinglistworkstation) {
+        this.waitinglistworkstation = waitinglistworkstation;
+    }
+
+    public Integer getItem() {
+        return item;
+    }
+
+    public void setItem(Integer item) {
+        this.item = item;
     }
 }

@@ -18,7 +18,7 @@ public class MissingPart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @XmlAttribute(name = "id")
-    private Long Id;
+    private Long id;
 
     @OneToOne
     private WaitingList waitinglist;
@@ -31,11 +31,11 @@ public class MissingPart {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        id = id;
     }
 
     public WaitingList getWaitinglist() {
