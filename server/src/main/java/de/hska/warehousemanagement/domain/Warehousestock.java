@@ -16,16 +16,6 @@ public class Warehousestock {
     @OneToMany(mappedBy = "warehousestock")
     private List<Article> articles;
 
-    public String getTestname() {
-        return testname;
-    }
-
-    public void setTestname(String testname) {
-        this.testname = testname;
-    }
-
-    private String testname;
-
     public Warehousestock() {
     }
 

@@ -31,6 +31,12 @@ public class Order {
     @XmlAttribute
     private Integer modus;
 
+    @XmlAttribute
+    private Double averageunitcosts;
+
+    @OneToMany
+    List<Batch> batchlist;
+
     public Order() {
     }
 
@@ -72,5 +78,21 @@ public class Order {
 
     public void setModus(Integer modus) {
         this.modus = modus;
+    }
+
+    public Double getAverageunitcosts() {
+        return averageunitcosts;
+    }
+
+    public void setAverageunitcosts(Double averageunitcosts) {
+        this.averageunitcosts = averageunitcosts;
+    }
+
+    public List<Batch> getBatchlist() {
+        return batchlist;
+    }
+
+    public void setBatchlist(List<Batch> batchlist) {
+        this.batchlist = batchlist;
     }
 }
