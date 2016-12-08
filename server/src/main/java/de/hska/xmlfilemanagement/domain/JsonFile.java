@@ -1,22 +1,18 @@
-package de.hska;
+package de.hska.xmlfilemanagement.domain;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "xmlfile")
-public class XmlFile {
+public class JsonFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String key;
-
-    @Column(length = 20000)
     private String content;
 
-    public XmlFile(){
-
+    public JsonFile(){
     }
 
     public Long getId() {
@@ -25,14 +21,6 @@ public class XmlFile {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
     }
 
     public String getContent() {

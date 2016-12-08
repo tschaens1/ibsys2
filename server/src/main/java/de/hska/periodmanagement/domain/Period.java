@@ -1,5 +1,7 @@
 package de.hska.periodmanagement.domain;
 
+import de.hska.xmlfilemanagement.domain.JsonFile;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,12 +12,15 @@ public class Period {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long counter;
+
     @Column(name = "\"group\"")
     private Long group;
 
     private Long game;
 
-    private XmlFile xmlFile;
+    @OneToOne(cascade = CascadeType.ALL)
+    private JsonFile jsonFile;
 
     public Period() {
     }
@@ -26,6 +31,14 @@ public class Period {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getCounter() {
+        return counter;
+    }
+
+    public void setCounter(Long counter) {
+        this.counter = counter;
     }
 
     public Long getGroup() {
@@ -44,11 +57,11 @@ public class Period {
         this.game = game;
     }
 
-    public XmlFile getXmlFile() {
-        return xmlFile;
+    public JsonFile getJsonFile() {
+        return jsonFile;
     }
 
-    public void setXmlFile(XmlFile xmlFile) {
-        this.xmlFile = xmlFile;
+    public void setJsonFile(JsonFile jsonFile) {
+        this.jsonFile = jsonFile;
     }
 }
