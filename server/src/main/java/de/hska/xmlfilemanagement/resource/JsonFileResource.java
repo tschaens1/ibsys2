@@ -25,19 +25,21 @@ public class JsonFileResource {
     public void save(@RequestBody JsonFile jsonFile) {
         String jsonContent = jsonFile.getContent();
         JSONObject jsonObject = fileConverterService.convertXmlToJson(jsonContent);
-
+        System.out.println(jsonObject.toString());
         try {
-            Long game = (Long) jsonObject.get("game");
-            Long group = (Long) jsonObject.get("group");
-            Long periodLong = (Long) jsonObject.get("period");
+            Long game = (Long) jsonObject.getJSONObject("results").get("game");
+            Long group = (Long) jsonObject.getJSONObject("results").get("group");
+            Long periodLong = (Long) jsonObject.getJSONObject("results").get("period");
 
             Period period = new Period();
             period.setGroup(group);
             period.setCounter(periodLong);
             period.setGame(game);
             period.setJsonFile(jsonFile);
+
+            periodRepository.save(period);
         } catch (Exception ex) {
-            System.out.println("Error while parsing period: " + ex.getStackTrace().toString());
+            System.out.println("Error while parsing period: " + ex.getMessage());
         }
     }
 }

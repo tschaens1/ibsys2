@@ -1,5 +1,7 @@
 package de.hska.xmlfilemanagement.domain;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class JsonFile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Type(type="text")
     private String content;
 
     public JsonFile(){
