@@ -55,8 +55,6 @@ public class InputResource {
             workingtime.setWorkingtimelist(workingtimelist);
         }
 
-        final int article = input.getSelldirect().g
-
         inputRepository.save(input);
     }
 
