@@ -4,13 +4,18 @@ import de.hska.waitinglistmanagement.domain.WaitingList;
 import de.hska.waitingliststockmanagement.domain.WaitinglistStock;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "missingpart")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class MissingPart {
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @XmlAttribute(name = "id")
     private Long Id;

@@ -1,5 +1,6 @@
 package de.hska.ordermanagement.domain;
 
+import de.hska.batchmanagement.domain.Batch;
 import de.hska.futureinwardstockmovementmanagement.domain.Futureinwardstockmovement;
 import de.hska.orderlistmanagement.domain.OrderList;
 
@@ -8,6 +9,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
 @Entity
 @Table(name = "\"order\"")

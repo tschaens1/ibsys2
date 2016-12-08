@@ -18,13 +18,26 @@ public class Idletimecost {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "workplaces")
+    @OneToMany(mappedBy = "idletimecost")
     private List<Workplace> workplaces;
-
-
 
     public Idletimecost(){
 
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Workplace> getWorkplaces() {
+        return workplaces;
+    }
+
+    public void setWorkplaces(List<Workplace> workplaces) {
+        this.workplaces = workplaces;
+    }
 }

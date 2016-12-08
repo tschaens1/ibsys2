@@ -1,13 +1,19 @@
 package de.hska.waitinglistmanagement.domain;
 
 import de.hska.articlemanagement.domain.Article;
+import de.hska.batchmanagement.domain.Batch;
 import de.hska.ordermanagement.domain.Order;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@Entity
+@Table(name = "missingpart")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class WaitingList {
 
     @javax.persistence.Id
