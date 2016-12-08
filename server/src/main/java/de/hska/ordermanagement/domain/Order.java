@@ -1,5 +1,6 @@
 package de.hska.ordermanagement.domain;
 
+import de.hska.futureinwardstockmovementmanagement.domain.Futureinwardstockmovement;
 import de.hska.orderlistmanagement.domain.OrderList;
 
 import javax.persistence.*;
@@ -21,6 +22,10 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "orderlist_fk")
     private OrderList orderlist;
+
+    @ManyToOne
+    @JoinColumn(name = "futureinwardstockmovement_fk")
+    private Futureinwardstockmovement futureinwardstockmovement;
 
     @XmlAttribute
     private Integer article;
