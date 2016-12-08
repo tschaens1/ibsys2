@@ -8,22 +8,33 @@ import { Http, Headers } from '@angular/http';
 export class FileUploadComponent {
 
     uploadUrl: string;
+    xmlObject = {};
 
     constructor(private http: Http, private el: ElementRef, @Inject('ApiEndpoint') private apiEndpoint) {
-        this.uploadUrl = apiEndpoint + '/api/rest/uploadXML';
+        this.uploadUrl = apiEndpoint + '/api/rest/file/xml';
     }
 
-    upload() {
-        console.info('send data to server');
+    readXML() {
         let inputEl = this.el.nativeElement.firstElementChild;
         if (inputEl.files.length > 0) { // a file was selected
-            let file: FileList = inputEl.files[0];
-            let headers = new Headers({ 'Content-Type': 'application/xml' });
+            let file: File = inputEl.files[0];
+            var myReader: FileReader = new FileReader();
+
+            myReader.onloadend = (e) => {
+                // console.log(myReader.result);
+                this.xmlObject = { content: encodeURIComponent(myReader.result) };
+                // console.log(this.xmlObject);
+                console.info(encodeURIComponent(myReader.result).length);
+                // console.log(myReader.result);
+            }
+            myReader.readAsText(file);
+
+            let headers = new Headers({ 'Content-Type': 'application/json' });
             this.http
-                .post(this.uploadUrl, file, { headers: headers })
+                .post(this.uploadUrl, this.xmlObject, { headers: headers })
                 .toPromise()
-                .then(() => alert('ok'))
-                .catch(() => alert('not ok'));
+                .then(() => console.log('ok'))
+                .catch(() => console.error('Error in connection'));
         }
     }
 }
