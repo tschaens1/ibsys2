@@ -1,7 +1,6 @@
 package de.hska;
 
-/**
- * Created by andre on 08.12.2016.
- */
-public interface IXmlFileRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IXmlFileRepository extends JpaRepository<XmlFile, Long>{
 }
