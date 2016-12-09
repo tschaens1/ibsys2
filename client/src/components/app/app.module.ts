@@ -52,7 +52,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
 let toastOptions: ToastOptions = new ToastOptions({
   animate: 'fade',
-  toastLife: 300000,
+  toastLife: 3000,
   positionClass: 'toast-bottom-right',
 });
 
