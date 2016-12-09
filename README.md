@@ -175,3 +175,7 @@ background-color: $theme-color;
 - [highcharts](http://www.highcharts.com/)
 - [ChartJS](http://www.chartjs.org/)
 - [ng2-charts](http://valor-software.com/ng2-charts/)
+- [ChartJS](http://www.chartjs.org/)
+
+### Translation
+- [ng2-translate](https://github.com/ocombe/ng2-translate)
