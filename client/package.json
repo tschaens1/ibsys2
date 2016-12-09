@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --inline --progress --port 3000",
     "test": "karma start",
-    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail && npm run build-server",
+    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
     "build-server": "node server.js"
   },
   "license": "MIT",
@@ -73,7 +73,7 @@
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "ts-loader": "^0.8.2",
-    "typescript": "^2.0.7",
+    "typescript": "^2.1.4",
     "typings": "^1.4.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
