@@ -9,4 +9,4 @@ gradle-app.setting
 /gradle/*
 /build/*
 /.idea/*
-
+server/src/main/resources/static/*
