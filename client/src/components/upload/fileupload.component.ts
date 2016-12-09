@@ -32,7 +32,7 @@ export class FileUploadComponent {
         let body = JSON.stringify({ content: encodeURIComponent(content) });
         return this.http.post(this.uploadUrl, body, { headers: headers })
             .toPromise()
-            .then(() => console.log('ok'))
-            .catch(err => console.error('Bad request', err));
+            .then(() => console.log('Successfully uploaded to server!'))
+            .catch(err => console.error('Could not upload XML to server', err));
     }
 }
