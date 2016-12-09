@@ -16,10 +16,8 @@
         - [Installation](#installation)
         - [Start application (dev mode)](#start-application-dev-mode)
         - [Start application (prod mode)](#start-application-prod-mode)
-        - [CSS](#css)
+        - [CSS instructions](#css-instructions)
         - [Links:](#links)
-            - [Design](#design)
-            - [Charts](#charts)
 
 <!-- /TOC -->
 
@@ -116,7 +114,7 @@ npm run build
 You need to copy all files from the dist-folder into the server-folder: `server` > `src` > `main` > `resources` > `static`. (static needs to be created as a new folder if it does not exist)
 
 
-### CSS
+### CSS instructions
 CSS-Preprocessor: SASS
 
 Change local styles:
@@ -168,11 +166,4 @@ background-color: $theme-color;
 - [Angular 2 Material](https://material.angular.io/)
 - [Material Design Icons](https://materialdesignicons.com/)
 - [ChartJS](http://www.chartjs.org/)
-<<<<<<< HEAD
 - [ng2-charts](http://valor-software.com/ng2-charts/)
-
-### Translation
-- [ng2-translate](https://github.com/ocombe/ng2-translate)
-=======
-- [ng2-charts](http://valor-software.com/ng2-charts/)
->>>>>>> 7e04808... added installation guide for server
