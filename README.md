@@ -17,6 +17,7 @@
         - [Start application (dev mode)](#start-application-dev-mode)
         - [Start application (prod mode)](#start-application-prod-mode)
         - [CSS instructions](#css-instructions)
+        - [CSS](#css)
         - [Links:](#links)
             - [Design](#design)
             - [Charts](#charts)
