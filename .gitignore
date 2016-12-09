@@ -3,3 +3,5 @@ npm-debug.log
 server/.gradle/*
 server/.gradle/*
 server/.idea/*
+server/src/main/resources/static/*
+
