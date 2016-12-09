@@ -1,5 +1,6 @@
 import { Component, ElementRef, Inject } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'file-upload',
@@ -9,7 +10,8 @@ export class FileUploadComponent {
     uploadUrl: string;
     xmlObject: string;
 
-    constructor(private http: Http, private el: ElementRef, @Inject('ApiEndpoint') private apiEndpoint) {
+    constructor(
+        private http: Http, private el: ElementRef, @Inject('ApiEndpoint') private apiEndpoint, private toastr: ToastsManager) {
         this.uploadUrl = apiEndpoint + '/api/rest/file/xml';
     }
 
@@ -32,7 +34,7 @@ export class FileUploadComponent {
         let body = JSON.stringify({ content: encodeURIComponent(content) });
         return this.http.post(this.uploadUrl, body, { headers: headers })
             .toPromise()
-            .then(() => console.log('Successfully uploaded to server!'))
-            .catch(err => console.error('Could not upload XML to server', err));
+            .then(() => this.toastr.success('You are awesome!', 'Success!'))
+            .catch(err => this.toastr.error('Could not upload XML to server', 'Oops!'));
     }
 }

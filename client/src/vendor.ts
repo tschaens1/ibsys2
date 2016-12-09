@@ -27,3 +27,6 @@ import './../node_modules/animate.css/animate.css';
 
 // NoUISlider
 import './../node_modules/nouislider/distribute/nouislider.css';
+
+// ng2-toastr
+import './../node_modules/ng2-toastr/bundles/ng2-toastr.min.css';

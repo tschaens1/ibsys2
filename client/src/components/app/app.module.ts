@@ -32,6 +32,7 @@ import { UploadService } from './../upload/upload.service';
 import { ArticleService } from './../RESTServices/ArticleService';
 
 import { NouisliderModule } from 'ng2-nouislider';
+import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 
 import { TRANSLATION_PROVIDERS } from './../translate/translations';
 import { TranslatePipe } from './../translate/translate.pipe';
@@ -49,6 +50,12 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 
+let toastOptions: ToastOptions = new ToastOptions({
+  animate: 'fade',
+  toastLife: 300000,
+  positionClass: 'toast-bottom-right',
+});
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -58,6 +65,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ChartsModule,
     ChartModule,
     NouisliderModule,
+    ToastModule.forRoot(toastOptions),
     MaterialModule.forRoot(),
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
   ],
