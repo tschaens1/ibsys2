@@ -7,7 +7,5 @@ import { PlanningService } from './planning.service';
     styleUrls: ['./planning.component.scss']
 })
 export class PlanningComponent {
-    constructor(private planningService: PlanningService) {
-        // this.planningService.
-    }
+    constructor(private planningService: PlanningService) { }
 }

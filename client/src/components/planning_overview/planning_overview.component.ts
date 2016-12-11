@@ -95,10 +95,7 @@ export class PlanningOverviewComponent {
     }
 
     sendDataToServer() {
-        alert('send the data to the server');
-        // this.planningService.isLoading = true;
-        this.planningService.startedPlanning = true;
-        this.router.navigate(['production'], { relativeTo: this.route });
+        this.planningService.isLoading = true;
 
         const allData = {
             results: {
@@ -168,5 +165,11 @@ export class PlanningOverviewComponent {
         }
 
         console.log(JSON.stringify(allData));
+
+        setTimeout(() => {
+            this.planningService.startedPlanning = true;
+            this.planningService.isLoading = false;
+            this.router.navigate(['production'], { relativeTo: this.route });
+        }, 2000);
     }
 }
