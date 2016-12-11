@@ -21,8 +21,13 @@ export class FileUploadComponent {
             let file: File = inputEl.files[0];
             var myReader: FileReader = new FileReader();
 
+            if(file.type !== 'text/xml'){
+                this.toastr.error('This is not an XML!')
+                return;
+            }
+
             myReader.onloadend = (e) => {
-                this.xmlObject = myReader.result;
+                this.xmlObject = myReader.result;                
                 this.sendToServer(myReader.result);
             }
             myReader.readAsText(file);

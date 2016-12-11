@@ -20,6 +20,7 @@ import { PlanningInsertsComponent } from './../planning_inserts/planning_inserts
 import { PlanningCapacityComponent } from './../planning_capacity/planning_capacity.component';
 import { UploadComponent } from './../upload/upload.component';
 import { PartsComponent } from './../parts/parts.component';
+import { PlanningGuard } from './../planning/planning.guard';
 
 
 const appRoutes: Routes = [
@@ -72,31 +73,36 @@ const appRoutes: Routes = [
                 children: [
                     {
                         path: '',
-                        redirectTo: 'production'
+                        component: PlanningOverviewComponent,
                     },                    
                     {
                         path: 'production',
-                        component: PlanningProductionComponent
+                        component: PlanningProductionComponent,
+                        canActivate: [PlanningGuard],
+
                     },
                     {
                         path: 'material',
-                        component: PlanningMaterialComponent
+                        component: PlanningMaterialComponent,
+                        canActivate: [PlanningGuard],
                     },
                     {
                         path: 'purchasing',
-                        component: PlanningPurchasingComponent
+                        component: PlanningPurchasingComponent,
+                        canActivate: [PlanningGuard],
                     },
                     {
                         path: 'capacity',
-                        component: PlanningCapacityComponent
+                        component: PlanningCapacityComponent,
+                        canActivate: [PlanningGuard],
                     },
                     {
                         path: 'inserts',
                         component: PlanningInsertsComponent
-                    },    
+                    },
                 ]
-            },            
-                    
+            },
+
             {
                 path: 'upload',
                 component: UploadComponent

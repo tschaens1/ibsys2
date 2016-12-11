@@ -157,7 +157,7 @@ $ease-speed: .2s;
     }
 }
 .app-content{    
-    height: 100%;
+    height: calc(100% - 4rem);
     float: left;
     top: $app-navbar-height;
     left: 0;

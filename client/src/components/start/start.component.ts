@@ -49,22 +49,19 @@ export class StartComponent implements AfterViewInit, OnInit {
 
     sideNavToggle() {
         $('.app-content').toggleClass('small-side-enabled');
-        $('.app-navbar').toggleClass('small-side-enabled');
-        $('.sections').toggleClass('small-side-enabled');
+        $('.app-navbar').toggleClass('small-side-enabled');        
         $('.app-sidenav').toggleClass('show');
     }
 
     sideNavHide() {
         $('.app-content').removeClass('small-side-enabled');
-        $('.app-navbar').removeClass('small-side-enabled');
-        $('.sections').removeClass('small-side-enabled');
+        $('.app-navbar').removeClass('small-side-enabled');        
         $('.app-sidenav').removeClass('show');
     }
 
     sideNavShow() {
         $('.app-content').addClass('small-side-enabled');
-        $('.app-navbar').addClass('small-side-enabled');
-        $('.sections').addClass('small-side-enabled');
+        $('.app-navbar').addClass('small-side-enabled');        
         $('.app-sidenav').addClass('show');
     }
 

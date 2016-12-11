@@ -18,6 +18,8 @@ import { SearchService } from './../search/search.service';
 import { SearchEntries } from './../search/searchEntries.service';
 import { PlanningComponent } from './../planning/planning.component';
 import { HelpComponent } from './../help/help.component';
+import { PlanningService } from './../planning/planning.service';
+import { PlanningGuard } from './../planning/planning.guard';
 import { PlanningOverviewComponent } from './../planning_overview/planning_overview.component';
 import { PlanningProductionComponent } from './../planning_production/planning_production.component';
 import { PlanningMaterialComponent } from './../planning_material/planning_material.component';
@@ -95,11 +97,13 @@ let toastOptions: ToastOptions = new ToastOptions({
     LoginService,
     LoggedInGuard,
     LoggedOutGuard,
+    PlanningGuard,
     SearchService,
     SearchEntries,
     SettingsService,
     UploadService,
     ArticleService,
+    PlanningService,
     TRANSLATION_PROVIDERS,
     TranslationService,
     { provide: 'ApiEndpoint', useValue: 'http://localhost:8080' }
