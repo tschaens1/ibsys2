@@ -76,8 +76,8 @@ export const LANG_DE_TRANSLATIONS = {
         },
     },
     "planning_overview": {
-        "title": "Übersicht Planung",
-        "description": "Auf dieser Seite wird die Produktion geplant.",
+        "title": "Beginn Planung",
+        "description": "Auf dieser Seite wird die Planung vorbereitet.",
     },
     "planning_purchasing": {
         "title": "Kaufteildisposition",

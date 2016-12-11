@@ -66,8 +66,8 @@ export const LANG_EN_TRANSLATIONS = {
         },
     },
     "planning_overview": {
-        "title": "Overview planning",
-        "description": "On this page you can plan the production."
+        "title": "Beginn planning",
+        "description": "On this page you can prepare the planning."
     },
     "planning_purchasing": {
         "title": "Purchase part disposition",

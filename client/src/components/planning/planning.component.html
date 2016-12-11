@@ -1,54 +1,38 @@
-<div class="planningHeader">
-    <div class="selectPeriod">
-        <h1>Planung</h1>
-        <!-- Dropdown Trigger -->
-        <a class='dropdown-button btn' data-activates='periodedropdown'>Periode 1 <i class="mdi mdi-chevron-down"></i></a>
-        <!-- Dropdown Structure -->
-        <ul id='periodedropdown' class='dropdown-content'>
-            <li><a>Periode 1</a></li>
-            <li><a>Periode 2</a></li>
-            <li><a>Periode 3</a></li>
-            <li><a>Periode 4</a></li>
-            <li><a>Periode 5</a></li>
-            <li><a>Periode 6</a></li>
-            <li><a>Periode 7</a></li>
-            <li><a>Periode 8</a></li>
-            <li><a>Periode 9</a></li>
-        </ul>
-    </div>
-    <div class="sections">
-        <ul>
-            <li class="section">
-                <a class="section-link waves-effect waves-dark" routerLink="/app/planning/production" routerLinkActive="active">
-                    <i class="mdi mdi-speedometer"></i>
-                    <div class="link-text">{{'planning_production.title' | translate}}</div>
-                </a>
-            </li>
-            <li class="section">
-                <a class="section-link waves-effect waves-dark" routerLink="/app/planning/material" routerLinkActive="active">
-                    <i class="mdi mdi-file-tree"></i>
-                    <div class="link-text">{{'planning_material.title' | translate}}</div>
-                </a>
-            </li>
-            <li class="section">
-                <a class="section-link waves-effect waves-dark" routerLink="/app/planning/purchasing" routerLinkActive="active">
-                    <i class="mdi mdi-cart"></i>
-                    <div class="link-text">{{'planning_purchasing.title' | translate}}</div>
-                </a>
-            </li>
-            <li class="section">
-                <a class="section-link waves-effect waves-dark" routerLink="/app/planning/capacity" routerLinkActive="active">
-                    <i class="mdi mdi-poll"></i>
-                    <div class="link-text">{{'planning_capacity.title' | translate}}</div>
-                </a>
-            </li>
-            <li class="section">
-                <a class="section-link waves-effect waves-dark" routerLink="/app/planning/inserts" routerLinkActive="active">
-                    <i class="mdi mdi-check-circle"></i>
-                    <div class="link-text">{{'planning_inserts.title' | translate}}</div>
-                </a>
-            </li>
-        </ul>
+<div *ngIf="this.planningService.startedPlanning" class="planning">
+    <div class="planningHeader">
+        <div class="selectPeriod">
+            <h1>Planung</h1>
+        </div>
+
+        <div class="sections">
+            <ul>
+                <li class="section">
+                    <a class="section-link waves-effect waves-dark" routerLink="/app/planning/production" routerLinkActive="active">
+                        <div class="link-text">{{'planning_production.title' | translate}}</div>
+                    </a>
+                </li>
+                <li class="section">
+                    <a class="section-link waves-effect waves-dark" routerLink="/app/planning/material" routerLinkActive="active">
+                        <div class="link-text">{{'planning_material.title' | translate}}</div>
+                    </a>
+                </li>
+                <li class="section">
+                    <a class="section-link waves-effect waves-dark" routerLink="/app/planning/purchasing" routerLinkActive="active">
+                        <div class="link-text">{{'planning_purchasing.title' | translate}}</div>
+                    </a>
+                </li>
+                <li class="section">
+                    <a class="section-link waves-effect waves-dark" routerLink="/app/planning/capacity" routerLinkActive="active">
+                        <div class="link-text">{{'planning_capacity.title' | translate}}</div>
+                    </a>
+                </li>
+                <li class="section">
+                    <a class="section-link waves-effect waves-dark" routerLink="/app/planning/inserts" routerLinkActive="active">
+                        <div class="link-text">{{'planning_inserts.title' | translate}}</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 

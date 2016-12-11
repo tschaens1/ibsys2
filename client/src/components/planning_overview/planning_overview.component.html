@@ -1,22 +1,147 @@
 <div class="app-page animated fadeIn">
-	<div class="page-content">
-
-		<select class="page-part">
-            <option value="asdfasdf" >Choose your option</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-        </select>
-
-		<div class="page-part">
-			<a class="waves-effect waves-light btn-large" (click)="loadComponent('production')">Produktion</a>
-			<a class="waves-effect waves-light btn-large" (click)="loadComponent('material')">Material</a>
+	<div class="page-heading">
+		<h1>{{'planning_overview.title'|translate}}</h1>
+		<p class="ellipsis">{{'planning_overview.description'|translate}}</p>
+	</div>
+	<div class="page-content animated fadeIn" *ngIf="page === 0">
+		<div class="row page-part">
+			<div class="col s12">
+				<h4>1. Welche Periode soll geplant werden?</h4>
+				<input type="number" placeholder="Periode" [(ngModel)]="period" (keyup.enter)="next()">
+			</div>
+			<div class="col s12">
+				<div class="button-group">
+					<a class="waves-effect waves-light btn" routerLink="/app">Abbrechen</a>
+					<a class="waves-effect waves-light btn" (click)="next()">Weiter</a>
+				</div>
+			</div>
 		</div>
-		<form>
-			<!--http://tb.github.io/ng2-nouislider/-->
-			<p>{{someFormValue}}</p>			
-			<nouislider name="form_value" [min]="0" [max]="300" [step]="1" [(ngModel)]="someFormValue"></nouislider>
-		</form>
+	</div>
 
+	<div class="page-content animated fadeIn" *ngIf="page === 1">
+		<div class="row page-part">
+			<div class="col s12">
+				<h4>2. Wie ist der Vertriebswunsch?</h4>
+				P1:
+				<input type="number" placeholder="P1" [(ngModel)]="sellwish_p1" (keyup.enter)="next()"> P2:
+				<input type="number" placeholder="P2" [(ngModel)]="sellwish_p2" (keyup.enter)="next()"> P3:
+				<input type="number" placeholder="P3" [(ngModel)]="sellwish_p3" (keyup.enter)="next()">
+			</div>
+			<div class="col s12">
+				<div class="button-group">
+					<a class="waves-effect waves-light btn" (click)="back()">Zurück</a>
+					<a class="waves-effect waves-light btn" (click)="next()">Weiter</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content animated fadeIn" *ngIf="page === 2">
+		<div class="row page-part">
+			<div class="col s12">
+				<h4>3. Gibt es Direktverkäufe?</h4>
+				<a *ngIf="!enabledSellDirect" class="waves-effect waves-light btn" (click)="enabledSellDirect = true">Ja</a>
+				<a *ngIf="!enabledSellDirect" class="waves-effect waves-light btn" (click)="next()">Nein</a>
+				<table *ngIf="enabledSellDirect">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Quantity</th>
+							<th>Price</th>
+							<th>Contract penality</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>P1</td>
+							<td><input placeholder="P1" type="number" [(ngModel)]="selldirect_quantity_p1" (keyup.enter)="next()"></td>
+							<td><input placeholder="P1" type="text" [(ngModel)]="selldirect_price_p1" (keyup.enter)="next()"></td>
+							<td><input placeholder="P1" type="text" [(ngModel)]="selldirect_penalty_p1" (keyup.enter)="next()"></td>
+						</tr>
+						<tr>
+							<td>P2</td>
+							<td><input placeholder="P2" type="number" [(ngModel)]="selldirect_quantity_p2" (keyup.enter)="next()"></td>
+							<td><input placeholder="P2" type="text" [(ngModel)]="selldirect_price_p2" (keyup.enter)="next()"></td>
+							<td><input placeholder="P2" type="text" [(ngModel)]="selldirect_penalty_p2" (keyup.enter)="next()"></td>
+						</tr>
+						<tr>
+							<td>P3</td>
+							<td><input placeholder="P3" type="number" [(ngModel)]="selldirect_quantity_p3" (keyup.enter)="next()"></td>
+							<td><input placeholder="P3" type="text" [(ngModel)]="selldirect_price_p3" (keyup.enter)="next()"></td>
+							<td><input placeholder="P3" type="text" [(ngModel)]="selldirect_penalty_p3" (keyup.enter)="next()"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col s12" *ngIf="enabledSellDirect">
+				<div class="button-group">
+					<a class="waves-effect waves-light btn" (click)="back()">Zurück</a>
+					<a class="waves-effect waves-light btn" (click)="disableSellDirect()">Direktverkäufe deaktivieren</a>
+					<a class="waves-effect waves-light btn" (click)="next()">Weiter</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content animated fadeIn" *ngIf="page === 3">
+		<div class="row page-part">
+			<div class="col s12">
+				<h4>4. Wie ist die geplante Produktion?</h4>
+				P1:
+				<input type="number" placeholder="P1" [(ngModel)]="produce_p1" (keyup.enter)="next()"> P2:
+				<input type="number" placeholder="P2" [(ngModel)]="produce_p2" (keyup.enter)="next()"> P3:
+				<input type="number" placeholder="P3" [(ngModel)]="produce_p3" (keyup.enter)="next()">
+			</div>
+			<div class="col s12">
+				<div class="button-group">
+					<a class="waves-effect waves-light btn" (click)="back()">Zurück</a>
+					<a class="waves-effect waves-light btn" (click)="next()">Weiter</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content animated fadeIn" *ngIf="page === 4">
+		<div class="row page-part">
+			<div class="col s12">
+				<h4>5. Wie hoch ist der Sicherheitsbestand?</h4>
+				<b>Standardsicherheit:</b>
+				<form>
+					<!--http://tb.github.io/ng2-nouislider/ -->
+					<p>{{defaultSafetystock}}%</p>
+					<nouislider name="form_value" [min]="0" [max]="100" [step]="1" (ngModelChange)="onChangeDefaultSafetyStock($event)" [(ngModel)]="defaultSafetystock"></nouislider>
+				</form>
+			</div>
+		</div>
+
+		<div class="row page-part">
+			<div class="col s12">
+				<table id="production_table">
+					<thead>
+						<th>Part</th>
+						<th>Quantity in %</th>
+					</thead>
+					<tbody>
+						<tr *ngFor="let part of safetyStock">
+							<td>{{part.article}}</td>
+							<td>
+								<input type="number" placeholder="quantity" [(ngModel)]="part.quantity">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+		<div class="row page-part">
+			<div class="col s12">
+				<div class="button-group">
+					<a class="waves-effect waves-light btn" (click)="back()">Zurück</a>
+					<a class="waves-effect waves-light btn" (click)="next()">Daten absenden</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
