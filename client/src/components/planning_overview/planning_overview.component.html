@@ -1,4 +1,4 @@
-<div class="app-page animated fadeIn">
+<div class="app-page animated fadeIn" *ngIf="!planningService.isLoading">
 	<div class="page-heading">
 		<h1>{{'planning_overview.title'|translate}}</h1>
 		<p class="ellipsis">{{'planning_overview.description'|translate}}</p>
@@ -144,4 +144,8 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="loading" *ngIf="planningService.isLoading">
+	Server is calculating. This may take some seconds...
 </div>
