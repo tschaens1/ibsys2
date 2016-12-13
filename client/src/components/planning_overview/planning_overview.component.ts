@@ -1,5 +1,6 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Http, Headers } from '@angular/http';
 import { PlanningService } from './../planning/planning.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
@@ -8,9 +9,11 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
     templateUrl: './planning_overview.component.html',
     styleUrls: ['./planning_overview.component.scss']
 })
-export class PlanningOverviewComponent {
+export class PlanningOverviewComponent implements OnInit {
     page: number = 0;
+    xmlObject: any;
 
+    // data
     period: number;
     sellwish_p1: number;
     sellwish_p2: number;
@@ -39,27 +42,36 @@ export class PlanningOverviewComponent {
     safetyStock = [];
     productionParts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 29, 30, 31, 49, 50, 51, 54, 55, 56];
 
-    constructor(private router: Router, private planningService: PlanningService, private toastr: ToastsManager, private route: ActivatedRoute) {
+    constructor(
+        private router: Router,
+        private planningService: PlanningService,
+        private toastr: ToastsManager,
+        private route: ActivatedRoute,
+        private http: Http,
+        private el: ElementRef,
+        @Inject('ApiEndpoint') private apiEndpoint
+    ) { }
+
+    ngOnInit() {
+        // create safety stock objects
         this.productionParts.map(part => {
             this.safetyStock.push({
                 article: part,
                 quantity: this.defaultSafetystock
             })
-        })
+        });
     }
 
-    // if the slider changes
-    onChangeDefaultSafetyStock(e) {
-        // console.log(e);
-        this.safetyStock.map(part => {
-            part.quantity = e;
-        })
-    }
-
+    // go to the next step in the formular
     next() {
         // validate period  
         if (this.page === 0 && (!this.period || this.period < 0)) {
             this.toastr.error('Wrong period!');
+            return;
+        }
+        // validate xml upload
+        if ((<HTMLInputElement>document.getElementById("resultsXMLUpload")).value === "") {
+            this.toastr.error('Missing xml document!');
             return;
         }
         // validate sellwish
@@ -81,23 +93,28 @@ export class PlanningOverviewComponent {
         if (this.page !== 4) {
             this.page++;
         } else {
-            this.sendDataToServer();
+            this.planningService.startPlanning(this.createInputJSON()).then((result) => {
+                alert('works');
+            });
         }
     }
 
+    // go to the last page of the formular
     back() {
         this.page--;
     }
 
+    // disabled selldirects
     disableSellDirect() {
         this.enabledSellDirect = false;
         this.next();
     }
 
-    sendDataToServer() {
-        this.planningService.isLoading = true;
-
-        const allData = {
+    /** 
+     * create the JSON for the input data      
+     */
+    createInputJSON() {
+        return {
             results: {
                 game: 999,
                 group: 6,
@@ -163,13 +180,12 @@ export class PlanningOverviewComponent {
                 }
             }
         }
+    }
 
-        console.log(JSON.stringify(allData));
-
-        setTimeout(() => {
-            this.planningService.startedPlanning = true;
-            this.planningService.isLoading = false;
-            this.router.navigate(['production'], { relativeTo: this.route });
-        }, 2000);
+    // if the slider changes
+    onChangeDefaultSafetyStock(e) {
+        this.safetyStock.map(part => {
+            part.quantity = e;
+        })
     }
 }
