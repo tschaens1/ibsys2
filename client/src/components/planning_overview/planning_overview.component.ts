@@ -110,10 +110,7 @@ export class PlanningOverviewComponent implements OnInit {
         }
     }
 
-    clearInputs() {
-        if(!confirm('Alle Eingaben werden zurückgesetzt. Sind Sie sicher, dass sie fortfahren möchten?')){
-            return;
-        }
+    clearInputs() {        
         this.period = 0;
 
         this.sellwish_p1 = 0;
