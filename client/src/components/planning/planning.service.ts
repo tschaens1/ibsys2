@@ -47,10 +47,7 @@ export class PlanningService implements OnInit {
         }
         if (this.inputJSON === undefined) {
             throw new Error('Input data is not defined!');
-        }
-
-        // store input data in local storage
-        localStorage.setItem("ibsys2InputLastPeriod", this.inputJSON);
+        }        
 
         // send data to the server
         return new Promise((resolve, reject) => {

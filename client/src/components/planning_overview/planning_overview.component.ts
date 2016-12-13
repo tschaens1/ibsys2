@@ -12,6 +12,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export class PlanningOverviewComponent implements OnInit {
     page: number = 0;
     xmlObject: any;
+    inputOflastPeriod: any;    
 
     // data
     period: number;
@@ -39,6 +40,7 @@ export class PlanningOverviewComponent implements OnInit {
 
 
     defaultSafetystock: number = 50;
+    enabledPartsSafetyStock: boolean = false;
     safetyStock = [];
     productionParts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 29, 30, 31, 49, 50, 51, 54, 55, 56];
 
@@ -60,6 +62,82 @@ export class PlanningOverviewComponent implements OnInit {
                 quantity: this.defaultSafetystock
             })
         });
+
+        this.loadInputsOfLastPeriod();
+    }
+
+    // load input of last period
+    loadInputsOfLastPeriod() {
+
+        // load data from local storage
+        this.inputOflastPeriod = JSON.parse(localStorage.getItem("ibsys2InputLastPeriod"));
+
+        if (!this.inputOflastPeriod) {
+            this.toastr.error('No data available');
+        }
+
+        try {
+            this.period = this.inputOflastPeriod.results.period;
+
+            this.sellwish_p1 = this.inputOflastPeriod.input.sellwish.items[0].quantity || 0;
+            this.sellwish_p2 = this.inputOflastPeriod.input.sellwish.items[1].quantity || 0;
+            this.sellwish_p3 = this.inputOflastPeriod.input.sellwish.items[2].quantity || 0;
+
+            this.enabledSellDirect = this.inputOflastPeriod.enabledSellDirect || false;
+
+            this.selldirect_price_p1 = this.inputOflastPeriod.input.selldirect.items[0].price || 0;
+            this.selldirect_price_p2 = this.inputOflastPeriod.input.selldirect.items[1].price || 0;
+            this.selldirect_price_p3 = this.inputOflastPeriod.input.selldirect.items[2].price || 0;
+
+            this.selldirect_quantity_p1 = this.inputOflastPeriod.input.selldirect.items[0].quantity || 0;
+            this.selldirect_quantity_p2 = this.inputOflastPeriod.input.selldirect.items[1].quantity || 0;
+            this.selldirect_quantity_p3 = this.inputOflastPeriod.input.selldirect.items[2].quantity || 0;
+
+            this.selldirect_penalty_p1 = this.inputOflastPeriod.input.selldirect.items[0].penalty || 0;
+            this.selldirect_penalty_p2 = this.inputOflastPeriod.input.selldirect.items[1].penalty || 0;
+            this.selldirect_penalty_p3 = this.inputOflastPeriod.input.selldirect.items[2].penalty || 0;
+
+            this.produce_p1 = this.inputOflastPeriod.input.production.items[0].quantity || 0;
+            this.produce_p2 = this.inputOflastPeriod.input.production.items[1].quantity || 0;
+            this.produce_p3 = this.inputOflastPeriod.input.production.items[2].quantity || 0;
+
+
+            this.defaultSafetystock = this.inputOflastPeriod.defaultSafetystock;
+        }
+        catch (err) {
+            console.log('Could not load inputs of last period!', err);
+            this.clearInputs();
+        }
+    }
+
+    clearInputs() {
+        if(!confirm('Alle Eingaben werden zurückgesetzt. Sind Sie sicher, dass sie fortfahren möchten?')){
+            return;
+        }
+        this.period = 0;
+
+        this.sellwish_p1 = 0;
+        this.sellwish_p2 = 0;
+        this.sellwish_p3 = 0;
+
+        this.selldirect_price_p1 = 0;
+        this.selldirect_price_p2 = 0;
+        this.selldirect_price_p3 = 0;
+
+        this.selldirect_quantity_p1 = 0;
+        this.selldirect_quantity_p2 = 0;
+        this.selldirect_quantity_p3 = 0;
+
+        this.selldirect_penalty_p1 = 0;
+        this.selldirect_penalty_p2 = 0;
+        this.selldirect_penalty_p3 = 0;
+
+        this.produce_p1 = 0;
+        this.produce_p2 = 0;
+        this.produce_p3 = 0;
+
+
+        this.defaultSafetystock = 50;
     }
 
     // go to the next step in the formular
@@ -70,7 +148,7 @@ export class PlanningOverviewComponent implements OnInit {
             return;
         }
         // validate xml upload
-        if ((<HTMLInputElement>document.getElementById("resultsXMLUpload")).value === "") {
+        if (this.page === 0 && (<HTMLInputElement>document.getElementById("resultsXMLUpload")).value === "") {
             this.toastr.error('Missing xml document!');
             return;
         }
@@ -80,6 +158,11 @@ export class PlanningOverviewComponent implements OnInit {
             !this.sellwish_p3 || this.sellwish_p3 < 0)) {
             this.toastr.error('Wrong sellwish!');
             return;
+        }
+        if (this.page === 1 && (!this.sellwish_p1 || this.sellwish_p1 > 1000 ||
+            !this.sellwish_p2 || this.sellwish_p2 > 1000 ||
+            !this.sellwish_p3 || this.sellwish_p3 > 1000)) {
+            this.toastr.warning('Very high sellwish!');
         }
 
         // validate produce
@@ -97,6 +180,15 @@ export class PlanningOverviewComponent implements OnInit {
                 alert('works');
             });
         }
+
+        // store input data in local storage
+        localStorage.setItem("ibsys2InputLastPeriod", JSON.stringify(
+            {
+                ...this.createInputJSON(),
+                defaultSafetystock: this.defaultSafetystock,
+                enabledSellDirect: this.enabledSellDirect,
+            }
+        ));
     }
 
     // go to the last page of the formular
@@ -125,15 +217,15 @@ export class PlanningOverviewComponent implements OnInit {
                     items: [
                         {
                             "article": "1",
-                            "quantity": this.sellwish_p1
+                            "quantity": this.sellwish_p1 || 0
                         },
                         {
-                            "-article": "2",
-                            "-quantity": this.sellwish_p2
+                            "article": "2",
+                            "quantity": this.sellwish_p2 || 0
                         },
                         {
-                            "-article": "3",
-                            "-quantity": this.sellwish_p3
+                            "article": "3",
+                            "quantity": this.sellwish_p3 || 0
                         }
                     ]
                 },
@@ -141,15 +233,15 @@ export class PlanningOverviewComponent implements OnInit {
                     "items": [
                         {
                             "article": "1",
-                            "quantity": this.produce_p1
+                            "quantity": this.produce_p1 || 0
                         },
                         {
                             "article": "2",
-                            "quantity": this.produce_p2
+                            "quantity": this.produce_p2 || 0
                         },
                         {
                             "article": "3",
-                            "quantity": this.produce_p3
+                            "quantity": this.produce_p3 || 0
                         }
                     ]
                 },
