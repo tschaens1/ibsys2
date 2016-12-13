@@ -1,21 +1,11 @@
-<div class="app-page animated fadeIn">
-	<div class="page-heading">
-		<h1>{{'upload.title' | translate}}</h1>
-		<p>{{'upload.description' | translate}}</p>
-	</div>
-	<div class="page-content">
-		<div class="page-part">
-			<form action="#">
-				<div class="file-field input-field">
-					<div class="btn">
-						<span>File</span>
-						<file-upload #fu (change)="fu.readXML()"></file-upload>
-					</div>
-					<div class="file-path-wrapper">
-						<input class="file-path validate" type="text">
-					</div>
-				</div>
-			</form>
+<form action="#">
+	<div class="file-field input-field">
+		<div class="btn">
+			<span>File</span>
+			<file-upload #fu (change)="fu.readXML()"></file-upload>
+		</div>
+		<div class="file-path-wrapper">
+			<input id="resultsXMLUpload" class="file-path validate" type="text">
 		</div>
 	</div>
-</div>
+</form>

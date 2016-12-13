@@ -10,6 +10,10 @@
 				<input type="number" placeholder="Periode" [(ngModel)]="period" (keyup.enter)="next()">
 			</div>
 			<div class="col s12">
+				<h4>Upload der Ergebnisse aus der letzten Periode</h4>
+				<upload></upload>
+			</div>
+			<div class="col s12">
 				<div class="button-group">
 					<a class="waves-effect waves-light btn" routerLink="/app">Abbrechen</a>
 					<a class="waves-effect waves-light btn" (click)="next()">Weiter</a>
