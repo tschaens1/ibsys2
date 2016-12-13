@@ -15,10 +15,16 @@
 			</div>
 			<div class="col s12">
 				<div class="button-group">
-					<a class="waves-effect waves-light btn" routerLink="/app">Abbrechen</a>
+					<a class="waves-effect grey waves-light btn" routerLink="/app">Abbrechen</a>
 					<a class="waves-effect waves-light btn" (click)="next()">Weiter</a>
 				</div>
 			</div>
+			<div class="col s12">
+				<div class="button-group">
+					<a class="clearButton" (click)="clearInputs()">Eingaben auf Standard zurücksetzen</a>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
@@ -33,7 +39,7 @@
 			</div>
 			<div class="col s12">
 				<div class="button-group">
-					<a class="waves-effect waves-light btn" (click)="back()">Zurück</a>
+					<a class="waves-effect waves-light grey btn" (click)="back()">Zurück</a>
 					<a class="waves-effect waves-light btn" (click)="next()">Weiter</a>
 				</div>
 			</div>
@@ -44,8 +50,9 @@
 		<div class="row page-part">
 			<div class="col s12">
 				<h4>3. Gibt es Direktverkäufe?</h4>
+				<a *ngIf="!enabledSellDirect" class="waves-effect grey waves-light btn" (click)="back()">Zurück</a>
 				<a *ngIf="!enabledSellDirect" class="waves-effect waves-light btn" (click)="enabledSellDirect = true">Ja</a>
-				<a *ngIf="!enabledSellDirect" class="waves-effect waves-light btn" (click)="next()">Nein</a>
+				<a *ngIf="!enabledSellDirect" class="waves-effect waves-light btn" (click)="next()">Nein, weiter</a>
 				<table *ngIf="enabledSellDirect">
 					<thead>
 						<tr>
@@ -80,7 +87,7 @@
 			</div>
 			<div class="col s12" *ngIf="enabledSellDirect">
 				<div class="button-group">
-					<a class="waves-effect waves-light btn" (click)="back()">Zurück</a>
+					<a class="waves-effect waves-light grey btn" (click)="back()">Zurück</a>
 					<a class="waves-effect waves-light btn" (click)="disableSellDirect()">Direktverkäufe deaktivieren</a>
 					<a class="waves-effect waves-light btn" (click)="next()">Weiter</a>
 				</div>
@@ -99,7 +106,7 @@
 			</div>
 			<div class="col s12">
 				<div class="button-group">
-					<a class="waves-effect waves-light btn" (click)="back()">Zurück</a>
+					<a class="waves-effect waves-light grey btn" (click)="back()">Zurück</a>
 					<a class="waves-effect waves-light btn" (click)="next()">Weiter</a>
 				</div>
 			</div>
@@ -121,6 +128,12 @@
 
 		<div class="row page-part">
 			<div class="col s12">
+				<a class="waves-effect waves-light btn" (click)="enabledPartsSafetyStock = !enabledPartsSafetyStock">Einzelteile zeigen</a>
+			</div>
+		</div>
+
+		<div class="row page-part animated fadeIn" *ngIf="enabledPartsSafetyStock">
+			<div class="col s12">
 				<table id="production_table">
 					<thead>
 						<th>Part</th>
@@ -135,14 +148,13 @@
 						</tr>
 					</tbody>
 				</table>
-
 			</div>
-
 		</div>
+
 		<div class="row page-part">
 			<div class="col s12">
 				<div class="button-group">
-					<a class="waves-effect waves-light btn" (click)="back()">Zurück</a>
+					<a class="waves-effect waves-light grey btn" (click)="back()">Zurück</a>
 					<a class="waves-effect waves-light btn" (click)="next()">Daten absenden</a>
 				</div>
 			</div>

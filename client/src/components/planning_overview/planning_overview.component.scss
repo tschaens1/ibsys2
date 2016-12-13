@@ -1,3 +1,17 @@
 .button-group {
     float: right;
 }
+
+td {
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+}
+
+.clearButton{
+    margin-top:2rem;
+    color: #848484;
+    text-decoration: none;
+    cursor: pointer;
+    float: right;
+}
