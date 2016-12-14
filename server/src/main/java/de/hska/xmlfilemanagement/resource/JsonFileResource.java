@@ -1,18 +1,20 @@
 package de.hska.xmlfilemanagement.resource;
 
+import de.hska.kpimanagement.business.InputService;
 import de.hska.periodmanagement.business.IPeriodRepository;
 import de.hska.periodmanagement.domain.Period;
 import de.hska.util.FileConverterService;
 import de.hska.xmlfilemanagement.domain.JsonFile;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.security.access.method.P;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping(value="/api/rest/file/xml")
+@RequestMapping(value="/api/rest/file/xml", produces = MediaType.APPLICATION_JSON_VALUE)
 public class JsonFileResource {
 
     @Autowired
@@ -20,6 +22,9 @@ public class JsonFileResource {
 
     @Autowired
     private FileConverterService fileConverterService;
+
+    @Autowired
+    private InputService inputService;
 
     @RequestMapping(method = RequestMethod.POST)
     public void save(@RequestBody JsonFile jsonFile) {
@@ -41,5 +46,16 @@ public class JsonFileResource {
         } catch (Exception ex) {
             System.out.println("Error while parsing period: " + ex.getMessage());
         }
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{game}/{group}/{period}")
+    public String returnInputForPeriod(@PathVariable Long game, @PathVariable Long group, @PathVariable Long period) {
+        List<Period> periods = periodRepository.findByGameAndGroupAndCounter(game, group, period);
+
+        if(periods.size() > 1) {
+            // TODO: Throw exception
+        }
+
+        return inputService.generateInputJson(periods.get(0)).toString();
     }
 }
