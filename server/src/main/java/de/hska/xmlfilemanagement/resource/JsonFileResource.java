@@ -15,7 +15,7 @@ import de.hska.periodmanagement.business.IPeriodRepository;
 import de.hska.periodmanagement.domain.Period;
 import de.hska.util.FileConverterService;
 import de.hska.xmlfilemanagement.domain.JsonFile;
-import inputmanagement.business.InputService;
+import de.hska.inputmanagement.business.InputService;
 
 @RestController
 @RequestMapping(value = "/api/rest/files", produces = MediaType.APPLICATION_JSON_VALUE)
