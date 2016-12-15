@@ -12,13 +12,25 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export class PlanningOverviewComponent implements OnInit {
     page: number = 0;
     xmlObject: any;
-    inputOflastPeriod: any;    
+    inputOflastPeriod: any;
 
     // data
     period: number;
     sellwish_p1: number;
     sellwish_p2: number;
     sellwish_p3: number;
+
+    forecast_p1_one: number;
+    forecast_p1_two: number;
+    forecast_p1_three: number;
+
+    forecast_p2_one: number;
+    forecast_p2_two: number;
+    forecast_p2_three: number;
+
+    forecast_p3_one: number;
+    forecast_p3_two: number;
+    forecast_p3_three: number;
 
     enabledSellDirect: boolean = false;
 
@@ -110,7 +122,7 @@ export class PlanningOverviewComponent implements OnInit {
         }
     }
 
-    clearInputs() {        
+    clearInputs() {
         this.period = 0;
 
         this.sellwish_p1 = 0;
@@ -120,6 +132,18 @@ export class PlanningOverviewComponent implements OnInit {
         this.selldirect_price_p1 = 0;
         this.selldirect_price_p2 = 0;
         this.selldirect_price_p3 = 0;
+
+        this.forecast_p1_one = 0;
+        this.forecast_p1_two = 0;
+        this.forecast_p1_three = 0;
+
+        this.forecast_p2_one = 0;
+        this.forecast_p2_two = 0;
+        this.forecast_p2_three = 0;
+
+        this.forecast_p3_one = 0;
+        this.forecast_p3_two = 0;
+        this.forecast_p3_three = 0;
 
         this.selldirect_quantity_p1 = 0;
         this.selldirect_quantity_p2 = 0;
@@ -225,6 +249,24 @@ export class PlanningOverviewComponent implements OnInit {
                             "quantity": this.sellwish_p3 || 0
                         }
                     ]
+                },
+                forcasts: {
+                    forecast_one: {
+                        items: [
+                            {
+                                "article": "1",
+                                "quantity": this.forecast_p1_one || 0
+                            },
+                            {
+                                "article": "2",
+                                "quantity": this.forecast_p2_one || 0
+                            },
+                            {
+                                "article": "2",
+                                "quantity": this.forecast_p2_one || 0
+                            }
+                        ]
+                    },
                 },
                 production: {
                     "items": [

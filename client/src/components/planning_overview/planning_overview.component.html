@@ -32,10 +32,41 @@
 		<div class="row page-part">
 			<div class="col s12">
 				<h4>2. Wie ist der Vertriebswunsch?</h4>
-				P1:
-				<input type="number" placeholder="P1" [(ngModel)]="sellwish_p1" (keyup.enter)="next()"> P2:
-				<input type="number" placeholder="P2" [(ngModel)]="sellwish_p2" (keyup.enter)="next()"> P3:
-				<input type="number" placeholder="P3" [(ngModel)]="sellwish_p3" (keyup.enter)="next()">
+				<table>
+					<thead>
+						<tr>
+							<th>Product</th>
+							<th>Sellwish Periode {{period}}</th>
+							<th>Forecast {{(period + 1)}}</th>
+							<th>Forecast {{(period + 2)}}</th>
+							<th>Forecast {{(period + 3)}}</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>P1</td>
+							<td><input type="number" placeholder="P1" [(ngModel)]="sellwish_p1" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P1" [(ngModel)]="forecast_p1_one" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P1" [(ngModel)]="forecast_p1_two" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P1" [(ngModel)]="forecast_p1_three" (keyup.enter)="next()"></td>
+						</tr>
+						<tr>
+							<td>P2</td>
+							<td><input type="number" placeholder="P2" [(ngModel)]="sellwish_p2" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P2" [(ngModel)]="forecast_p2_one" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P2" [(ngModel)]="forecast_p2_two" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P2" [(ngModel)]="forecast_p2_three" (keyup.enter)="next()"></td>
+						</tr>
+						<tr>
+							<td>P3</td>
+							<td><input type="number" placeholder="P3" [(ngModel)]="sellwish_p3" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P3" [(ngModel)]="forecast_p3_one" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P3" [(ngModel)]="forecast_p3_two" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P3" [(ngModel)]="forecast_p3_three" (keyup.enter)="next()"></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 			<div class="col s12">
 				<div class="button-group">
