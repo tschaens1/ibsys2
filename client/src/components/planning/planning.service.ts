@@ -25,12 +25,6 @@ export class PlanningService implements OnInit {
     ngOnInit() {
         this.startedPlanning = false;
         this.isLoading = false;
-
-        // create the upload url
-        this.xmlUploadUrl = this.apiEndpoint + '/api/rest/file/xml';
-
-        // create the upload url
-        this.inputUploadUrl = this.apiEndpoint + '/api/rest/inputs';
     }
 
     /**
@@ -47,12 +41,21 @@ export class PlanningService implements OnInit {
         }
         if (this.inputJSON === undefined) {
             throw new Error('Input data is not defined!');
-        }        
+        }
+
+        // create the upload url
+        this.xmlUploadUrl = this.apiEndpoint + '/api/rest/file/xml';
+
+        // create the upload url
+        this.inputUploadUrl = this.apiEndpoint + `/api/rest/games/${1}/groups/${1}/periods/${this.inputJSON.results.period}/plannings`;
 
         // send data to the server
         return new Promise((resolve, reject) => {
-            this.sendXMLToServer().then(() => resolve()).catch((err) => reject(err));
-            this.sendInputsToServer();
+            this.sendXMLToServer().then(() => {
+                this.sendInputsToServer().then(() => {
+                    console.log('Send data to server successfully!');
+                });
+            }).catch((err) => reject(err));
         })
     }
 
@@ -65,7 +68,9 @@ export class PlanningService implements OnInit {
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let body = JSON.stringify(this.inputJSON);
-        return this.http.post(this.xmlUploadUrl, body, { headers: headers })
+        // console.log(JSON.stringify(this.inputJSON));
+        alert(this.inputUploadUrl);
+        return this.http.post(this.inputUploadUrl, body, { headers: headers })
             .toPromise()
             .then(() => console.log('Input data successfully uploaded to server as JSON'))
             .catch(err => console.error('Could not upload input data as JSON to server', err));
@@ -77,6 +82,7 @@ export class PlanningService implements OnInit {
     private sendXMLToServer() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let body = JSON.stringify({ content: encodeURIComponent(this.xmlDocument) });
+        alert(this.xmlUploadUrl);
         return this.http.post(this.xmlUploadUrl, body, { headers: headers })
             .toPromise()
             .then(() => console.log('XML successfully uploaded to server'))
