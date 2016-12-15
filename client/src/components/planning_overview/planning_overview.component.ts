@@ -262,8 +262,40 @@ export class PlanningOverviewComponent implements OnInit {
                                 "quantity": this.forecast_p2_one || 0
                             },
                             {
+                                "article": "3",
+                                "quantity": this.forecast_p3_one || 0
+                            }
+                        ]
+                    },
+                    forecast_two: {
+                        items: [
+                            {
+                                "article": "1",
+                                "quantity": this.forecast_p1_two || 0
+                            },
+                            {
                                 "article": "2",
-                                "quantity": this.forecast_p2_one || 0
+                                "quantity": this.forecast_p2_two || 0
+                            },
+                            {
+                                "article": "3",
+                                "quantity": this.forecast_p3_two || 0
+                            }
+                        ]
+                    },
+                    forecast_three: {
+                        items: [
+                            {
+                                "article": "1",
+                                "quantity": this.forecast_p1_three || 0
+                            },
+                            {
+                                "article": "2",
+                                "quantity": this.forecast_p2_three || 0
+                            },
+                            {
+                                "article": "2",
+                                "quantity": this.forecast_p3_three || 0
                             }
                         ]
                     },

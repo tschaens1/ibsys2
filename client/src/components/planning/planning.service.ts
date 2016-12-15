@@ -30,7 +30,7 @@ export class PlanningService implements OnInit {
         this.xmlUploadUrl = this.apiEndpoint + '/api/rest/file/xml';
 
         // create the upload url
-        this.inputUploadUrl = this.apiEndpoint + '/api/rest/inputs';
+        this.inputUploadUrl = this.apiEndpoint + `/api/rest/games/${1}/groups/${1}/periods/${this.inputJSON.results.period}/plannings`;
     }
 
     /**
@@ -47,7 +47,7 @@ export class PlanningService implements OnInit {
         }
         if (this.inputJSON === undefined) {
             throw new Error('Input data is not defined!');
-        }        
+        }
 
         // send data to the server
         return new Promise((resolve, reject) => {
@@ -65,6 +65,7 @@ export class PlanningService implements OnInit {
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let body = JSON.stringify(this.inputJSON);
+        // console.log(JSON.stringify(this.inputJSON));
         return this.http.post(this.xmlUploadUrl, body, { headers: headers })
             .toPromise()
             .then(() => console.log('Input data successfully uploaded to server as JSON'))
