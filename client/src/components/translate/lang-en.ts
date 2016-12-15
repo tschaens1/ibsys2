@@ -67,7 +67,44 @@ export const LANG_EN_TRANSLATIONS = {
     },
     "planning_overview": {
         "title": "Beginn planning",
-        "description": "On this page you can prepare the planning."
+        "description": "On this page you can prepare the planning.",
+        
+        "cancel": "Cancel",
+        "continue": "Continue",
+        "back": "Back",
+        "quantity": "Quantity",
+        "price": "Price",
+        "yes": "Yes",
+
+        "insert_period_to_plan": "1. Which period shall be planned?",
+        "result_upload_last_period": "Upload results from the last period",
+        "reset_input_to_standard": "Reset input to standard",
+
+        "insert_sellwish": "2. What`s the sellwish?",
+        "sellwish_product": "Product",
+        "sellwish_forecast": "Forecast",
+
+        "ask_for_direct_sale": "3. Are there direct sales?",
+        "direct_sale_yes": "Yes",
+        "direct_sale_no_back": "No, continue",
+        "contract_penalty":	"Contract penalty",				
+        "deativate_direct_sales": "Deactivate direct sales",
+	
+        "amount_planned_production": "4. What´s the planned production",
+
+        "amount_savety_stock": "5. What´s the savety stock",
+        "standard_security": "Standard security",
+        "safety_stock_part": "Part",
+        "safety_stock_quantity": "Amount",
+
+        "show_single_items": "Show single parts",
+
+        "send_data": "Send data",
+
+
+        "server_is_calculating": "Server is calculating. This may take some seconds...",
+
+
     },
     "planning_purchasing": {
         "title": "Purchase part disposition",
