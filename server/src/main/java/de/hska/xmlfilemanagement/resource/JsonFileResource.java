@@ -62,4 +62,27 @@ public class JsonFileResource {
 
 		return inputService.generateInputJson(periods.get(0)).toString();
 	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/plannings")
+	public void save(@RequestBody JsonFile jsonFile) {
+		String jsonContent = jsonFile.getContent();
+		JSONObject jsonObject = fileConverterService.convertXmlToJson(jsonContent);
+		System.out.println(jsonObject.toString());
+		try {
+			Long game = (Long) jsonObject.getJSONObject("results").get("game");
+			Long group = (Long) jsonObject.getJSONObject("results").get("group");
+			Long periodLong = (Long) jsonObject.getJSONObject("results").get("period");
+
+			Period period = new Period();
+			period.setGroup(group);
+			period.setCounter(periodLong);
+			period.setGame(game);
+			period.setJsonFile(jsonFile);
+
+			periodRepository.save(period);
+		} catch (Exception ex) {
+			System.out.println("Error while parsing period: " + ex.getMessage());
+		}
+	}
+
 }
