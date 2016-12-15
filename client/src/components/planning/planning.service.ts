@@ -44,10 +44,10 @@ export class PlanningService implements OnInit {
         }
 
         // create the upload url
-        this.xmlUploadUrl = this.apiEndpoint + '/api/rest/file/xml';
+        this.xmlUploadUrl = this.apiEndpoint + `/api/rest/files`;
 
         // create the upload url
-        this.inputUploadUrl = this.apiEndpoint + `/api/rest/games/${1}/groups/${1}/periods/${this.inputJSON.results.period}/plannings`;
+        this.inputUploadUrl = this.apiEndpoint + `/api/rest/games/${1}/groups/${6}/periods/${this.inputJSON.results.period}/plannings`;
 
         // send data to the server
         return new Promise((resolve, reject) => {
