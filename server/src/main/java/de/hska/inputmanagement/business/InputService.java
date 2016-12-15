@@ -1,4 +1,4 @@
-package inputmanagement.business;
+package de.hska.inputmanagement.business;
 
 import de.hska.periodmanagement.domain.Period;
 import org.json.JSONArray;
