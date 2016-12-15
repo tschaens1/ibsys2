@@ -78,6 +78,42 @@ export const LANG_DE_TRANSLATIONS = {
     "planning_overview": {
         "title": "Beginn Planung",
         "description": "Auf dieser Seite wird die Planung vorbereitet.",
+
+        //
+        "cancel": "Abbrechen",
+        "continue": "Weiter",
+        "back": "Zurück",
+        "quantity": "Anzahl",
+        "price": "Preis",
+        "yes" :"Ja",
+
+        "insert_period_to_plan": "1. Welche Periode soll geplant werden?",
+        "result_upload_last_period": "Upload der Ergebnisse aus der letzten Periode",
+        "reset_input_to_standard": "Eingaben auf Standard zurücksetzen",
+
+        "insert_sellwish": "2. Wie ist der Vertriebswunsch?",
+        "sellwish_product": "Produkt",
+        "sellwish_forecast": "Prognose",
+
+        "ask_for_direct_sale": "3. Gibt es Direktverkäufe?",
+        "direct_sale_yes": "Ja",
+        "direct_sale_no_back": "Nein, Weiter",
+        "contract_penalty":	"Konventionalstrafe",					
+        "deativate_direct_sales": "Direktverkäufe deaktivieren",
+
+        "amount_planned_production": "4. Wie hoch ist die geplante Produktion",
+
+        "amount_savety_stock": "5. Wie hoch ist der Sicherheitsbestand?",
+        "standard_security": "Standardsicherheit",
+        "safety_stock_part": "Teil",
+        "safety_stock_quantity": "Menge",
+
+        "show_single_items": "Einzelteile zeigen",
+
+        "send_data": "Daten absenden",
+
+        "server_is_calculating": "Der Server wertet die Angaben aus. Bitte einen Moment warten...",
+
     },
     "planning_purchasing": {
         "title": "Kaufteildisposition",
