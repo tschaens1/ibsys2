@@ -152,7 +152,7 @@
 				<b>{{'planning_overview.standard_security'|translate}}</b>
 				<form>
 					<!--http://tb.github.io/ng2-nouislider/ -->
-					<p>{{defaultSafetystock}}%</p>
+					<p>{{defaultSafetystock}}%</p>					
 					<nouislider name="form_value" [min]="0" [max]="100" [step]="1" (ngModelChange)="onChangeDefaultSafetyStock($event)" [(ngModel)]="defaultSafetystock"></nouislider>
 				</form>
 			</div>
@@ -195,6 +195,6 @@
 </div>
 
 <div class="loading" *ngIf="planningService.isLoading">
-		{{'planning_overview.server_is_calculating'|translate}}
+	{{'planning_overview.server_is_calculating'|translate}}
 
 </div>

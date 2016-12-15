@@ -55,7 +55,7 @@ export const LANG_EN_TRANSLATIONS = {
     "planning_production": {
         "title": "Production program",
         "description": "On this page you can plan the production.",
-         "table":{
+        "table": {
             "header_product": "Product",
             "header_bindingOrders": "Binding",
             "header_forecast_one": "Forecast + 1",
@@ -68,7 +68,7 @@ export const LANG_EN_TRANSLATIONS = {
     "planning_overview": {
         "title": "Beginn planning",
         "description": "On this page you can prepare the planning.",
-        
+
         "cancel": "Cancel",
         "continue": "Continue",
         "back": "Back",
@@ -88,9 +88,9 @@ export const LANG_EN_TRANSLATIONS = {
         "ask_for_direct_sale": "3. Are there direct sales?",
         "direct_sale_yes": "Yes",
         "direct_sale_no_back": "No, continue",
-        "contract_penalty":	"Contract penalty",				
+        "contract_penalty": "Contract penalty",
         "deativate_direct_sales": "Deactivate direct sales",
-	
+
         "amount_planned_production": "4. What´s the planned production",
 
         "amount_savety_stock": "5. What´s the savety stock",
@@ -105,7 +105,14 @@ export const LANG_EN_TRANSLATIONS = {
 
         "server_is_calculating": "Server is calculating. This may take some seconds...",
 
-
+        //toastr
+        "toastr": {
+            "wrong_period": "Wrong input for period",
+            "missing_xml_document": "XML is missing",
+            "wrong_sellwish": "Wrong sellwish",
+            "very_high_sellwish": "Very high sellwish",
+            "wrong_production_values": "Wrong inputs for production",
+        }
     },
     "planning_purchasing": {
         "title": "Purchase part disposition",
@@ -119,9 +126,9 @@ export const LANG_EN_TRANSLATIONS = {
             "order_quantity": "Order quantity",
         },
     },
-    "planning_capacity": { 
-        "title": "Capacity planning",       
-        "table":{
+    "planning_capacity": {
+        "title": "Capacity planning",
+        "table": {
             "workstation_number": "Workstation",
             "workload": "Workload",
             "capacity_requirements": "Capacity requirements",
