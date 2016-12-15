@@ -1,4 +1,4 @@
-package de.hska.kpimanagement.business;
+package inputmanagement.business;
 
 import de.hska.periodmanagement.domain.Period;
 import org.json.JSONArray;
