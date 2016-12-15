@@ -43,7 +43,7 @@ export const LANG_DE_TRANSLATIONS = {
     "planning_material": {
         "title": "Materialplanung",
         "description": "Auf dieser Seite wird die Produktion geplant.",
-        "table":{
+        "table": {
             "header_bindingOrders": "Verbindliche Aufträge",
             "header_warehouseStockEnd": "Lagerbestand am Ende der Periode",
             "header_warehouseStockBeginning": "Lagerbestand zu Beginn der Periode",
@@ -55,7 +55,7 @@ export const LANG_DE_TRANSLATIONS = {
     "planning_production": {
         "title": "Prouktionsplanung",
         "description": "Auf dieser Seite wird die Produktion geplant.",
-        "table":{
+        "table": {
             "header_product": "Produkt",
             "header_bindingOrders": "Verbindlich",
             "header_forecast_one": "Prognose + 1",
@@ -66,8 +66,8 @@ export const LANG_DE_TRANSLATIONS = {
         },
     },
     "planning_capacity": {
-        "title": "Kapazitätsplanung",               
-        "table":{
+        "title": "Kapazitätsplanung",
+        "table": {
             "workstation_number": "Arbeitsplatz",
             "workload": "Auslastung",
             "capacity_requirements": "Kapazitätsbedarf",
@@ -85,7 +85,7 @@ export const LANG_DE_TRANSLATIONS = {
         "back": "Zurück",
         "quantity": "Anzahl",
         "price": "Preis",
-        "yes" :"Ja",
+        "yes": "Ja",
 
         "insert_period_to_plan": "1. Welche Periode soll geplant werden?",
         "result_upload_last_period": "Upload der Ergebnisse aus der letzten Periode",
@@ -99,7 +99,7 @@ export const LANG_DE_TRANSLATIONS = {
         "ask_for_direct_sale": "3. Gibt es Direktverkäufe?",
         "direct_sale_yes": "Ja",
         "direct_sale_no_back": "Nein, Weiter",
-        "contract_penalty":	"Konventionalstrafe",					
+        "contract_penalty": "Konventionalstrafe",
         "deativate_direct_sales": "Direktverkäufe deaktivieren",
 
         "amount_planned_production": "4. Wie hoch ist die geplante Produktion",
@@ -115,6 +115,14 @@ export const LANG_DE_TRANSLATIONS = {
 
         "server_is_calculating": "Der Server wertet die Angaben aus. Bitte einen Moment warten...",
 
+        //toastr
+        "toastr": {
+            "wrong_period": "Falsche Eingabe für Periode",
+            "missing_xml_document": "XML Dokument fehlt",
+            "wrong_sellwish": "Falscher Vertriebswunsch",
+            "very_high_sellwish": "Sehr hoher Vertriebswunsch",
+            "wrong_production_values": "Falsche Produktionseingaben",
+        }
     },
     "planning_purchasing": {
         "title": "Kaufteildisposition",
@@ -167,7 +175,7 @@ export const LANG_DE_TRANSLATIONS = {
     "parts": {
         "title": "Einzelteile",
         "description": "Hier ist eine Übersicht über alle Teile.",
-        "searchPlaceholder": "Teile filtern",        
+        "searchPlaceholder": "Teile filtern",
         "collection": {
             "usage": "Verwendung",
             "startAmount": "Startmenge",

@@ -1,3 +1,4 @@
+import { TranslationService } from '../translate/translate.service';
 import { Component, OnInit, ElementRef, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http, Headers } from '@angular/http';
@@ -63,6 +64,7 @@ export class PlanningOverviewComponent implements OnInit {
         private route: ActivatedRoute,
         private http: Http,
         private el: ElementRef,
+        private translationService: TranslationService,
         @Inject('ApiEndpoint') private apiEndpoint
     ) { }
 
@@ -85,7 +87,7 @@ export class PlanningOverviewComponent implements OnInit {
         this.inputOflastPeriod = JSON.parse(localStorage.getItem("ibsys2InputLastPeriod"));
 
         if (!this.inputOflastPeriod) {
-            this.toastr.error('No data available');
+            return;
         }
 
         try {
@@ -177,12 +179,12 @@ export class PlanningOverviewComponent implements OnInit {
     next() {
         // validate period  
         if (this.page === 0 && (!this.period || this.period < 0)) {
-            this.toastr.error('Wrong period!');
+            this.toastr.error(this.translationService.instant('planning_overview.toastr.wrong_period'));
             return;
         }
         // validate xml upload
         if (this.page === 0 && (<HTMLInputElement>document.getElementById("resultsXMLUpload")).value === "") {
-            this.toastr.error('Missing xml document!');
+            this.toastr.error(this.translationService.instant('planning_overview.toastr.missing_xml_document'));
             return;
         }
         // validate sellwish
@@ -190,21 +192,21 @@ export class PlanningOverviewComponent implements OnInit {
             this.sellwish_p1 < 0 ||
             this.sellwish_p2 < 0 ||
             this.sellwish_p3 < 0)) {
-            this.toastr.error('Wrong sellwish!');
+            this.toastr.error(this.translationService.instant('planning_overview.toastr.wrong_sellwish'));
             return;
         }
         if (this.page === 1 && (
             this.sellwish_p1 > 1000 ||
             this.sellwish_p2 > 1000 ||
             this.sellwish_p3 > 1000)) {
-            this.toastr.warning('Very high sellwish!');
+            this.toastr.warning(this.translationService.instant('planning_overview.toastr.very_high_sellwish'));
         }
 
         // validate produce
         if (this.page === 3 && (this.produce_p1 < 0 ||
             this.produce_p2 < 0 ||
             this.produce_p3 < 0)) {
-            this.toastr.error('Wrong production values!');
+            this.toastr.error(this.translationService.instant('planning_overview.toastr.wrong_production_values'));
             return;
         }
 
