@@ -80,6 +80,7 @@ export const LANG_EN_TRANSLATIONS = {
         "result_upload_last_period": "Upload results from the last period",
         "reset_input_to_standard": "Reset input to standard",
 
+        "sellwish": "Sellwish in period",
         "insert_sellwish": "2. What`s the sellwish?",
         "sellwish_product": "Product",
         "sellwish_forecast": "Forecast",

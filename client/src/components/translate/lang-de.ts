@@ -92,6 +92,7 @@ export const LANG_DE_TRANSLATIONS = {
         "reset_input_to_standard": "Eingaben auf Standard zurücksetzen",
 
         "insert_sellwish": "2. Wie ist der Vertriebswunsch?",
+        "sellwish": "Vertriebswunsch in Periode",
         "sellwish_product": "Produkt",
         "sellwish_forecast": "Prognose",
 

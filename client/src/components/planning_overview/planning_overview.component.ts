@@ -95,6 +95,18 @@ export class PlanningOverviewComponent implements OnInit {
             this.sellwish_p2 = this.inputOflastPeriod.input.sellwish.items[1].quantity || 0;
             this.sellwish_p3 = this.inputOflastPeriod.input.sellwish.items[2].quantity || 0;
 
+            this.forecast_p1_one = this.inputOflastPeriod.input.forcasts.forecast_one.items[0].quantity || 0;
+            this.forecast_p1_two = this.inputOflastPeriod.input.forcasts.forecast_one.items[0].quantity || 0;
+            this.forecast_p1_three = this.inputOflastPeriod.input.forcasts.forecast_one.items[0].quantity || 0;
+
+            this.forecast_p2_one = this.inputOflastPeriod.input.forcasts.forecast_one.items[1].quantity || 0;
+            this.forecast_p2_two = this.inputOflastPeriod.input.forcasts.forecast_one.items[1].quantity || 0;
+            this.forecast_p2_three = this.inputOflastPeriod.input.forcasts.forecast_one.items[1].quantity || 0;
+
+            this.forecast_p3_one = this.inputOflastPeriod.input.forcasts.forecast_one.items[2].quantity || 0;
+            this.forecast_p3_two = this.inputOflastPeriod.input.forcasts.forecast_one.items[2].quantity || 0;
+            this.forecast_p3_three = this.inputOflastPeriod.input.forcasts.forecast_one.items[2].quantity || 0;
+
             this.enabledSellDirect = this.inputOflastPeriod.enabledSellDirect || false;
 
             this.selldirect_price_p1 = this.inputOflastPeriod.input.selldirect.items[0].price || 0;
@@ -174,22 +186,24 @@ export class PlanningOverviewComponent implements OnInit {
             return;
         }
         // validate sellwish
-        if (this.page === 1 && (!this.sellwish_p1 || this.sellwish_p1 < 0 ||
-            !this.sellwish_p2 || this.sellwish_p2 < 0 ||
-            !this.sellwish_p3 || this.sellwish_p3 < 0)) {
+        if (this.page === 1 && (
+            this.sellwish_p1 < 0 ||
+            this.sellwish_p2 < 0 ||
+            this.sellwish_p3 < 0)) {
             this.toastr.error('Wrong sellwish!');
             return;
         }
-        if (this.page === 1 && (!this.sellwish_p1 || this.sellwish_p1 > 1000 ||
-            !this.sellwish_p2 || this.sellwish_p2 > 1000 ||
-            !this.sellwish_p3 || this.sellwish_p3 > 1000)) {
+        if (this.page === 1 && (
+            this.sellwish_p1 > 1000 ||
+            this.sellwish_p2 > 1000 ||
+            this.sellwish_p3 > 1000)) {
             this.toastr.warning('Very high sellwish!');
         }
 
         // validate produce
-        if (this.page === 3 && (!this.produce_p1 || this.produce_p1 < 0 ||
-            !this.produce_p2 || this.produce_p2 < 0 ||
-            !this.produce_p3 || this.produce_p3 < 0)) {
+        if (this.page === 3 && (this.produce_p1 < 0 ||
+            this.produce_p2 < 0 ||
+            this.produce_p3 < 0)) {
             this.toastr.error('Wrong production values!');
             return;
         }
