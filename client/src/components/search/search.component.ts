@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Params, Router } from '@angular/router';
 import { SearchService } from './../search/search.service';
 
 @Component({
@@ -32,8 +32,21 @@ export class SearchComponent implements OnInit {
         this.searchResults = this.searchService.getResults(this.searchTerm);
     }
 
-    searchNavigateTo(route: any) {
-        this.router.navigate(route);
-        this.searchTerm = '';
+    // searchNavigateTo(route: any) {
+    //     console.log(route);
+    //     this.router.navigate(route);
+    //     this.searchTerm = '';
+    // }
+
+    searchNavigateTo(route: any, fragment?: string) {
+        if (fragment === undefined) {
+            this.router.navigate(route);
+            this.searchTerm = '';
+        } else {
+            let navigationExtras: NavigationExtras = {
+                fragment: fragment
+            };
+            this.router.navigate(route, navigationExtras);
+        }
     }
 }
