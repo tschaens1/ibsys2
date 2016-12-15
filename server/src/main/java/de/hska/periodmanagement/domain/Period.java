@@ -1,67 +1,87 @@
 package de.hska.periodmanagement.domain;
 
-import de.hska.xmlfilemanagement.domain.JsonFile;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import javax.persistence.*;
+import de.hska.planningmangement.domain.Planning;
+import de.hska.xmlfilemanagement.domain.JsonFile;
 
 @Entity
 @Table(name = "period")
 public class Period {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private Long counter;
+	private Long counter;
 
-    @Column(name = "\"group\"")
-    private Long group;
+	@Column(name = "\"group\"")
+	private Long group;
 
-    private Long game;
+	private Long game;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private JsonFile jsonFile;
+	@OneToOne(cascade = CascadeType.ALL)
+	private JsonFile jsonFile;
 
-    public Period() {
-    }
+	@OneToOne(cascade = CascadeType.ALL)
+	private Planning planning;
 
-    public Long getId() {
-        return id;
-    }
+	public Period() {
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Long getCounter() {
-        return counter;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setCounter(Long counter) {
-        this.counter = counter;
-    }
+	public Long getCounter() {
+		return counter;
+	}
 
-    public Long getGroup() {
-        return group;
-    }
+	public void setCounter(Long counter) {
+		this.counter = counter;
+	}
 
-    public void setGroup(Long group) {
-        this.group = group;
-    }
+	public Long getGroup() {
+		return group;
+	}
 
-    public Long getGame() {
-        return game;
-    }
+	public void setGroup(Long group) {
+		this.group = group;
+	}
 
-    public void setGame(Long game) {
-        this.game = game;
-    }
+	public Long getGame() {
+		return game;
+	}
 
-    public JsonFile getJsonFile() {
-        return jsonFile;
-    }
+	public void setGame(Long game) {
+		this.game = game;
+	}
 
-    public void setJsonFile(JsonFile jsonFile) {
-        this.jsonFile = jsonFile;
-    }
+	public JsonFile getJsonFile() {
+		return jsonFile;
+	}
+
+	public void setJsonFile(JsonFile jsonFile) {
+		this.jsonFile = jsonFile;
+	}
+
+	public Planning getPlanning() {
+		return planning;
+	}
+
+	public void setPlanning(Planning planning) {
+		this.planning = planning;
+	}
+
 }
