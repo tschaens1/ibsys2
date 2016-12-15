@@ -54,6 +54,8 @@
         li.section {
             width: 20%;
             float: left;
+            height: 3rem;
+            overflow: hidden;
             padding: 0;
 
             .section-link{
@@ -70,7 +72,11 @@
 
                 .link-text {
                     float: left;
+                    text-overflow: ellipsis;
                     padding-left: 1rem;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    width: 100%;
                 }
 
                 i {

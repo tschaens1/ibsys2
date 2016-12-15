@@ -213,9 +213,12 @@ export class PlanningOverviewComponent implements OnInit {
         if (this.page !== 4) {
             this.page++;
         } else {
-            this.planningService.startPlanning(this.createInputJSON()).then((result) => {
-                alert('works');
-            });
+            this.planningService.startPlanning(this.createInputJSON())
+                .then((result) => {
+                    console.log('ok');
+                }).catch(err => {
+                    console.error(err);
+                });
         }
 
         // store input data in local storage
