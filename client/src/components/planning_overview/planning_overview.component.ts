@@ -217,7 +217,11 @@ export class PlanningOverviewComponent implements OnInit {
                 .then((result) => {
                     console.log('ok');
                 }).catch(err => {
+                    alert('Es gab einen Fehler!');
                     console.error(err);
+                    this.planningService.isLoading = false;
+                    this.planningService.startedPlanning = false;
+                    this.page = 0;
                 });
         }
 

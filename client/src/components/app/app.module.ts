@@ -20,6 +20,7 @@ import { PlanningComponent } from './../planning/planning.component';
 import { HelpComponent } from './../help/help.component';
 import { PlanningService } from './../planning/planning.service';
 import { PlanningGuard } from './../planning/planning.guard';
+import { PreparePlanningGuard } from './../planning/preparePlanning.guard';
 import { PlanningOverviewComponent } from './../planning_overview/planning_overview.component';
 import { PlanningProductionComponent } from './../planning_production/planning_production.component';
 import { PlanningMaterialComponent } from './../planning_material/planning_material.component';
@@ -98,6 +99,7 @@ let toastOptions: ToastOptions = new ToastOptions({
     LoggedInGuard,
     LoggedOutGuard,
     PlanningGuard,
+    PreparePlanningGuard,
     SearchService,
     SearchEntries,
     SettingsService,
