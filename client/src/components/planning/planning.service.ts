@@ -51,7 +51,7 @@ export class PlanningService implements OnInit {
 
         // send data to the server
         return this.sendXMLToServer().then(() => {
-            this.sendInputsToServer();
+            return this.sendInputsToServer();
         });
     }
     /**
@@ -63,12 +63,12 @@ export class PlanningService implements OnInit {
         let body = JSON.stringify(this.inputJSON);
         return this.http.post(this.inputUploadUrl, body, { headers: headers })
             .toPromise()
-            .then((response) => {
-                console.log('Input data successfully uploaded to server as JSON', response)
-            })
-            .catch((err) => {
-                console.error('Could not upload input data as JSON to server', err);
-            });
+        // .then((response) => {
+        //     console.log('Input data successfully uploaded to server as JSON', response)
+        // })
+        // .catch((err) => {
+        //     console.error('Could not upload input data as JSON to server', err);
+        // });
     }
 
     /**
@@ -79,12 +79,12 @@ export class PlanningService implements OnInit {
         let body = JSON.stringify({ content: encodeURIComponent(this.xmlDocument) });
         return this.http.post(this.xmlUploadUrl, body, { headers: headers })
             .toPromise()
-            .then((response) => {
-                console.log('XML successfully uploaded to server')
-            })
-            .catch((err) => {
-                console.error('Could not upload XML to server', err)
-            });
+        // .then((response) => {
+        //     console.log('XML successfully uploaded to server')
+        // })
+        // .catch((err) => {
+        //     console.error('Could not upload XML to server', err)
+        // });
     }
 
 }

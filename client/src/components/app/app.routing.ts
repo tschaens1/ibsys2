@@ -21,6 +21,7 @@ import { PlanningCapacityComponent } from './../planning_capacity/planning_capac
 import { UploadComponent } from './../upload/upload.component';
 import { PartsComponent } from './../parts/parts.component';
 import { PlanningGuard } from './../planning/planning.guard';
+import { PreparePlanningGuard } from './../planning/preparePlanning.guard';
 
 
 const appRoutes: Routes = [
@@ -74,12 +75,12 @@ const appRoutes: Routes = [
                     {
                         path: '',
                         component: PlanningOverviewComponent,
+                        canActivate: [PreparePlanningGuard],
                     },                    
                     {
                         path: 'production',
                         component: PlanningProductionComponent,
                         canActivate: [PlanningGuard],
-
                     },
                     {
                         path: 'material',
