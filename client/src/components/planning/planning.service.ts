@@ -6,7 +6,7 @@ import { Http, Headers } from '@angular/http';
 @Injectable()
 export class PlanningService implements OnInit {
     // for ui states
-    startedPlanning: boolean;
+    startedPlanning: boolean = false;
     isLoading: boolean;
 
     // urls for upload
@@ -50,9 +50,10 @@ export class PlanningService implements OnInit {
         this.inputUploadUrl = this.apiEndpoint + `/api/rest/games/${1}/groups/${6}/periods/${this.inputJSON.results.period}/plannings`;
 
         // send data to the server
-        return this.sendXMLToServer().then(() => {
-            return this.sendInputsToServer();
-        });
+        return this.sendXMLToServer()
+            .then(() => {
+                return this.sendInputsToServer();
+            });
     }
     /**
      * Send the input data to server. The input data is required
@@ -61,14 +62,7 @@ export class PlanningService implements OnInit {
     private sendInputsToServer() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let body = JSON.stringify(this.inputJSON);
-        return this.http.post(this.inputUploadUrl, body, { headers: headers })
-            .toPromise()
-        // .then((response) => {
-        //     console.log('Input data successfully uploaded to server as JSON', response)
-        // })
-        // .catch((err) => {
-        //     console.error('Could not upload input data as JSON to server', err);
-        // });
+        return this.http.post(this.inputUploadUrl, body, { headers: headers }).toPromise()
     }
 
     /**
@@ -77,14 +71,7 @@ export class PlanningService implements OnInit {
     private sendXMLToServer() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let body = JSON.stringify({ content: encodeURIComponent(this.xmlDocument) });
-        return this.http.post(this.xmlUploadUrl, body, { headers: headers })
-            .toPromise()
-        // .then((response) => {
-        //     console.log('XML successfully uploaded to server')
-        // })
-        // .catch((err) => {
-        //     console.error('Could not upload XML to server', err)
-        // });
+        return this.http.post(this.xmlUploadUrl, body, { headers: headers }).toPromise()
     }
 
 }

@@ -215,7 +215,10 @@ export class PlanningOverviewComponent implements OnInit {
         } else {
             this.planningService.startPlanning(this.createInputJSON())
                 .then((result) => {
-                    console.log('ok');
+                    // console.log('ok');
+                    this.planningService.isLoading = false;
+                    this.planningService.startedPlanning = true;
+                    this.router.navigate(['/app/planning/production']);
                 }).catch(err => {
                     alert('Es gab einen Fehler!');
                     console.error(err);
