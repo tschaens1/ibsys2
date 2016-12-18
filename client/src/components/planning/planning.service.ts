@@ -8,7 +8,7 @@ var FileSaver = require('file-saver');
 @Injectable()
 export class PlanningService implements OnInit {
     // for ui states
-    startedPlanning: boolean = true;
+    startedPlanning: boolean;
     isLoading: boolean;
 
     // urls for upload
@@ -25,7 +25,7 @@ export class PlanningService implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.startedPlanning = true;
+        this.startedPlanning = false;
         this.isLoading = false;
     }
 
@@ -119,6 +119,6 @@ export class PlanningService implements OnInit {
 
         // download the XML file
         var blob = new Blob([xml], { type: "text/plain;charset=utf-8" });
-        FileSaver.saveAs(blob, `inputXML${Date.now()}.xml`);
+        FileSaver.saveAs(blob, `inputXML_${Date.now()}.xml`);
     }
 }

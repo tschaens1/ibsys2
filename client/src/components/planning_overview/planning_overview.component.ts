@@ -220,10 +220,13 @@ export class PlanningOverviewComponent implements OnInit {
                     this.planningService.startedPlanning = true;
                     this.router.navigate(['/app/planning/production']);
                 }).catch(err => {
-                    alert('Es gab einen Fehler!');
+                    // alert('Trotzdem machen wir für die Entwicklung erstmal weiter!');
+                    this.toastr.error('Error with server connection');                    
+                    this.router.navigate(['/app/planning/production']);
+
                     console.error(err);
                     this.planningService.isLoading = false;
-                    this.planningService.startedPlanning = false;
+                    this.planningService.startedPlanning = true;
                     this.page = 0;
                 });
         }
