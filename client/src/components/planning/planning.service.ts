@@ -76,47 +76,48 @@ export class PlanningService implements OnInit {
         return this.http.post(this.xmlUploadUrl, body, { headers: headers }).toPromise()
     }
 
+    /**
+     * Generate the input XML for the SCSimulator. It is based
+     * on the input data that must be typed into the input fields by the user.
+     */
     generateInputXMLForSimulator() {
         let obj = {
-            "firstName": "John",
-            "lastName": "Smith",
-            "dateOfBirth": new Date(1964, 7, 26),
-            "address": {
+            "qualitycontrol": {
                 "@": {
-                    "type": "home"
+                    "type": "no",
+                    "losequantity": 0,
+                    "delay": 0,
                 },
-                "streetAddress": "3212 22nd St",
-                "city": "Chicago",
-                "state": "Illinois",
-                "zip": 10000
             },
-            "phone": [
-                {
-                    "@": {
-                        "type": "home"
+            "sellwish": {
+                "item": [
+                    {
+                        "@": {
+                            "article": 1,
+                            "quantity": 100,
+                        }
                     },
-                    "#": "123-555-4567"
-                },
-                {
-                    "@": {
-                        "type": "cell"
+                    {
+                        "@": {
+                            "article": 2,
+                            "quantity": 100,
+                        }
                     },
-                    "#": "890-555-1234"
-                },
-                {
-                    "@": {
-                        "type": "work"
-                    },
-                    "#": "567-555-8901"
-                }
-            ],
-            "email": "john@smith.com"
+                    {
+                        "@": {
+                            "article": 3,
+                            "quantity": 100,
+                        }
+                    }
+                ]
+            },
         };
 
         // create the xml
         // slice the first 22 characters because they are like this: <?xml version='1.0'?>
-        const xml: string = js2xmlparser.parse("person", obj).slice(22);
+        const xml: string = js2xmlparser.parse("input", obj).slice(22);
 
+        // download the XML file
         var blob = new Blob([xml], { type: "text/plain;charset=utf-8" });
         FileSaver.saveAs(blob, `inputXML${Date.now()}.xml`);
     }
