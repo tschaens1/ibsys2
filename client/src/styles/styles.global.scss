@@ -204,6 +204,31 @@ th {
     a{
         color: $white;
     }    
+
+    &.small {
+        right: 4rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        background: $primary-theme;
+        line-height: 2.4rem;
+        bottom: .5rem;
+        opacity: .3;
+        transition: all ease 4s 2s;
+
+        &.red{
+            background-color: $red;
+        }
+
+        &:hover{
+            transition: all ease .5s 0s;
+            opacity: 1;
+        }
+    }
+}
+
+.fab:hover + .fab.small{
+    transition: all ease .5s 0s;
+    opacity: 1;
 }
 
 /**
