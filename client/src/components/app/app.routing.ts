@@ -76,7 +76,7 @@ const appRoutes: Routes = [
                         path: '',
                         component: PlanningOverviewComponent,
                         canActivate: [PreparePlanningGuard],
-                    },                    
+                    },
                     {
                         path: 'production',
                         component: PlanningProductionComponent,
@@ -99,7 +99,8 @@ const appRoutes: Routes = [
                     },
                     {
                         path: 'inserts',
-                        component: PlanningInsertsComponent
+                        component: PlanningInsertsComponent,
+                        canActivate: [PlanningGuard],
                     },
                 ]
             },
