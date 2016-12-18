@@ -5,7 +5,7 @@ import { PlanningService } from './../planning/planning.service';
 
 @Component({
     selector: 'file-upload',
-    template: '<input type="file">'
+    template: '<input type="file"  accept=".xml">'
 })
 export class FileUploadComponent {
     uploadUrl: string;
