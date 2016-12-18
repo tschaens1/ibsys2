@@ -1,59 +1,18 @@
 import { LoginService } from './../login/login.service';
-import { Component } from '@angular/core';
-var js2xmlparser = require('js2xmlparser');
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
 })
-export class DashBoardComponent {
+export class DashBoardComponent implements OnInit {
     optionsChart1: HighchartsOptions;
     optionsChart2: HighchartsOptions;
     optionsChart3: HighchartsOptions;
     optionsChart4: HighchartsOptions;
 
-    constructor() {
-
-        //demonstrate json to xml parser
-        var obj = {
-            "firstName": "John",
-            "lastName": "Smith",
-            "dateOfBirth": new Date(1964, 7, 26),
-            "address": {
-                "@": {
-                    "type": "home"
-                },
-                "streetAddress": "3212 22nd St",
-                "city": "Chicago",
-                "state": "Illinois",
-                "zip": 10000
-            },
-            "phone": [
-                {
-                    "@": {
-                        "type": "home"
-                    },
-                    "#": "123-555-4567"
-                },
-                {
-                    "@": {
-                        "type": "cell"
-                    },
-                    "#": "890-555-1234"
-                },
-                {
-                    "@": {
-                        "type": "work"
-                    },
-                    "#": "567-555-8901"
-                }
-            ],
-            "email": "john@smith.com"
-        };
-
-        console.log(js2xmlparser.parse("person", obj));
-
+    ngOnInit() {
         this.optionsChart1 = {
             title: { text: 'simple chart' },
             series: [{
@@ -82,6 +41,9 @@ export class DashBoardComponent {
             }],
             credits: false
         };
+    }
+
+    constructor() {
     }
 
     public doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
