@@ -8,4 +8,8 @@ import { PlanningService } from './planning.service';
 })
 export class PlanningComponent {
     constructor(private planningService: PlanningService) { }
+
+    saveInputs(){
+        this.planningService.generateInputXMLForSimulator();
+    }
 }
