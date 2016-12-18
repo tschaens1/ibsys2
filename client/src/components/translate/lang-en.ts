@@ -78,6 +78,7 @@ export const LANG_EN_TRANSLATIONS = {
 
         "insert_period_to_plan": "1. Which period shall be planned?",
         "result_upload_last_period": "Upload results from the last period",
+        "file_upload_text": "XML file",
         "reset_input_to_standard": "Reset input to standard",
 
         "sellwish": "Sellwish in period",
