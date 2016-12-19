@@ -1,6 +1,15 @@
 export const LANG_EN_NAME = 'en';
 
 export const LANG_EN_TRANSLATIONS = {
+    "modal": {
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "close": "Close",
+        "title": {
+            "help": "Help",
+            "info": "Information",
+        }
+    },
     "login": {
         "username": "Username",
         "password": "Password",
@@ -113,6 +122,15 @@ export const LANG_EN_TRANSLATIONS = {
             "wrong_sellwish": "Wrong sellwish",
             "very_high_sellwish": "Very high sellwish",
             "wrong_production_values": "Wrong inputs for production",
+        },
+
+        modals: {
+            "period": "Type in the number of the period which should be planned.",
+            "xml": "Here you have to upload the results XML of the last period.",
+            "sellwish": "The sellwish describes the amount of products that will be selled in the next period. Forecasts can change in the next periods.",
+            "selldirect": "The selldirect describes the products that will be selled additionally to the sellwish. These products will be selled directly from the warehouse. Selldirects are optional.",
+            "planned_production": "Here you have to specify the production of each product. Beware that these values have a big impact for the planning of the purchasing parts, the capacity planning and the production planning.",            
+            "safetyStock": "Here you can specify the safety stock for the warehouse. The safety stock describes how much parts you want to have in the warehouse additionally.",
         }
     },
     "planning_purchasing": {

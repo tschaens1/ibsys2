@@ -1,6 +1,15 @@
 export const LANG_DE_NAME = 'de';
 
 export const LANG_DE_TRANSLATIONS = {
+    "modal": {
+        "confirm": "Bestätigen",
+        "cancel": "Abbrechen",
+        "close": "Schließen",
+        "title": {
+            "help": "Hilfe",
+            "info": "Information",
+        }
+    },
     "login": {
         "username": "Benutzername",
         "password": "Passwort",
@@ -127,7 +136,11 @@ export const LANG_DE_TRANSLATIONS = {
 
         modals: {
             "period": "Geben Sie hier die Nummer der Periode ein, die Sie planen möchten.",
-            "xml": "Laden Sie hier das Ergebnis XML der vergangenen Periode hoch."
+            "xml": "Laden Sie hier das Ergebnis XML der vergangenen Periode hoch.",
+            "sellwish": "Der Vertriebswunsch gibt an, wie viele Produkte in der kommenden Periode verkauft werden sollen. Prognosen können sich noch ändern.",
+            "selldirect": "Der Direktverkauf gibt an, welche Produkte zusätzlich zum Vertriebswunsch direkt ab Lager verkauft werden. Direktverkäufe sind optional.",
+            "planned_production": "Geben Sie hier an, wie viele Produkte tatsächlich produziert werden sollen. Die Angabe dieser Werte hat einen großen Einfluss auf die Kalkulation der Kaufteile, der Eigenfertigung sowie auf die Kapazitätsplanung.",
+            "safetyStock": "Hier kann der Sicherheitsbestand für das Lager angegeben werden. Der Sicherheitsbestand gibt an, wie viele Teile im Lager zur Sicherheit vorhanden sein sollen.",
         }
     },
     "planning_purchasing": {
