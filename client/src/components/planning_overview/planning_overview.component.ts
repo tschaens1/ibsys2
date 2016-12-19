@@ -1,3 +1,4 @@
+import { ModalService } from '../modal/modal.service';
 import { TranslationService } from '../translate/translate.service';
 import { Component, OnInit, ElementRef, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -65,6 +66,7 @@ export class PlanningOverviewComponent implements OnInit {
         private http: Http,
         private el: ElementRef,
         private translationService: TranslationService,
+        private modal: ModalService,
         @Inject('ApiEndpoint') private apiEndpoint
     ) { }
 
@@ -221,7 +223,7 @@ export class PlanningOverviewComponent implements OnInit {
                     this.router.navigate(['/app/planning/production']);
                 }).catch(err => {
                     // alert('Trotzdem machen wir für die Entwicklung erstmal weiter!');
-                    this.toastr.error('Error with server connection');                    
+                    this.toastr.error('Error with server connection');
                     this.router.navigate(['/app/planning/production']);
 
                     console.error(err);
@@ -379,5 +381,9 @@ export class PlanningOverviewComponent implements OnInit {
         this.safetyStock.map(part => {
             part.quantity = e;
         })
+    }
+
+    openHelp() {
+        this.modal.openModal('Halloooo', 'Information');
     }
 }

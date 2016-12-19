@@ -1,3 +1,5 @@
+import { ModalService } from '../modal/modal.service';
+import { ModalComponent } from '../modal/modal.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -93,6 +95,7 @@ let toastOptions: ToastOptions = new ToastOptions({
     UploadComponent,
     FileUploadComponent,
     PartsComponent,
+    ModalComponent,
   ],
   providers: [
     LoginService,
@@ -106,6 +109,7 @@ let toastOptions: ToastOptions = new ToastOptions({
     UploadService,
     ArticleService,
     PlanningService,
+    ModalService,
     TRANSLATION_PROVIDERS,
     TranslationService,
     { provide: 'ApiEndpoint', useValue: 'http://localhost:8080' }

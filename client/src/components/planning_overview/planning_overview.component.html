@@ -8,6 +8,20 @@
 			<div class="col s12">
 				<h4>{{'planning_overview.insert_period_to_plan'|translate}}</h4>
 				<input type="number" placeholder="Periode" [(ngModel)]="period" (keyup.enter)="next()">
+				<!-- Modal Trigger -->
+				<a class="waves-effect waves-light btn" (click)="openHelp()">Modal</a>
+
+				<!-- Modal Structure -->
+				<div id="modal1" class="modal">
+					<div class="modal-content">
+						<h4>Modal Header</h4>
+						<p>A bunch of text</p>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+					</div>
+				</div>
+
 			</div>
 			<div class="col s12">
 				<h4>{{'planning_overview.result_upload_last_period'|translate}}</h4>
