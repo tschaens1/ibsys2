@@ -1,0 +1,15 @@
+<div *ngIf="this.modalService.show">
+    <div class="perfect-modal animated fadeIn">
+        <div class="title">{{this.modalService.currentTitle}}</div>
+        <div class="text">{{this.modalService.currentText}}</div>
+        <div class="closeButton" (click)="cancelModal()"><i class="mdi mdi-close"></i></div>
+        <div class="buttons" *ngIf="this.modalService.locked">
+            <div class="button waves-effect waves-light" (click)="confirm()">Confirm</div>
+            <div class="button waves-effect waves-light" (click)="cancelModal()">Cancel</div>
+        </div>
+        <div class="buttons" *ngIf="!this.modalService.locked">
+            <div class="button waves-effect waves-light" (click)="cancelModal()">Close</div>
+        </div>
+    </div>
+    <div class="dimmer waves-effect waves-dark animated fadeIn" (click)="clickDimmer()"></div>
+</div>

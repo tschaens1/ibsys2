@@ -123,6 +123,11 @@ export const LANG_DE_TRANSLATIONS = {
             "wrong_sellwish": "Falscher Vertriebswunsch",
             "very_high_sellwish": "Sehr hoher Vertriebswunsch",
             "wrong_production_values": "Falsche Produktionseingaben",
+        },
+
+        modals: {
+            "period": "Geben Sie hier die Nummer der Periode ein, die Sie planen möchten.",
+            "xml": "Laden Sie hier das Ergebnis XML der vergangenen Periode hoch."
         }
     },
     "planning_purchasing": {
