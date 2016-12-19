@@ -383,7 +383,7 @@ export class PlanningOverviewComponent implements OnInit {
         })
     }
 
-    openHelp() {
-        this.modal.openModal('Halloooo', 'Information');
+    openHelp(key: string) {
+        this.modal.openModal(this.translationService.instant(key), this.translationService.instant('modal.title.help'));
     }
 }

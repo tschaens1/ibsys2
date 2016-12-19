@@ -32,6 +32,7 @@
         width: 100%;
         background: $primary-theme;
         height: 4rem;
+        font-variant: small-caps;
         text-overflow: hidden;
         color: $white;
         line-height: 3.5rem;
@@ -67,7 +68,10 @@
     }
 
     .text {
-        padding: 1rem;
+        padding: 2rem;
         font-size: 1.1rem;
+        margin-top: 1rem;
+        height: 10rem;
+        overflow: auto;
     }
 }
