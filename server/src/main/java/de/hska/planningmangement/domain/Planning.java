@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import de.hska.xmlfilemanagement.domain.JsonFile;
+import de.hska.filemanagement.domain.JsonFile;
 
 @Entity
 public class Planning {

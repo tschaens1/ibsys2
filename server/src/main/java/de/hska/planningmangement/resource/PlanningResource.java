@@ -2,7 +2,6 @@ package de.hska.planningmangement.resource;
 
 import java.util.List;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.hska.filemanagement.domain.JsonFile;
 import de.hska.periodmanagement.business.IPeriodRepository;
 import de.hska.periodmanagement.domain.Period;
 import de.hska.planningmangement.domain.Planning;
-import de.hska.xmlfilemanagement.domain.JsonFile;
 import javassist.NotFoundException;
 
 @RestController
@@ -26,9 +25,8 @@ public class PlanningResource {
 	private IPeriodRepository periodRepository;
 
 	@ExceptionHandler({ org.springframework.http.converter.HttpMessageNotReadableException.class })
-	@RequestMapping(method = RequestMethod.POST, value = "/games/{game}/groups/{group}/periods/{counter}/plannings")
-	public String save(@PathVariable Long game, @PathVariable Long group, @PathVariable Long counter,
-			@RequestBody String jsonObject) throws NotFoundException {
+	@RequestMapping(method = RequestMethod.POST, value = "/periods/{counter}/plannings")
+	public String save(@PathVariable Long counter, @RequestBody String jsonObject) throws NotFoundException {
 
 		if (jsonObject == null)
 			return "error";
@@ -39,7 +37,7 @@ public class PlanningResource {
 		Planning planning = new Planning();
 		planning.setJsonFile(jsonFile);
 
-		List<Period> period = periodRepository.findByGameAndGroupAndCounter(game, group, counter);
+		List<Period> period = periodRepository.findByCounter(counter);
 		if (period.size() > 1)
 			throw new NotFoundException("Couldn't specify period.");
 
