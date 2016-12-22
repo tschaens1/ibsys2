@@ -1,16 +1,9 @@
 package de.hska.periodmanagement.domain;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
+import de.hska.filemanagement.domain.JsonFile;
 import de.hska.planningmangement.domain.Planning;
-import de.hska.xmlfilemanagement.domain.JsonFile;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "period")

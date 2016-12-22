@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IPeriodRepository extends JpaRepository<Period, Long> {
 
-    public List<Period> findByGameAndGroupAndCounter(Long game, Long group, Long counter);
+    public List<Period> findByCounter(Long counter);
 }

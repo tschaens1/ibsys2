@@ -2,12 +2,12 @@ package de.hska.filemanagement.resource;
 
 import de.hska.chartmanagement.business.ChartService;
 import de.hska.filemanagement.domain.JsonFile;
+import de.hska.filemanagement.domain.XmlFile;
 import de.hska.inputmanagement.business.InputService;
 import de.hska.kpimanagement.business.KpiService;
 import de.hska.periodmanagement.business.IPeriodRepository;
 import de.hska.periodmanagement.domain.Period;
 import de.hska.util.FileConverterService;
-import de.hska.filemanagement.domain.XmlFile;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -34,7 +34,7 @@ public class FileResource {
     @Autowired
     private InputService inputService;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, value = "result")
     public void save(@RequestBody XmlFile xmlFile) {
         String jsonContent = xmlFile.getContent();
         JSONObject jsonObject = fileConverterService.convertXmlToJson(jsonContent);
@@ -49,22 +49,33 @@ public class FileResource {
             period.setGroup(group);
             period.setCounter(periodLong);
             period.setGame(game);
-            period.setXmlFile(xmlFile);
             period.setJsonFile(jsonFile);
 
             periodRepository.save(period);
 
-            kpiService.initialize(xmlFile);
-            chartService.initialize(jsonObject);
+            kpiService.initialize(jsonFile);
+            chartService.initialize(jsonFile);
+            inputService.initialize(jsonFile);
 
         } catch (Exception ex) {
             System.out.println("Error while parsing period: " + ex.getMessage());
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "games/{game}/groups/{group}/periods/{period}")
-    public String returnInputForPeriod(@PathVariable Long game, @PathVariable Long group, @PathVariable Long period) {
-        List<Period> periods = periodRepository.findByGameAndGroupAndCounter(game, group, period);
+    @RequestMapping(method = RequestMethod.GET, value = "input/periods/{period}")
+    public String returnInputForPeriod(@PathVariable Long period) {
+        List<Period> periods = periodRepository.findByCounter(period);
+
+        if (periods.size() > 1) {
+            // TODO: Throw exception
+        }
+
+        return inputService.generateInputJson(periods.get(0)).toString();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "charts/periods/{period}")
+    public String returnChartDataForPeriod(@PathVariable Long period) {
+        List<Period> periods = periodRepository.findByCounter(period);
 
         if (periods.size() > 1) {
             // TODO: Throw exception
