@@ -28,13 +28,13 @@ public class PlanningResource {
 	@ExceptionHandler({ org.springframework.http.converter.HttpMessageNotReadableException.class })
 	@RequestMapping(method = RequestMethod.POST, value = "/games/{game}/groups/{group}/periods/{counter}/plannings")
 	public String save(@PathVariable Long game, @PathVariable Long group, @PathVariable Long counter,
-			@RequestBody JSONObject jsonObject) throws NotFoundException {
+			@RequestBody String jsonObject) throws NotFoundException {
 
 		if (jsonObject == null)
 			return "error";
 
 		JsonFile jsonFile = new JsonFile();
-		jsonFile.setContent(jsonObject.toString());
+		jsonFile.setContent(jsonObject);
 
 		Planning planning = new Planning();
 		planning.setJsonFile(jsonFile);
