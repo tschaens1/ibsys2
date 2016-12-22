@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { Component, OnInit, ElementRef, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -8,7 +9,7 @@ var FileSaver = require('file-saver');
 @Injectable()
 export class PlanningService implements OnInit {
     // for ui states
-    startedPlanning: boolean;
+    startedPlanning: boolean = true;
     isLoading: boolean;
 
     // urls for upload
@@ -19,13 +20,48 @@ export class PlanningService implements OnInit {
     inputJSON: any;
     xmlDocument: any;
 
+    resultJSON: BehaviorSubject<any> = new BehaviorSubject({ id: 1 });
+
+    inputDataForSimulatorAsJSON: any = {
+        "qualitycontrol": {
+            "@": {
+                "type": "no",
+                "losequantity": 0,
+                "delay": 0,
+            },
+        },
+        "sellwish": {
+            "item": [
+                {
+                    "@": {
+                        "article": 1,
+                        "quantity": 100,
+                    }
+                },
+                {
+                    "@": {
+                        "article": 2,
+                        "quantity": 100,
+                    }
+                },
+                {
+                    "@": {
+                        "article": 3,
+                        "quantity": 100,
+                    }
+                }
+            ]
+        },
+    };
+
     constructor(
         private http: Http,
         @Inject('ApiEndpoint') private apiEndpoint
-    ) { }
+    ) {
+    }
 
     ngOnInit() {
-        this.startedPlanning = false;
+        this.startedPlanning = true;
         this.isLoading = false;
     }
 
@@ -64,7 +100,7 @@ export class PlanningService implements OnInit {
     private sendInputsToServer() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let body = JSON.stringify(this.inputJSON);
-        return this.http.post(this.inputUploadUrl, body, { headers: headers }).toPromise()
+        return this.http.post(this.inputUploadUrl, body, { headers: headers }).toPromise();
     }
 
     /**
@@ -115,10 +151,15 @@ export class PlanningService implements OnInit {
 
         // create the xml
         // slice the first 22 characters because they are like this: <?xml version='1.0'?>
-        const xml: string = js2xmlparser.parse("input", obj).slice(22);
+        const xml: string = js2xmlparser.parse("input", this.inputDataForSimulatorAsJSON).slice(22);
 
         // download the XML file
         var blob = new Blob([xml], { type: "text/plain;charset=utf-8" });
         FileSaver.saveAs(blob, `inputXML_${Date.now()}.xml`);
+    }
+
+    updateInputJSON(newData) {
+        this.inputDataForSimulatorAsJSON = { ...this.inputDataForSimulatorAsJSON, newData }
+        console.log(this.inputDataForSimulatorAsJSON);
     }
 }
