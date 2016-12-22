@@ -25,7 +25,7 @@ public class PlanningResource {
 	private IPeriodRepository periodRepository;
 
 	@ExceptionHandler({ org.springframework.http.converter.HttpMessageNotReadableException.class })
-	@RequestMapping(method = RequestMethod.POST, value = "/periods/{counter}/plannings")
+	@RequestMapping(method = RequestMethod.POST, value = "/periods/{counter}/planning")
 	public String save(@PathVariable Long counter, @RequestBody String jsonObject) throws NotFoundException {
 
 		if (jsonObject == null)

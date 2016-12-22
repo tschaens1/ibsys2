@@ -1,6 +1,5 @@
 package de.hska.filemanagement.resource;
 
-import de.hska.chartmanagement.business.ChartService;
 import de.hska.filemanagement.domain.JsonFile;
 import de.hska.filemanagement.domain.XmlFile;
 import de.hska.inputmanagement.business.InputService;
@@ -29,9 +28,6 @@ public class FileResource {
     private KpiService kpiService;
 
     @Autowired
-    private ChartService chartService;
-
-    @Autowired
     private InputService inputService;
 
     @RequestMapping(method = RequestMethod.POST, value = "result")
@@ -54,7 +50,6 @@ public class FileResource {
             periodRepository.save(period);
 
             kpiService.initialize(jsonFile);
-            chartService.initialize(jsonFile);
             inputService.initialize(jsonFile);
 
         } catch (Exception ex) {
@@ -62,19 +57,19 @@ public class FileResource {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "input/periods/{period}")
-    public String returnInputForPeriod(@PathVariable Long period) {
+    @RequestMapping(method = RequestMethod.GET, value = "periods/{period}/result")
+    public String ReturnResultsForPeriod(@PathVariable Long period) {
         List<Period> periods = periodRepository.findByCounter(period);
 
         if (periods.size() > 1) {
             // TODO: Throw exception
         }
 
-        return inputService.generateInputJson(periods.get(0)).toString();
+        return periods.get(0).getJsonFile().getContent();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "charts/periods/{period}")
-    public String returnChartDataForPeriod(@PathVariable Long period) {
+    @RequestMapping(method = RequestMethod.GET, value = "periods/{period}/input")
+    public String returnInputForPeriod(@PathVariable Long period) {
         List<Period> periods = periodRepository.findByCounter(period);
 
         if (periods.size() > 1) {
