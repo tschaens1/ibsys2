@@ -2,6 +2,7 @@ package de.hska.inputmanagement.business;
 
 import java.util.List;
 
+import de.hska.filemanagement.domain.JsonFile;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -13,11 +14,14 @@ public class InputService {
 	// TODO: Load Results.xml from database and throw if not exists
 	// TODO: Do correct calculation
 
-	public void generatePlanningJson(Period period) {
+	public void initialize(JsonFile jsonFile) {
+		generatePlanningJson(jsonFile);
+	}
 
+	private void generatePlanningJson(JsonFile jsonFile) {
 		try {
 
-			JSONObject jsonObject = new JSONObject(period.getPlanning().getJsonFile().getContent());
+			JSONObject jsonObject = new JSONObject(jsonFile.getContent());
 
 			JSONObject resultsJSON = jsonObject.getJSONObject("results");
 			int group = resultsJSON.getInt("group");
