@@ -9,8 +9,8 @@ var FileSaver = require('file-saver');
 @Injectable()
 export class PlanningService implements OnInit {
     // for ui states
-    startedPlanning: boolean = true;
-    isLoading: boolean;
+    startedPlanning: boolean;
+    isLoading: boolean = true;
 
     // urls for upload
     xmlUploadUrl: string;
@@ -61,8 +61,8 @@ export class PlanningService implements OnInit {
     }
 
     ngOnInit() {
-        this.startedPlanning = true;
-        this.isLoading = false;
+        this.startedPlanning = false;
+        this.isLoading = true;
     }
 
     /**
@@ -88,10 +88,15 @@ export class PlanningService implements OnInit {
         this.inputUploadUrl = this.apiEndpoint + `/api/rest/games/${1}/groups/${6}/periods/${this.inputJSON.results.period}/plannings`;
 
         // send data to the server
-        return this.sendXMLToServer()
-            .then(() => {
-                return this.sendInputsToServer();
-            });
+        this.sendXMLToServer().catch(err => console.error(err));
+        this.sendInputsToServer().catch(err => console.error(err));
+
+        return new Promise(resolve => {
+            setTimeout(() => {
+                console.log('get results from server...');
+                resolve();
+            }, 5000);
+        });
     }
     /**
      * Send the input data to server. The input data is required
