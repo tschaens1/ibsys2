@@ -386,4 +386,13 @@ export class PlanningOverviewComponent implements OnInit {
     openHelp(key: string) {
         this.modal.openModal(this.translationService.instant(key), this.translationService.instant('modal.title.help'));
     }
+
+    reallyCancelLoading: boolean = false;
+
+    cancelLoading() {
+        this.modal.openModal('Do you really want to cancel the calculation?', 'Abort calculation', true, () => {
+            this.planningService.isLoading = false;
+            this.router.navigate(['/app/planning']);
+        });
+    }
 }

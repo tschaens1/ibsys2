@@ -1,3 +1,6 @@
+@import '../../styles/colors';
+@import '../../styles/breakpoints';
+
 .button-group {
     float: right;
 }
@@ -23,13 +26,110 @@ td:first-child{
 
 .loading {
     position: absolute;
-    top: 0;
+    top: -83px;
     left: 0;
-    text-align: center;
-    line-height: 3rem;
+    text-align: center;    
+    color: $primary-theme;
     bottom: 0;
     right: 0;
-    width: 100%;
-    height: 5rem;
+    width: 30%;
+    height: 0rem;
     margin: auto;
+
+    .loadingText {
+        margin-top: 4rem;        
+    }
+
+    .cancelLoadingButton {        
+        padding: .5rem 1rem .5rem 1rem;
+        width: 7rem;
+        position: absolute;
+        background-color: $light-gray;
+        left: 0;
+        right: 0;
+        cursor: pointer;        
+        top: 0;
+        margin: 9rem auto;
+        color: $gray;
+        transition: all ease .5s;
+
+        &:hover{
+            background-color: $white;
+            color: $primary-theme;
+        }
+    }
+}
+
+.progress{
+    background-color: $gray;
+
+    .indeterminate{
+        background-color: $primary-theme;
+    }
+}
+
+.loader {
+  position: absolute;
+  top: calc(50% - 32px);
+  left: calc(50% - 32px);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  perspective: 800px;
+}
+
+.inner {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;  
+}
+
+.inner.one {
+  left: 0%;
+  top: 0%;
+  animation: rotate-one 1s linear infinite;
+  border-bottom: 3px solid $primary-theme;
+}
+
+.inner.two {
+  right: 0%;
+  top: 0%;
+  animation: rotate-two 1s linear infinite;
+  border-right: 3px solid $primary-theme;
+}
+
+.inner.three {
+  right: 0%;
+  bottom: 0%;
+  animation: rotate-three 1s linear infinite;
+  border-top: 3px solid $primary-theme;
+}
+
+@keyframes rotate-one {
+  0% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-two {
+  0% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-three {
+  0% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+  }
 }
