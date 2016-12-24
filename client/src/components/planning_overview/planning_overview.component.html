@@ -206,18 +206,31 @@
 	</div>
 </div>
 
-<div class="loading" *ngIf="planningService.isLoading">
+<div class="loading animated fadeIn" *ngIf="planningService.isLoading">
 	<div class="loadingText">
 		{{'planning_overview.server_is_calculating'|translate}}
 	</div>
 	<div class="cancelLoadingButton" (click)="cancelLoading()">Cancel</div>
-	<!--<div class="progress">
-		<div class="indeterminate"></div>
-	</div>-->
-	<div class="loader">
+	<div class="spinner">
+		<div class="preloader-wrapper small active">
+			<div class="spinner-layer spinner-blue-only">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div>
+				<div class="gap-patch">
+					<div class="circle"></div>
+				</div>
+				<div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>		
+	</div>
+</div>
+<!--<div class="loader">
 		<div class="inner one"></div>
 		<div class="inner two"></div>
 		<div class="inner three"></div>
-	</div>
+	</div>-->
 
-</div>
+<!--</div>-->

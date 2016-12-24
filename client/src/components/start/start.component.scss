@@ -19,6 +19,9 @@ $ease-speed: .2s;
     line-height: 3rem;
     transition: left 0s ease-in-out;
     z-index: 100;
+    -webkit-box-shadow: -4px -3px 11px 0px rgba(109, 109, 109, 0.75);
+    -moz-box-shadow: -4px -3px 11px 0px rgba(109, 109, 109, 0.75);
+    box-shadow: -4px -3px 11px 0px rgba(109, 109, 109, 0.75);
 
     @include breakpoint(tablet){
         left: $small-sidenav-width; 
