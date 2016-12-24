@@ -10,7 +10,7 @@ var FileSaver = require('file-saver');
 export class PlanningService implements OnInit {
     // for ui states
     startedPlanning: boolean;
-    isLoading: boolean = true;
+    isLoading: boolean;
 
     // urls for upload
     xmlUploadUrl: string;
@@ -62,7 +62,7 @@ export class PlanningService implements OnInit {
 
     ngOnInit() {
         this.startedPlanning = false;
-        this.isLoading = true;
+        this.isLoading = false;
     }
 
     /**
