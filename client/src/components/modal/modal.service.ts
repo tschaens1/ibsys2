@@ -16,7 +16,7 @@ export class ModalService {
         this.currentTitle = title || 'Info';
         this.currentText = text;
         this.locked = locked || false;
-        this.callback = Function || undefined;
+        this.callback = callback || undefined;
     }
 
     getLocked() {
@@ -27,7 +27,7 @@ export class ModalService {
         this.show = false;
     }
 
-    runCallback() {
+    runCallback() {        
         if (this.callback) this.callback();
     }
 }
