@@ -175,7 +175,7 @@ export class PlanningService implements OnInit {
                 setTimeout(() => {
                     console.log('get results from server...');
                     resolve();
-                }, 5000);
+                }, 1000);
             }).catch(err => {
                 reject(err);
             })

@@ -58,6 +58,11 @@ export const LANG_DE_TRANSLATIONS = {
             "quantity": "Menge",
             "workstations": "Arbeitsplätze",
         },
+        "addArticle": {
+            "title": "Artikel hinzufügen",
+            "help": "Geben Sie eine valide ID in das Eingabefeld ein und drücken Sie auf 'hinzufügen' um die Produktion weiter aufzuteilen. Folgende IDs können Sie einsetzen: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 49, 54, 29, 50, 55, 30, 51, 56, 31, 1, 2, 3]",
+            "addButton": "Hinzufügen",
+        },
     },
     "planning_production": {
         "title": "Prouktionsplanung",
