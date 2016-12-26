@@ -352,20 +352,20 @@ export class PlanningOverviewComponent implements OnInit {
                         {
                             "article": "1",
                             "quantity": this.selldirect_quantity_p1 || 0,
-                            "price": this.selldirect_price_p1 || 0,
-                            "penalty": this.selldirect_penalty_p1 || 0,
+                            "price": this.selldirect_price_p1 || "0.0",
+                            "penalty": this.selldirect_penalty_p1 || "0.0",
                         },
                         {
                             "article": "2",
                             "quantity": this.selldirect_quantity_p2 || 0,
-                            "price": this.selldirect_price_p2 || 0,
-                            "penalty": this.selldirect_penalty_p2 || 0,
+                            "price": this.selldirect_price_p2 || "0.0",
+                            "penalty": this.selldirect_penalty_p2 || "0.0",
                         },
                         {
                             "article": "3",
                             "quantity": this.selldirect_quantity_p3 || 0,
-                            "price": this.selldirect_price_p3 || 0,
-                            "penalty": this.selldirect_penalty_p3 || 0,
+                            "price": this.selldirect_price_p3 || "0.0",
+                            "penalty": this.selldirect_penalty_p3 || "0.0",
                         }
                     ]
                 },
@@ -392,7 +392,7 @@ export class PlanningOverviewComponent implements OnInit {
 
     openHelp(key: string) {
         this.modal.openModal(this.translationService.instant(key), this.translationService.instant('modal.title.help'));
-    }    
+    }
 
     cancelLoading() {
         this.modal.openModal(this.translationService.instant('planning_overview.modals.cancelCalculation.text'), this.translationService.instant('planning_overview.modals.cancelCalculation.title'), false, () => {
