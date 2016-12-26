@@ -135,6 +135,14 @@ export const LANG_DE_TRANSLATIONS = {
         },
 
         modals: {
+            "cancelCalculation": {
+                "title": "Kalkulation abbrechen",
+                "text": "Möchten Sie die Kalkulation der Eingaben wirklich abbrechen?"
+            },
+            "cancelPreparation": {
+                "title": "Planung beenden",
+                "text": "Möchten Sie diese Planung wirklich abbrechen? Einige Eingaben wurden zwischengespeichert, andere müssen neu eingegeben werden."
+            },
             "period": "Geben Sie hier die Nummer der Periode ein, die Sie planen möchten.",
             "xml": "Laden Sie hier das Ergebnis XML der vergangenen Periode hoch.",
             "sellwish": "Der Vertriebswunsch gibt an, wie viele Produkte in der kommenden Periode verkauft werden sollen. Prognosen können sich noch ändern.",
@@ -169,6 +177,12 @@ export const LANG_DE_TRANSLATIONS = {
         "workplace": "Arbeitsplatz",
         "workshift": "Schichten",
         "overtime": "Überstunden",
+    },
+    "planning": {
+        "modals": {
+            "exitPlanningText": "Wollen Sie die Planung wirklich beenden? Alle Eingaben werden zurückgesetzt und müssen erneut eingegeben werden.",
+            "exitPlanningTitle": "Planung beenden",
+        }
     },
     "pagenotfound": {
         "title": "404 Error",
