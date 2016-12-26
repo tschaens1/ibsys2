@@ -8,11 +8,12 @@ import { Component } from '@angular/core';
 })
 export class PlanningProductionComponent {
     resultsJSON: any;
+    inputJSON: any;
     constructor(private planningService: PlanningService) { }
 
     ngOnInit(): void {
-        console.log(this.planningService.inputDataForSimulatorAsJSON);
         this.resultsJSON = this.planningService.inputDataForSimulatorAsJSON;
+        this.inputJSON = this.planningService.inputJSON;
     }
 
     onChange(input: HTMLInputElement) {

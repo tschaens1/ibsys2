@@ -9,40 +9,36 @@
 						<th data-field="ForecastOne">{{'planning_production.table.header_forecast_one' | translate}}</th>
 						<th data-field="ForecastTwo">{{'planning_production.table.header_forecast_two' | translate}}</th>
 						<th data-field="ForecastThree">{{'planning_production.table.header_forecast_three' | translate}}</th>
-						<th data-field="Poduce">{{'planning_production.table.header_produce' | translate}}</th>
 						<th data-field="WarehouseStock">{{'planning_production.table.header_warehouseStock' | translate}}</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>P1</td>
-						<td id="binding_P1"></td>
-						<td id="forecast_P1_one"></td>
-						<td id="forecast_P1_two"></td>
-						<td id="forecast_P1_three"></td>
-						<!--<td><input placeholder="P1" id="produce_P1" type="text" class="validate" [(ngModel)]="this.planningService.inputDataForSimulatorAsJSON.sellwish.item[0]['@'].quantity"></td>-->
+						<td id="binding_P1">{{inputJSON.input.sellwish.items[0].quantity}}</td>
+						<td id="forecast_P1_one">{{inputJSON.input.forcasts.forecast_one.items[0].quantity}}</td>
+						<td id="forecast_P1_two">{{inputJSON.input.forcasts.forecast_two.items[0].quantity}}</td>
+						<td id="forecast_P1_three">{{inputJSON.input.forcasts.forecast_three.items[0].quantity}}</td>
 						<td id="expected_warehouse_stock_P1"></td>
 					</tr>
 					<tr>
 						<td>P2</td>
-						<td id="binding_P2"></td>
-						<td id="forecast_P2_one"></td>
-						<td id="forecast_P2_two"></td>
-						<td id="forecast_P2_three"></td>
-						<td><input placeholder="P2" id="first_name" type="text" class="validate"></td>
+						<td id="binding_P2">{{inputJSON.input.sellwish.items[1].quantity}}</td>
+						<td id="forecast_P2_one">{{inputJSON.input.forcasts.forecast_one.items[1].quantity}}</td>
+						<td id="forecast_P2_two">{{inputJSON.input.forcasts.forecast_two.items[1].quantity}}</td>
+						<td id="forecast_P2_three">{{inputJSON.input.forcasts.forecast_three.items[1].quantity}}</td>
 						<td id="expected_warehouse_stock_P2"></td>
 					</tr>
 					<tr>
 						<td>P3</td>
-						<td id="binding_P3"></td>
-						<td id="forecast_P3_one"></td>
-						<td id="forecast_P3_two"></td>
-						<td id="forecast_P3_three"></td>
-						<td><input placeholder="P3" id="first_name" type="text" class="validate"></td>
+						<td id="binding_P3">{{inputJSON.input.sellwish.items[2].quantity}}</td>
+						<td id="forecast_P3_one">{{inputJSON.input.forcasts.forecast_one.items[2].quantity}}</td>
+						<td id="forecast_P3_two">{{inputJSON.input.forcasts.forecast_two.items[2].quantity}}</td>
+						<td id="forecast_P3_three">{{inputJSON.input.forcasts.forecast_three.items[2].quantity}}</td>
 						<td id="expected_warehouse_stock_P3"></td>
 					</tr>
 				</tbody>
-			</table>
+			</table>			
 		</div>
 	</div>
 </div>
