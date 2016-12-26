@@ -49,6 +49,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { MaterialModule } from '@angular/material';
 import { ChartModule } from 'angular2-highcharts';
 
+import { DragulaModule, DragulaService } from 'ng2-dragula';
+
 import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'angular2-perfect-scrollbar';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -70,6 +72,7 @@ let toastOptions: ToastOptions = new ToastOptions({
     ChartsModule,
     ChartModule,
     NouisliderModule,
+    DragulaModule,
     ToastModule.forRoot(toastOptions),
     MaterialModule.forRoot(),
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
@@ -109,6 +112,7 @@ let toastOptions: ToastOptions = new ToastOptions({
     UploadService,
     ArticleService,
     PlanningService,
+    DragulaService,
     ModalService,
     TRANSLATION_PROVIDERS,
     TranslationService,
