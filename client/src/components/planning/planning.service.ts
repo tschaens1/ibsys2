@@ -207,12 +207,20 @@ export class PlanningService implements OnInit {
     generateInputXMLForSimulator() {
         // create the xml
         // slice the first 22 characters because they are like this: <?xml version='1.0'?>
-        console.info(this.inputDataForSimulatorAsJSON);
-        const xml: string = js2xmlparser.parse("input", this.inputDataForSimulatorAsJSON).slice(22);
+        return new Promise((resolve, reject) => {
+            try {
+                console.info(this.inputDataForSimulatorAsJSON);
+                const xml: string = js2xmlparser.parse("input", this.inputDataForSimulatorAsJSON).slice(22);
 
-        // download the XML file
-        var blob = new Blob([xml], { type: "text/plain;charset=utf-8" });
-        FileSaver.saveAs(blob, `inputXML_${Date.now()}.xml`);
+                // download the XML file
+                var blob = new Blob([xml], { type: "text/plain;charset=utf-8" });
+                FileSaver.saveAs(blob, `inputXML_${Date.now()}.xml`);
+                throw Error('wrong XML');
+            } catch (err) {
+                reject(err);
+            }
+            resolve();
+        });
     }
 
     updateInputJSON(newData) {

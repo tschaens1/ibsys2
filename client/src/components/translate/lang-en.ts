@@ -191,7 +191,11 @@ export const LANG_EN_TRANSLATIONS = {
         "modals": {
             "exitPlanningText": "Do you really want to exit the planning? All inputs will be removed and you'll have to start a new planning SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION.",
             "exitPlanningTitle": "Quit planning",
-        }
+        },
+        "toasts": {
+            "savedXMLSuccessfully": "Saved XML successfully!",
+            "errorWhileSavingXML": "Error while saving XML",
+        },
     },
     "pagenotfound": {
         "title": "404 Error",

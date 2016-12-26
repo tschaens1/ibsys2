@@ -198,7 +198,11 @@ export const LANG_DE_TRANSLATIONS = {
         "modals": {
             "exitPlanningText": "Wollen Sie die Planung wirklich beenden? Alle Eingaben werden zurückgesetzt und müssen erneut eingegeben werden.",
             "exitPlanningTitle": "Planung beenden",
-        }
+        },
+        "toasts": {
+            "savedXMLSuccessfully": "XML gespeichert!",
+            "errorWhileSavingXML": "Fehler beim Speichern",
+        },
     },
     "pagenotfound": {
         "title": "404 Error",
