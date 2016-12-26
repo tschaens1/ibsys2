@@ -108,7 +108,7 @@ export class PlanningService implements OnInit {
                 "@": {
                     "article": i,
                     "quantity": 0,
-                    "modus": 4,
+                    "modus": 5,
                 }
             }
         });

@@ -5,61 +5,17 @@
 				<thead>
 					<tr>
 						<th data-field="workstation_number">{{'planning_capacity.table.workstation_number'|translate}}</th>
-						<th data-field="workload">{{'planning_capacity.table.workload'|translate}}</th>
-						<th data-field="capacity_requirements">{{'planning_capacity.table.capacity_requirements'|translate}}</th>
+						<!--<th data-field="workload">{{'planning_capacity.table.workload'|translate}}</th>
+						<th data-field="capacity_requirements">{{'planning_capacity.table.capacity_requirements'|translate}}</th>-->
 						<th data-field="shift">{{'planning_capacity.table.shift'|translate}}</th>
-						<th data-field="overtime">{{'planning_capacity.table.overtime'|translate}}</th>						
+						<th data-field="overtime">{{'planning_capacity.table.overtime'|translate}}</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>70%</td>
-						<td>1400</td>
-						<td><input type="text" class="validate"></td>
-						<td><input type="text" class="validate"></td>						
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>70%</td>
-						<td>1400</td>
-						<td><input type="text" class="validate"></td>
-						<td><input type="text" class="validate"></td>						
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>70%</td>
-						<td>1400</td>
-						<td><input type="text" class="validate"></td>
-						<td><input type="text" class="validate"></td>						
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>70%</td>
-						<td>1400</td>
-						<td><input type="text" class="validate"></td>
-						<td><input type="text" class="validate"></td>						
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>70%</td>
-						<td>1400</td>
-						<td><input type="text" class="validate"></td>
-						<td><input type="text" class="validate"></td>						
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>70%</td>
-						<td>1400</td>
-						<td><input type="text" class="validate"></td>
-						<td><input type="text" class="validate"></td>						
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>70%</td>
-						<td>1400</td>
-						<td><input type="text" class="validate"></td>
-						<td><input type="text" class="validate"></td>						
+					<tr *ngFor="let workplace of workplaces">
+						<td>{{workplace['@'].station}}</td>
+						<td><input type="text" [(ngModel)]="workplace['@'].shift"></td>
+						<td><input type="text" [(ngModel)]="workplace['@'].overtime"></td>
 					</tr>
 				</tbody>
 			</table>

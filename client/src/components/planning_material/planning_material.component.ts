@@ -16,8 +16,7 @@ import * as _ from 'lodash';
 })
 export class PlanningMaterialComponent implements OnInit {
     parts: any[];
-    data: Part[];
-    isDragging: boolean = false;
+    data: Part[];    
 
     constructor(
         private planningService: PlanningService,
@@ -31,16 +30,6 @@ export class PlanningMaterialComponent implements OnInit {
     ngOnInit(): void {
         this.parts = this.planningService.inputDataForSimulatorAsJSON.productionlist.production;
         this.data = this.translationService.currentLanguage === 'de' ? basic_claims_data_DE : basic_claims_data_EN;
-
-        this.dragulaService.drag.subscribe(() => {
-            this.isDragging = true;
-            console.log(this.isDragging);
-        });
-
-        this.dragulaService.dragend.subscribe(() => {
-            this.isDragging = false;
-            console.log(this.isDragging);
-        });
     }
 
     getPartInformation(id: string) {

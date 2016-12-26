@@ -56,6 +56,7 @@ export const LANG_EN_TRANSLATIONS = {
         "container": {
             "article": "Article",
             "description": "Description",
+            "usage": "Usage",
             "quantity": "Quantity",
             "workstations": "Workstations",
         },
