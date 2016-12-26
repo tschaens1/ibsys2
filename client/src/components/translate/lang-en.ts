@@ -1,3 +1,4 @@
+import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
 export const LANG_EN_NAME = 'en';
 
 export const LANG_EN_TRANSLATIONS = {
@@ -169,6 +170,12 @@ export const LANG_EN_TRANSLATIONS = {
         "workplace": "Workplace",
         "workshift": "Workshifts",
         "overtime": "Overtime",
+    },
+    "planning": {
+        "modals": {
+            "exitPlanningText": "Do you really want to exit the planning? All inputs will be removed and you'll have to start a new planning SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION.",
+            "exitPlanningTitle": "Quit planning",
+        }
     },
     "pagenotfound": {
         "title": "404 Error",

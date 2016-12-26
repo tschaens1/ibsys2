@@ -376,6 +376,13 @@ export class PlanningOverviewComponent implements OnInit {
         }
     }
 
+    cancelPlanningPreparation() {
+        this.modal.openModal(this.translationService.instant('planning_overview.modals.cancelPreparation.text'), this.translationService.instant('planning_overview.modals.cancelPreparation.title'), false, () => {
+            this.planningService.isLoading = false;
+            this.router.navigate(['/app']);
+        });
+    }
+
     // if the slider changes
     onChangeDefaultSafetyStock(e) {
         this.safetyStock.map(part => {
@@ -390,7 +397,7 @@ export class PlanningOverviewComponent implements OnInit {
     reallyCancelLoading: boolean = false;
 
     cancelLoading() {
-        this.modal.openModal('Do you really want to cancel the calculation?', 'Abort calculation', true, () => {
+        this.modal.openModal(this.translationService.instant('planning_overview.modals.cancenCalculation.text'), this.translationService.instant('planning_overview.modals.cancenCalculation.title'), false, () => {
             this.planningService.isLoading = false;
             this.router.navigate(['/app/planning']);
         });

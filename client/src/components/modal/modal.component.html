@@ -3,11 +3,11 @@
         <div class="title">{{this.modalService.currentTitle}}</div>
         <div class="text">{{this.modalService.currentText}}</div>
         <div class="closeButton" (click)="cancelModal()"><i class="mdi mdi-close"></i></div>
-        <div class="buttons" *ngIf="this.modalService.locked">
+        <div class="buttons" *ngIf="this.modalService.callback">
             <div class="button waves-effect waves-light" (click)="confirm()">{{'modal.confirm'|translate}}</div>
             <div class="button waves-effect waves-light" (click)="cancelModal()">{{'modal.cancel'|translate}}</div>
         </div>
-        <div class="buttons" *ngIf="!this.modalService.locked">
+        <div class="buttons" *ngIf="!this.modalService.callback">
             <div class="button waves-effect waves-light" (click)="cancelModal()">{{'modal.close'|translate}}</div>
         </div>
     </div>

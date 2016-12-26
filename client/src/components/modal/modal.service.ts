@@ -11,6 +11,17 @@ export class ModalService {
 
     constructor(private translate: TranslationService) { }
 
+    /**
+     * Open a modal.
+     * 
+     * @param {string} text The text inside the modal. 
+     * This text should contain the information or the message for the user.
+     * @param {string} title The title of the modal.
+     * @param {boolean} locked The locked attribute provides the possibility to force 
+     * the user to click the close button and not the dimmer in the background to hide the modal.
+     * @param {Function} callback This callback will be performed when the user confirmed the modal.
+     * If the user presses the 'cancel'-button the callback will not be called.
+     */
     openModal(text: string, title?: string, locked?: boolean, callback?: Function) {
         this.show = true;
         this.currentTitle = title || 'Info';
