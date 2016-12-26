@@ -52,13 +52,11 @@ export const LANG_DE_TRANSLATIONS = {
     "planning_material": {
         "title": "Materialplanung",
         "description": "Auf dieser Seite wird die Produktion geplant.",
-        "table": {
-            "header_bindingOrders": "Verbindliche Aufträge",
-            "header_warehouseStockEnd": "Lagerbestand am Ende der Periode",
-            "header_warehouseStockBeginning": "Lagerbestand zu Beginn der Periode",
-            "header_tasksQueue": "Aufträge in Warteschlange",
-            "header_tasksProgress": "Aufträge in Bearbeitung",
-            "header_productionOrders": "Produktionsaufträge",
+        "container": {
+            "article": "Artikel",
+            "description": "Beschreibung",
+            "quantity": "Menge",
+            "workstations": "Arbeitsplätze",
         },
     },
     "planning_production": {

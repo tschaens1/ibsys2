@@ -27,15 +27,7 @@ export class PartsComponent {
             if (value === undefined || value === null) return;
             this.searchTerm = value;
             this.onSearchKeyUp();
-        })
-
-        // sample requests to server [TODO: PLEASE DELETE THIS LATER!!!!!]
-        // this.articleService.addArticle({ id: 5, amount: 100, startamount: 100, percentage: 0.9, price: 12.50 }).then(response => {
-        //     console.log(response);
-        // })
-        // this.articleService.getArticles().then(response => {
-        //     console.log(response);
-        // })
+        });
     }
 
     onSearchKeyUp() {

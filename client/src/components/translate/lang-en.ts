@@ -53,13 +53,11 @@ export const LANG_EN_TRANSLATIONS = {
     "planning_material": {
         "title": "Material program",
         "description": "On this page you can plan the production.",
-        "table": {
-            "header_bindingOrders": "Binding orders",
-            "header_warehouseStockEnd": "Warehouse stock at the end of the period",
-            "header_warehouseStockBeginning": "Warehouse stock at the beginning of the period",
-            "header_tasksQueue": "Tasks in queue",
-            "header_tasksProgress": "Task in Progross",
-            "header_productionOrders": "Production orders",
+        "container": {
+            "article": "Article",
+            "description": "Description",
+            "quantity": "Quantity",
+            "workstations": "Workstations",
         },
     },
     "planning_production": {
