@@ -34,5 +34,16 @@
 				</div>
 			</div>
 		</div>
+		<div class="row page-part add-article">
+			<h4>{{'planning_material.addArticle.title'|translate}}
+				<a class="help-button" (click)="openHelp('planning_material.addArticle.help')"><i class="mdi mdi-help-circle"></i></a>
+			</h4>
+			<div class="col s3">
+				<input type="text" placeholder="ID" #id>
+			</div>
+			<div class="col s3">
+				<a class="waves-effect waves-light btn" (click)="addPart(id)">{{'planning_material.addArticle.addButton'|translate}}</a>
+			</div>
+		</div>
 	</div>
 </div>

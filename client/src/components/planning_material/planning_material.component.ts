@@ -1,3 +1,5 @@
+import { ToastsManager } from 'ng2-toastr';
+import { ModalService } from '../modal/modal.service';
 import { Part } from '../parts/part.interface';
 import { TranslationService } from '../translate/translate.service';
 import { PlanningService } from '../planning/planning.service';
@@ -21,6 +23,8 @@ export class PlanningMaterialComponent implements OnInit {
         private planningService: PlanningService,
         private dragulaService: DragulaService,
         private translationService: TranslationService,
+        private toastr: ToastsManager,
+        private modal: ModalService,
     ) {
     }
 
@@ -60,5 +64,26 @@ export class PlanningMaterialComponent implements OnInit {
         }
 
         return idsOfWorkStations;
+    }
+
+    addPart(id: HTMLInputElement) {
+        let articleId = id.value;
+        if (this.planningService.productionlist.filter((p: number) => p.toString() === articleId).length === 0) {
+            this.toastr.error('Invalid article id');
+            return;
+        }
+        this.planningService.inputDataForSimulatorAsJSON.productionlist.production.push(
+            {
+                "@": {
+                    "article": articleId,
+                    "quantity": 0,
+                }
+            }
+        );
+        id.value = '';
+    }
+
+    openHelp(key: string) {
+        this.modal.openModal(this.translationService.instant(key), this.translationService.instant('modal.title.help'));
     }
 }
