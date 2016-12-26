@@ -27,6 +27,11 @@ select {
                 color: $primary-theme;
                 font-size: .8rem;
             }
+            .detail {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
 
             input{
                 height: 2rem;

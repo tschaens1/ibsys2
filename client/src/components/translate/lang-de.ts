@@ -55,6 +55,7 @@ export const LANG_DE_TRANSLATIONS = {
         "container": {
             "article": "Artikel",
             "description": "Beschreibung",
+            "usage": "Verwendung",
             "quantity": "Menge",
             "workstations": "Arbeitsplätze",
         },
@@ -84,7 +85,7 @@ export const LANG_DE_TRANSLATIONS = {
             "workload": "Auslastung",
             "capacity_requirements": "Kapazitätsbedarf",
             "shift": "Schichten",
-            "overtime": "Überstunden"
+            "overtime": "Mehrarbeit [min/Tag]"
         },
     },
     "planning_overview": {
@@ -157,13 +158,18 @@ export const LANG_DE_TRANSLATIONS = {
     "planning_purchasing": {
         "title": "Kaufteildisposition",
         "description": "Auf dieser Seite können Sie die Kaufteile disponieren.",
-        "table": {
-            "purchase_part": "Kaufteil",
-            "delivery_time": "Lieferfrist",
-            "deviation": "Abweichung",
-            "discount_quantity": "Diskontmenge",
-            "stock_last_period": "Lagerbestand letzte Periode",
-            "order_quantity": "Bestellmenge",
+        "container": {
+            "article": "Artikel",
+            "description": "Beschreibung",
+            "usage": "Verwendung",
+            "quantity": "Menge",
+            "modus": "Modus",
+            "workstations": "Arbeitsplätze",
+        },
+        "addArticle": {
+            "title": "Artikel hinzufügen",
+            "help": "Geben Sie eine valide ID in das Eingabefeld ein und drücken Sie auf 'hinzufügen'. Folgende IDs können Sie einsetzen: [22, 23, 24, 25, 27, 32, 34, 36, 37, 38, 39, 40, 41, 42, 44, 46, 47, 48, 52, 53, 57, 58, 59]",
+            "addButton": "Hinzufügen",
         },
     },
     "planning_inserts": {
@@ -179,7 +185,7 @@ export const LANG_DE_TRANSLATIONS = {
         "orderType": "Bestellart",
         "workplace": "Arbeitsplatz",
         "workshift": "Schichten",
-        "overtime": "Überstunden",
+        "overtime": "Mehrarbeit",
     },
     "planning": {
         "modals": {

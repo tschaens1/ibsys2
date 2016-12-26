@@ -9,14 +9,18 @@
 								<div class="title">{{'planning_material.container.article'|translate}}</div>
 								<div class="detail">{{item['@'].article}}</div>
 							</div>
-							<div class="col s6 m3">
+							<div class="col s6 m2">
 								<div class="title">{{'planning_material.container.description'|translate}}</div>
 								<div class="detail">{{getPartInformation(item['@'].article).Description}}</div>
 							</div>
-							<div class="col s4 m3">
+							<div class="col s6 m2">
+								<div class="title">{{'planning_material.container.usage'|translate}}</div>
+								<div class="detail">{{getPartInformation(item['@'].article).Usage}}</div>
+							</div>
+							<div class="col s4 m2">
 								<div class="title">{{'planning_material.container.quantity'|translate}}</div>
 								<div class="detail">
-									<input type="text" [(ngModel)]="item['@'].quantity" placeholder="item['@'].article">
+									<input type="text" [(ngModel)]="item['@'].quantity">
 								</div>
 							</div>
 							<div class="col s6 m5">

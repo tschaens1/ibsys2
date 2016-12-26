@@ -1,0 +1,94 @@
+@import '../../styles/colors';
+@import '../../styles/breakpoints';
+
+select {
+    display: block;
+    width: 30rem;
+}
+
+.wrapper {
+    .container {
+        width: 100% !important;        
+
+        .production-item {
+            width: 100%;
+            float: left;
+            cursor: move;
+            border: 1px solid $primary-theme;
+            background-color: $light-white;
+            margin: .2rem 0 .2rem 0;
+            padding: .5rem;
+
+            .row {
+                margin-bottom: 0 !important; 
+            }
+
+            .title {
+                color: $primary-theme;
+                font-size: .8rem;
+            }
+
+            .detail {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }            
+
+            input{
+                height: 2rem;
+                padding: 0;
+                margin: 0;
+                margin-bottom: .5rem;
+            }
+
+            ul {
+                padding: 0;
+                margin: 0;
+                margin-bottom: 0rem;
+            }
+
+            .workstation {
+                position: relative;
+                float: left;
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+                margin-top: .4rem;
+                margin-right: 1rem;
+                background-color: $gray;            
+                color: $white;
+                line-height: 1.9rem;
+                text-align: center;
+
+                &:after{
+                    position: absolute;
+                    width: 2rem;
+                    height: .1rem;
+                    margin-top: .9rem;
+                    background-color: $gray;
+                    content: '';
+                }
+            }
+
+            .workstation:last-child:after{
+                display: none;
+            }
+        }
+    }
+}
+.add-article{
+    input[type="text"] {
+        margin-top: -1rem;
+    }
+}
+
+select {
+    background-color: rgba(255, 255, 255, 0.9);    
+    padding: 7px;
+    width: initial;
+    font-size: .8rem;
+    color: #717171;
+    border: 1px solid #f2f2f2;
+    border-radius: 2px;
+    height: initial;
+}
