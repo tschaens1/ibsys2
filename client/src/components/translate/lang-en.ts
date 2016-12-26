@@ -60,6 +60,11 @@ export const LANG_EN_TRANSLATIONS = {
             "quantity": "Quantity",
             "workstations": "Workstations",
         },
+        "addArticle": {
+            "title": "Add article",
+            "help": "Enter a valid id for the production article. The following IDs can be inserted: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 49, 54, 29, 50, 55, 30, 51, 56, 31, 1, 2, 3]",
+            "addButton": "Add",
+        },
     },
     "planning_production": {
         "title": "Production program",
@@ -136,13 +141,25 @@ export const LANG_EN_TRANSLATIONS = {
     "planning_purchasing": {
         "title": "Purchase part disposition",
         "description": "On this page you can dispose the purchase parts.",
-        "table": {
-            "purchase_part": "Purchased item",
-            "delivery_time": "Delivery time",
-            "deviation": "Deviation",
-            "discount_quantity": "Discount quantity",
-            "stock_last_period": "Warehouse stock at the End of the period",
-            "order_quantity": "Order quantity",
+        "container": {
+            "article": "Article",
+            "description": "Description",
+            "usage": "Usage",
+            "quantity": "Quantity",
+            "modus": "Modus",
+            "workstations": "Workstations",
+            "selectModus": {
+                "normal": "Normal",
+                "fast": "Fast",
+                "jit": "JIT",
+                "cheap_vendor": "Cheap order",
+                "special_order": "Special order",
+            }
+        },
+        "addArticle": {
+            "title": "Add article",
+            "help": "Enter a valid id for the production article. The following IDs can be inserted: [22, 23, 24, 25, 27, 32, 34, 36, 37, 38, 39, 40, 41, 42, 44, 46, 47, 48, 52, 53, 57, 58, 59]",
+            "addButton": "Add",
         },
     },
     "planning_capacity": {
