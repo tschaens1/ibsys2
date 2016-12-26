@@ -27,8 +27,11 @@
 								<div class="title">{{'planning_purchasing.container.modus'|translate}}</div>
 								<div class="detail">
 									<select [(ngModel)]="item['@'].modus">
-										<option value="5">Normal</option>
-										<option value="4">Eil</option>										
+										<option value="5">{{'planning_purchasing.container.selectModus.normal'|translate}}</option>
+										<option value="4">{{'planning_purchasing.container.selectModus.fast'|translate}}</option>
+										<option value="3">{{'planning_purchasing.container.selectModus.jit'|translate}}</option>
+										<option value="2">{{'planning_purchasing.container.selectModus.cheap_vendor'|translate}}</option>
+										<option value="1">{{'planning_purchasing.container.selectModus.special_order'|translate}}</option>
 									</select>
 								</div>
 							</div>

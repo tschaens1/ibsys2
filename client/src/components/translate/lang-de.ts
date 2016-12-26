@@ -165,6 +165,13 @@ export const LANG_DE_TRANSLATIONS = {
             "quantity": "Menge",
             "modus": "Modus",
             "workstations": "Arbeitsplätze",
+            "selectModus": {
+                "normal": "Normal",
+                "fast": "Eil",
+                "jit": "JIT",
+                "cheap_vendor": "Billiganbieter",
+                "special_order": "Sonderbestellung",
+            }
         },
         "addArticle": {
             "title": "Artikel hinzufügen",
