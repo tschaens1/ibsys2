@@ -1,10 +1,10 @@
 <div class="app-page animated fadeIn">
 	<div class="page-content">
 		<div class="row page-part">
-			<div>
-				<div class='wrapper'>
-					<div class='container' [dragula]='"material-bag"' [dragulaModel]='parts'>
-						<div class="purchase-item" *ngFor='let item of parts'>
+			<div class='wrapper'>
+				<div class='container' [dragula]='"material-bag"' [dragulaModel]='parts'>
+					<div class="production-item" *ngFor='let item of parts'>
+						<div class="row">
 							<div class="col s2 m1">
 								<div class="title">{{'planning_material.container.article'|translate}}</div>
 								<div class="detail">{{item['@'].article}}</div>
