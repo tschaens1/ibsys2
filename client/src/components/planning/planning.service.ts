@@ -20,8 +20,7 @@ export class PlanningService implements OnInit {
     inputJSON: any;
     xmlDocument: any;
 
-    resultJSON: BehaviorSubject<any> = new BehaviorSubject({ id: 1 });
-
+    // document that is needed to create the input xml for the server
     inputDataForSimulatorAsJSON: any = {
         "qualitycontrol": {
             "@": {
@@ -35,34 +34,109 @@ export class PlanningService implements OnInit {
                 {
                     "@": {
                         "article": 1,
-                        "quantity": 100,
+                        "quantity": 0,
                     }
                 },
                 {
                     "@": {
                         "article": 2,
-                        "quantity": 100,
+                        "quantity": 0,
                     }
                 },
                 {
                     "@": {
                         "article": 3,
-                        "quantity": 100,
+                        "quantity": 0,
                     }
                 }
             ]
         },
-    };
+        "selldirect": {
+            "item": [
+                {
+                    "@": {
+                        "article": 1,
+                        "quantity": 0,
+                        "price": "0.0",
+                        "penalty": "0.0",
+                    }
+                },
+                {
+                    "@": {
+                        "article": 2,
+                        "quantity": 0,
+                        "price": "0.0",
+                        "penalty": "0.0",
+                    }
+                },
+                {
+                    "@": {
+                        "article": 3,
+                        "quantity": 0,
+                        "price": "0.0",
+                        "penalty": "0.0",
+                    }
+                }
+            ]
+        },
+        "orderlist": {
+            "order": []
+        },
+        "productionlist": {
+            "production": []
+        },
+        "workingtimelist": {
+            "workingtime": []
+        }
+    }
+
+    orderlist: any = [22, 23, 24, 25, 27, 32, 34, 36, 37, 38, 39, 40, 41, 42, 44, 46, 47, 48, 52, 53, 57, 58, 59];
+    productionlist: any = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 49, 54, 29, 50, 55, 30, 51, 56, 31, 1, 2, 3];
+    workingtimelist: any = [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
     constructor(
         private http: Http,
         @Inject('ApiEndpoint') private apiEndpoint
     ) {
+        this.startedPlanning = false;
+        this.isLoading = false;
+
+        // load the orderlist, productionlist and workingtimelist into the inputDataForSimulatorAsJSON
+        // orderlist
+        this.inputDataForSimulatorAsJSON.orderlist.order = this.orderlist.map(i => {
+            return {
+                "@": {
+                    "article": i,
+                    "quantity": 0,
+                    "modus": 4,
+                }
+            }
+        });
+
+        // productionlist
+        this.inputDataForSimulatorAsJSON.productionlist.production = this.productionlist.map(i => {
+            return {
+                "@": {
+                    "article": i,
+                    "quantity": 0,
+                }
+            }
+        });
+
+        // workingtimelist
+        this.inputDataForSimulatorAsJSON.workingtimelist.workingtime = this.workingtimelist.map(i => {
+            return {
+                "@": {
+                    "station": i,
+                    "shift": 1,
+                    "overtime": 1,
+                }
+            }
+        });
     }
 
     ngOnInit() {
-        this.startedPlanning = false;
-        this.isLoading = false;
+
     }
 
     /**
@@ -73,6 +147,10 @@ export class PlanningService implements OnInit {
      */
     startPlanning(json: any): Promise<any> {
         this.inputJSON = json;
+
+        this.inputDataForSimulatorAsJSON.sellwish.item = json.input.sellwish.items.map(item => ({ '@': item }));
+        this.inputDataForSimulatorAsJSON.selldirect.item = json.input.selldirect.items.map(item => ({ '@': item }));;
+
         this.isLoading = true;
         if (this.xmlDocument === undefined) {
             throw new Error('XML is undefined!');
@@ -127,40 +205,9 @@ export class PlanningService implements OnInit {
      * on the input data that must be typed into the input fields by the user.
      */
     generateInputXMLForSimulator() {
-        let obj = {
-            "qualitycontrol": {
-                "@": {
-                    "type": "no",
-                    "losequantity": 0,
-                    "delay": 0,
-                },
-            },
-            "sellwish": {
-                "item": [
-                    {
-                        "@": {
-                            "article": 1,
-                            "quantity": 100,
-                        }
-                    },
-                    {
-                        "@": {
-                            "article": 2,
-                            "quantity": 100,
-                        }
-                    },
-                    {
-                        "@": {
-                            "article": 3,
-                            "quantity": 100,
-                        }
-                    }
-                ]
-            },
-        };
-
         // create the xml
         // slice the first 22 characters because they are like this: <?xml version='1.0'?>
+        console.info(this.inputDataForSimulatorAsJSON);
         const xml: string = js2xmlparser.parse("input", this.inputDataForSimulatorAsJSON).slice(22);
 
         // download the XML file

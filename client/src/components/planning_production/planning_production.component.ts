@@ -11,6 +11,7 @@ export class PlanningProductionComponent {
     constructor(private planningService: PlanningService) { }
 
     ngOnInit(): void {
+        console.log(this.planningService.inputDataForSimulatorAsJSON);
         this.resultsJSON = this.planningService.inputDataForSimulatorAsJSON;
     }
 
