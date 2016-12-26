@@ -87,15 +87,20 @@ export class PlanningService implements OnInit {
         // create the upload url
         this.inputUploadUrl = this.apiEndpoint + `/api/rest/games/${1}/groups/${6}/periods/${this.inputJSON.results.period}/plannings`;
 
-        // send data to the server
-        this.sendXMLToServer().catch(err => console.error(err));
-        this.sendInputsToServer().catch(err => console.error(err));
-
-        return new Promise(resolve => {
-            setTimeout(() => {
-                console.log('get results from server...');
+        return new Promise((resolve, reject) => {
+            // send data to the server
+            new Promise((resolve, reject) => {
+                // this.sendXMLToServer().catch(err => { console.error(err); reject(err) }).then(() => resolve());
+                // this.sendInputsToServer().catch(err => { console.error(err); reject(err) }).then(() => resolve());
                 resolve();
-            }, 5000);
+            }).then(() => {
+                setTimeout(() => {
+                    console.log('get results from server...');
+                    resolve();
+                }, 5000);
+            }).catch(err => {
+                reject(err);
+            })
         });
     }
     /**
