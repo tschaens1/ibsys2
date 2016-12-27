@@ -36,17 +36,17 @@ export class PlanningOverviewComponent implements OnInit {
 
     enabledSellDirect: boolean = false;
 
-    selldirect_price_p1: number;
-    selldirect_price_p2: number;
-    selldirect_price_p3: number;
+    selldirect_price_p1: string;
+    selldirect_price_p2: string;
+    selldirect_price_p3: string;
 
     selldirect_quantity_p1: number;
     selldirect_quantity_p2: number;
     selldirect_quantity_p3: number;
 
-    selldirect_penalty_p1: number;
-    selldirect_penalty_p2: number;
-    selldirect_penalty_p3: number;
+    selldirect_penalty_p1: string;
+    selldirect_penalty_p2: string;
+    selldirect_penalty_p3: string;
 
     produce_p1: number;
     produce_p2: number;
@@ -113,17 +113,17 @@ export class PlanningOverviewComponent implements OnInit {
 
             this.enabledSellDirect = this.inputOflastPeriod.enabledSellDirect || false;
 
-            this.selldirect_price_p1 = this.inputOflastPeriod.input.selldirect.items[0].price || 0;
-            this.selldirect_price_p2 = this.inputOflastPeriod.input.selldirect.items[1].price || 0;
-            this.selldirect_price_p3 = this.inputOflastPeriod.input.selldirect.items[2].price || 0;
+            this.selldirect_price_p1 = this.inputOflastPeriod.input.selldirect.items[0].price || "0";
+            this.selldirect_price_p2 = this.inputOflastPeriod.input.selldirect.items[1].price || "0";
+            this.selldirect_price_p3 = this.inputOflastPeriod.input.selldirect.items[2].price || "0";
 
             this.selldirect_quantity_p1 = this.inputOflastPeriod.input.selldirect.items[0].quantity || 0;
             this.selldirect_quantity_p2 = this.inputOflastPeriod.input.selldirect.items[1].quantity || 0;
             this.selldirect_quantity_p3 = this.inputOflastPeriod.input.selldirect.items[2].quantity || 0;
 
-            this.selldirect_penalty_p1 = this.inputOflastPeriod.input.selldirect.items[0].penalty || 0;
-            this.selldirect_penalty_p2 = this.inputOflastPeriod.input.selldirect.items[1].penalty || 0;
-            this.selldirect_penalty_p3 = this.inputOflastPeriod.input.selldirect.items[2].penalty || 0;
+            this.selldirect_penalty_p1 = this.inputOflastPeriod.input.selldirect.items[0].penalty || "0";
+            this.selldirect_penalty_p2 = this.inputOflastPeriod.input.selldirect.items[1].penalty || "0";
+            this.selldirect_penalty_p3 = this.inputOflastPeriod.input.selldirect.items[2].penalty || "0";
 
             this.produce_p1 = this.inputOflastPeriod.input.production.items[0].quantity || 0;
             this.produce_p2 = this.inputOflastPeriod.input.production.items[1].quantity || 0;
@@ -145,10 +145,6 @@ export class PlanningOverviewComponent implements OnInit {
         this.sellwish_p2 = 0;
         this.sellwish_p3 = 0;
 
-        this.selldirect_price_p1 = 0;
-        this.selldirect_price_p2 = 0;
-        this.selldirect_price_p3 = 0;
-
         this.forecast_p1_one = 0;
         this.forecast_p1_two = 0;
         this.forecast_p1_three = 0;
@@ -165,9 +161,13 @@ export class PlanningOverviewComponent implements OnInit {
         this.selldirect_quantity_p2 = 0;
         this.selldirect_quantity_p3 = 0;
 
-        this.selldirect_penalty_p1 = 0;
-        this.selldirect_penalty_p2 = 0;
-        this.selldirect_penalty_p3 = 0;
+        this.selldirect_penalty_p1 = "0.0";
+        this.selldirect_penalty_p2 = "0.0";
+        this.selldirect_penalty_p3 = "0.0";
+
+        this.selldirect_price_p1 = "0.0";
+        this.selldirect_price_p2 = "0.0";
+        this.selldirect_price_p3 = "0.0";
 
         this.produce_p1 = 0;
         this.produce_p2 = 0;
@@ -351,21 +351,21 @@ export class PlanningOverviewComponent implements OnInit {
                     "items": [
                         {
                             "article": "1",
-                            "quantity": this.selldirect_quantity_p1 || 0,
-                            "price": this.selldirect_price_p1 || "0.0",
-                            "penalty": this.selldirect_penalty_p1 || "0.0",
+                            "quantity": this.enabledSellDirect ? (this.selldirect_quantity_p1 || 0) : 0,
+                            "price": this.enabledSellDirect ? (this.selldirect_price_p1 || "0.0") : "0.0",
+                            "penalty": this.enabledSellDirect ? (this.selldirect_penalty_p1 || "0.0") : "0.0",
                         },
                         {
                             "article": "2",
-                            "quantity": this.selldirect_quantity_p2 || 0,
-                            "price": this.selldirect_price_p2 || "0.0",
-                            "penalty": this.selldirect_penalty_p2 || "0.0",
+                            "quantity": this.enabledSellDirect ? (this.selldirect_quantity_p2 || 0) : 0,
+                            "price": this.enabledSellDirect ? (this.selldirect_price_p2 || "0.0") : "0.0",
+                            "penalty": this.enabledSellDirect ? (this.selldirect_penalty_p2 || "0.0") : "0.0",
                         },
                         {
                             "article": "3",
-                            "quantity": this.selldirect_quantity_p3 || 0,
-                            "price": this.selldirect_price_p3 || "0.0",
-                            "penalty": this.selldirect_penalty_p3 || "0.0",
+                            "quantity": this.enabledSellDirect ? (this.selldirect_quantity_p3 || 0) : 0,
+                            "price": this.enabledSellDirect ? (this.selldirect_price_p3 || "0.0") : "0.0",
+                            "penalty": this.enabledSellDirect ? (this.selldirect_penalty_p3 || "0.0") : "0.0",
                         }
                     ]
                 },
