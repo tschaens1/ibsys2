@@ -175,7 +175,7 @@ export class PlanningService implements OnInit {
                 setTimeout(() => {
                     console.log('get results from server...');
                     resolve();
-                }, 1000);
+                }, 5000);
             }).catch(err => {
                 reject(err);
             })
@@ -214,8 +214,7 @@ export class PlanningService implements OnInit {
 
                 // download the XML file
                 var blob = new Blob([xml], { type: "text/plain;charset=utf-8" });
-                FileSaver.saveAs(blob, `inputXML_${Date.now()}.xml`);
-                throw Error('wrong XML');
+                FileSaver.saveAs(blob, `inputXML_${Date.now()}.xml`);                
             } catch (err) {
                 reject(err);
             }
