@@ -50,7 +50,7 @@ public class FileResource {
             periodRepository.save(period);
 
             kpiService.initialize(jsonFile);
-            inputService.initialize(jsonFile);
+            // inputService.initialize(jsonFile);
 
             KpiContainer container = kpiService.getCapacity();
             double abc = container.getAverage();

@@ -180,14 +180,14 @@ public class KpiService {
         if (!Objects.equals(all, "-")) this.directSale.getContractPenalty().setSum(convertStringToDouble(all));
     }
 
-    public double convertStringToDouble(String value)
+    public Double convertStringToDouble(String value)
             throws ParseException {
         NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
         Number number = format.parse(value);
         return number.doubleValue();
     }
 
-    public double convertPercentStringToDouble(String value)
+    public Double convertPercentStringToDouble(String value)
             throws ParseException {
         String withoutPercent = value.replace("%", "");
         return convertStringToDouble(withoutPercent);
