@@ -36,7 +36,10 @@ export const LANG_DE_TRANSLATIONS = {
             "warehouse_settings": "Lager Einstellungen",
             "files": "Dateien",
             "upload": "Datei hochladen",
-            "downloads": "Datei herunterladen"
+            "downloads": "Datei herunterladen",
+            "other": "Sonstiges",
+            "settings": "Einstellungen",
+            "help": "Hilfe",
         },
     },
     "settings": {
@@ -63,6 +66,12 @@ export const LANG_DE_TRANSLATIONS = {
             "title": "Artikel hinzufügen",
             "help": "Geben Sie eine valide ID in das Eingabefeld ein und drücken Sie auf 'hinzufügen' um die Produktion weiter aufzuteilen. Folgende IDs können Sie einsetzen: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 49, 54, 29, 50, 55, 30, 51, 56, 31, 1, 2, 3]",
             "addButton": "Hinzufügen",
+        },
+        "help": {
+            text: "Ordnen Sie die Artikel per Drag & Drop."
+        },
+        "validation": {
+            "invalid_article_id": "Falsche Artikel Nummer",
         },
     },
     "planning_production": {
@@ -213,7 +222,19 @@ export const LANG_DE_TRANSLATIONS = {
     },
     "help": {
         "title": "Hilfe",
-        "description": "Hier finden Sie Anweisungen zur Bedienung des Tools"
+        "description": "Hier finden Sie Anweisungen zur Bedienung des Tools",
+        "lessons": {
+            "get_help_header": "Hilfe bekommen",
+            "get_help_title": "Wo bekomme ich Hilfe?",
+            "get_help_message": "Klicken Sie auf das Fragezeichen neben einem Text um Hilfe zu erhalten.",
+            "plan_period_header": "Periode planen",
+            "prepare_planning_title": "Planung vorbereiten",
+            "prepare_planning_message": "Folgende Schritte müssen Sie durchführen um die Planung zu beginnen.",
+            "search_parts_header": "Teile suchen",
+            "search_parts": "Geben Sie in die Suche das gewünschte Teil ein.",
+            "change_language_header": "Sprache ändern",
+            "change_language": "Navigieren Sie in die Einstellungen und ändern Sie die Sprache.",
+        }
     },
     "search": {
         "title": "Suche",
