@@ -4,10 +4,9 @@ import de.hska.filemanagement.domain.JsonFile;
 import de.hska.filemanagement.domain.XmlFile;
 import de.hska.inputmanagement.business.InputService;
 import de.hska.kpimanagement.business.KpiService;
-import de.hska.kpimanagement.domain.KpiContainer;
-import de.hska.kpimanagement.domain.KpiPercentContainer;
 import de.hska.periodmanagement.business.IPeriodRepository;
 import de.hska.periodmanagement.domain.Period;
+import de.hska.simulationmanagement.business.SimulationService;
 import de.hska.util.FileConverterService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +33,9 @@ public class FileResource {
     @Autowired
     private InputService inputService;
 
+    @Autowired
+    private SimulationService simulationService;
+
     @RequestMapping(method = RequestMethod.POST, value = "result")
     public ResponseEntity save(@RequestBody XmlFile xmlFile) {
         String jsonContent = xmlFile.getContent();
@@ -51,25 +53,13 @@ public class FileResource {
 
             kpiService.initialize(jsonFile);
             // inputService.initialize(jsonFile);
-
-            KpiContainer container = kpiService.getCapacity();
-            double abc = container.getAverage();
-            double afijsf = container.getSum();
-
-            KpiPercentContainer container1 = kpiService.getDeliveryReliability();
-            double ofdsiasdf = container1.getAverage();
-            double sfosaf = container1.getCurrent();
-
-            System.out.println("Summary: " + kpiService.getSummary().getAverage() + " delivavg: " + ofdsiasdf + " kapaall: " + afijsf + " kapaavg: " + abc);
+            simulationService.initialize();
 
             return new ResponseEntity(HttpStatus.CREATED);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            // return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-            return null;
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "periods/{period}/result")

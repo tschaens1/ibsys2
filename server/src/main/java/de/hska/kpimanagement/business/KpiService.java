@@ -22,7 +22,6 @@ public class KpiService {
     private KpiContainer capacity;
     private KpiContainer possibleCapacity;
     private KpiContainer productiveTime;
-    private KpiPercentContainer efficiency;
     private KpiContainer sellwish;
     private KpiContainer salesquantity;
     private KpiContainer idleTime;
@@ -34,6 +33,7 @@ public class KpiService {
     private KpiContainer marketplaceResult;
     private KpiContainer summary;
 
+    private KpiPercentContainer efficiency;
     private KpiPercentContainer relativePossibleNormalCapacity;
     private KpiPercentContainer deliveryReliability;
 
@@ -66,8 +66,8 @@ public class KpiService {
         all = result.getJSONObject("general").getJSONObject("productivetime").get("all").toString();
         if (!Objects.equals(all, "-")) this.productiveTime.setSum(convertStringToDouble(all));
 
-        this.efficiency.setCurrent(convertStringToDouble(result.getJSONObject("general").getJSONObject("effiency").get("current").toString()));
-        this.efficiency.setAverage(convertStringToDouble(result.getJSONObject("general").getJSONObject("effiency").get("average").toString()));
+        this.efficiency.setCurrent(convertPercentStringToDouble(result.getJSONObject("general").getJSONObject("effiency").get("current").toString()));
+        this.efficiency.setAverage(convertPercentStringToDouble(result.getJSONObject("general").getJSONObject("effiency").get("average").toString()));
 
         this.sellwish.setCurrent(convertStringToDouble(result.getJSONObject("general").getJSONObject("sellwish").get("current").toString()));
         this.sellwish.setAverage(convertStringToDouble(result.getJSONObject("general").getJSONObject("sellwish").get("average").toString()));
@@ -124,7 +124,6 @@ public class KpiService {
         this.summary.setAverage(convertStringToDouble(result.getJSONObject("summary").getJSONObject("profit").get("average").toString()));
         all = result.getJSONObject("summary").getJSONObject("profit").get("all").toString();
         if (!Objects.equals(all, "-")) this.summary.setSum(convertStringToDouble(all));
-
     }
 
     private void ConstructContainers() {

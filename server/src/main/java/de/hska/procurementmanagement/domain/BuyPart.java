@@ -2,7 +2,7 @@ package de.hska.procurementmanagement.domain;
 
 public class BuyPart {
 
-    private Long number;
+    private Integer number;
     private String description;
     private Double price;
     private Double partsValue;
@@ -14,7 +14,7 @@ public class BuyPart {
     private Double timeToRebuy;
     private Double rebuyDerivation;
 
-    public BuyPart(Long number, String description, Double price, Integer stockAmount, Boolean isUsedInAllProducts, Integer discountAmount,
+    public BuyPart(Integer number, String description, Double price, Integer stockAmount, Boolean isUsedInAllProducts, Integer discountAmount,
                    Double procurementCosts, Double timeToRebuy, Double rebuyDerivation) {
         this.number = number;
         this.description = description;
@@ -30,11 +30,11 @@ public class BuyPart {
         this.newPartsValue = price;
     }
 
-    public Long getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(Long number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
