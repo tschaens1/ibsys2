@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -37,13 +38,12 @@ public class FileResource {
     private SimulationService simulationService;
 
     @RequestMapping(method = RequestMethod.POST, value = "result")
-    public ResponseEntity save(@RequestBody XmlFile xmlFile) {
+    public ResponseEntity save(@RequestBody XmlFile xmlFile) throws ParseException {
         String jsonContent = xmlFile.getContent();
         JSONObject jsonObject = fileConverterService.convertXmlToJson(jsonContent);
         JsonFile jsonFile = new JsonFile();
         jsonFile.setContent(jsonObject.toString());
-        try {
-            Long periodLong = (Long) jsonObject.getJSONObject("results").get("period");
+            Integer periodLong = (Integer) jsonObject.getJSONObject("results").get("period");
 
             Period period = new Period();
             period.setCounter(periodLong);
@@ -56,10 +56,7 @@ public class FileResource {
             simulationService.initialize();
 
             return new ResponseEntity(HttpStatus.CREATED);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "periods/{period}/result")
