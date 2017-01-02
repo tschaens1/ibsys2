@@ -37,7 +37,10 @@ export const LANG_EN_TRANSLATIONS = {
             "warehouse_settings": "Warehouse settings",
             "files": "Files",
             "upload": "Upload file",
-            "downloads": "Download file"
+            "downloads": "Download file",
+            "other": "Other",
+            "settings": "Settings",
+            "help": "Help",
         },
     },
     "settings": {
@@ -64,6 +67,12 @@ export const LANG_EN_TRANSLATIONS = {
             "title": "Add article",
             "help": "Enter a valid id for the production article. The following IDs can be inserted: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 49, 54, 29, 50, 55, 30, 51, 56, 31, 1, 2, 3]",
             "addButton": "Add",
+        },
+        "help": {
+            text: "You can drag & drop to reorder the items in the list below."
+        },
+        "validation": {
+            "invalid_article_id": "Invalid article number",
         },
     },
     "planning_production": {
@@ -130,6 +139,14 @@ export const LANG_EN_TRANSLATIONS = {
         },
 
         modals: {
+            "cancelCalculation": {
+                "title": "Cancel calculation",
+                "text": "Do you really want to abort the calculation?"
+            },
+            "cancelPreparation": {
+                "title": "Cancel planning",
+                "text": "Do you really want to cancel the planning? Some of the inputs will be buffered, others must be inserted again."
+            },
             "period": "Type in the number of the period which should be planned.",
             "xml": "Here you have to upload the results XML of the last period.",
             "sellwish": "The sellwish describes the amount of products that will be selled in the next period. Forecasts can change in the next periods.",
@@ -189,7 +206,7 @@ export const LANG_EN_TRANSLATIONS = {
     },
     "planning": {
         "modals": {
-            "exitPlanningText": "Do you really want to exit the planning? All inputs will be removed and you'll have to start a new planning SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION.",
+            "exitPlanningText": "Do you really want to exit the planning? All inputs will be removed and you'll have to start a new planning.",
             "exitPlanningTitle": "Quit planning",
         },
         "toasts": {
@@ -206,7 +223,19 @@ export const LANG_EN_TRANSLATIONS = {
     },
     "help": {
         "title": "Help",
-        "description": "Here you can find some tips to use the application"
+        "description": "Here you can find some tips to use the application",
+        "lessons": {
+            "get_help_header": "Find help",
+            "get_help_title": "Where I get some help?",
+            "get_help_message": "Click on the question mark right next to the text to get some help.",
+            "plan_period_header": "Plan period",
+            "prepare_planning_title": "Prepare planning",
+            "prepare_planning_message": "You must do the following steps to begin the planning.",
+            "search_parts_header": "Search parts",
+            "search_parts": "Search for the desired part.",
+            "change_language_header": "Change language",
+            "change_language": "Navigate to the settings and change the language.",
+        }
     },
     "search": {
         "title": "Search",

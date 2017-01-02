@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { TranslationService } from './../translate/translate.service';
 
 @Component({
@@ -6,8 +6,12 @@ import { TranslationService } from './../translate/translate.service';
     templateUrl: './help.component.html',
     styleUrls: ['./help.component.scss']
 })
-export class HelpComponent {
+export class HelpComponent implements AfterViewInit {
     private currentLanguage: string;
 
     constructor() { }
+
+    ngAfterViewInit(): void {
+        $('.collapsible').collapsible();
+    }
 }

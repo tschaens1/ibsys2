@@ -58,7 +58,7 @@ export class PlanningMaterialComponent implements OnInit {
     addPart(id: HTMLInputElement) {
         let articleId = id.value;
         if (this.planningService.productionlist.filter((p: number) => p.toString() === articleId).length === 0) {
-            this.toastr.error('Invalid article id');
+            this.toastr.error(this.translationService.instant('planning_material.validation.invalid_article_id'));
             return;
         }
         this.planningService.inputDataForSimulatorAsJSON.productionlist.production.push(
