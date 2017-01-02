@@ -15,7 +15,7 @@
 							</div>
 							<div class="col s6 m2">
 								<div class="title">{{'planning_material.container.usage'|translate}}</div>
-								<div class="detail">{{getPartInformation(item['@'].article).Usage}}</div>
+								<div class="detail">{{getPartInformation(item['@'].article).Usage ? getPartInformation(item['@'].article).Usage : '-'}}</div>
 							</div>
 							<div class="col s4 m2">
 								<div class="title">{{'planning_material.container.quantity'|translate}}</div>

@@ -54,8 +54,8 @@ td:first-child{
         transition: all ease .5s;
 
         &:hover{
-            background-color: $white;
-            color: $primary-theme;
+            background-color: $red;
+            color: $white;
         }
     }
 }
