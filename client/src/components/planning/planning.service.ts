@@ -90,9 +90,9 @@ export class PlanningService implements OnInit {
         }
     }
 
-    orderlist: any = [22, 23, 24, 25, 27, 32, 34, 36, 37, 38, 39, 40, 41, 42, 44, 46, 47, 48, 52, 53, 57, 58, 59];
-    productionlist: any = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 49, 54, 29, 50, 55, 30, 51, 56, 31, 1, 2, 3];
-    workingtimelist: any = [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    orderlist: number[] = [22, 23, 24, 25, 27, 32, 34, 36, 37, 38, 39, 40, 41, 42, 44, 46, 47, 48, 52, 53, 57, 58, 59];
+    productionlist: number[] = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 49, 54, 29, 50, 55, 30, 51, 56, 31, 1, 2, 3];
+    workingtimelist: number[] = [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
     constructor(
         private http: Http,
@@ -214,7 +214,7 @@ export class PlanningService implements OnInit {
 
                 // download the XML file
                 var blob = new Blob([xml], { type: "text/plain;charset=utf-8" });
-                FileSaver.saveAs(blob, `inputXML_${Date.now()}.xml`);                
+                FileSaver.saveAs(blob, `inputXML_${Date.now()}.xml`);
             } catch (err) {
                 reject(err);
             }
