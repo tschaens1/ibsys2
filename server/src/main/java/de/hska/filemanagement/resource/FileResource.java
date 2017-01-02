@@ -43,7 +43,7 @@ public class FileResource {
         JSONObject jsonObject = fileConverterService.convertXmlToJson(jsonContent);
         JsonFile jsonFile = new JsonFile();
         jsonFile.setContent(jsonObject.toString());
-            Integer periodLong = (Integer) jsonObject.getJSONObject("results").get("period");
+            Long periodLong = (Long) jsonObject.getJSONObject("results").get("period");
 
             Period period = new Period();
             period.setCounter(periodLong);
