@@ -2,25 +2,26 @@ package de.hska.kpimanagement.domain;
 
 
 public class KpiPercentContainer {
-    private String current;
-    private String average;
+    private double current;
+    private double average;
 
     public KpiPercentContainer() {
     }
 
-    public String getCurrent() {
+    public double getCurrent() {
         return current;
     }
 
-    public void setCurrent(String current) {
+    public void setCurrent(double current) {
         this.current = current;
     }
 
-    public String getAverage() {
+    public double getAverage() {
         return average;
     }
 
-    public void setAverage(String average) {
+    public void setAverage(double average) {
         this.average = average;
     }
+
 }

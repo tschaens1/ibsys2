@@ -4,6 +4,8 @@ import de.hska.filemanagement.domain.JsonFile;
 import de.hska.filemanagement.domain.XmlFile;
 import de.hska.inputmanagement.business.InputService;
 import de.hska.kpimanagement.business.KpiService;
+import de.hska.kpimanagement.domain.KpiContainer;
+import de.hska.kpimanagement.domain.KpiPercentContainer;
 import de.hska.periodmanagement.business.IPeriodRepository;
 import de.hska.periodmanagement.domain.Period;
 import de.hska.util.FileConverterService;
@@ -50,10 +52,24 @@ public class FileResource {
             kpiService.initialize(jsonFile);
             inputService.initialize(jsonFile);
 
+            KpiContainer container = kpiService.getCapacity();
+            double abc = container.getAverage();
+            double afijsf = container.getSum();
+
+            KpiPercentContainer container1 = kpiService.getDeliveryReliability();
+            double ofdsiasdf = container1.getAverage();
+            double sfosaf = container1.getCurrent();
+
+            System.out.println("Summary: " + kpiService.getSummary().getAverage() + " delivavg: " + ofdsiasdf + " kapaall: " + afijsf + " kapaavg: " + abc);
+
             return new ResponseEntity(HttpStatus.CREATED);
         } catch (Exception ex) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            System.out.println(ex.getMessage());
+            // return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            return null;
         }
+
+
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "periods/{period}/result")

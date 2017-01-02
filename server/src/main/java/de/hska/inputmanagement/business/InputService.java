@@ -213,27 +213,27 @@ public class InputService {
 		workingtime1JSON.put("overtime", 15);
 
 		JSONObject workingtime2JSON = new JSONObject();
-		workingtime2JSON.put("station", 1);
+		workingtime2JSON.put("station", 2);
 		workingtime2JSON.put("shift", 2);
 		workingtime2JSON.put("overtime", 0);
 
 		JSONObject workingtime3JSON = new JSONObject();
-		workingtime3JSON.put("station", 1);
+		workingtime3JSON.put("station", 3);
 		workingtime3JSON.put("shift", 3);
 		workingtime3JSON.put("overtime", 70);
 
 		JSONObject workingtime4JSON = new JSONObject();
-		workingtime4JSON.put("station", 1);
+		workingtime4JSON.put("station", 4);
 		workingtime4JSON.put("shift", 1);
 		workingtime4JSON.put("overtime", 15);
 
 		JSONObject workingtime5JSON = new JSONObject();
-		workingtime5JSON.put("station", 1);
+		workingtime5JSON.put("station", 5);
 		workingtime5JSON.put("shift", 2);
 		workingtime5JSON.put("overtime", 0);
 
 		JSONObject workingtime6JSON = new JSONObject();
-		workingtime6JSON.put("station", 1);
+		workingtime6JSON.put("station", 6);
 		workingtime6JSON.put("shift", 3);
 		workingtime6JSON.put("overtime", 20);
 
