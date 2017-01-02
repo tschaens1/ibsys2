@@ -47,6 +47,7 @@ public class PartsService {
                 add(new BuyPart(59, "Schweißdraht", 0.15, 1800, true, 1800, 50.0, 1.7, 0.2));
             }
         };
+
         this.manufacturingParts = new ArrayList<ManufacturingPart>() {
             {
                 add(new ManufacturingPart(1, "Kinderfahrrad", 156.13, 100, false));

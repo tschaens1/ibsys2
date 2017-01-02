@@ -3,9 +3,9 @@ package de.hska.workplacemanagement.domain;
 public class WorkplaceNode {
 
     private Workplace workplace;
-    private Workplace follower;
+    private WorkplaceNode follower;
 
-    public WorkplaceNode(Workplace workplace, Workplace follower) {
+    public WorkplaceNode(Workplace workplace, WorkplaceNode follower) {
         this.workplace = workplace;
         this.follower = follower;
     }
@@ -18,11 +18,11 @@ public class WorkplaceNode {
         this.workplace = workplace;
     }
 
-    public Workplace getFollower() {
+    public WorkplaceNode getFollower() {
         return follower;
     }
 
-    public void setFollower(Workplace follower) {
+    public void setFollower(WorkplaceNode follower) {
         this.follower = follower;
     }
 }

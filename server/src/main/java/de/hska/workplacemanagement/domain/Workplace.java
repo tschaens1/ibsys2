@@ -26,7 +26,7 @@ public class Workplace {
         this.name = number + "_" + outputId;
     }
 
-    private Integer getUpcomingProductionCount() {
+    public Integer getUpcomingProductionCount() {
         Integer count = 0;
 
         for(int i = 0; i < this.productionOrders.size(); i++) {
