@@ -45,22 +45,6 @@ public class Period {
 		this.counter = counter;
 	}
 
-	public Long getGroup() {
-		return group;
-	}
-
-	public void setGroup(Long group) {
-		this.group = group;
-	}
-
-	public Long getGame() {
-		return game;
-	}
-
-	public void setGame(Long game) {
-		this.game = game;
-	}
-
 	public JsonFile getJsonFile() {
 		return jsonFile;
 	}

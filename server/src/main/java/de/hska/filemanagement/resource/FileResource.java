@@ -9,7 +9,9 @@ import de.hska.periodmanagement.domain.Period;
 import de.hska.util.FileConverterService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,20 +33,16 @@ public class FileResource {
     private InputService inputService;
 
     @RequestMapping(method = RequestMethod.POST, value = "result")
-    public void save(@RequestBody XmlFile xmlFile) {
+    public ResponseEntity save(@RequestBody XmlFile xmlFile) {
         String jsonContent = xmlFile.getContent();
         JSONObject jsonObject = fileConverterService.convertXmlToJson(jsonContent);
         JsonFile jsonFile = new JsonFile();
         jsonFile.setContent(jsonObject.toString());
         try {
-            Long game = (Long) jsonObject.getJSONObject("results").get("game");
-            Long group = (Long) jsonObject.getJSONObject("results").get("group");
             Long periodLong = (Long) jsonObject.getJSONObject("results").get("period");
 
             Period period = new Period();
-            period.setGroup(group);
             period.setCounter(periodLong);
-            period.setGame(game);
             period.setJsonFile(jsonFile);
 
             periodRepository.save(period);
@@ -52,30 +50,31 @@ public class FileResource {
             kpiService.initialize(jsonFile);
             inputService.initialize(jsonFile);
 
+            return new ResponseEntity(HttpStatus.CREATED);
         } catch (Exception ex) {
-            System.out.println("Error while parsing period: " + ex.getMessage());
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "periods/{period}/result")
-    public String ReturnResultsForPeriod(@PathVariable Long period) {
+    public ResponseEntity ReturnResultsForPeriod(@PathVariable Long period) {
         List<Period> periods = periodRepository.findByCounter(period);
 
         if (periods.size() > 1) {
-            // TODO: Throw exception
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return periods.get(0).getJsonFile().getContent();
+        return ResponseEntity.ok(periods.get(0).getJsonFile().getContent());
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "periods/{period}/input")
-    public String returnInputForPeriod(@PathVariable Long period) {
+    public ResponseEntity returnInputForPeriod(@PathVariable Long period) {
         List<Period> periods = periodRepository.findByCounter(period);
 
         if (periods.size() > 1) {
-            // TODO: Throw exception
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return inputService.generateInputJson(periods.get(0)).toString();
+        return ResponseEntity.ok(inputService.generateInputJson(periods.get(0)).toString());
     }
 }
