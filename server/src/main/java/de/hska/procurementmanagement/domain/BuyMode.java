@@ -1,14 +1,15 @@
 package de.hska.procurementmanagement.domain;
 
 public enum BuyMode {
-    Normal {
-        Integer AsInteger() {
-            return 4;
-        }
-    },
-    Fast {
-        Integer AsInteger() {
-            return 5;
-        }
+    Normal(4), Fast(5);
+
+    private final int value;
+
+    BuyMode(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
     }
 }

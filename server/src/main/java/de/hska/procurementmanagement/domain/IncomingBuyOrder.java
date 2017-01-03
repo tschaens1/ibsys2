@@ -117,4 +117,21 @@ public class IncomingBuyOrder {
     public void setArriveDay(Integer arriveDay) {
         this.arriveDay = arriveDay;
     }
+
+    @Override
+    public String toString() {
+        return "IncomingBuyOrder{" +
+                "number=" + number +
+                ", buyPartId=" + buyPartId +
+                ", buyMode=" + buyMode +
+                ", amount=" + amount +
+                ", period=" + period +
+                ", materialCosts=" + materialCosts +
+                ", buyCosts=" + buyCosts +
+                ", totalCosts=" + totalCosts +
+                ", costsPerPiece=" + costsPerPiece +
+                ", arrivePeriod=" + arrivePeriod +
+                ", arriveDay=" + arriveDay +
+                '}';
+    }
 }

@@ -2,6 +2,7 @@ package de.hska.filemanagement.resource;
 
 import java.text.ParseException;
 
+import de.hska.procurementmanagement.business.ProcurementService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,6 +50,9 @@ public class FileResource {
 	private ProductionService productionService;
 
 	@Autowired
+	private ProcurementService procurementService;
+
+	@Autowired
 	private SimulationService simulationService;
 
 	@Autowired
@@ -84,6 +88,7 @@ public class FileResource {
 		// inputService.initialize(jsonFile);
 		simulationService.initialize();
 		dispositionService.initialize(jsonFile);
+		procurementService.initialize(jsonFile);
 
 		return new ResponseEntity<String>(HttpStatus.CREATED);
 

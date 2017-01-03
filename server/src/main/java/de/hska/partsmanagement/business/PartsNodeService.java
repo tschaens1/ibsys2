@@ -1,6 +1,7 @@
 package de.hska.partsmanagement.business;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class PartsNodeService {
 	}
 
 	public ManufacturingPartNode searchInTreeForPartNode(ManufacturingPartNode tree, Integer partNumber) {
-		if (tree.getPartNumber() == partNumber) {
+		if (Objects.equals(tree.getPartNumber(), partNumber)) {
 			return tree;
 		}
 		if (!tree.hasParts()) {
@@ -218,7 +219,6 @@ public class PartsNodeService {
 
 	}
 
-	@SuppressWarnings("serial")
 	public void createWomanTree() {
 		ManufacturingPartNode P2_K22 = new ManufacturingPartNode(22, 1, null);
 		ManufacturingPartNode P2_K24 = new ManufacturingPartNode(24, 1, null);
@@ -372,7 +372,6 @@ public class PartsNodeService {
 		this.bicycleWoman = P2;
 	}
 
-	@SuppressWarnings("serial")
 	public void createManTree() {
 		ManufacturingPartNode P3_K23 = new ManufacturingPartNode(23, 1, null);
 		ManufacturingPartNode P3_K24 = new ManufacturingPartNode(24, 1, null);
