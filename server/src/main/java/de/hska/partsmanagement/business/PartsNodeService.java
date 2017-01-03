@@ -17,8 +17,6 @@ public class PartsNodeService {
 		this.createChildTree();
 		this.createWomanTree();
 		this.createManTree();
-
-		this.getNode(21);
 	}
 
 	public ManufacturingPartNode getNode(Integer partNumber) {
@@ -49,6 +47,19 @@ public class PartsNodeService {
 			}
 		}
 		return wantedPartNode;
+	}
+
+	public int getAmountInTree(ManufacturingPartNode tree, Integer partNumber) {
+		int amount = 0;
+		if (tree.getPartNumber().equals(partNumber)) {
+			amount += tree.getAmount();
+		}
+		if (tree.hasCertainPart(partNumber)) {
+			for (int i = 0; i < tree.getParts().size(); i++) {
+				amount += this.getAmountInTree(tree.getParts().get(i), partNumber);
+			}
+		}
+		return amount;
 	}
 
 	@SuppressWarnings("serial")
