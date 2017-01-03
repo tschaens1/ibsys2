@@ -1,4 +1,4 @@
-package de.hska.procurementmanagement.domain;
+package de.hska.partsmanagement.domain;
 
 public class BuyPart {
 

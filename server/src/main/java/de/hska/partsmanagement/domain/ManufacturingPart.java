@@ -1,4 +1,4 @@
-package de.hska.productionmanagement.domain;
+package de.hska.partsmanagement.domain;
 
 public class ManufacturingPart {
 

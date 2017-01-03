@@ -7,6 +7,7 @@ import de.hska.workplacemanagement.domain.WorkplaceNode;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -18,12 +19,23 @@ public class WorkplaceService {
     private ArrayList<Workplace> allWorkPlaces;
 
     public void initialize() {
+        this.productionLineMap = new HashMap<>();
         this.setWorkplaces();
     }
 
     private void setWorkplaces() {
         this.allWorkPlaces = new ArrayList<Workplace>() {
             {
+                // These are used in all Products, added only once
+                add(new Workplace(15, 17, 3, 15));
+
+                add(new Workplace(7, 26, 2, 30));
+                add(new Workplace(15, 26, 3, 15));
+
+                add(new Workplace(6, 16, 2, 15));
+                add(new Workplace(14, 16, 3, 0));
+
+
                 // Workplaces for P1
                 add(new Workplace(13, 13, 2, 0));
                 add(new Workplace(12, 13, 3, 0));
@@ -50,17 +62,9 @@ public class WorkplaceService {
 
                 add(new Workplace(1, 49, 6, 20));
 
-                add(new Workplace(15, 17, 3, 15));
-
-                add(new Workplace(6, 16, 2, 15));
-                add(new Workplace(14, 16, 3, 0));
-
                 add(new Workplace(2, 50, 5, 30));
 
                 add(new Workplace(3, 51, 5, 20));
-
-                add(new Workplace(7, 26, 2, 30));
-                add(new Workplace(15, 26, 3, 15));
 
                 add(new Workplace(4, 1, 6, 30));
 
@@ -132,6 +136,12 @@ public class WorkplaceService {
             }
         };
 
+        // Production line for P1 (lines for E16, E17 and E26 are only once added here even if they are used in all products)
+        // That is because of the HashMap mechanism
+        this.productionLineMap.put(16, new ProductionLine(this.getWorkplaceNode(6, 16, this.getWorkplaceNode(14, 16, null))));
+        this.productionLineMap.put(17, new ProductionLine(this.getWorkplaceNode(15, 17, null)));
+        this.productionLineMap.put(26, new ProductionLine(this.getWorkplaceNode(7, 26, this.getWorkplaceNode(15, 26, null))));
+
         // Production line for P1
         this.productionLineMap.put(13, new ProductionLine(this.getWorkplaceNode(13, 13, this.getWorkplaceNode(12, 13, this.getWorkplaceNode(8, 13, this.getWorkplaceNode(7, 13, this.getWorkplaceNode(9, 13, null)))))));
         this.productionLineMap.put(18, new ProductionLine(this.getWorkplaceNode(6, 18, this.getWorkplaceNode(8, 18, this.getWorkplaceNode(7, 18, this.getWorkplaceNode(9, 18, null))))));
@@ -139,11 +149,8 @@ public class WorkplaceService {
         this.productionLineMap.put(4, new ProductionLine(this.getWorkplaceNode(10, 4, this.getWorkplaceNode(11, 4, null))));
         this.productionLineMap.put(10, new ProductionLine(this.getWorkplaceNode(13, 10, this.getWorkplaceNode(12, 10, this.getWorkplaceNode(8, 10, this.getWorkplaceNode(7, 10, this.getWorkplaceNode(9, 10, null)))))));
         this.productionLineMap.put(49, new ProductionLine(this.getWorkplaceNode(1, 49, null)));
-        this.productionLineMap.put(17, new ProductionLine(this.getWorkplaceNode(15, 17, null)));
-        this.productionLineMap.put(16, new ProductionLine(this.getWorkplaceNode(6, 16, this.getWorkplaceNode(14, 16, null))));
         this.productionLineMap.put(50, new ProductionLine(this.getWorkplaceNode(2, 50, null)));
         this.productionLineMap.put(51, new ProductionLine(this.getWorkplaceNode(3, 51, null)));
-        this.productionLineMap.put(26, new ProductionLine(this.getWorkplaceNode(7, 26, this.getWorkplaceNode(15, 26, null))));
         this.productionLineMap.put(1, new ProductionLine(this.getWorkplaceNode(4, 1, null)));
 
         // Production line for P2
@@ -170,20 +177,23 @@ public class WorkplaceService {
 
         this.allProductionLines = new ArrayList<ProductionLine>() {
             {
-                add(productionLineMap.get(13));
+                // All
+                add(productionLineMap.get(17));
+                add(productionLineMap.get(16));
+                add(productionLineMap.get(26));
+
+                // P1
                 add(productionLineMap.get(13));
                 add(productionLineMap.get(18));
                 add(productionLineMap.get(7));
                 add(productionLineMap.get(4));
                 add(productionLineMap.get(10));
                 add(productionLineMap.get(49));
-                add(productionLineMap.get(17));
-                add(productionLineMap.get(16));
                 add(productionLineMap.get(50));
                 add(productionLineMap.get(51));
-                add(productionLineMap.get(26));
                 add(productionLineMap.get(1));
 
+                // P2
                 add(productionLineMap.get(14));
                 add(productionLineMap.get(19));
                 add(productionLineMap.get(8));
@@ -194,12 +204,13 @@ public class WorkplaceService {
                 add(productionLineMap.get(56));
                 add(productionLineMap.get(2));
 
+                // P3
                 add(productionLineMap.get(15));
                 add(productionLineMap.get(20));
                 add(productionLineMap.get(9));
+                add(productionLineMap.get(29));
                 add(productionLineMap.get(6));
                 add(productionLineMap.get(12));
-                add(productionLineMap.get(29));
                 add(productionLineMap.get(30));
                 add(productionLineMap.get(31));
                 add(productionLineMap.get(3));

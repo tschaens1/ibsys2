@@ -1,7 +1,6 @@
 package de.hska.workplacemanagement.domain;
 
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 public class ProductionLine {
 
@@ -10,6 +9,7 @@ public class ProductionLine {
 
     public ProductionLine(WorkplaceNode firstWorkplace) {
         this.firstWorkplace = firstWorkplace;
+        this.workplaceMap = new HashMap<>();
 
         this.setWorkplaces();
     }
@@ -29,7 +29,6 @@ public class ProductionLine {
 
     private void setWorkplaces() {
         WorkplaceNode temp = this.firstWorkplace;
-
         this.workplaceMap.put(temp.getWorkplace().getNumber(), temp);
 
         while (temp.getFollower() != null) {

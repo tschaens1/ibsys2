@@ -1,6 +1,7 @@
-package de.hska.productionmanagement.domain;
+package de.hska.partsmanagement.domain;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ManufacturingPartNode {
 
@@ -23,8 +24,8 @@ public class ManufacturingPartNode {
             return false;
         }
 
-        for (int i = 0; i < this.parts.size(); i++) {
-            if (this.parts.get(i).partNumber == partNumber) {
+        for (ManufacturingPartNode part : this.parts) {
+            if (Objects.equals(part.partNumber, partNumber)) {
                 return true;
             }
         }

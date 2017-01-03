@@ -1,10 +1,11 @@
 package de.hska.partsmanagement.business;
 
-import de.hska.procurementmanagement.domain.BuyPart;
-import de.hska.productionmanagement.domain.ManufacturingPart;
+import de.hska.partsmanagement.domain.BuyPart;
+import de.hska.partsmanagement.domain.ManufacturingPart;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,25 +27,25 @@ public class PartsService {
                 add(new BuyPart(32, "Farbe", 0.75, 2700, true, 2700, 50.0, 2.1, 0.5));
                 add(new BuyPart(33, "Felge cpl.(H)", 22.00, 900, false, 900, 75.0, 1.9, 0.5));
                 add(new BuyPart(34, "Speiche(H)", 0.10, 22000, false, 22000, 50.0, 1.6, 0.3));
-                add(new BuyPart(35, "Konus", 1.00, 3600, true, 3600, 75.0, 2.2, 0.4));
+                add(new BuyPart(35, "Nabe", 1.00, 3600, true, 3600, 75.0, 2.2, 0.4));
                 add(new BuyPart(36, "Freilauf", 8.00, 900, true, 900, 100.0, 1.2, 0.1));
                 add(new BuyPart(37, "Gabel", 1.50, 900, true, 900, 50.0, 1.5, 0.3));
                 add(new BuyPart(38, "Welle", 1.50, 300, true, 300, 50.0, 1.7, 0.4));
-                add(new BuyPart(39, "Blech", 1.50, 900, true, 900, 75.0, 1.5, 0.3));
+                add(new BuyPart(39, "Blech", 1.50, 900, true, 1800, 75.0, 1.5, 0.3));
                 add(new BuyPart(40, "Lenker", 2.50, 900, true, 900, 50.0, 1.7, 0.2));
                 add(new BuyPart(41, "Mutter 3/4", 0.06, 900, true, 900, 50.0, 0.9, 0.2));
                 add(new BuyPart(42, "Griff", 0.10, 1800, true, 1800, 50.0, 1.2, 0.3));
-                add(new BuyPart(43, "Griff", 5.00, 1900, true, 1900, 75.0, 2.0, 0.5));
-                add(new BuyPart(44, "Stange 1/2", 0.50, 2700, true, 2700, 50.0, 1.0, 0.3));
+                add(new BuyPart(43, "Sattel", 5.00, 1900, true, 2700, 75.0, 2.0, 0.5));
+                add(new BuyPart(44, "Stange 1/2", 0.50, 2700, true, 900, 50.0, 1.0, 0.2));
                 add(new BuyPart(45, "Mutter 1/4", 0.06, 900, true, 900, 50.0, 1.7, 0.3));
                 add(new BuyPart(46, "Schraube 1/4", 0.10, 900, true, 900, 50.0, 0.9, 0.3));
-                add(new BuyPart(47, "Zahnkranz", 3.50, 900, true, 900, 50.0, 1.41, 0.1));
+                add(new BuyPart(47, "Zahnkranz", 3.50, 900, true, 900, 50.0, 1.1, 0.1));
                 add(new BuyPart(48, "Pedal", 1.50, 1800, true, 1800, 75.0, 1.0, 0.2));
                 add(new BuyPart(52, "Felge cpl.(K)", 22.00, 600, false, 600, 50.0, 1.6, 0.4));
                 add(new BuyPart(53, "Speiche(K)", 0.10, 22000, false, 22000, 50.0, 1.6, 0.2));
                 add(new BuyPart(57, "Felge cpl.(D)", 22.00, 600, false, 600, 50.0, 1.7, 0.3));
                 add(new BuyPart(58, "Speiche(D)", 0.10, 22000, false, 22000, 50.0, 1.6, 0.5));
-                add(new BuyPart(59, "Schweißdraht", 0.15, 1800, true, 1800, 50.0, 1.7, 0.2));
+                add(new BuyPart(59, "Schweißdraht", 0.15, 1800, true, 1800, 50.0, 0.7, 0.2));
             }
         };
 
@@ -100,18 +101,18 @@ public class PartsService {
         this.manufacturingParts = manufacturingParts;
     }
 
-    public BuyPart getBuyPartById(Integer id) {
+    public BuyPart getBuyPartById(Integer number) {
         return buyParts
                 .stream()
-                .filter(x -> x.getNumber() == id)
+                .filter(x -> Objects.equals(x.getNumber(), number))
                 .collect(Collectors.toList())
                 .get(0);
     }
 
-    public ManufacturingPart getManufacturingPartById(Integer id) {
+    public ManufacturingPart getManufacturingPartById(Integer number) {
         return manufacturingParts
                 .stream()
-                .filter(x -> x.getNumber() == id)
+                .filter(x -> Objects.equals(x.getNumber(), number))
                 .collect(Collectors.toList())
                 .get(0);
     }
