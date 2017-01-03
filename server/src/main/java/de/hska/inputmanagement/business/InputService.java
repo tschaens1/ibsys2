@@ -2,7 +2,6 @@ package de.hska.inputmanagement.business;
 
 import java.util.List;
 
-import de.hska.filemanagement.domain.JsonFile;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -13,83 +12,6 @@ import de.hska.periodmanagement.domain.Period;
 public class InputService {
 	// TODO: Load Results.xml from database and throw if not exists
 	// TODO: Do correct calculation
-
-	public void initialize(JsonFile jsonFile) {
-		generatePlanningJson(jsonFile);
-	}
-
-	private void generatePlanningJson(JsonFile jsonFile) {
-		try {
-
-			JSONObject jsonObject = new JSONObject(jsonFile.getContent());
-
-			JSONObject resultsJSON = jsonObject.getJSONObject("results");
-			int group = resultsJSON.getInt("group");
-			int game = resultsJSON.getInt("game");
-			int counter = resultsJSON.getInt("period");
-
-			JSONObject inputJSON = jsonObject.getJSONObject("input");
-
-			JSONObject sellwishJSON = inputJSON.getJSONObject("sellwish");
-
-			JSONArray sellwishItemsJSONArray = sellwishJSON.getJSONArray("items");
-			for (int i = 0, size = sellwishItemsJSONArray.length(); i < size; i++) {
-				JSONObject objectInArray = sellwishItemsJSONArray.getJSONObject(i);
-				objectInArray.get("article");
-				objectInArray.get("quantity");
-			}
-
-			JSONObject productionJSON = inputJSON.getJSONObject("production");
-			JSONArray productionItemsJSONArray = productionJSON.getJSONArray("items");
-			for (int i = 0, size = productionItemsJSONArray.length(); i < size; i++) {
-				JSONObject objectInArray = productionItemsJSONArray.getJSONObject(i);
-				objectInArray.get("article");
-				objectInArray.get("quantity");
-			}
-
-			JSONObject selldirectJSON = inputJSON.getJSONObject("selldirect");
-			JSONArray selldirectItemsJSONArray = selldirectJSON.getJSONArray("items");
-			for (int i = 0, size = selldirectItemsJSONArray.length(); i < size; i++) {
-				JSONObject objectInArray = selldirectItemsJSONArray.getJSONObject(i);
-				objectInArray.get("article");
-				objectInArray.get("quantity");
-			}
-
-			JSONObject safetystockJSON = inputJSON.getJSONObject("safetystock");
-			JSONArray safetystockItemsJSONArray = safetystockJSON.getJSONArray("items");
-			for (int i = 0, size = safetystockItemsJSONArray.length(); i < size; i++) {
-				JSONObject objectInArray = safetystockItemsJSONArray.getJSONObject(i);
-				objectInArray.get("article");
-				objectInArray.get("quantity");
-			}
-
-			JSONObject forecastsJSON = inputJSON.getJSONObject("forecasts");
-			JSONObject forecastOneJSON = forecastsJSON.getJSONObject("forecast_one");
-			JSONArray forecastOneItemsJSONArray = forecastOneJSON.getJSONArray("items");
-			for (int i = 0, size = forecastOneItemsJSONArray.length(); i < size; i++) {
-				JSONObject objectInArray = forecastOneItemsJSONArray.getJSONObject(i);
-				objectInArray.get("article");
-				objectInArray.get("quantity");
-			}
-			JSONObject forecastTwoJSON = forecastsJSON.getJSONObject("forecast_two");
-			JSONArray forecastTwoItemsJSONArray = forecastTwoJSON.getJSONArray("items");
-			for (int i = 0, size = forecastTwoItemsJSONArray.length(); i < size; i++) {
-				JSONObject objectInArray = forecastTwoItemsJSONArray.getJSONObject(i);
-				objectInArray.get("article");
-				objectInArray.get("quantity");
-			}
-
-			JSONObject forecastThreeJSON = forecastsJSON.getJSONObject("forecast_three");
-			JSONArray forecastThreeItemsJSONArray = forecastThreeJSON.getJSONArray("items");
-			for (int i = 0, size = forecastThreeItemsJSONArray.length(); i < size; i++) {
-				JSONObject objectInArray = forecastThreeItemsJSONArray.getJSONObject(i);
-				objectInArray.get("article");
-				objectInArray.get("quantity");
-			}
-		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
-		}
-	}
 
 	public JSONObject generateInputJson(Period period) {
 

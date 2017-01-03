@@ -1,11 +1,10 @@
 package de.hska.periodmanagement.business;
 
-import de.hska.periodmanagement.domain.Period;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import de.hska.periodmanagement.domain.Period;
 
 public interface IPeriodRepository extends JpaRepository<Period, Long> {
 
-    public List<Period> findByCounter(Long counter);
+	public Period findByCounter(Long counter);
 }
