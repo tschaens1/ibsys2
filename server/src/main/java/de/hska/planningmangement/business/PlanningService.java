@@ -6,10 +6,12 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 
 import de.hska.filemanagement.domain.JsonFile;
 import de.hska.planningmangement.domain.PlanningPosition;
 
+@Service
 public class PlanningService {
 
 	private int period;

@@ -1,6 +1,6 @@
 package de.hska.planningmangement.resource;
 
-import java.util.List;
+import java.text.ParseException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -30,32 +30,24 @@ public class PlanningResource {
 
 	@ExceptionHandler({ org.springframework.http.converter.HttpMessageNotReadableException.class })
 	@RequestMapping(method = RequestMethod.POST, value = "/periods/{counter}/planning")
-	public String save(@PathVariable Long counter, @RequestBody String jsonObject) {
+	public String save(@PathVariable Long counter, @RequestBody String jsonObject)
+			throws NotFoundException, ParseException {
 
-		try {
-			if (jsonObject == null)
-				return "error";
+		if (jsonObject == null)
+			return "error";
 
-			JsonFile jsonFile = new JsonFile();
-			jsonFile.setContent(jsonObject);
+		JsonFile jsonFile = new JsonFile();
+		jsonFile.setContent(jsonObject);
 
-			Planning planning = new Planning();
-			planning.setJsonFile(jsonFile);
+		Planning planning = new Planning();
+		planning.setJsonFile(jsonFile);
 
-			List<Period> period = periodRepository.findByCounter(counter);
-			if (period.size() > 1)
-				throw new NotFoundException("Couldn't specify period.");
+		Period period = periodRepository.findByCounter(counter);
+		period.setPlanning(planning);
 
-			period.get(0).setPlanning(planning);
+		planningService.initialize(jsonFile);
 
-			planningService.initialize(jsonFile);
-
-			return periodRepository.save(period).toString();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return jsonObject;
-
+		return periodRepository.save(period).toString();
 	}
 
 }

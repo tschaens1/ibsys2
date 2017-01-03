@@ -1,5 +1,18 @@
 package de.hska.filemanagement.resource;
 
+import java.text.ParseException;
+
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import de.hska.filemanagement.domain.JsonFile;
 import de.hska.filemanagement.domain.XmlFile;
 import de.hska.inputmanagement.business.InputService;
@@ -8,76 +21,63 @@ import de.hska.periodmanagement.business.IPeriodRepository;
 import de.hska.periodmanagement.domain.Period;
 import de.hska.simulationmanagement.business.SimulationService;
 import de.hska.util.FileConverterService;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.text.ParseException;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/rest/files", produces = MediaType.APPLICATION_JSON_VALUE)
 public class FileResource {
 
-    @Autowired
-    private IPeriodRepository periodRepository;
+	@Autowired
+	private IPeriodRepository periodRepository;
 
-    @Autowired
-    private FileConverterService fileConverterService;
+	@Autowired
+	private FileConverterService fileConverterService;
 
-    @Autowired
-    private KpiService kpiService;
+	@Autowired
+	private KpiService kpiService;
 
-    @Autowired
-    private InputService inputService;
+	@Autowired
+	private InputService inputService;
 
-    @Autowired
-    private SimulationService simulationService;
+	@Autowired
+	private SimulationService simulationService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "result")
-    public ResponseEntity save(@RequestBody XmlFile xmlFile) throws ParseException {
-        String jsonContent = xmlFile.getContent();
-        JSONObject jsonObject = fileConverterService.convertXmlToJson(jsonContent);
-        JsonFile jsonFile = new JsonFile();
-        jsonFile.setContent(jsonObject.toString());
-            Long periodLong = (Long) jsonObject.getJSONObject("results").get("period");
+	@RequestMapping(method = RequestMethod.POST, value = "result")
+	public ResponseEntity<String> save(@RequestBody XmlFile xmlFile) throws ParseException {
+		String jsonContent = xmlFile.getContent();
+		JSONObject jsonObject = fileConverterService.convertXmlToJson(jsonContent);
+		JsonFile jsonFile = new JsonFile();
+		jsonFile.setContent(jsonObject.toString());
+		Long periodLong = (Long) jsonObject.getJSONObject("results").get("period");
+		Period period = periodRepository.findByCounter(periodLong);
 
-            Period period = new Period();
-            period.setCounter(periodLong);
-            period.setJsonFile(jsonFile);
+		if (period != null) {
+			period.setCounter(periodLong);
+			period.setJsonFile(jsonFile);
+			periodRepository.save(period);
+		} else {
+			Period newPeriod = new Period();
+			newPeriod.setCounter(periodLong);
+			newPeriod.setJsonFile(jsonFile);
+			periodRepository.save(newPeriod);
+		}
 
-            periodRepository.save(period);
+		kpiService.initialize(jsonFile);
+		// inputService.initialize(jsonFile);
+		simulationService.initialize();
 
-            kpiService.initialize(jsonFile);
-            // inputService.initialize(jsonFile);
-            simulationService.initialize();
+		return new ResponseEntity<String>(HttpStatus.CREATED);
 
-            return new ResponseEntity(HttpStatus.CREATED);
-        
-    }
+	}
 
-    @RequestMapping(method = RequestMethod.GET, value = "periods/{period}/result")
-    public ResponseEntity ReturnResultsForPeriod(@PathVariable Long period) {
-        List<Period> periods = periodRepository.findByCounter(period);
+	@RequestMapping(method = RequestMethod.GET, value = "periods/{periodCounter}/result")
+	public ResponseEntity<String> ReturnResultsForPeriod(@PathVariable Long periodCounter) {
+		Period period = periodRepository.findByCounter(periodCounter);
+		return ResponseEntity.ok(period.getJsonFile().getContent());
+	}
 
-        if (periods.size() > 1) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return ResponseEntity.ok(periods.get(0).getJsonFile().getContent());
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "periods/{period}/input")
-    public ResponseEntity returnInputForPeriod(@PathVariable Long period) {
-        List<Period> periods = periodRepository.findByCounter(period);
-
-        if (periods.size() > 1) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return ResponseEntity.ok(inputService.generateInputJson(periods.get(0)).toString());
-    }
+	@RequestMapping(method = RequestMethod.GET, value = "periods/{periodCounter}/input")
+	public ResponseEntity<String> returnInputForPeriod(@PathVariable Long periodCounter) {
+		Period period = periodRepository.findByCounter(periodCounter);
+		return ResponseEntity.ok(inputService.generateInputJson(period).toString());
+	}
 }
