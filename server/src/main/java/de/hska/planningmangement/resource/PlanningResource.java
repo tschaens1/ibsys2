@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import de.hska.filemanagement.domain.JsonFile;
 import de.hska.periodmanagement.business.IPeriodRepository;
 import de.hska.periodmanagement.domain.Period;
+import de.hska.planningmangement.business.PlanningService;
 import de.hska.planningmangement.domain.Planning;
 import javassist.NotFoundException;
 
@@ -24,26 +25,37 @@ public class PlanningResource {
 	@Autowired
 	private IPeriodRepository periodRepository;
 
+	@Autowired
+	private PlanningService planningService;
+
 	@ExceptionHandler({ org.springframework.http.converter.HttpMessageNotReadableException.class })
 	@RequestMapping(method = RequestMethod.POST, value = "/periods/{counter}/planning")
-	public String save(@PathVariable Long counter, @RequestBody String jsonObject) throws NotFoundException {
+	public String save(@PathVariable Long counter, @RequestBody String jsonObject) {
 
-		if (jsonObject == null)
-			return "error";
+		try {
+			if (jsonObject == null)
+				return "error";
 
-		JsonFile jsonFile = new JsonFile();
-		jsonFile.setContent(jsonObject);
+			JsonFile jsonFile = new JsonFile();
+			jsonFile.setContent(jsonObject);
 
-		Planning planning = new Planning();
-		planning.setJsonFile(jsonFile);
+			Planning planning = new Planning();
+			planning.setJsonFile(jsonFile);
 
-		List<Period> period = periodRepository.findByCounter(counter);
-		if (period.size() > 1)
-			throw new NotFoundException("Couldn't specify period.");
+			List<Period> period = periodRepository.findByCounter(counter);
+			if (period.size() > 1)
+				throw new NotFoundException("Couldn't specify period.");
 
-		period.get(0).setPlanning(planning);
+			period.get(0).setPlanning(planning);
 
-		return periodRepository.save(period).toString();
+			planningService.initialize(jsonFile);
+
+			return periodRepository.save(period).toString();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return jsonObject;
+
 	}
 
 }
