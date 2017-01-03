@@ -1,67 +1,73 @@
 package de.hska.workplacemanagement.domain;
 
 public class ProductionOrder {
-    private Integer productNumber;
-    private Integer amount;
-    private Integer period;
-    private Integer workplaceId;
-    private Boolean isInWork;
-    private Priority priority;
+	private Integer productNumber;
+	private Integer amount;
+	private Integer period;
+	private Integer workplaceId;
+	private Boolean isInWork;
+	private Priority priority;
 
-    public ProductionOrder(Integer productNumber, Integer amount, Integer period, Integer workplaceId) {
-        this.productNumber = productNumber;
-        this.amount = amount;
-        this.period = period;
-        this.workplaceId = workplaceId;
-        this.isInWork = false;
-        this.priority = Priority.Normal;
-    }
+	public ProductionOrder(Integer productNumber, Integer amount, Integer period) {
+		this.productNumber = productNumber;
+		this.amount = amount;
+		this.period = period;
+	}
 
-    public Integer getProductNumber() {
-        return productNumber;
-    }
+	public ProductionOrder(Integer productNumber, Integer amount, Integer period, Integer workplaceId) {
+		this.productNumber = productNumber;
+		this.amount = amount;
+		this.period = period;
+		this.workplaceId = workplaceId;
+		this.isInWork = false;
+		this.priority = Priority.Normal;
+	}
 
-    public void setProductNumber(Integer productNumber) {
-        this.productNumber = productNumber;
-    }
+	public Integer getProductNumber() {
+		return productNumber;
+	}
 
-    public Integer getAmount() {
-        return amount;
-    }
+	public void setProductNumber(Integer productNumber) {
+		this.productNumber = productNumber;
+	}
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
+	public Integer getAmount() {
+		return amount;
+	}
 
-    public Integer getPeriod() {
-        return period;
-    }
+	public void setAmount(Integer amount) {
+		this.amount = amount;
+	}
 
-    public void setPeriod(Integer period) {
-        this.period = period;
-    }
+	public Integer getPeriod() {
+		return period;
+	}
 
-    public Integer getWorkplaceId() {
-        return workplaceId;
-    }
+	public void setPeriod(Integer period) {
+		this.period = period;
+	}
 
-    public void setWorkplaceId(Integer workplaceId) {
-        this.workplaceId = workplaceId;
-    }
+	public Integer getWorkplaceId() {
+		return workplaceId;
+	}
 
-    public Boolean getInWork() {
-        return isInWork;
-    }
+	public void setWorkplaceId(Integer workplaceId) {
+		this.workplaceId = workplaceId;
+	}
 
-    public void setInWork(Boolean inWork) {
-        isInWork = inWork;
-    }
+	public Boolean getInWork() {
+		return isInWork;
+	}
 
-    public Priority getPriority() {
-        return priority;
-    }
+	public void setInWork(Boolean inWork) {
+		isInWork = inWork;
+	}
 
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
+	public Priority getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Priority priority) {
+		this.priority = priority;
+	}
 }

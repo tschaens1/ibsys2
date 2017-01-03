@@ -21,6 +21,7 @@ import de.hska.periodmanagement.business.IPeriodRepository;
 import de.hska.periodmanagement.domain.Period;
 import de.hska.simulationmanagement.business.SimulationService;
 import de.hska.util.FileConverterService;
+import de.hska.warehousemanagement.business.WarehouseService;
 
 @RestController
 @RequestMapping(value = "/api/rest/files", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -37,6 +38,9 @@ public class FileResource {
 
 	@Autowired
 	private InputService inputService;
+
+	@Autowired
+	private WarehouseService warehouseService;
 
 	@Autowired
 	private SimulationService simulationService;
@@ -62,6 +66,7 @@ public class FileResource {
 		}
 
 		kpiService.initialize(jsonFile);
+		warehouseService.initialize(jsonFile);
 		// inputService.initialize(jsonFile);
 		simulationService.initialize();
 
