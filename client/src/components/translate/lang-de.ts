@@ -74,6 +74,7 @@ export const LANG_DE_TRANSLATIONS = {
             "invalid_article_id": "Falsche Artikel Nummer",
         },
         "modal":{
+            "addedArticle": "Artikel %0 wurde hinzugefügt",
             "removedArticle": "Artikel %0 wurde entfernt",
         },
     },
