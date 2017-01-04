@@ -27,17 +27,9 @@
 			</div>
 		</div>
 		<div class="right-part">
-			<a class='dropdown-button button' data-activates='settings-dropdown'><i class="mdi mdi-settings"></i></a>
-			<a class='dropdown-button button ellipsis' data-activates='user-dropdown'>{{'start.navbar.username'|translate:['Robert']}}</a>
+			<a class='button' (click)="logout()" title="{{'start.navbar.logout'|translate}}"><i class="mdi mdi-logout-variant"></i></a>
+			<a class='dropdown-button button' routerLink="/app/settings" title="{{'start.navbar.settings'|translate}}"><i class="mdi mdi-settings"></i></a>
 		</div>
-
-		<ul id='user-dropdown' class='dropdown-content'>
-			<li><a (click)="logout()" title="Logout">{{'start.navbar.logout'|translate}}</a></li>
-		</ul>
-
-		<ul id='settings-dropdown' class='dropdown-content'>
-			<li><a routerLink="/app/settings">{{'start.navbar.settings'|translate}}</a></li>
-		</ul>
 	</div>
 
 	<div class="app-sidenav">
