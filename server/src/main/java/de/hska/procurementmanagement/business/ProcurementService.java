@@ -134,7 +134,7 @@ public class ProcurementService {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    private Double getBuyCosts(BuyPart part, BuyMode buyMode, Integer amount) {
+    public Double getBuyCosts(BuyPart part, BuyMode buyMode, Integer amount) {
         Double materialCosts = 0.0;
         Double procurementCosts = 0.0;
 

@@ -2,6 +2,7 @@ package de.hska.planningmangement.resource;
 
 import java.text.ParseException;
 
+import de.hska.procurementmanagement.business.ProcurementCalculationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -74,6 +75,7 @@ public class PlanningResource {
 		period.setPlanning(planning);
 
 		JsonFile periodJsonPeriod = period.getJsonFile();
+
 		// initialize Services
 		kpiService.initialize(periodJsonPeriod);
 		simulationService.initialize();
@@ -83,7 +85,7 @@ public class PlanningResource {
 		productionService.initialize(periodJsonPeriod);
 
 		procurementService.initialize(periodJsonPeriod);
-		procurementCalculationService.initialize(periodJsonPeriod);
+		procurementCalculationService.initialize();
 
 		simulationService.initializeDisposition();
 
