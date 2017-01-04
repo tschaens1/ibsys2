@@ -74,6 +74,9 @@ export const LANG_EN_TRANSLATIONS = {
         "validation": {
             "invalid_article_id": "Invalid article number",
         },
+        "modal":{
+            "removedArticle": "Article %0 has been removed",
+        },
     },
     "planning_production": {
         "title": "Production program",
