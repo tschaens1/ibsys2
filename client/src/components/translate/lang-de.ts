@@ -73,6 +73,9 @@ export const LANG_DE_TRANSLATIONS = {
         "validation": {
             "invalid_article_id": "Falsche Artikel Nummer",
         },
+        "modal":{
+            "removedArticle": "Artikel %0 wurde entfernt",
+        },
     },
     "planning_production": {
         "title": "Prouktionsplanung",
