@@ -33,7 +33,6 @@ export class PlanningPurchasingComponent implements OnInit, OnDestroy {
 
         dragulaService.setOptions('purchasing-bag', {
             removeOnSpill: true,
-            revertOnSpill: true,
         });
 
         this.dragulaSubscription = dragulaService.removeModel.subscribe((value) => {
@@ -44,7 +43,7 @@ export class PlanningPurchasingComponent implements OnInit, OnDestroy {
     onRemoveModel(args) {
         const [el, source] = args;
         const delArticleId = $(el).find('.detail').first().html();
-        this.toastr.info(this.translationService.instant('planning_material.modal.removedArticle', delArticleId));
+        // this.toastr.info(this.translationService.instant('planning_material.modal.removedArticle', delArticleId));
     }
 
     ngOnInit(): void {
@@ -90,6 +89,7 @@ export class PlanningPurchasingComponent implements OnInit, OnDestroy {
                 }
             }
         );
+        // this.toastr.info(this.translationService.instant('planning_material.modal.addedArticle', id.value));
         id.value = '';
     }
 
