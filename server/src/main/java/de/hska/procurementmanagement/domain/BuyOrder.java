@@ -5,15 +5,31 @@ public class BuyOrder {
     private Integer buyPartId;
     private BuyMode buyMode;
     private Integer amount;
-    private Integer period;
-    private Double costs;
+    private Integer orderPeriod;
+    private Double totalCosts;
 
-    public BuyOrder(Integer buyPartId, BuyMode buyMode, Integer amount, Integer period, Double costs) {
+    private Double materialCosts;
+    private Double procurementCosts;
+    private Double costsPerPiece;
+
+    public BuyOrder(Integer buyPartId, BuyMode buyMode, Integer amount, Integer orderPeriod, Double totalCosts) {
         this.buyPartId = buyPartId;
         this.buyMode = buyMode;
         this.amount = amount;
-        this.period = period;
-        this.costs = costs;
+        this.orderPeriod = orderPeriod;
+        this.totalCosts = totalCosts;
+    }
+
+    public BuyOrder(Integer buyPartId, BuyMode buyMode, Integer amount, Integer orderPeriod,
+                    Double totalCosts, Double materialCosts, Double procurementCosts, Double costsPerPiece) {
+        this.buyPartId = buyPartId;
+        this.buyMode = buyMode;
+        this.amount = amount;
+        this.orderPeriod = orderPeriod;
+        this.totalCosts = totalCosts;
+        this.materialCosts = materialCosts;
+        this.procurementCosts = procurementCosts;
+        this.costsPerPiece = costsPerPiece;
     }
 
     public Integer getBuyPartId() {
@@ -40,19 +56,57 @@ public class BuyOrder {
         this.amount = amount;
     }
 
-    public Integer getPeriod() {
-        return period;
+    public Integer getOrderPeriod() {
+        return orderPeriod;
     }
 
-    public void setPeriod(Integer period) {
-        this.period = period;
+    public void setOrderPeriod(Integer orderPeriod) {
+        this.orderPeriod = orderPeriod;
     }
 
-    public Double getCosts() {
-        return costs;
+    public Double getTotalCosts() {
+        return totalCosts;
     }
 
-    public void setCosts(Double costs) {
-        this.costs = costs;
+    public void setTotalCosts(Double totalCosts) {
+        this.totalCosts = totalCosts;
+    }
+
+    public Double getMaterialCosts() {
+        return materialCosts;
+    }
+
+    public void setMaterialCosts(Double materialCosts) {
+        this.materialCosts = materialCosts;
+    }
+
+    public Double getProcurementCosts() {
+        return procurementCosts;
+    }
+
+    public void setProcurementCosts(Double procurementCosts) {
+        this.procurementCosts = procurementCosts;
+    }
+
+    public Double getCostsPerPiece() {
+        return costsPerPiece;
+    }
+
+    public void setCostsPerPiece(Double costsPerPiece) {
+        this.costsPerPiece = costsPerPiece;
+    }
+
+    @Override
+    public String toString() {
+        return "BuyOrder{" +
+                "buyPartId=" + buyPartId +
+                ", buyMode=" + buyMode +
+                ", amount=" + amount +
+                ", orderPeriod=" + orderPeriod +
+                ", totalCosts=" + totalCosts +
+                ", materialCosts=" + materialCosts +
+                ", procurementCosts=" + procurementCosts +
+                ", costsPerPiece=" + costsPerPiece +
+                '}';
     }
 }

@@ -1,7 +1,7 @@
 package de.hska.procurementmanagement.domain;
 
 public enum BuyMode {
-    Normal(4), Fast(5);
+    Normal(5), Fast(4);
 
     private final int value;
 
