@@ -126,6 +126,14 @@ public class ProcurementService {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
+    public ArrayList<BuyOrder> getNewBuyOrdersForPart(Integer partNumber) {
+        return this.newBuyOrders
+                .stream()
+                .filter(newBuyOrder
+                        -> Objects.equals(newBuyOrder.getBuyPartId(), partNumber))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
     private Double getBuyCosts(BuyPart part, BuyMode buyMode, Integer amount) {
         Double materialCosts = 0.0;
         Double procurementCosts = 0.0;
@@ -162,16 +170,24 @@ public class ProcurementService {
 
     private Integer getArriveDayFromTimeStamp(Integer timestamp) {
         Integer totalDay = timestamp / 24 / 60;
-        if (totalDay % 5 == 0) {
-            return 5;
-        } else {
-            return totalDay % 5;
-        }
+        return totalDay % 5 == 0 ? 5 : (totalDay % 5);
     }
 
     private Integer getArrivePeriodFromTimeStamp(Integer timestamp) {
         Integer totalDay = timestamp / 24 / 60;
         Double periodRounded = Math.ceil(totalDay / 5.0);
         return periodRounded.intValue();
+    }
+
+    public ArrayList<BuyOrder> getNewBuyOrders() {
+        return newBuyOrders;
+    }
+
+    public ArrayList<BuyOrder> getPendingBuyOrders() {
+        return pendingBuyOrders;
+    }
+
+    public ArrayList<IncomingBuyOrder> getIncomingBuyOrders() {
+        return incomingBuyOrders;
     }
 }

@@ -104,11 +104,18 @@ public class PartsService {
 	}
 
 	public BuyPart getBuyPartById(Integer number) {
-		return buyParts.stream().filter(x -> Objects.equals(x.getNumber(), number)).collect(Collectors.toList()).get(0);
+		return buyParts
+				.stream()
+				.filter(x -> Objects.equals(x.getNumber(), number))
+				.collect(Collectors.toList())
+				.get(0);
 	}
 
 	public ManufacturingPart getManufacturingPartById(Integer number) {
-		return manufacturingParts.stream().filter(x -> Objects.equals(x.getNumber(), number))
-				.collect(Collectors.toList()).get(0);
+		return manufacturingParts
+				.stream()
+				.filter(x -> Objects.equals(x.getNumber(), number))
+				.collect(Collectors.toList())
+				.get(0);
 	}
 }
