@@ -1,0 +1,19 @@
+<div class="app-page animated fadeIn">
+	<div class="page-heading">
+		<!--<h1>Settings</h1>-->
+		<h1>{{'settings.title' | translate}}</h1>
+		<p>{{'settings.description' | translate}}</p>
+	</div>
+	<div class="page-content">
+		<div class="row">
+			<div class="col s12">
+				<div class="page-part">
+					<h1>{{'settings.language.title'|translate}}</h1>
+					<p>{{'settings.language.changeLanguage'|translate}}</p>
+					<a class="waves-effect waves-light btn" (click)="changeLanguage('en')">{{'settings.language.english'|translate}}</a>
+					<a class="waves-effect waves-light btn" (click)="changeLanguage('de')">{{'settings.language.german'|translate}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,5 +1,6 @@
-<div class="loginpage">
-    <div class="loginContainer col s12">
+<div class="loginpage animated fadeIn">
+    <img class="backgroundImage hidden" src="./../../images/login-background_blur.jpeg" alt="bikes" />
+    <div class="loginContainer col s12 animated fadeIn">
         <div class="row">
             <div class="col s12">
                 <h4 class="title center-align">IBSYS 2</h4>
@@ -11,24 +12,24 @@
                     <div class="input-field col s12">
                         <i class="mdi mdi-account prefix"></i>
                         <input [(ngModel)]="username" id="username" name="username" type="text" class="validate" required>
-                        <label for="username">Username</label>
+                        <label for="username">{{'login.username'|translate}}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="mdi mdi-key prefix"></i>
                         <input [(ngModel)]="password" id="password" name="pw" type="password" class="validate" required>
-                        <label for="password">Password</label>
+                        <label for="password">{{'login.password'|translate}}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="stayLoggedIn col l12">
                         <input type="checkbox" id="stayLoggedIn" [(ngModel)]="stayLoggedIn" name="stayLoggedIn" />
-                        <label for="stayLoggedIn">Stay logged in</label>
+                        <label for="stayLoggedIn">{{'login.stayLoggedIn'|translate}}</label>
                     </div>
                 </div>
                 <div class="row">
-                    <button class="btn waves-effect waves-light" [disabled]="!loginForm.form.valid" type="submit">Login</button>
+                    <button class="btn waves-effect waves-light" [disabled]="!loginForm.form.valid" type="submit">{{'login.button.login'|translate}}</button>
                 </div>
             </form>
         </div>
@@ -36,4 +37,12 @@
             <p class="copy center-align">&copy; 2016 - Hochschule Karlsruhe</p>
         </div>
     </div>
+    <!-- Dropdown Trigger -->
+    <a class='dropdown-button btn language-dropdown' data-activates='languageDropdown'>{{settingsService.getLanguage()}}</a>
+
+    <!-- Dropdown Structure -->
+    <ul id='languageDropdown' class='dropdown-content'>
+        <li><a (click)="changeLanguage('de')">DE</a></li>
+        <li><a (click)="changeLanguage('en')">EN</a></li>
+    </ul>
 </div>

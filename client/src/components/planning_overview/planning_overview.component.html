@@ -1,0 +1,236 @@
+<div class="app-page animated fadeIn" *ngIf="!planningService.isLoading">
+	<div class="page-heading">
+		<h1>{{'planning_overview.title'|translate}}</h1>
+		<p class="ellipsis">{{'planning_overview.description'|translate}}</p>
+	</div>
+	<div class="page-content animated fadeIn" *ngIf="page === 0">
+		<div class="row page-part">
+			<div class="col s12">
+				<h4>{{'planning_overview.insert_period_to_plan'|translate}}
+					<a class="help-button" (click)="openHelp('planning_overview.modals.period')"><i class="mdi mdi-help-circle"></i></a>
+				</h4>
+				<input type="number" placeholder="Periode" [(ngModel)]="period" (keyup.enter)="next()">
+			</div>
+			<div class="col s12">
+				<h4>{{'planning_overview.result_upload_last_period'|translate}}
+					<a class="help-button" (click)="openHelp('planning_overview.modals.xml')"><i class="mdi mdi-help-circle"></i></a>
+				</h4>
+				<upload></upload>
+			</div>
+			<div class="col s12">
+				<div class="button-group">
+					<a class="waves-effect grey waves-light btn" (click)="cancelPlanningPreparation()">{{'planning_overview.cancel'|translate}}</a>
+					<a class="waves-effect waves-light btn" (click)="next()">{{'planning_overview.continue'|translate}}</a>
+				</div>
+			</div>
+			<div class="col s12">
+				<div class="button-group">
+					<a class="clearButton" (click)="clearInputs()">{{'planning_overview.reset_input_to_standard'|translate}}</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="page-content animated fadeIn" *ngIf="page === 1">
+		<div class="row page-part">
+			<div class="col s12">
+				<h4>{{'planning_overview.insert_sellwish'|translate}}
+					<a class="help-button" (click)="openHelp('planning_overview.modals.sellwish')"><i class="mdi mdi-help-circle"></i></a>
+				</h4>
+				<table>
+					<thead>
+						<tr>
+							<th>{{'planning_overview.sellwish_product'|translate}}</th>
+							<th>{{'planning_overview.sellwish'|translate}} {{period}}</th>
+							<th>{{'planning_overview.sellwish_forecast'|translate}} {{(period + 1)}}</th>
+							<th>{{'planning_overview.sellwish_forecast'|translate}} {{(period + 2)}}</th>
+							<th>{{'planning_overview.sellwish_forecast'|translate}} {{(period + 3)}}</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>P1</td>
+							<td><input type="number" placeholder="P1" [(ngModel)]="sellwish_p1" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P1" [(ngModel)]="forecast_p1_one" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P1" [(ngModel)]="forecast_p1_two" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P1" [(ngModel)]="forecast_p1_three" (keyup.enter)="next()"></td>
+						</tr>
+						<tr>
+							<td>P2</td>
+							<td><input type="number" placeholder="P2" [(ngModel)]="sellwish_p2" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P2" [(ngModel)]="forecast_p2_one" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P2" [(ngModel)]="forecast_p2_two" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P2" [(ngModel)]="forecast_p2_three" (keyup.enter)="next()"></td>
+						</tr>
+						<tr>
+							<td>P3</td>
+							<td><input type="number" placeholder="P3" [(ngModel)]="sellwish_p3" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P3" [(ngModel)]="forecast_p3_one" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P3" [(ngModel)]="forecast_p3_two" (keyup.enter)="next()"></td>
+							<td><input type="number" placeholder="P3" [(ngModel)]="forecast_p3_three" (keyup.enter)="next()"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col s12">
+				<div class="button-group">
+					<a class="waves-effect waves-light grey btn" (click)="back()">{{'planning_overview.back'|translate}}</a>
+					<a class="waves-effect waves-light btn" (click)="next()">{{'planning_overview.continue'|translate}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content animated fadeIn" *ngIf="page === 2">
+		<div class="row page-part">
+			<div class="col s12">
+				<h4>{{'planning_overview.ask_for_direct_sale'|translate}}
+					<a class="help-button" (click)="openHelp('planning_overview.modals.selldirect')"><i class="mdi mdi-help-circle"></i></a>
+				</h4>
+
+				<a *ngIf="!enabledSellDirect" class="waves-effect grey waves-light btn" (click)="back()">{{'planning_overview.back'|translate}}</a>
+				<a *ngIf="!enabledSellDirect" class="waves-effect waves-light btn" (click)="enabledSellDirect = true">{{'planning_overview.yes'|translate}}</a>
+				<a *ngIf="!enabledSellDirect" class="waves-effect waves-light btn" (click)="next()">{{'planning_overview.direct_sale_no_back'|translate}}</a>
+				<table *ngIf="enabledSellDirect">
+					<thead>
+						<tr>
+							<th></th>
+							<th>{{'planning_overview.quantity'|translate}}</th>
+							<th>{{'planning_overview.price'|translate}}</th>
+							<th>{{'planning_overview.contract_penalty'|translate}}</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>P1</td>
+							<td><input placeholder="P1" type="number" [(ngModel)]="selldirect_quantity_p1" (keyup.enter)="next()"></td>
+							<td><input placeholder="P1" type="text" [(ngModel)]="selldirect_price_p1" (keyup.enter)="next()"></td>
+							<td><input placeholder="P1" type="text" [(ngModel)]="selldirect_penalty_p1" (keyup.enter)="next()"></td>
+						</tr>
+						<tr>
+							<td>P2</td>
+							<td><input placeholder="P2" type="number" [(ngModel)]="selldirect_quantity_p2" (keyup.enter)="next()"></td>
+							<td><input placeholder="P2" type="text" [(ngModel)]="selldirect_price_p2" (keyup.enter)="next()"></td>
+							<td><input placeholder="P2" type="text" [(ngModel)]="selldirect_penalty_p2" (keyup.enter)="next()"></td>
+						</tr>
+						<tr>
+							<td>P3</td>
+							<td><input placeholder="P3" type="number" [(ngModel)]="selldirect_quantity_p3" (keyup.enter)="next()"></td>
+							<td><input placeholder="P3" type="text" [(ngModel)]="selldirect_price_p3" (keyup.enter)="next()"></td>
+							<td><input placeholder="P3" type="text" [(ngModel)]="selldirect_penalty_p3" (keyup.enter)="next()"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col s12" *ngIf="enabledSellDirect">
+				<div class="button-group">
+					<a class="waves-effect waves-light grey btn" (click)="back()">{{'planning_overview.back'|translate}}</a>
+					<a class="waves-effect waves-light btn" (click)="disableSellDirect()">{{'planning_overview.deativate_direct_sales'|translate}}</a>
+					<a class="waves-effect waves-light btn" (click)="next()">{{'planning_overview.continue'|translate}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content animated fadeIn" *ngIf="page === 3">
+		<div class="row page-part">
+			<div class="col s12">
+				<h4>{{'planning_overview.amount_planned_production'|translate}}
+					<a class="help-button" (click)="openHelp('planning_overview.modals.planned_production')"><i class="mdi mdi-help-circle"></i></a>
+				</h4>
+				P1:
+				<input type="number" placeholder="P1" [(ngModel)]="produce_p1" (keyup.enter)="next()"> P2:
+				<input type="number" placeholder="P2" [(ngModel)]="produce_p2" (keyup.enter)="next()"> P3:
+				<input type="number" placeholder="P3" [(ngModel)]="produce_p3" (keyup.enter)="next()">
+			</div>
+			<div class="col s12">
+				<div class="button-group">
+					<a class="waves-effect waves-light grey btn" (click)="back()">{{'planning_overview.back'|translate}}</a>
+					<a class="waves-effect waves-light btn" (click)="next()">{{'planning_overview.continue'|translate}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content animated fadeIn" *ngIf="page === 4">
+		<div class="row page-part">
+			<div class="col s12">
+				<h4>{{'planning_overview.amount_savety_stock'|translate}}
+					<a class="help-button" (click)="openHelp('planning_overview.modals.safetyStock')"><i class="mdi mdi-help-circle"></i></a>
+				</h4>
+				<b>{{'planning_overview.standard_security'|translate}}</b>
+				<form>
+					<!--http://tb.github.io/ng2-nouislider/ -->
+					<p>{{defaultSafetystock}}%</p>
+					<nouislider name="form_value" [min]="0" [max]="100" [step]="1" (ngModelChange)="onChangeDefaultSafetyStock($event)" [(ngModel)]="defaultSafetystock"></nouislider>
+				</form>
+			</div>
+		</div>
+
+		<div class="row page-part">
+			<div class="col s12">
+				<a class="waves-effect waves-light btn" (click)="enabledPartsSafetyStock = !enabledPartsSafetyStock">{{'planning_overview.show_single_items'|translate}}</a>
+			</div>
+		</div>
+
+		<div class="row page-part animated fadeIn" *ngIf="enabledPartsSafetyStock">
+			<div class="col s12">
+				<table id="production_table">
+					<thead>
+						<th>{{'planning_overview.safety_stock_part'|translate}}</th>
+						<th>{{'planning_overview.safety_stock_quantity'|translate}}</th>
+					</thead>
+					<tbody>
+						<tr *ngFor="let part of safetyStock">
+							<td>{{part.article}}</td>
+							<td>
+								<input type="number" placeholder="quantity" [(ngModel)]="part.quantity">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="row page-part">
+			<div class="col s12">
+				<div class="button-group">
+					<a class="waves-effect waves-light grey btn" (click)="back()">{{'planning_overview.back'|translate}}</a>
+					<a class="waves-effect waves-light btn" (click)="next()">{{'planning_overview.send_data'|translate}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="loading animated fadeIn" *ngIf="planningService.isLoading">
+	<div class="loadingText">
+		{{'planning_overview.server_is_calculating'|translate}}
+	</div>
+	<div class="cancelLoadingButton" (click)="cancelLoading()">{{'modal.cancel'|translate}}</div>
+	<div class="spinner">
+		<div class="preloader-wrapper small active">
+			<div class="spinner-layer spinner-blue-only">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div>
+				<div class="gap-patch">
+					<div class="circle"></div>
+				</div>
+				<div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--<div class="loader">
+		<div class="inner one"></div>
+		<div class="inner two"></div>
+		<div class="inner three"></div>
+	</div>-->
+
+<!--</div>-->

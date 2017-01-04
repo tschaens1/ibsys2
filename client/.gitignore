@@ -6,6 +6,9 @@ bower_components
 .settings/
 .vscode
 
-npm-debug.log
+# Logs
+logs
+*.log
+npm-debug.log*
 
 /modules/rollup-test/dist/

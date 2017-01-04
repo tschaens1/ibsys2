@@ -1,0 +1,73 @@
+@import '../../styles/colors';
+@import '../../styles/breakpoints';
+
+.button-group {
+    float: right;
+}
+
+td {
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+    vertical-align: baseline;
+}
+
+td:first-child{
+    font-weight: bold;
+}
+
+.clearButton{
+    margin-top:2rem;
+    color: #848484;
+    text-decoration: none;
+    cursor: pointer;
+    float: right;
+}
+
+.loading {
+    position: absolute;
+    top: -7rem;
+    left: 0;
+    text-align: center;    
+    color: $primary-theme;
+    bottom: 0;
+    right: 0;
+    width: 30%;
+    height: 0rem;
+    margin: auto;
+
+    .loadingText {
+        margin-top: 3rem;        
+    }
+
+    .cancelLoadingButton {        
+        padding: .5rem 1rem .5rem 1rem;
+        width: 7rem;
+        position: absolute;
+        background-color: $light-gray;
+        left: 0;
+        right: 0;
+        cursor: pointer;        
+        top: 0;
+        margin: 9rem auto;
+        color: $gray;
+        transition: all ease .5s;
+
+        &:hover{
+            background-color: $red;
+            color: $white;
+        }
+    }
+}
+
+.progress{
+    background-color: $gray;
+
+    .indeterminate{
+        background-color: $primary-theme;
+    }
+}
+
+.spinner-blue, .spinner-blue-only {
+    border-color: $primary-theme !important;
+}

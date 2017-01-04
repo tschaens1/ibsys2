@@ -1,0 +1,56 @@
+<div class="app-page animated fadeIn">
+	<div class="page-content">
+		<div class="row page-part add-article">
+			<h4>{{'planning_purchasing.addArticle.title'|translate}}
+				<a class="help-button" (click)="openHelp('planning_purchasing.addArticle.help')"><i class="mdi mdi-help-circle"></i></a>
+			</h4>
+			<div class="col s3">
+				<input type="text" placeholder="ID" #id (keyup.enter)="addPart(id)">
+			</div>
+			<div class="col s3">
+				<a class="waves-effect waves-light btn grey lighten-1" (click)="addPart(id)">{{'planning_purchasing.addArticle.addButton'|translate}}</a>
+			</div>
+		</div>
+		<div class="row page-part">
+			<p class="help-text">{{'planning_material.help.text'|translate}}</p>
+			<div class='wrapper'>
+				<div class='container' [dragula]='"material-bag"' [dragulaModel]='parts'>
+					<div class="production-item" *ngFor='let item of parts'>
+						<div class="row">
+							<div class="col s2 m1">
+								<div class="title">{{'planning_purchasing.container.article'|translate}}</div>
+								<div class="detail">{{item['@'].article}}</div>
+							</div>
+							<div class="col s6 m2">
+								<div class="title">{{'planning_purchasing.container.description'|translate}}</div>
+								<div class="detail">{{getPartInformation(item['@'].article).Description}}</div>
+							</div>
+							<div class="col s6 m2">
+								<div class="title">{{'planning_purchasing.container.usage'|translate}}</div>
+								<div class="detail">{{getPartInformation(item['@'].article).Usage}}</div>
+							</div>
+							<div class="col s4 m2">
+								<div class="title">{{'planning_purchasing.container.quantity'|translate}}</div>
+								<div class="detail">
+									<input type="text" [(ngModel)]="item['@'].quantity">
+								</div>
+							</div>
+							<div class="col s4 m5">
+								<div class="title">{{'planning_purchasing.container.modus'|translate}}</div>
+								<div class="detail">
+									<select [(ngModel)]="item['@'].modus">
+										<option value="5">{{'planning_purchasing.container.selectModus.normal'|translate}}</option>
+										<option value="4">{{'planning_purchasing.container.selectModus.fast'|translate}}</option>
+										<option value="3">{{'planning_purchasing.container.selectModus.jit'|translate}}</option>
+										<option value="2">{{'planning_purchasing.container.selectModus.cheap_vendor'|translate}}</option>
+										<option value="1">{{'planning_purchasing.container.selectModus.special_order'|translate}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

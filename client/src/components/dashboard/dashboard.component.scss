@@ -1,0 +1,96 @@
+@import '../../styles/colors';
+@import '../../styles/breakpoints';
+
+chart {
+    display: block;
+}
+
+.box-container {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  width: 800px;
+  height: 500px;
+  max-width: 90%;
+  max-height: 90%;
+  padding: 24px;
+  margin: 24px auto;
+  border-radius: 4px;
+
+  color: #555;
+  font-family: sans-serif;
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.18),
+    0 6px 6px rgba(0, 0, 0, 0.25);
+  background-color: #eee;
+}
+
+.info-container {
+  padding: 12px 16px;
+
+  line-height: 24px;
+}
+
+.list-container {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  padding: 24px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.scrollbar-element {
+  position: relative;
+  flex: 1 1 auto;
+}
+
+.dashboard-cards{
+    margin-top: 1rem;
+
+    .dashboard-card {
+        height: 7rem;
+        background-color: $primary;
+        color: $white;
+        border: 1px solid $light-gray-basic;
+        padding: 1rem;
+        position: relative;
+        cursor: default;
+
+        &.card-blue{
+            background-color: $blue;
+        }
+        &.card-green{
+            background-color: $green;
+        }
+        &.card-red{
+            background-color: $red;
+        }
+        &.card-orange{
+            background-color: $orange;
+        }
+
+        .card-title {
+            position: absolute;
+            top: 1.5rem;
+            opacity: .7;
+        }
+
+        .card-statistic {
+            font-size: 2rem;
+            position: absolute;
+            bottom: 1.3rem;
+        }
+
+        .card-icon {
+            position: absolute;
+            right: .5rem;
+            display: block;
+            bottom: -0.4rem;
+            opacity: .2;
+            i.mdi{
+                font-size: 4rem;
+            }
+        }
+    }
+}

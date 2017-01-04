@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var helpers = require('./helpers');
+var path = require('path');
 
 module.exports = {
     entry: {
@@ -11,7 +12,10 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['', '.js', '.ts']
+        extensions: ['', '.js', '.ts'],
+        alias: {
+            images: path.join(__dirname, '../src/images')
+        }
     },
 
     module: {
@@ -35,17 +39,20 @@ module.exports = {
                 loader: 'raw'
             },
             {
+                test: /\.(jpe?g|png|gif|svg)$/,
+                loader: 'url-loader?limit=10000&name=images/[name].[ext]'
+            },
+            { 
+                test: /\.ico$/, 
+                loader: 'url-loader?limit=8192' },
+            {
                 test: /\.scss$/,
                 exclude: [/\.global\.scss$/],
-                loaders: ['raw-loader', 'sass-loader']
+                loaders: ['raw-loader', 'resolve-url', 'sass-loader']
             },
             {
                 test: /\.global\.scss$/,
                 loaders: ['style-loader', 'css-loader', 'sass-loader']
-            },
-            {
-                test: /\.(png|jpe?g|gif|svg|ico)$/,
-                loader: 'file?name=assets/[name].[hash].[ext]'
             },
             {
                 test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
@@ -76,13 +83,6 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: 'src/index.html'
-        }),
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
-            JQuery: 'jquery',
-            jquery: 'jquery',
-            'window.jQuery': 'jquery',
         })
     ]
 };

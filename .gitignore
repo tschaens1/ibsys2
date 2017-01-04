@@ -1,1 +1,7 @@
 npm-debug.log
+/build/
+server/.gradle/*
+server/.gradle/*
+server/.idea/*
+server/src/main/resources/static/*
+

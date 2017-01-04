@@ -1,0 +1,11 @@
+<form action="#">
+	<div class="file-field input-field">
+		<div class="btn">
+			<span>{{'planning_overview.file_upload_text'|translate}}</span>
+			<file-upload #fu (change)="fu.readXML()"></file-upload>
+		</div>
+		<div class="file-path-wrapper">
+			<input id="resultsXMLUpload" class="file-path validate" type="text">
+		</div>
+	</div>
+</form>

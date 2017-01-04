@@ -1,32 +1,105 @@
-<md-toolbar>
-    <a class="menu-icon-button" (click)="sideNavToggle()">
-        <i class="mdi mdi-menu"></i>
-    </a>
-    <span routerLink="/app/start" class="app-title">IBSYS II - WS2016 ka6</span>
-    <!--fills the rest of the toolbar-->
-    <span class="fill-remaining-space"></span>
-    <!-- Dropdown Trigger -->
-    <a class='dropdown-button menu-button' data-activates='language-dropdown'>EN</a>
+<div class="app">
+	<div class="app-navbar">
+		<a class="menu-icon-button" (click)="sideNavToggle()">
+			<i class="mdi mdi-menu"></i>
+		</a>
 
-    <!-- Dropdown Structure -->
-    <ul id='language-dropdown' class='dropdown-content'>
-        <li><a>German</a></li>
-        <li><a>English</a></li>        
-    </ul>
-    <a (click)="logout()" title="Logout"><i class="mdi mdi-logout"></i></a>
-</md-toolbar>
+		<div class="search">
+			<input type="text" placeholder="{{'start.navbar.search'|translate}}" [(ngModel)]="searchTerm" (keyup)="onSearchKeyUp()" (keyup.enter)="onSearchEnter()"
+				(blur)="hideSearchResults()">
+			<div class="searchResults" *ngIf="searchResults && searchTerm.length > 0">
+				<ul>
+					<li *ngFor="let result of searchResults" (click)="searchNavigateTo(result.route, result.fragment)" [attr.data-route]="result.route"
+						[attr.data-fragment]="result.fragment">
+						<div class="result-title ellipsis">
+							{{result.name}}
+						</div>
+						<div class="result-description ellipsis">
+							{{result.description}}
+						</div>
+					</li>
+					<li (click)="onSearchEnter()" class="advanced-search-link">
+						<div class="result-title ellipsis">
+							{{'start.navbar.advancedSearch'|translate:[searchTerm]}}
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="right-part">
+			<a class='dropdown-button button' data-activates='settings-dropdown'><i class="mdi mdi-settings"></i></a>
+			<a class='dropdown-button button ellipsis' data-activates='user-dropdown'>{{'start.navbar.username'|translate:['Robert']}}</a>
+		</div>
 
-<div class="app-sidenav">
-    <a class="sidenav-link" routerLink="/app" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <i class="mdi mdi-view-dashboard"></i>
-        <div class="link-text">Home</div>
-    </a>
-    <a class="sidenav-link" routerLink="/app/warehouse" routerLinkActive="active">
-        <i class="mdi mdi-chart-histogram"></i>
-        <div class="link-text">Warehouse</div>
-    </a>
-</div>
+		<ul id='user-dropdown' class='dropdown-content'>
+			<li><a (click)="logout()" title="Logout">{{'start.navbar.logout'|translate}}</a></li>
+		</ul>
 
-<div class="app-content">
-    <router-outlet></router-outlet>
+		<ul id='settings-dropdown' class='dropdown-content'>
+			<li><a routerLink="/app/settings">{{'start.navbar.settings'|translate}}</a></li>
+		</ul>
+	</div>
+
+	<div class="app-sidenav">
+		<div class="sidenav-title" routerLink="/app/start">
+			<div class="logo animated slideInLeft">
+				<i class="mdi mdi-bike"></i>
+			</div>
+			<div class="title">
+				IBSYS II
+			</div>
+		</div>
+		<div class="sidenav-links">
+			<perfect-scrollbar class="scrollbar-element">
+				<div class="sidenav-category">
+					<span class="category-name">{{'start.navigation.navigation'|translate}}</span>
+					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/dashboard" routerLinkActive="active">
+						<i class="mdi mdi-speedometer"></i>
+						<div class="link-text">{{'start.navigation.dashboard'|translate}}</div>
+					</a>
+					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/parts" routerLinkActive="active">
+						<i class="mdi mdi-bike"></i>
+						<div class="link-text">{{'start.navigation.parts'|translate}}</div>
+					</a>
+					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/planning" routerLinkActive="active">
+						<i class="mdi mdi-clipboard-outline"></i>
+						<div class="link-text">{{'start.navigation.planning'|translate}}</div>
+					</a>
+				</div>
+				<div class="sidenav-category">
+					<span class="category-name">{{'start.navigation.warehouse'|translate}}</span>
+					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/warehouse" routerLinkActive="active">
+						<i class="mdi mdi-chart-histogram"></i>
+						<div class="link-text">{{'start.navigation.warehouse'|translate}}</div>
+					</a>
+					<!--<a class="sidenav-link waves-effect waves-dark" routerLink="/app/warehouse-statistics" routerLinkActive="active">
+						<i class="mdi mdi-chart-line"></i>
+						<div class="link-text">{{'start.navigation.warehouse_statistics'|translate}}</div>
+					</a>
+					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/warehouse-settings" routerLinkActive="active">
+						<i class="mdi mdi-settings"></i>
+						<div class="link-text">{{'start.navigation.warehouse_settings'|translate}}</div>
+					</a>-->
+				</div>
+				<div class="sidenav-category">
+					<span class="category-name">{{'start.navigation.other'|translate}}</span>
+					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/settings" routerLinkActive="active">
+						<i class="mdi mdi-settings"></i>
+						<div class="link-text">{{'start.navigation.settings'|translate}}</div>
+					</a>
+					<a class="sidenav-link waves-effect waves-dark" routerLink="/app/help" routerLinkActive="active">
+						<i class="mdi mdi-help-circle-outline"></i>
+						<div class="link-text">{{'start.navigation.help'|translate}}</div>
+					</a>
+				</div>
+			</perfect-scrollbar>
+		</div>
+	</div>
+
+	<!--if sidenav is opened in mobile view-->
+	<div class="dimmer"></div>
+
+	<div class="app-content" (window:resize)="onResize($event)">
+		<router-outlet></router-outlet>
+	</div>
 </div>

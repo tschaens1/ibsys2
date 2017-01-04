@@ -2,14 +2,22 @@
 @import '../../styles/breakpoints';
 
 .loginpage{
-    width: 100%;
-    height: 100%;
-    margin:0;
-    padding:0;
-    background-color: $light-gray;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    padding: 0;
+    background: url('images/login-background_blur.jpeg');
+    background-repeat:no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+    background-color: $primary;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;    
 }
 
-.loginContainer{    
+.loginContainer{        
     width: 22rem;
     height: 28rem;
     margin: auto;
@@ -21,15 +29,19 @@
     right: 0;
     background-color: $white;
     border-radius: 0;
-    -webkit-box-shadow: 0px 6px 27px -4px rgba(122,122,122,1);
-    -moz-box-shadow: 0px 6px 27px -4px rgba(122,122,122,1);
-    box-shadow: 0px 6px 27px -4px rgba(122,122,122,1);
+    -webkit-box-shadow: 0px 6px 27px -4px rgba(16,16,16,1);
+    -moz-box-shadow: 0px 6px 27px -4px rgba(16,16,16,1);
+    box-shadow: 0px 6px 27px -4px rgba(16,16,16,1);    
+
+    @include breakpoint(mobileonly){
+        background-color: rgba($color: $white, $alpha: 0.75);
+    }
 
     .row {
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 1.1rem;
-    }
+    }    
 
     .title{
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -44,23 +56,50 @@
         margin-top: 0rem;
     }
 
+    .input-field input[type]:focus {
+        border-bottom: 1px solid $primary !important;
+        box-shadow: 0 1px 0 0 $primary !important;
+    }
+
     .input-field .prefix {        
         color: $primary;
         line-height: 3rem;                
     }
 
+    .label{
+        color: $primary;
+    }
+
     .btn{
         width: 100%;
-        background-color: $primary;
+        background-color: $primary-theme;
     }
 
     .copy{
         font-size: .8rem;
-        color: $gray;
+        color: $primary;
     }
 
     @include breakpoint(mobileonly){
 		width: 100%;
         height: 100%
 	}
+}
+
+// Language dropdown
+a.dropdown-button.btn.language-dropdown {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    background-color: rgba($color: $white, $alpha: 0.5);
+    color: $dark-gray;
+    font-style: normal;
+    padding: 1rem;
+    margin: 0;
+    line-height: 0;
+    height: 2rem;
+}
+
+.hidden{
+    display: none;
 }

@@ -1,0 +1,37 @@
+<div class="app-page animated fadeIn">
+	<div class="page-heading">
+		<h1>{{'search.title'|translate}}</h1>
+		<p class="ellipsis">{{'search.description'|translate:[searchTerm, searchResults.length]}}</p>
+	</div>
+	<div class="page-content">
+		<div class="row">
+			<div class="col s12">
+				<ul>
+					<div class="row" *ngFor="let result of searchResults">
+						<li class="searchResult s12" (click)="searchNavigateTo(result.route, result.fragment)">
+							<div class="name">
+								{{result.name}}
+							</div>
+							<div class="description ellipsis">
+								{{result.description}}
+							</div>
+							<div class="tags">
+								<ul>
+									<li class="tag" *ngFor="let tag of result.tags">
+										{{tag}}
+									</li>
+								</ul>
+							</div>
+						</li>
+					</div>
+					<div class="row" *ngIf="searchResults && searchResults.length === 0">
+						<div class="searchResult not-found s12">
+							<p>{{'search.noresultsmessage'|translate}}</p>
+							<a class="waves-effect waves-light btn" routerLink="/app">{{'search.startpage'|translate}}</a>
+						</div>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

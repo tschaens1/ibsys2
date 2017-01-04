@@ -1,0 +1,55 @@
+<div *ngIf="this.planningService.startedPlanning" class="planning">
+    <div class="planningHeader">
+        <div class="selectPeriod">
+            <h1>Planung</h1>
+        </div>
+
+        <div class="sections">
+            <ul>
+                <li class="section">
+                    <a class="section-link waves-effect waves-dark" routerLink="/app/planning/production" routerLinkActive="active">
+                        <div class="link-text">{{'planning_production.title' | translate}}</div>
+                    </a>
+                </li>
+                <li class="section">
+                    <a class="section-link waves-effect waves-dark" routerLink="/app/planning/material" routerLinkActive="active">
+                        <div class="link-text">{{'planning_material.title' | translate}}</div>
+                    </a>
+                </li>
+                <li class="section">
+                    <a class="section-link waves-effect waves-dark" routerLink="/app/planning/purchasing" routerLinkActive="active">
+                        <div class="link-text">{{'planning_purchasing.title' | translate}}</div>
+                    </a>
+                </li>
+                <li class="section">
+                    <a class="section-link waves-effect waves-dark" routerLink="/app/planning/capacity" routerLinkActive="active">
+                        <div class="link-text">{{'planning_capacity.title' | translate}}</div>
+                    </a>
+                </li>
+                <!--<li class="section">
+                    <a class="section-link waves-effect waves-dark" routerLink="/app/planning/inserts" routerLinkActive="active">
+                        <div class="link-text">{{'planning_inserts.title' | translate}}</div>
+                    </a>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="productionPage">
+    <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="this.planningService.startedPlanning">
+    <div (click)="saveInputs($event)" class="fab waves-effect waves-dark" title="Save">
+        <a>
+            <i class="mdi mdi-content-save"></i>
+        </a>
+    </div>
+
+    <div (click)="cancelPlanning($event)" class="fab small red waves-effect waves-dark" title="Cancel">
+        <a>
+            <i class="mdi mdi-close"></i>
+        </a>
+    </div>
+</div>
