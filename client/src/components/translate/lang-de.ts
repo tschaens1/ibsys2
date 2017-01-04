@@ -149,7 +149,10 @@ export const LANG_DE_TRANSLATIONS = {
         "amount_savety_stock": "5. Wie hoch ist der Sicherheitsbestand?",
         "standard_security": "Standardsicherheit",
         "safety_stock_part": "Teil",
+        "safety_stock_description": "Beschreibung",
         "safety_stock_quantity": "Menge",
+        "safety_stock_price": "Teile-Wert",
+        "safety_stock_default": "Standardwert",
 
         "show_single_items": "Einzelteile zeigen",
 
