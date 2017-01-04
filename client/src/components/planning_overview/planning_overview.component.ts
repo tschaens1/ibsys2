@@ -1,3 +1,6 @@
+import { basic_claims_data_EN } from '../translate/basic_claims_data_en';
+import { basic_claims_data_DE } from '../translate/basic_claims_data_de';
+import { Part } from '../parts/part.interface';
 import { ModalService } from '../modal/modal.service';
 import { TranslationService } from '../translate/translate.service';
 import { Component, OnInit, ElementRef, Inject } from '@angular/core';
@@ -15,6 +18,9 @@ export class PlanningOverviewComponent implements OnInit {
     page: number = 0;
     xmlObject: any;
     inputOflastPeriod: any;
+
+    // part data
+    data: Part[];
 
     // data
     period: number;
@@ -52,11 +58,10 @@ export class PlanningOverviewComponent implements OnInit {
     produce_p2: number;
     produce_p3: number;
 
-
-    defaultSafetystock: number = 50;
-    enabledPartsSafetyStock: boolean = false;
+    // enabledPartsSafetyStock: boolean = false;
     safetyStock = [];
     productionParts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 29, 30, 31, 49, 50, 51, 54, 55, 56];
+    defaultSafetyStock = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100];
 
     constructor(
         private router: Router,
@@ -72,14 +77,21 @@ export class PlanningOverviewComponent implements OnInit {
 
     ngOnInit() {
         // create safety stock objects
-        this.productionParts.map(part => {
+        this.productionParts.map((part, i) => {
             this.safetyStock.push({
                 article: part,
-                quantity: this.defaultSafetystock
-            })
+                quantity: this.defaultSafetyStock[i],
+            });
         });
 
         this.loadInputsOfLastPeriod();
+        
+        this.data = this.translationService.currentLanguage === 'de' ? basic_claims_data_DE : basic_claims_data_EN;
+    }    
+
+    getPartInformation(id: string) {
+        let article = this.data.filter(entry => entry.id.indexOf(id) === 0)[0];
+        return article;
     }
 
     // load input of last period
@@ -128,9 +140,6 @@ export class PlanningOverviewComponent implements OnInit {
             this.produce_p1 = this.inputOflastPeriod.input.production.items[0].quantity || 0;
             this.produce_p2 = this.inputOflastPeriod.input.production.items[1].quantity || 0;
             this.produce_p3 = this.inputOflastPeriod.input.production.items[2].quantity || 0;
-
-
-            this.defaultSafetystock = this.inputOflastPeriod.defaultSafetystock;
         }
         catch (err) {
             console.log('Could not load inputs of last period!', err);
@@ -172,9 +181,6 @@ export class PlanningOverviewComponent implements OnInit {
         this.produce_p1 = 0;
         this.produce_p2 = 0;
         this.produce_p3 = 0;
-
-
-        this.defaultSafetystock = 50;
     }
 
     // go to the next step in the formular
@@ -237,7 +243,6 @@ export class PlanningOverviewComponent implements OnInit {
         localStorage.setItem("ibsys2InputLastPeriod", JSON.stringify(
             {
                 ...this.createInputJSON(),
-                defaultSafetystock: this.defaultSafetystock,
                 enabledSellDirect: this.enabledSellDirect,
             }
         ));
@@ -260,7 +265,7 @@ export class PlanningOverviewComponent implements OnInit {
     createInputJSON() {
         return {
             results: {
-                game: 999,
+                game: 1,
                 group: 6,
                 period: this.period
             },
@@ -370,7 +375,7 @@ export class PlanningOverviewComponent implements OnInit {
                     ]
                 },
                 "safetystock": {
-                    "items": this.safetyStock
+                    "items": this.safetyStock,
                 }
             }
         }
@@ -387,7 +392,7 @@ export class PlanningOverviewComponent implements OnInit {
     onChangeDefaultSafetyStock(e) {
         this.safetyStock.map(part => {
             part.quantity = e;
-        })
+        });
     }
 
     openHelp(key: string) {
