@@ -1,22 +1,21 @@
 package de.hska.dispositionmanagement.business;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import de.hska.dispositionmanagement.domain.Disposition;
 import de.hska.filemanagement.domain.JsonFile;
 import de.hska.partsmanagement.business.PartsNodeService;
 import de.hska.partsmanagement.business.PartsService;
-import de.hska.partsmanagement.domain.ManufacturingPartNode;
+import de.hska.partsmanagement.domain.PartNode;
 import de.hska.planningmangement.business.PlanningService;
 import de.hska.planningmangement.domain.PlanningPosition;
 import de.hska.productionmanagement.business.ProductionService;
 import de.hska.warehousemanagement.business.WarehouseService;
 import de.hska.workplacemanagement.business.WorkplaceService;
 import de.hska.workplacemanagement.domain.ProductionOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.text.ParseException;
+import java.util.ArrayList;
 
 @Service
 public class DispositionService {
@@ -57,7 +56,7 @@ public class DispositionService {
 		this.setProductionOfDisposition();
 	}
 
-	public void dispoRecursively(ManufacturingPartNode node, Disposition parent) {
+	public void dispoRecursively(PartNode node, Disposition parent) {
 
 		Disposition disposition = new Disposition();
 		disposition.setPartNumber(node.getPartNumber());

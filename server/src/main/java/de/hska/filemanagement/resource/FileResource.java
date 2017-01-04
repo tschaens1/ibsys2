@@ -2,6 +2,7 @@ package de.hska.filemanagement.resource;
 
 import java.text.ParseException;
 
+import de.hska.procurementmanagement.business.ProcurementCalculationService;
 import de.hska.procurementmanagement.business.ProcurementService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,9 @@ public class FileResource {
 	private ProcurementService procurementService;
 
 	@Autowired
+	private ProcurementCalculationService procurementCalculationService;
+
+	@Autowired
 	private SimulationService simulationService;
 
 	@Autowired
@@ -89,9 +93,9 @@ public class FileResource {
 		simulationService.initialize();
 		dispositionService.initialize(jsonFile);
 		procurementService.initialize(jsonFile);
+		procurementCalculationService.initialize(jsonFile);
 
 		return new ResponseEntity<String>(HttpStatus.CREATED);
-
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "periods/{periodCounter}/result")

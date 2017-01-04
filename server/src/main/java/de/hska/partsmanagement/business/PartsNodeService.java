@@ -5,14 +5,14 @@ import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 
-import de.hska.partsmanagement.domain.ManufacturingPartNode;
+import de.hska.partsmanagement.domain.PartNode;
 
 @Service
 public class PartsNodeService {
 
-	private ManufacturingPartNode bicycleChild;
-	private ManufacturingPartNode bicycleMan;
-	private ManufacturingPartNode bicycleWoman;
+	private PartNode bicycleChild;
+	private PartNode bicycleMan;
+	private PartNode bicycleWoman;
 
 	public void initialize() {
 		this.createChildTree();
@@ -20,8 +20,8 @@ public class PartsNodeService {
 		this.createManTree();
 	}
 
-	public ManufacturingPartNode getNode(Integer partNumber) {
-		ManufacturingPartNode wantedNode = this.searchInTreeForPartNode(this.bicycleChild, partNumber);
+	public PartNode getNode(Integer partNumber) {
+		PartNode wantedNode = this.searchInTreeForPartNode(this.bicycleChild, partNumber);
 		if (wantedNode == null) {
 			wantedNode = this.searchInTreeForPartNode(this.bicycleWoman, partNumber);
 		}
@@ -32,7 +32,7 @@ public class PartsNodeService {
 		return wantedNode;
 	}
 
-	public ManufacturingPartNode searchInTreeForPartNode(ManufacturingPartNode tree, Integer partNumber) {
+	public PartNode searchInTreeForPartNode(PartNode tree, Integer partNumber) {
 		if (Objects.equals(tree.getPartNumber(), partNumber)) {
 			return tree;
 		}
@@ -40,7 +40,7 @@ public class PartsNodeService {
 			return null;
 		}
 
-		ManufacturingPartNode wantedPartNode = null;
+		PartNode wantedPartNode = null;
 		for (int i = 0; i < tree.getParts().size(); i++) {
 			wantedPartNode = this.searchInTreeForPartNode(tree.getParts().get(i), partNumber);
 			if (wantedPartNode != null) {
@@ -50,12 +50,12 @@ public class PartsNodeService {
 		return wantedPartNode;
 	}
 
-	public int getAmountInTree(ManufacturingPartNode tree, Integer partNumber) {
+	public int getAmountInTree(PartNode tree, Integer partNumber) {
 		int amount = 0;
 		if (tree.getPartNumber().equals(partNumber)) {
 			amount += tree.getAmount();
 		}
-		if (tree.hasCertainPart(partNumber)) {
+		if (tree.hasParts()) {
 			for (int i = 0; i < tree.getParts().size(); i++) {
 				amount += this.getAmountInTree(tree.getParts().get(i), partNumber);
 			}
@@ -66,14 +66,14 @@ public class PartsNodeService {
 	@SuppressWarnings("serial")
 	public void createChildTree() {
 
-		ManufacturingPartNode P1_K21 = new ManufacturingPartNode(21, 1, null);
-		ManufacturingPartNode P1_K24 = new ManufacturingPartNode(24, 1, null);
-		ManufacturingPartNode P1_K27 = new ManufacturingPartNode(27, 1, null);
+		PartNode P1_K21 = new PartNode(21, 1, null);
+		PartNode P1_K24 = new PartNode(24, 1, null);
+		PartNode P1_K27 = new PartNode(27, 1, null);
 
-		ManufacturingPartNode E26_K44 = new ManufacturingPartNode(44, 2, null);
-		ManufacturingPartNode E26_K47 = new ManufacturingPartNode(47, 1, null);
-		ManufacturingPartNode E26_K48 = new ManufacturingPartNode(48, 2, null);
-		ManufacturingPartNode P1_E26 = new ManufacturingPartNode(26, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E26_K44 = new PartNode(44, 2, null);
+		PartNode E26_K47 = new PartNode(47, 1, null);
+		PartNode E26_K48 = new PartNode(48, 2, null);
+		PartNode P1_E26 = new PartNode(26, 1, new ArrayList<PartNode>() {
 			{
 				add(E26_K44);
 				add(E26_K47);
@@ -81,15 +81,15 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E51_K24 = new ManufacturingPartNode(24, 1, null);
-		ManufacturingPartNode E51_K27 = new ManufacturingPartNode(27, 1, null);
+		PartNode E51_K24 = new PartNode(24, 1, null);
+		PartNode E51_K27 = new PartNode(27, 1, null);
 
-		ManufacturingPartNode E16_K24 = new ManufacturingPartNode(24, 1, null);
-		ManufacturingPartNode E16_K28 = new ManufacturingPartNode(28, 1, null);
-		ManufacturingPartNode E16_K40 = new ManufacturingPartNode(40, 1, null);
-		ManufacturingPartNode E16_K41 = new ManufacturingPartNode(41, 1, null);
-		ManufacturingPartNode E16_K42 = new ManufacturingPartNode(42, 2, null);
-		ManufacturingPartNode E51_E16 = new ManufacturingPartNode(16, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E16_K24 = new PartNode(24, 1, null);
+		PartNode E16_K28 = new PartNode(28, 1, null);
+		PartNode E16_K40 = new PartNode(40, 1, null);
+		PartNode E16_K41 = new PartNode(41, 1, null);
+		PartNode E16_K42 = new PartNode(42, 2, null);
+		PartNode E51_E16 = new PartNode(16, 1, new ArrayList<PartNode>() {
 			{
 				add(E16_K24);
 				add(E16_K28);
@@ -99,11 +99,11 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E17_K43 = new ManufacturingPartNode(43, 1, null);
-		ManufacturingPartNode E17_K44 = new ManufacturingPartNode(44, 1, null);
-		ManufacturingPartNode E17_K45 = new ManufacturingPartNode(45, 1, null);
-		ManufacturingPartNode E17_K46 = new ManufacturingPartNode(46, 1, null);
-		ManufacturingPartNode E51_E17 = new ManufacturingPartNode(17, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E17_K43 = new PartNode(43, 1, null);
+		PartNode E17_K44 = new PartNode(44, 1, null);
+		PartNode E17_K45 = new PartNode(45, 1, null);
+		PartNode E17_K46 = new PartNode(46, 1, null);
+		PartNode E51_E17 = new PartNode(17, 1, new ArrayList<PartNode>() {
 			{
 				add(E17_K43);
 				add(E17_K44);
@@ -112,14 +112,14 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E50_K24 = new ManufacturingPartNode(24, 2, null);
-		ManufacturingPartNode E50_K25 = new ManufacturingPartNode(25, 2, null);
+		PartNode E50_K24 = new PartNode(24, 2, null);
+		PartNode E50_K25 = new PartNode(25, 2, null);
 
-		ManufacturingPartNode E4_K35 = new ManufacturingPartNode(35, 2, null);
-		ManufacturingPartNode E4_K36 = new ManufacturingPartNode(36, 1, null);
-		ManufacturingPartNode E4_K52 = new ManufacturingPartNode(52, 1, null);
-		ManufacturingPartNode E4_K53 = new ManufacturingPartNode(53, 36, null);
-		ManufacturingPartNode E50_E4 = new ManufacturingPartNode(4, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E4_K35 = new PartNode(35, 2, null);
+		PartNode E4_K36 = new PartNode(36, 1, null);
+		PartNode E4_K52 = new PartNode(52, 1, null);
+		PartNode E4_K53 = new PartNode(53, 36, null);
+		PartNode E50_E4 = new PartNode(4, 1, new ArrayList<PartNode>() {
 			{
 				add(E4_K35);
 				add(E4_K36);
@@ -128,24 +128,24 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E10_K32 = new ManufacturingPartNode(32, 1, null);
-		ManufacturingPartNode E10_K39 = new ManufacturingPartNode(39, 1, null);
-		ManufacturingPartNode E50_E10 = new ManufacturingPartNode(10, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E10_K32 = new PartNode(32, 1, null);
+		PartNode E10_K39 = new PartNode(39, 1, null);
+		PartNode E50_E10 = new PartNode(10, 1, new ArrayList<PartNode>() {
 			{
 				add(E10_K32);
 				add(E10_K39);
 			}
 		});
 
-		ManufacturingPartNode E49_K24 = new ManufacturingPartNode(24, 2, null);
-		ManufacturingPartNode E49_K25 = new ManufacturingPartNode(25, 2, null);
+		PartNode E49_K24 = new PartNode(24, 2, null);
+		PartNode E49_K25 = new PartNode(25, 2, null);
 
-		ManufacturingPartNode E7_K35 = new ManufacturingPartNode(35, 2, null);
-		ManufacturingPartNode E7_K37 = new ManufacturingPartNode(37, 1, null);
-		ManufacturingPartNode E7_K38 = new ManufacturingPartNode(38, 1, null);
-		ManufacturingPartNode E7_K52 = new ManufacturingPartNode(52, 1, null);
-		ManufacturingPartNode E7_K53 = new ManufacturingPartNode(53, 36, null);
-		ManufacturingPartNode E49_E7 = new ManufacturingPartNode(7, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E7_K35 = new PartNode(35, 2, null);
+		PartNode E7_K37 = new PartNode(37, 1, null);
+		PartNode E7_K38 = new PartNode(38, 1, null);
+		PartNode E7_K52 = new PartNode(52, 1, null);
+		PartNode E7_K53 = new PartNode(53, 36, null);
+		PartNode E49_E7 = new PartNode(7, 1, new ArrayList<PartNode>() {
 			{
 				add(E7_K35);
 				add(E7_K37);
@@ -155,19 +155,19 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E13_K32 = new ManufacturingPartNode(32, 1, null);
-		ManufacturingPartNode E13_K39 = new ManufacturingPartNode(39, 1, null);
-		ManufacturingPartNode E49_E13 = new ManufacturingPartNode(13, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E13_K32 = new PartNode(32, 1, null);
+		PartNode E13_K39 = new PartNode(39, 1, null);
+		PartNode E49_E13 = new PartNode(13, 1, new ArrayList<PartNode>() {
 			{
 				add(E13_K32);
 				add(E13_K39);
 			}
 		});
 
-		ManufacturingPartNode E18_K28 = new ManufacturingPartNode(28, 3, null);
-		ManufacturingPartNode E18_K32 = new ManufacturingPartNode(32, 1, null);
-		ManufacturingPartNode E18_K59 = new ManufacturingPartNode(59, 2, null);
-		ManufacturingPartNode E49_E18 = new ManufacturingPartNode(18, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E18_K28 = new PartNode(28, 3, null);
+		PartNode E18_K32 = new PartNode(32, 1, null);
+		PartNode E18_K59 = new PartNode(59, 2, null);
+		PartNode E49_E18 = new PartNode(18, 1, new ArrayList<PartNode>() {
 			{
 				add(E18_K28);
 				add(E18_K32);
@@ -175,7 +175,7 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E50_E49 = new ManufacturingPartNode(49, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E50_E49 = new PartNode(49, 1, new ArrayList<PartNode>() {
 			{
 				add(E49_K24);
 				add(E49_K25);
@@ -185,7 +185,7 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E51_E50 = new ManufacturingPartNode(50, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E51_E50 = new PartNode(50, 1, new ArrayList<PartNode>() {
 			{
 				add(E50_K24);
 				add(E50_K25);
@@ -195,7 +195,7 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode P1_E51 = new ManufacturingPartNode(51, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode P1_E51 = new PartNode(51, 1, new ArrayList<PartNode>() {
 			{
 				add(E51_K24);
 				add(E51_K27);
@@ -205,7 +205,7 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode P1 = new ManufacturingPartNode(1, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode P1 = new PartNode(1, 1, new ArrayList<PartNode>() {
 			{
 				add(P1_K21);
 				add(P1_K24);
@@ -220,14 +220,14 @@ public class PartsNodeService {
 	}
 
 	public void createWomanTree() {
-		ManufacturingPartNode P2_K22 = new ManufacturingPartNode(22, 1, null);
-		ManufacturingPartNode P2_K24 = new ManufacturingPartNode(24, 1, null);
-		ManufacturingPartNode P2_K27 = new ManufacturingPartNode(27, 1, null);
+		PartNode P2_K22 = new PartNode(22, 1, null);
+		PartNode P2_K24 = new PartNode(24, 1, null);
+		PartNode P2_K27 = new PartNode(27, 1, null);
 
-		ManufacturingPartNode E26_K44 = new ManufacturingPartNode(44, 2, null);
-		ManufacturingPartNode E26_K47 = new ManufacturingPartNode(47, 1, null);
-		ManufacturingPartNode E26_K48 = new ManufacturingPartNode(48, 2, null);
-		ManufacturingPartNode P2_E26 = new ManufacturingPartNode(26, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E26_K44 = new PartNode(44, 2, null);
+		PartNode E26_K47 = new PartNode(47, 1, null);
+		PartNode E26_K48 = new PartNode(48, 2, null);
+		PartNode P2_E26 = new PartNode(26, 1, new ArrayList<PartNode>() {
 			{
 				add(E26_K44);
 				add(E26_K47);
@@ -235,15 +235,15 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E56_K24 = new ManufacturingPartNode(24, 1, null);
-		ManufacturingPartNode E56_K27 = new ManufacturingPartNode(27, 1, null);
+		PartNode E56_K24 = new PartNode(24, 1, null);
+		PartNode E56_K27 = new PartNode(27, 1, null);
 
-		ManufacturingPartNode E16_K24 = new ManufacturingPartNode(24, 1, null);
-		ManufacturingPartNode E16_K28 = new ManufacturingPartNode(28, 1, null);
-		ManufacturingPartNode E16_K40 = new ManufacturingPartNode(40, 1, null);
-		ManufacturingPartNode E16_K41 = new ManufacturingPartNode(41, 1, null);
-		ManufacturingPartNode E16_K42 = new ManufacturingPartNode(42, 2, null);
-		ManufacturingPartNode E56_E16 = new ManufacturingPartNode(16, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E16_K24 = new PartNode(24, 1, null);
+		PartNode E16_K28 = new PartNode(28, 1, null);
+		PartNode E16_K40 = new PartNode(40, 1, null);
+		PartNode E16_K41 = new PartNode(41, 1, null);
+		PartNode E16_K42 = new PartNode(42, 2, null);
+		PartNode E56_E16 = new PartNode(16, 1, new ArrayList<PartNode>() {
 			{
 				add(E16_K24);
 				add(E16_K28);
@@ -253,11 +253,11 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E17_K43 = new ManufacturingPartNode(43, 1, null);
-		ManufacturingPartNode E17_K44 = new ManufacturingPartNode(44, 1, null);
-		ManufacturingPartNode E17_K45 = new ManufacturingPartNode(45, 1, null);
-		ManufacturingPartNode E17_K46 = new ManufacturingPartNode(46, 1, null);
-		ManufacturingPartNode E56_E17 = new ManufacturingPartNode(17, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E17_K43 = new PartNode(43, 1, null);
+		PartNode E17_K44 = new PartNode(44, 1, null);
+		PartNode E17_K45 = new PartNode(45, 1, null);
+		PartNode E17_K46 = new PartNode(46, 1, null);
+		PartNode E56_E17 = new PartNode(17, 1, new ArrayList<PartNode>() {
 			{
 				add(E17_K43);
 				add(E17_K44);
@@ -266,14 +266,14 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E55_K24 = new ManufacturingPartNode(24, 2, null);
-		ManufacturingPartNode E55_K25 = new ManufacturingPartNode(25, 2, null);
+		PartNode E55_K24 = new PartNode(24, 2, null);
+		PartNode E55_K25 = new PartNode(25, 2, null);
 
-		ManufacturingPartNode E5_K35 = new ManufacturingPartNode(35, 2, null);
-		ManufacturingPartNode E5_K36 = new ManufacturingPartNode(36, 1, null);
-		ManufacturingPartNode E5_K57 = new ManufacturingPartNode(57, 1, null);
-		ManufacturingPartNode E5_K58 = new ManufacturingPartNode(58, 36, null);
-		ManufacturingPartNode E55_E5 = new ManufacturingPartNode(5, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E5_K35 = new PartNode(35, 2, null);
+		PartNode E5_K36 = new PartNode(36, 1, null);
+		PartNode E5_K57 = new PartNode(57, 1, null);
+		PartNode E5_K58 = new PartNode(58, 36, null);
+		PartNode E55_E5 = new PartNode(5, 1, new ArrayList<PartNode>() {
 			{
 				add(E5_K35);
 				add(E5_K36);
@@ -282,24 +282,24 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E11_K32 = new ManufacturingPartNode(32, 1, null);
-		ManufacturingPartNode E11_K39 = new ManufacturingPartNode(39, 1, null);
-		ManufacturingPartNode E55_E11 = new ManufacturingPartNode(11, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E11_K32 = new PartNode(32, 1, null);
+		PartNode E11_K39 = new PartNode(39, 1, null);
+		PartNode E55_E11 = new PartNode(11, 1, new ArrayList<PartNode>() {
 			{
 				add(E11_K32);
 				add(E11_K39);
 			}
 		});
 
-		ManufacturingPartNode E54_K24 = new ManufacturingPartNode(24, 2, null);
-		ManufacturingPartNode E54_K25 = new ManufacturingPartNode(25, 2, null);
+		PartNode E54_K24 = new PartNode(24, 2, null);
+		PartNode E54_K25 = new PartNode(25, 2, null);
 
-		ManufacturingPartNode E8_K35 = new ManufacturingPartNode(35, 2, null);
-		ManufacturingPartNode E8_K37 = new ManufacturingPartNode(37, 1, null);
-		ManufacturingPartNode E8_K38 = new ManufacturingPartNode(38, 1, null);
-		ManufacturingPartNode E8_K57 = new ManufacturingPartNode(57, 1, null);
-		ManufacturingPartNode E8_K58 = new ManufacturingPartNode(58, 36, null);
-		ManufacturingPartNode E54_E8 = new ManufacturingPartNode(8, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E8_K35 = new PartNode(35, 2, null);
+		PartNode E8_K37 = new PartNode(37, 1, null);
+		PartNode E8_K38 = new PartNode(38, 1, null);
+		PartNode E8_K57 = new PartNode(57, 1, null);
+		PartNode E8_K58 = new PartNode(58, 36, null);
+		PartNode E54_E8 = new PartNode(8, 1, new ArrayList<PartNode>() {
 			{
 				add(E8_K35);
 				add(E8_K37);
@@ -309,19 +309,19 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E14_K32 = new ManufacturingPartNode(32, 1, null);
-		ManufacturingPartNode E14_K39 = new ManufacturingPartNode(39, 1, null);
-		ManufacturingPartNode E54_E14 = new ManufacturingPartNode(14, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E14_K32 = new PartNode(32, 1, null);
+		PartNode E14_K39 = new PartNode(39, 1, null);
+		PartNode E54_E14 = new PartNode(14, 1, new ArrayList<PartNode>() {
 			{
 				add(E14_K32);
 				add(E14_K39);
 			}
 		});
 
-		ManufacturingPartNode E19_K28 = new ManufacturingPartNode(28, 4, null);
-		ManufacturingPartNode E19_K32 = new ManufacturingPartNode(32, 1, null);
-		ManufacturingPartNode E19_K59 = new ManufacturingPartNode(59, 2, null);
-		ManufacturingPartNode E54_E19 = new ManufacturingPartNode(19, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E19_K28 = new PartNode(28, 4, null);
+		PartNode E19_K32 = new PartNode(32, 1, null);
+		PartNode E19_K59 = new PartNode(59, 2, null);
+		PartNode E54_E19 = new PartNode(19, 1, new ArrayList<PartNode>() {
 			{
 				add(E19_K28);
 				add(E19_K32);
@@ -329,7 +329,7 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E55_E54 = new ManufacturingPartNode(54, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E55_E54 = new PartNode(54, 1, new ArrayList<PartNode>() {
 			{
 				add(E54_K24);
 				add(E54_K25);
@@ -339,7 +339,7 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E56_E55 = new ManufacturingPartNode(55, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E56_E55 = new PartNode(55, 1, new ArrayList<PartNode>() {
 			{
 				add(E55_K24);
 				add(E55_K25);
@@ -349,7 +349,7 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode P2_E56 = new ManufacturingPartNode(56, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode P2_E56 = new PartNode(56, 1, new ArrayList<PartNode>() {
 			{
 				add(E56_K24);
 				add(E56_K27);
@@ -359,7 +359,7 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode P2 = new ManufacturingPartNode(2, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode P2 = new PartNode(2, 1, new ArrayList<PartNode>() {
 			{
 				add(P2_K22);
 				add(P2_K24);
@@ -373,14 +373,14 @@ public class PartsNodeService {
 	}
 
 	public void createManTree() {
-		ManufacturingPartNode P3_K23 = new ManufacturingPartNode(23, 1, null);
-		ManufacturingPartNode P3_K24 = new ManufacturingPartNode(24, 1, null);
-		ManufacturingPartNode P3_K27 = new ManufacturingPartNode(27, 1, null);
+		PartNode P3_K23 = new PartNode(23, 1, null);
+		PartNode P3_K24 = new PartNode(24, 1, null);
+		PartNode P3_K27 = new PartNode(27, 1, null);
 
-		ManufacturingPartNode E26_K44 = new ManufacturingPartNode(44, 2, null);
-		ManufacturingPartNode E26_K47 = new ManufacturingPartNode(47, 1, null);
-		ManufacturingPartNode E26_K48 = new ManufacturingPartNode(48, 2, null);
-		ManufacturingPartNode P3_E26 = new ManufacturingPartNode(26, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E26_K44 = new PartNode(44, 2, null);
+		PartNode E26_K47 = new PartNode(47, 1, null);
+		PartNode E26_K48 = new PartNode(48, 2, null);
+		PartNode P3_E26 = new PartNode(26, 1, new ArrayList<PartNode>() {
 			{
 				add(E26_K44);
 				add(E26_K47);
@@ -388,15 +388,15 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E31_K24 = new ManufacturingPartNode(24, 1, null);
-		ManufacturingPartNode E31_K27 = new ManufacturingPartNode(27, 1, null);
+		PartNode E31_K24 = new PartNode(24, 1, null);
+		PartNode E31_K27 = new PartNode(27, 1, null);
 
-		ManufacturingPartNode E16_K24 = new ManufacturingPartNode(24, 1, null);
-		ManufacturingPartNode E16_K28 = new ManufacturingPartNode(28, 1, null);
-		ManufacturingPartNode E16_K40 = new ManufacturingPartNode(40, 1, null);
-		ManufacturingPartNode E16_K41 = new ManufacturingPartNode(41, 1, null);
-		ManufacturingPartNode E16_K42 = new ManufacturingPartNode(42, 2, null);
-		ManufacturingPartNode E31_E16 = new ManufacturingPartNode(16, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E16_K24 = new PartNode(24, 1, null);
+		PartNode E16_K28 = new PartNode(28, 1, null);
+		PartNode E16_K40 = new PartNode(40, 1, null);
+		PartNode E16_K41 = new PartNode(41, 1, null);
+		PartNode E16_K42 = new PartNode(42, 2, null);
+		PartNode E31_E16 = new PartNode(16, 1, new ArrayList<PartNode>() {
 			{
 				add(E16_K24);
 				add(E16_K28);
@@ -406,11 +406,11 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E17_K43 = new ManufacturingPartNode(43, 1, null);
-		ManufacturingPartNode E17_K44 = new ManufacturingPartNode(44, 1, null);
-		ManufacturingPartNode E17_K45 = new ManufacturingPartNode(45, 1, null);
-		ManufacturingPartNode E17_K46 = new ManufacturingPartNode(46, 1, null);
-		ManufacturingPartNode E31_E17 = new ManufacturingPartNode(17, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E17_K43 = new PartNode(43, 1, null);
+		PartNode E17_K44 = new PartNode(44, 1, null);
+		PartNode E17_K45 = new PartNode(45, 1, null);
+		PartNode E17_K46 = new PartNode(46, 1, null);
+		PartNode E31_E17 = new PartNode(17, 1, new ArrayList<PartNode>() {
 			{
 				add(E17_K43);
 				add(E17_K44);
@@ -419,14 +419,14 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E30_K24 = new ManufacturingPartNode(24, 2, null);
-		ManufacturingPartNode E30_K25 = new ManufacturingPartNode(25, 2, null);
+		PartNode E30_K24 = new PartNode(24, 2, null);
+		PartNode E30_K25 = new PartNode(25, 2, null);
 
-		ManufacturingPartNode E6_K33 = new ManufacturingPartNode(33, 1, null);
-		ManufacturingPartNode E6_K34 = new ManufacturingPartNode(34, 36, null);
-		ManufacturingPartNode E6_K35 = new ManufacturingPartNode(35, 2, null);
-		ManufacturingPartNode E6_K36 = new ManufacturingPartNode(36, 1, null);
-		ManufacturingPartNode E30_E6 = new ManufacturingPartNode(6, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E6_K33 = new PartNode(33, 1, null);
+		PartNode E6_K34 = new PartNode(34, 36, null);
+		PartNode E6_K35 = new PartNode(35, 2, null);
+		PartNode E6_K36 = new PartNode(36, 1, null);
+		PartNode E30_E6 = new PartNode(6, 1, new ArrayList<PartNode>() {
 			{
 				add(E6_K33);
 				add(E6_K34);
@@ -435,24 +435,24 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E12_K32 = new ManufacturingPartNode(32, 1, null);
-		ManufacturingPartNode E12_K39 = new ManufacturingPartNode(39, 1, null);
-		ManufacturingPartNode E30_E12 = new ManufacturingPartNode(12, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E12_K32 = new PartNode(32, 1, null);
+		PartNode E12_K39 = new PartNode(39, 1, null);
+		PartNode E30_E12 = new PartNode(12, 1, new ArrayList<PartNode>() {
 			{
 				add(E12_K32);
 				add(E12_K39);
 			}
 		});
 
-		ManufacturingPartNode E29_K24 = new ManufacturingPartNode(24, 2, null);
-		ManufacturingPartNode E29_K25 = new ManufacturingPartNode(25, 2, null);
+		PartNode E29_K24 = new PartNode(24, 2, null);
+		PartNode E29_K25 = new PartNode(25, 2, null);
 
-		ManufacturingPartNode E9_K33 = new ManufacturingPartNode(33, 1, null);
-		ManufacturingPartNode E9_K34 = new ManufacturingPartNode(34, 36, null);
-		ManufacturingPartNode E9_K35 = new ManufacturingPartNode(35, 2, null);
-		ManufacturingPartNode E9_K37 = new ManufacturingPartNode(37, 1, null);
-		ManufacturingPartNode E9_K38 = new ManufacturingPartNode(38, 1, null);
-		ManufacturingPartNode E29_E9 = new ManufacturingPartNode(9, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E9_K33 = new PartNode(33, 1, null);
+		PartNode E9_K34 = new PartNode(34, 36, null);
+		PartNode E9_K35 = new PartNode(35, 2, null);
+		PartNode E9_K37 = new PartNode(37, 1, null);
+		PartNode E9_K38 = new PartNode(38, 1, null);
+		PartNode E29_E9 = new PartNode(9, 1, new ArrayList<PartNode>() {
 			{
 				add(E9_K33);
 				add(E9_K34);
@@ -462,19 +462,19 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E15_K32 = new ManufacturingPartNode(32, 1, null);
-		ManufacturingPartNode E15_K39 = new ManufacturingPartNode(39, 1, null);
-		ManufacturingPartNode E29_E15 = new ManufacturingPartNode(15, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E15_K32 = new PartNode(32, 1, null);
+		PartNode E15_K39 = new PartNode(39, 1, null);
+		PartNode E29_E15 = new PartNode(15, 1, new ArrayList<PartNode>() {
 			{
 				add(E15_K32);
 				add(E15_K39);
 			}
 		});
 
-		ManufacturingPartNode E20_K28 = new ManufacturingPartNode(28, 5, null);
-		ManufacturingPartNode E20_K32 = new ManufacturingPartNode(32, 1, null);
-		ManufacturingPartNode E20_K59 = new ManufacturingPartNode(59, 2, null);
-		ManufacturingPartNode E29_E20 = new ManufacturingPartNode(20, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E20_K28 = new PartNode(28, 5, null);
+		PartNode E20_K32 = new PartNode(32, 1, null);
+		PartNode E20_K59 = new PartNode(59, 2, null);
+		PartNode E29_E20 = new PartNode(20, 1, new ArrayList<PartNode>() {
 			{
 				add(E20_K28);
 				add(E20_K32);
@@ -482,7 +482,7 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E30_E29 = new ManufacturingPartNode(29, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E30_E29 = new PartNode(29, 1, new ArrayList<PartNode>() {
 			{
 				add(E29_K24);
 				add(E29_K25);
@@ -492,7 +492,7 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode E31_E30 = new ManufacturingPartNode(30, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode E31_E30 = new PartNode(30, 1, new ArrayList<PartNode>() {
 			{
 				add(E30_K24);
 				add(E30_K25);
@@ -502,7 +502,7 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode P3_E31 = new ManufacturingPartNode(31, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode P3_E31 = new PartNode(31, 1, new ArrayList<PartNode>() {
 			{
 				add(E31_K24);
 				add(E31_K27);
@@ -512,7 +512,7 @@ public class PartsNodeService {
 			}
 		});
 
-		ManufacturingPartNode P3 = new ManufacturingPartNode(3, 1, new ArrayList<ManufacturingPartNode>() {
+		PartNode P3 = new PartNode(3, 1, new ArrayList<PartNode>() {
 			{
 				add(P3_K23);
 				add(P3_K24);
@@ -525,15 +525,15 @@ public class PartsNodeService {
 		this.bicycleMan = P3;
 	}
 
-	public ManufacturingPartNode getChildrenManufactoringNode() {
+	public PartNode getChildrenManufactoringNode() {
 		return this.bicycleChild;
 	}
 
-	public ManufacturingPartNode getWomanManufactoringNode() {
+	public PartNode getWomanManufactoringNode() {
 		return this.bicycleWoman;
 	}
 
-	public ManufacturingPartNode getManManufactoringNode() {
+	public PartNode getManManufactoringNode() {
 		return this.bicycleMan;
 	}
 }

@@ -3,13 +3,13 @@ package de.hska.partsmanagement.domain;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class ManufacturingPartNode {
+public class PartNode {
 
 	private Integer partNumber;
 	private Integer amount;
-	private ArrayList<ManufacturingPartNode> parts;
+	private ArrayList<PartNode> parts;
 
-	public ManufacturingPartNode(Integer partNumber, Integer amount, ArrayList<ManufacturingPartNode> parts) {
+	public PartNode(Integer partNumber, Integer amount, ArrayList<PartNode> parts) {
 		this.partNumber = partNumber;
 		this.amount = amount;
 		this.parts = parts;
@@ -24,7 +24,7 @@ public class ManufacturingPartNode {
 			return false;
 		}
 
-		for (ManufacturingPartNode part : this.parts) {
+		for (PartNode part : this.parts) {
 			if (Objects.equals(part.partNumber, partNumber)) {
 				return true;
 			}
@@ -49,11 +49,11 @@ public class ManufacturingPartNode {
 		this.amount = amount;
 	}
 
-	public ArrayList<ManufacturingPartNode> getParts() {
+	public ArrayList<PartNode> getParts() {
 		return parts;
 	}
 
-	public void setParts(ArrayList<ManufacturingPartNode> parts) {
+	public void setParts(ArrayList<PartNode> parts) {
 		this.parts = parts;
 	}
 
