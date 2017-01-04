@@ -61,7 +61,7 @@ export class PlanningMaterialComponent implements OnInit {
             this.toastr.error(this.translationService.instant('planning_material.validation.invalid_article_id'));
             return;
         }
-        this.planningService.inputDataForSimulatorAsJSON.productionlist.production.push(
+        this.planningService.inputDataForSimulatorAsJSON.productionlist.production.unshift(
             {
                 "@": {
                     "article": articleId,
