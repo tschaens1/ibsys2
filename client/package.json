@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~2.1.0",
     "@angular/router": "~3.1.0",
     "@angular/upgrade": "~2.1.0",
+    "@types/hammerjs": "^2.0.34",
     "@types/highcharts": "4.2.37",
     "@types/lodash": "^4.14.37",
     "@types/nouislider": "^8.0.30",
