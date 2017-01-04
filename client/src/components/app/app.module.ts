@@ -1,3 +1,5 @@
+import { WelcomeComponent } from '../welcome/welcome.component';
+import { DashBoardComponent } from '../dashboard/dashboard.component';
 import { ModalService } from '../modal/modal.service';
 import { ModalComponent } from '../modal/modal.component';
 import { NgModule } from '@angular/core';
@@ -6,7 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { WarehouseComponent } from '../warehouse/warehouse.component';
 import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../login/login.service';
 import { LoggedInGuard } from '../login/logged-in.guard';
@@ -14,7 +15,6 @@ import { LoggedOutGuard } from '../login/logged-out.guard';
 import { PageNotFoundComponent } from './../pagenotfound/pagenotfound.component';
 import { StartComponent } from '../start/start.component';
 import { SettingsComponent } from './../settings/settings.component';
-import { DashBoardComponent } from '../dashboard/dashboard.component';
 import { SearchComponent } from './../search/search.component';
 import { SearchService } from './../search/search.service';
 import { SearchEntries } from './../search/searchEntries.service';
@@ -83,7 +83,7 @@ let toastOptions: ToastOptions = new ToastOptions({
     StartComponent,
     SettingsComponent,
     HelpComponent,
-    WarehouseComponent,
+    WelcomeComponent,
     DashBoardComponent,
     SearchComponent,
     PageNotFoundComponent,

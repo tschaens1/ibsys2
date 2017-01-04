@@ -1,4 +1,3 @@
-import { PageNotFoundComponent } from './../pagenotfound/pagenotfound.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -6,9 +5,8 @@ import { LoginComponent } from '../login/login.component';
 import { LoggedInGuard } from '../login/logged-in.guard';
 import { LoggedOutGuard } from '../login/logged-out.guard';
 import { StartComponent } from '../start/start.component';
+import { WelcomeComponent } from '../welcome/welcome.component';
 import { SettingsComponent } from './../settings/settings.component';
-import { DashBoardComponent } from '../dashboard/dashboard.component';
-import { WarehouseComponent } from '../warehouse/warehouse.component';
 import { SearchComponent } from './../search/search.component';
 import { HelpComponent } from './../help/help.component';
 import { PlanningComponent } from './../planning/planning.component';
@@ -22,6 +20,7 @@ import { UploadComponent } from './../upload/upload.component';
 import { PartsComponent } from './../parts/parts.component';
 import { PlanningGuard } from './../planning/planning.guard';
 import { PreparePlanningGuard } from './../planning/preparePlanning.guard';
+import { PageNotFoundComponent } from './../pagenotfound/pagenotfound.component';
 
 
 const appRoutes: Routes = [
@@ -42,19 +41,11 @@ const appRoutes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'dashboard'
-            },
-            {
-                path: 'dashboard',
-                component: DashBoardComponent
+                redirectTo: 'start'
             },
             {
                 path: 'start',
-                redirectTo: 'dashboard'
-            },
-            {
-                path: 'warehouse',
-                component: WarehouseComponent
+                component: WelcomeComponent
             },
             {
                 path: 'search',

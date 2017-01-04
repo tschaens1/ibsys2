@@ -1,0 +1,11 @@
+@import '../../styles/colors';
+@import '../../styles/breakpoints';
+
+a.action-link {
+    width: 100%;
+    float: left;
+    margin: .5rem 0 .5rem 0;
+    padding: .5rem 1rem .5rem 1rem;
+    background-color: $light-white;
+    border-left: 3px solid;
+}

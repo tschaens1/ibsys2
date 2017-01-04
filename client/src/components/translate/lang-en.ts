@@ -32,6 +32,7 @@ export const LANG_EN_TRANSLATIONS = {
             "dashboard": "Dashboard",
             "parts": "Parts overview",
             "planning": "Planning",
+            "start": "Start",
             "warehouse": "Warehouse",
             "warehouse_statistics": "Warehouse statistics",
             "warehouse_settings": "Warehouse settings",
@@ -41,6 +42,20 @@ export const LANG_EN_TRANSLATIONS = {
             "other": "Other",
             "settings": "Settings",
             "help": "Help",
+        },
+    },
+    "welcome": {
+        "title": "Start",
+        "description": "With the help of this tool you can plan your bike production",
+        "actions": {
+            "title": "Actions",
+            "start_planning": "Start planning",
+            "search_parts": "Search parts",
+        },
+        "links": {
+            "title": "Links",
+            "scsimulator": "SCSimulator",
+            "test_environment": "Test environment",
         },
     },
     "settings": {

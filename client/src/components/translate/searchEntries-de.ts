@@ -4,17 +4,10 @@ import { basic_claims_data_DE } from './basic_claims_data_de';
 export const searchEntriesDE: SearchEntry[] = [
     {
         id: 1,
-        name: 'Dashboard',
-        route: ['/app/dashboard'],
+        name: 'Start',
+        route: ['/app/start'],
         tags: ['Start', 'Home'],
-        description: 'Statistiken zur Planung anzeigen'
-    },
-    {
-        id: 2,
-        name: 'Lager',
-        tags: [],
-        route: ['/app/warehouse'],
-        description: 'Lagerhaus Übersichtsseite',
+        description: 'Startseite der Anwendung'
     },
     {
         id: 3,

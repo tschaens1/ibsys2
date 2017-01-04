@@ -3,17 +3,10 @@ import { SearchEntry } from './../search/searchEntry.interface';
 export const searchEntriesEN: SearchEntry[] = [
     {
         id: 1,
-        name: 'Dashboard',
-        route: ['/app/dashboard'],
-        tags: ['Start', 'Home', 'Dashboard'],
-        description: 'Show statistics for your planning'
-    },
-    {
-        id: 2,
-        name: 'Warehouse',
-        tags: ['Warehouse'],
-        route: ['/app/warehouse'],
-        description: 'Go to the warehouse overview',
+        name: 'Start',
+        route: ['/app/start'],
+        tags: ['Start', 'Home'],
+        description: 'Starting page of the application',
     },
     {
         id: 3,
