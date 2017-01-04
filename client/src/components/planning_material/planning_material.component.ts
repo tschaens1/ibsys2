@@ -1,9 +1,10 @@
+import { Subscription } from 'rxjs/Rx';
 import { ToastsManager } from 'ng2-toastr';
 import { ModalService } from '../modal/modal.service';
 import { Part } from '../parts/part.interface';
 import { TranslationService } from '../translate/translate.service';
 import { PlanningService } from '../planning/planning.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
 import { basic_claims_data_DE } from './../translate/basic_claims_data_de';
 import { basic_claims_data_EN } from './../translate/basic_claims_data_en';
@@ -14,9 +15,11 @@ import * as _ from 'lodash';
     templateUrl: './planning_material.component.html',
     styleUrls: ['./planning_material.component.scss']
 })
-export class PlanningMaterialComponent implements OnInit {
+export class PlanningMaterialComponent implements OnInit, OnDestroy {
     parts: any[];
-    data: Part[];    
+    data: Part[];
+
+    dragulaSubscription: Subscription;
 
     constructor(
         private planningService: PlanningService,
@@ -25,6 +28,23 @@ export class PlanningMaterialComponent implements OnInit {
         private toastr: ToastsManager,
         private modal: ModalService,
     ) {
+        const bag: any = this.dragulaService.find('material-bag');
+        if (bag !== undefined) this.dragulaService.destroy('material-bag');
+
+        dragulaService.setOptions('material-bag', {
+            removeOnSpill: true,
+            revertOnSpill: true,
+        });
+
+        this.dragulaSubscription = dragulaService.removeModel.subscribe((value) => {
+            this.onRemoveModel(value.slice(1));
+        });
+    }
+
+    onRemoveModel(args) {
+        const [el, source] = args;
+        const delArticleId = $(el).find('.detail').first().html();
+        this.toastr.info(this.translationService.instant('planning_material.modal.removedArticle', delArticleId));
     }
 
     ngOnInit(): void {
@@ -74,5 +94,9 @@ export class PlanningMaterialComponent implements OnInit {
 
     openHelp(key: string) {
         this.modal.openModal(this.translationService.instant(key), this.translationService.instant('modal.title.help'));
+    }
+
+    ngOnDestroy(): void {
+        this.dragulaSubscription.unsubscribe();
     }
 }
