@@ -139,7 +139,10 @@ export const LANG_EN_TRANSLATIONS = {
         "amount_savety_stock": "5. What´s the savety stock",
         "standard_security": "Standard security",
         "safety_stock_part": "Part",
+        "safety_stock_description": "Description",
+        "safety_stock_price": "Price",
         "safety_stock_quantity": "Amount",
+        "safety_stock_default": "Default value",
 
         "show_single_items": "Show single parts",
 
