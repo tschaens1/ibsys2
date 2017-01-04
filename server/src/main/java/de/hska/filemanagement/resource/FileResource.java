@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.hska.dispositionmanagement.business.DispositionService;
 import de.hska.filemanagement.domain.JsonFile;
 import de.hska.filemanagement.domain.XmlFile;
 import de.hska.inputmanagement.business.InputService;
 import de.hska.kpimanagement.business.KpiService;
 import de.hska.periodmanagement.business.IPeriodRepository;
 import de.hska.periodmanagement.domain.Period;
+import de.hska.planningmangement.business.PlanningService;
+import de.hska.productionmanagement.business.ProductionService;
 import de.hska.simulationmanagement.business.SimulationService;
 import de.hska.util.FileConverterService;
 import de.hska.warehousemanagement.business.WarehouseService;
@@ -43,7 +46,16 @@ public class FileResource {
 	private WarehouseService warehouseService;
 
 	@Autowired
+	private ProductionService productionService;
+
+	@Autowired
 	private SimulationService simulationService;
+
+	@Autowired
+	private PlanningService planningService;
+
+	@Autowired
+	private DispositionService dispositionService;
 
 	@RequestMapping(method = RequestMethod.POST, value = "result")
 	public ResponseEntity<String> save(@RequestBody XmlFile xmlFile) throws ParseException {
@@ -67,8 +79,11 @@ public class FileResource {
 
 		kpiService.initialize(jsonFile);
 		warehouseService.initialize(jsonFile);
+		planningService.initialize(jsonFile);
+		productionService.initialize(jsonFile);
 		// inputService.initialize(jsonFile);
 		simulationService.initialize();
+		dispositionService.initialize(jsonFile);
 
 		return new ResponseEntity<String>(HttpStatus.CREATED);
 

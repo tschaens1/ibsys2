@@ -257,4 +257,8 @@ public class WorkplaceService {
 		}
 		return 0;
 	}
+
+	public Map<Integer, ProductionLine> getProductionLineMap() {
+		return this.productionLineMap;
+	}
 }

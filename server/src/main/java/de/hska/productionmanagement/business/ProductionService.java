@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import de.hska.dispositionmanagement.domain.Disposition;
 import de.hska.filemanagement.domain.JsonFile;
 import de.hska.partsmanagement.business.PartsService;
 import de.hska.partsmanagement.domain.ManufacturingPart;
@@ -171,6 +172,20 @@ public class ProductionService {
 		}
 	}
 
+	public void setProductionOrders(ArrayList<ProductionOrder> productionOrders) {
+		this.production.addAll(this.ordersinwork);
+		this.production.addAll(this.waitinglist.getOrders());
+		this.production.addAll(productionOrders);
+	}
+
+	public ArrayList<ProductionOrder> getProductionOrdersInWork() {
+		return this.ordersinwork;
+	}
+
+	public ArrayList<ProductionOrder> getProductionOrdersInWaitinglist() {
+		return this.waitinglist.getOrders();
+	}
+
 	public ProductionOrder getOrdersInWorkForProduct(int productNumber) {
 		for (ProductionOrder order : this.ordersinwork) {
 			if (order.getProductNumber() == productNumber) {
@@ -187,5 +202,24 @@ public class ProductionService {
 			}
 		}
 		return null;
+	}
+
+	public void deployRemainingProductionOrders(ArrayList<Disposition> dispositions) {
+		for (ProductionOrder order : this.getProductionOrdersInWork()) {
+			for (Disposition disposition : dispositions) {
+				if (disposition.getPartNumber() == order.getProductNumber()) {
+					disposition.setOrderOnMachine(order);
+				}
+			}
+		}
+
+		for (Disposition disposition : dispositions) {
+			disposition.setProductionOrderInWaitingQueue(new ArrayList<>());
+			for (ProductionOrder order : this.getProductionOrdersInWaitinglist()) {
+				if (disposition.getPartNumber() == order.getProductNumber()) {
+					disposition.getProductionOrderInWaitingQueue().add(order);
+				}
+			}
+		}
 	}
 }

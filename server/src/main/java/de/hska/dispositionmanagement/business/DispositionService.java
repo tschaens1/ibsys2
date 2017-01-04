@@ -10,12 +10,13 @@ import de.hska.dispositionmanagement.domain.Disposition;
 import de.hska.filemanagement.domain.JsonFile;
 import de.hska.partsmanagement.business.PartsNodeService;
 import de.hska.partsmanagement.business.PartsService;
-import de.hska.partsmanagement.domain.ManufacturingPart;
 import de.hska.partsmanagement.domain.ManufacturingPartNode;
 import de.hska.planningmangement.business.PlanningService;
 import de.hska.planningmangement.domain.PlanningPosition;
 import de.hska.productionmanagement.business.ProductionService;
 import de.hska.warehousemanagement.business.WarehouseService;
+import de.hska.workplacemanagement.business.WorkplaceService;
+import de.hska.workplacemanagement.domain.ProductionOrder;
 
 @Service
 public class DispositionService {
@@ -24,16 +25,19 @@ public class DispositionService {
 	private PlanningService planningService;
 
 	@Autowired
-	private PartsService partsService;
+	private PartsNodeService partsNodeService;
 
 	@Autowired
-	private PartsNodeService partsNodeService;
+	private PartsService partsService;
 
 	@Autowired
 	private ProductionService productionService;
 
 	@Autowired
 	private WarehouseService warehouseService;
+
+	@Autowired
+	private WorkplaceService workplaceService;
 
 	private ArrayList<Disposition> dispositionP1;
 	private ArrayList<Disposition> dispositionP2;
@@ -49,6 +53,8 @@ public class DispositionService {
 		this.dispoRecursively(this.partsNodeService.getChildrenManufactoringNode(), new Disposition());
 		this.dispoRecursively(this.partsNodeService.getWomanManufactoringNode(), new Disposition());
 		this.dispoRecursively(this.partsNodeService.getManManufactoringNode(), new Disposition());
+		this.productionService.deployRemainingProductionOrders(dispositions);
+		this.setProductionOfDisposition();
 	}
 
 	public void dispoRecursively(ManufacturingPartNode node, Disposition parent) {
@@ -86,8 +92,11 @@ public class DispositionService {
 
 	public void setProductionOfDisposition() {
 
+		ArrayList<ProductionOrder> productionOrders = new ArrayList<ProductionOrder>();
+		ArrayList<ProductionOrder> productionOrdersWithUsedIn = new ArrayList<ProductionOrder>();
+
 		for (int i = 0; i < this.dispositions.size(); i++) {
-			this.dispositions.get(i).setManufacturing(new ArrayList<ManufacturingPart>());
+			this.dispositions.get(i).setProductionOrders(new ArrayList<ProductionOrder>());
 
 			int amountProduction = this.dispositions.get(i).getProduction().getQuantity();
 			int amountSafetyStockvalue = this.dispositions.get(i).getSafetyStockvalue();
@@ -105,9 +114,43 @@ public class DispositionService {
 			if (this.dispositions.get(i).getAmount() <= 0)
 				this.dispositions.get(i).setAmount(0);
 			else {
-				this.dispositions.get(i).getManufacturing()
-						.add(partsService.getManufacturingPartById(this.dispositions.get(i).getPartNumber()));
+				this.dispositions.get(i).getProductionOrders()
+						.add(new ProductionOrder(this.dispositions.get(i).getPartNumber(),
+								this.dispositions.get(i).getAmount(), this.planningService.getPeriod()));
 			}
 		}
+
+		for (Disposition disposition : this.dispositions) {
+			productionOrders.addAll(disposition.getProductionOrders());
+		}
+
+		for (ProductionOrder order : productionOrders) {
+			if (productionOrdersWithUsedIn.isEmpty())
+				productionOrdersWithUsedIn.add(order);
+
+			for (ProductionOrder orderWithUsedIn : productionOrdersWithUsedIn) {
+				if (order.getProductNumber() == orderWithUsedIn.getProductNumber() && this.partsService
+						.getManufacturingPartById(orderWithUsedIn.getProductNumber()).getUsedInAllProducts()) {
+					int amount = order.getAmount() + orderWithUsedIn.getAmount();
+					orderWithUsedIn.setAmount(amount);
+					break;
+				}
+			}
+		}
+
+		this.productionService.setProductionOrders(productionOrdersWithUsedIn);
+
+		for (ProductionOrder order : productionOrdersWithUsedIn) {
+			order.setWorkplaceId(this.workplaceService.getArbeitsplatzId(order.getProductNumber()));
+		}
+
+		this.workplaceService.reset();
+
+		for (ProductionOrder order : productionOrders) {
+			this.workplaceService.getProductionLineMap().get(Integer.valueOf(order.getProductNumber()))
+					.addProductionOrder(order);
+		}
+		this.productionService.deployRemainingProductionOrders(this.dispositions);
 	}
+
 }
