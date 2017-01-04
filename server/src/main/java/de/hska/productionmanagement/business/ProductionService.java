@@ -133,13 +133,8 @@ public class ProductionService {
 
 		for (ManufacturingPart part : this.partsService.getManufacturingParts()) {
 			int amount = 0;
-			for (ProductionOrder order : this.waitinglist.getOrders()) {
-				if (part.getNumber().equals(order.getProductNumber())) {
-					amount += order.getAmount();
-				}
-			}
 
-			for (ProductionOrder order : this.ordersinwork) {
+			for (ProductionOrder order : this.planning) {
 				if (part.getNumber().equals(order.getProductNumber())) {
 					amount += order.getAmount();
 				}
@@ -153,13 +148,19 @@ public class ProductionService {
 
 			for (ProductionOrder order : this.stockvalues) {
 				if (part.getNumber().equals(order.getProductNumber())) {
-					amount += order.getAmount();
+					amount -= order.getAmount();
 				}
 			}
 
-			for (ProductionOrder order : this.planning) {
+			for (ProductionOrder order : this.waitinglist.getOrders()) {
 				if (part.getNumber().equals(order.getProductNumber())) {
-					amount += order.getAmount();
+					amount -= order.getAmount();
+				}
+			}
+
+			for (ProductionOrder order : this.ordersinwork) {
+				if (part.getNumber().equals(order.getProductNumber())) {
+					amount -= order.getAmount();
 				}
 			}
 
@@ -168,5 +169,23 @@ public class ProductionService {
 
 			this.production.add(new ProductionOrder(part.getNumber(), amount, this.period));
 		}
+	}
+
+	public ProductionOrder getOrdersInWorkForProduct(int productNumber) {
+		for (ProductionOrder order : this.ordersinwork) {
+			if (order.getProductNumber() == productNumber) {
+				return order;
+			}
+		}
+		return null;
+	}
+
+	public ProductionOrder getWaitinglistForProduct(int productNumber) {
+		for (ProductionOrder order : this.waitinglist.getOrders()) {
+			if (order.getProductNumber() == productNumber) {
+				return order;
+			}
+		}
+		return null;
 	}
 }

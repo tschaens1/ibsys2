@@ -144,12 +144,36 @@ public class PlanningService {
 		return this.productionItems;
 	}
 
+	public PlanningPosition getProductionItemForProduct(int partNumber) {
+		for (PlanningPosition position : this.productionItems) {
+			if (position.getArticle() == partNumber)
+				return position;
+		}
+		return null;
+	}
+
 	public List<PlanningPosition> getSelldirectItems() {
 		return this.selldirectItems;
 	}
 
+	public PlanningPosition getSelldirectItemForProduct(int partNumber) {
+		for (PlanningPosition position : this.selldirectItems) {
+			if (position.getArticle() == partNumber)
+				return position;
+		}
+		return null;
+	}
+
 	public List<PlanningPosition> getSafetystockItems() {
 		return this.safetystockItems;
+	}
+
+	public PlanningPosition getSafetystockItemForProduct(int partNumber) {
+		for (PlanningPosition position : this.safetystockItems) {
+			if (position.getArticle() == partNumber)
+				return position;
+		}
+		return null;
 	}
 
 	public List<PlanningPosition> getForecastOne() {

@@ -50,6 +50,14 @@ public class WarehouseService {
 		return this.warehouseArticles;
 	}
 
+	public WarehouseArticle getWarehouseArticle(int partNumber) {
+		for (WarehouseArticle article : this.warehouseArticles) {
+			if (article.getPartNumber() == partNumber)
+				return article;
+		}
+		return null;
+	}
+
 	public int getPeriod() {
 		return this.period;
 	}
