@@ -31,6 +31,7 @@ export const LANG_DE_TRANSLATIONS = {
             "dashboard": "Dashboard",
             "parts": "Teileübersicht",
             "planning": "Planung",
+            "start": "Start",
             "warehouse": "Lager",
             "warehouse_statistics": "Lager Statistiken",
             "warehouse_settings": "Lager Einstellungen",
@@ -40,6 +41,20 @@ export const LANG_DE_TRANSLATIONS = {
             "other": "Sonstiges",
             "settings": "Einstellungen",
             "help": "Hilfe",
+        },
+    },
+    "welcome":{
+        "title": "Start",
+        "description": "Mit diesem Tool können Sie Ihre Fahrradproduktion steuern",
+        "actions": {
+            "title": "Aktionen",
+            "start_planning": "Periode planen",
+            "search_parts": "Teilesuche",
+        },
+        "links": {
+            "title": "Links",
+            "scsimulator": "SCSimulator",
+            "test_environment": "Testumgebung",
         },
     },
     "settings": {
@@ -73,7 +88,7 @@ export const LANG_DE_TRANSLATIONS = {
         "validation": {
             "invalid_article_id": "Falsche Artikel Nummer",
         },
-        "modal":{
+        "modal": {
             "addedArticle": "Artikel %0 wurde hinzugefügt",
             "removedArticle": "Artikel %0 wurde entfernt",
         },
