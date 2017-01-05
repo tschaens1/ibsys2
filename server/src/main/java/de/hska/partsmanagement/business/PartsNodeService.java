@@ -219,6 +219,7 @@ public class PartsNodeService {
 
 	}
 
+	@SuppressWarnings("serial")
 	public void createWomanTree() {
 		PartNode P2_K22 = new PartNode(22, 1, null);
 		PartNode P2_K24 = new PartNode(24, 1, null);
@@ -372,6 +373,7 @@ public class PartsNodeService {
 		this.bicycleWoman = P2;
 	}
 
+	@SuppressWarnings("serial")
 	public void createManTree() {
 		PartNode P3_K23 = new PartNode(23, 1, null);
 		PartNode P3_K24 = new PartNode(24, 1, null);

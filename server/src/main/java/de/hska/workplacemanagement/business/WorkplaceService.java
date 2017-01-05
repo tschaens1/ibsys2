@@ -23,6 +23,7 @@ public class WorkplaceService {
 		this.setWorkplaces();
 	}
 
+	@SuppressWarnings("serial")
 	private void setWorkplaces() {
 		this.allWorkPlaces = new ArrayList<Workplace>() {
 			{
