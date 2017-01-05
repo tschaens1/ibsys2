@@ -111,17 +111,17 @@ export class PlanningOverviewComponent implements OnInit {
             this.sellwish_p2 = this.inputOflastPeriod.input.sellwish.items[1].quantity || 0;
             this.sellwish_p3 = this.inputOflastPeriod.input.sellwish.items[2].quantity || 0;
 
-            this.forecast_p1_one = this.inputOflastPeriod.input.forcasts.forecast_one.items[0].quantity || 0;
-            this.forecast_p1_two = this.inputOflastPeriod.input.forcasts.forecast_one.items[0].quantity || 0;
-            this.forecast_p1_three = this.inputOflastPeriod.input.forcasts.forecast_one.items[0].quantity || 0;
+            this.forecast_p1_one = this.inputOflastPeriod.input.forecasts.forecast_one.items[0].quantity || 0;
+            this.forecast_p1_two = this.inputOflastPeriod.input.forecasts.forecast_one.items[0].quantity || 0;
+            this.forecast_p1_three = this.inputOflastPeriod.input.forecasts.forecast_one.items[0].quantity || 0;
 
-            this.forecast_p2_one = this.inputOflastPeriod.input.forcasts.forecast_one.items[1].quantity || 0;
-            this.forecast_p2_two = this.inputOflastPeriod.input.forcasts.forecast_one.items[1].quantity || 0;
-            this.forecast_p2_three = this.inputOflastPeriod.input.forcasts.forecast_one.items[1].quantity || 0;
+            this.forecast_p2_one = this.inputOflastPeriod.input.forecasts.forecast_one.items[1].quantity || 0;
+            this.forecast_p2_two = this.inputOflastPeriod.input.forecasts.forecast_one.items[1].quantity || 0;
+            this.forecast_p2_three = this.inputOflastPeriod.input.forecasts.forecast_one.items[1].quantity || 0;
 
-            this.forecast_p3_one = this.inputOflastPeriod.input.forcasts.forecast_one.items[2].quantity || 0;
-            this.forecast_p3_two = this.inputOflastPeriod.input.forcasts.forecast_one.items[2].quantity || 0;
-            this.forecast_p3_three = this.inputOflastPeriod.input.forcasts.forecast_one.items[2].quantity || 0;
+            this.forecast_p3_one = this.inputOflastPeriod.input.forecasts.forecast_one.items[2].quantity || 0;
+            this.forecast_p3_two = this.inputOflastPeriod.input.forecasts.forecast_one.items[2].quantity || 0;
+            this.forecast_p3_three = this.inputOflastPeriod.input.forecasts.forecast_one.items[2].quantity || 0;
 
             this.enabledSellDirect = this.inputOflastPeriod.enabledSellDirect || false;
 
@@ -286,7 +286,7 @@ export class PlanningOverviewComponent implements OnInit {
                         }
                     ]
                 },
-                forcasts: {
+                forecasts: {
                     forecast_one: {
                         items: [
                             {
