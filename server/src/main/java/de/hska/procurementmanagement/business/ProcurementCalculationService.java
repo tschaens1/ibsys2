@@ -1,11 +1,6 @@
 package de.hska.procurementmanagement.business;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import de.hska.dispositionmanagement.business.DispositionService;
 import de.hska.partsmanagement.business.PartsNodeService;
 import de.hska.partsmanagement.business.PartsService;
 import de.hska.partsmanagement.domain.BuyPart;
@@ -13,153 +8,144 @@ import de.hska.partsmanagement.domain.PartNode;
 import de.hska.planningmangement.business.PlanningService;
 import de.hska.procurementmanagement.domain.BuyMode;
 import de.hska.procurementmanagement.domain.BuyOrder;
-import de.hska.procurementmanagement.domain.IncomingBuyOrder;
 import de.hska.warehousemanagement.business.WarehouseService;
 import de.hska.warehousemanagement.domain.WarehouseArticle;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 
 @Service
 public class ProcurementCalculationService {
 
-	@Autowired
-	private ProcurementService procurementService;
+    @Autowired
+    private ProcurementService procurementService;
 
-	@Autowired
-	private PartsService partsService;
+    @Autowired
+    private DispositionService dispositionService;
 
-	@Autowired
-	private PartsNodeService partsNodeService;
+    @Autowired
+    private PartsService partsService;
 
-	@Autowired
-	private PlanningService planningService;
+    @Autowired
+    private PartsNodeService partsNodeService;
 
-	@Autowired
-	private WarehouseService warehouseService;
+    @Autowired
+    private PlanningService planningService;
 
-	private Integer currentPeriod;
+    @Autowired
+    private WarehouseService warehouseService;
 
-	public void initialize() {
+    private Integer currentPeriod;
 
-		// We do plan a new period, so we add 1
-		this.currentPeriod = planningService.getPeriod() + 1;
+    public void initialize() {
 
-		generateBuyOrders();
-	}
+        this.currentPeriod = planningService.getPeriod() + 1;
 
-	public Integer getAmountInSubTree(PartNode tree, Integer partNumber) {
-		return this.partsNodeService.getAmountInTree(tree, partNumber);
-	}
+        generateBuyOrders();
+    }
 
-	public void generateBuyOrders() {
-		for (BuyPart part : partsService.getBuyParts()) {
-			Integer useAmount0 = 0;
-			// TODO: Initialize useAmount with Andi's method from
-			// productionService
+    private void generateBuyOrders() {
+        for (BuyPart part : partsService.getBuyParts()) {
+            Integer useAmount0 = dispositionService.getAmountOfBuyPartInCurrentProduction(part.getNumber());
 
-			Integer useAmountFuture1 = 0;
-			useAmountFuture1 += (planningService.getForecastOne().get(0).getQuantity()
-					* getAmountInSubTree(partsNodeService.getChildrenManufactoringNode(), part.getNumber())
-					+ planningService.getForecastOne().get(1).getQuantity()
-							* getAmountInSubTree(partsNodeService.getWomanManufactoringNode(), part.getNumber())
-					+ planningService.getForecastOne().get(2).getQuantity()
-							* getAmountInSubTree(partsNodeService.getManManufactoringNode(), part.getNumber()));
+            Integer useAmountFuture1 = 0;
+            useAmountFuture1 += (
+                    planningService.getForecastOne().get(0).getQuantity() * getAmountInSubTree(partsNodeService.getChildrenManufactoringNode(), part.getNumber())
+                            + planningService.getForecastOne().get(1).getQuantity() * getAmountInSubTree(partsNodeService.getWomanManufactoringNode(), part.getNumber())
+                            + planningService.getForecastOne().get(2).getQuantity() * getAmountInSubTree(partsNodeService.getManManufactoringNode(), part.getNumber())
+            );
 
-			Integer useAmountFuture2 = 0;
-			useAmountFuture2 += (planningService.getForecastTwo().get(0).getQuantity()
-					* getAmountInSubTree(partsNodeService.getChildrenManufactoringNode(), part.getNumber())
-					+ planningService.getForecastTwo().get(1).getQuantity()
-							* getAmountInSubTree(partsNodeService.getWomanManufactoringNode(), part.getNumber())
-					+ planningService.getForecastTwo().get(2).getQuantity()
-							* getAmountInSubTree(partsNodeService.getManManufactoringNode(), part.getNumber()));
+            Integer useAmountFuture2 = 0;
+            useAmountFuture2 += (
+                    planningService.getForecastTwo().get(0).getQuantity() * getAmountInSubTree(partsNodeService.getChildrenManufactoringNode(), part.getNumber())
+                            + planningService.getForecastTwo().get(1).getQuantity() * getAmountInSubTree(partsNodeService.getWomanManufactoringNode(), part.getNumber())
+                            + planningService.getForecastTwo().get(2).getQuantity() * getAmountInSubTree(partsNodeService.getManManufactoringNode(), part.getNumber())
+            );
 
-			Integer useAmountFuture3 = 0;
-			useAmountFuture3 += (planningService.getForecastThree().get(0).getQuantity()
-					* getAmountInSubTree(partsNodeService.getChildrenManufactoringNode(), part.getNumber())
-					+ planningService.getForecastThree().get(1).getQuantity()
-							* getAmountInSubTree(partsNodeService.getWomanManufactoringNode(), part.getNumber())
-					+ planningService.getForecastThree().get(2).getQuantity()
-							* getAmountInSubTree(partsNodeService.getManManufactoringNode(), part.getNumber()));
+            Integer useAmountFuture3 = 0;
+            useAmountFuture3 += (
+                    planningService.getForecastThree().get(0).getQuantity() * getAmountInSubTree(partsNodeService.getChildrenManufactoringNode(), part.getNumber())
+                            + planningService.getForecastThree().get(1).getQuantity() * getAmountInSubTree(partsNodeService.getWomanManufactoringNode(), part.getNumber())
+                            + planningService.getForecastThree().get(2).getQuantity() * getAmountInSubTree(partsNodeService.getManManufactoringNode(), part.getNumber())
+            );
 
-			Integer[] upcomingAmount = new Integer[] { useAmount0, useAmountFuture1, useAmountFuture2,
-					useAmountFuture3 };
+            Integer[] upcomingAmount = new Integer[]{useAmount0, useAmountFuture1, useAmountFuture2, useAmountFuture3};
 
-			// TODO: Generate orders if necessary
+            BuyOrder order = checkForBuyInCurrentPeriod(part, upcomingAmount);
 
-			System.out.println(
-					"Product: " + part.getNumber() + " Usage: " + Arrays.toString(upcomingAmount) + " Average: "
-							+ getAverageAmountInFuture(upcomingAmount) + " Calc amount: " + getCalculationAmount(part)
-							+ " Lager: " + warehouseService.getWarehouseArticle(part.getNumber()).getAmount()
-							+ " Order Range: " + getOrderRange(part, upcomingAmount));
-		}
-	}
+            System.out.println(
+                    "Product: " + part.getNumber()
+                            + " Usage: " + Arrays.toString(upcomingAmount)
+                            + " Average: " + getAverageAmountInFuture(upcomingAmount)
+                            + " Calc amount: " + getCalculationAmountForStorage(part)
+                            + " Lager: " + warehouseService.getWarehouseArticle(part.getNumber()).getAmount()
+                            + " Order Range: " + getOrderRange(part, upcomingAmount)
+            );
 
-	public ArrayList<BuyOrder> getPendingBuyOrdersForPart(Integer partNumber) {
-		return procurementService.getPendingBuyOrdersForPart(partNumber);
-	}
+            // Generate order if necessary
+            if (order != null) {
+                // procurementService.generateNewBuyOrder(order.....);
+            }
+        }
+    }
 
-	public ArrayList<BuyOrder> getNewBuyOrdersForPart(Integer partNumber) {
-		return procurementService.getNewBuyOrdersForPart(partNumber);
-	}
+    // Returns a new order if necessary and null otherwise
+    private BuyOrder checkForBuyInCurrentPeriod(BuyPart buyPart, Integer[] futureAmounts) {
+        Integer amount = 1000;
 
-	public ArrayList<IncomingBuyOrder> getIncomingBuyOrdersForPart(Integer partNumber) {
-		return procurementService.getIncomingBuyOrdersForPart(partNumber);
-	}
+        if (amount > 0) {
+            // Fast
+            if ((procurementService.getBuyCosts(buyPart, BuyMode.Fast, buyPart.getDiscountAmount()) < procurementService.getBuyCosts(buyPart, BuyMode.Fast, amount))
+                    && amount < buyPart.getDiscountAmount()) {
+                amount = buyPart.getDiscountAmount();
+            }
 
-	public Double getOrderRange(BuyPart buyPart, Integer[] futureAmounts) {
-		Integer amountToCalculate = getCalculationAmount(buyPart);
-		Integer averageAmountInFuture = getAverageAmountInFuture(futureAmounts);
+            return new BuyOrder(buyPart.getNumber(), BuyMode.Fast, amount, currentPeriod, 0.0);
+        }
 
-		return amountToCalculate / averageAmountInFuture
-				- (buyPart.getTimeToRebuy() + buyPart.getRiskFactor() * buyPart.getRebuyDerivation());
-	}
+        // Normal
+        if (amount < 0) {
+            if ((procurementService.getBuyCosts(buyPart, BuyMode.Normal, buyPart.getDiscountAmount()) < procurementService.getBuyCosts(buyPart, BuyMode.Normal, amount))
+                    && amount < buyPart.getDiscountAmount()) {
+                amount = buyPart.getDiscountAmount();
+            }
 
-	private Integer getCalculationAmount(BuyPart buyPart) {
-		WarehouseArticle article = warehouseService.getWarehouseArticle(buyPart.getNumber());
-		Integer currentAmount = article.getAmount();
-		Integer incomingInFuture = (procurementService.getFutureAmountForPart(buyPart.getNumber()) / 2)
-				+ (procurementService.getIncomingAmountForPart(buyPart.getNumber()));
+            return new BuyOrder(buyPart.getNumber(), BuyMode.Normal, amount, currentPeriod, 0.0);
+        }
 
-		return currentAmount + incomingInFuture;
-	}
+        // Else, do not buy stuff
+        return null;
+    }
 
-	private Integer getAverageAmountInFuture(Integer[] futureAmounts) {
-		if (futureAmounts.length == 0)
-			return 0;
+    private Double getOrderRange(BuyPart buyPart, Integer[] futureAmounts) {
+        Integer amountToCalculate = getCalculationAmountForStorage(buyPart);
+        Integer averageAmountInFuture = getAverageAmountInFuture(futureAmounts);
 
-		int sum = 0;
-		for (Integer i : futureAmounts) {
-			sum += i;
-		}
+        return amountToCalculate / averageAmountInFuture - (buyPart.getTimeToRebuy() + buyPart.getRiskFactor() * buyPart.getRebuyDerivation());
+    }
 
-		return sum / futureAmounts.length;
-	}
+    private Integer getCalculationAmountForStorage(BuyPart buyPart) {
+        WarehouseArticle article = warehouseService.getWarehouseArticle(buyPart.getNumber());
+        Integer currentAmount = article.getAmount();
+        Integer incomingInFuture = (procurementService.getFutureAmountForPart(buyPart.getNumber()) / 2)
+                + (procurementService.getIncomingAmountForPart(buyPart.getNumber()));
 
-	// Returns null if there is no need for an order
-	public BuyOrder checkForBuyInCurrentPeriod(BuyPart buyPart, Integer[] futureAmounts) {
-		// TODO: Calculate Range and decide about Fast and Normal
-		Integer amount = 1000;
+        return currentAmount + incomingInFuture;
+    }
 
-		if (amount > 0) {
-			// Fast
-			if ((procurementService.getBuyCosts(buyPart, BuyMode.Fast, buyPart.getDiscountAmount()) < procurementService
-					.getBuyCosts(buyPart, BuyMode.Fast, amount)) && amount < buyPart.getDiscountAmount()) {
-				amount = buyPart.getDiscountAmount();
-			}
+    private Integer getAverageAmountInFuture(Integer[] futureAmounts) {
+        if (futureAmounts.length == 0) return 0;
 
-			return new BuyOrder(buyPart.getNumber(), BuyMode.Fast, amount, currentPeriod, 0.0);
-		}
+        int sum = 0;
+        for (Integer i : futureAmounts) {
+            sum += i;
+        }
 
-		// Normal
-		if (amount < 0) {
-			if ((procurementService.getBuyCosts(buyPart, BuyMode.Normal,
-					buyPart.getDiscountAmount()) < procurementService.getBuyCosts(buyPart, BuyMode.Normal, amount))
-					&& amount < buyPart.getDiscountAmount()) {
-				amount = buyPart.getDiscountAmount();
-			}
+        return sum / futureAmounts.length;
+    }
 
-			return new BuyOrder(buyPart.getNumber(), BuyMode.Normal, amount, currentPeriod, 0.0);
-		}
-
-		// Else, do not buy stuff
-		return null;
-	}
+    private Integer getAmountInSubTree(PartNode tree, Integer partNumber) {
+        return this.partsNodeService.getAmountInTree(tree, partNumber);
+    }
 }
