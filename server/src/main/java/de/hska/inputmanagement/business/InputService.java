@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import de.hska.dispositionmanagement.business.DispositionService;
 import de.hska.dispositionmanagement.domain.Disposition;
+import de.hska.filemanagement.domain.JsonFile;
 import de.hska.periodmanagement.domain.Period;
 import de.hska.planningmangement.business.PlanningService;
 import de.hska.planningmangement.domain.PlanningPosition;
@@ -22,7 +23,7 @@ public class InputService {
 	@Autowired
 	private PlanningService planningService;
 
-	public String generateInputJson(Period period) {
+	public JsonFile generateInputJson(Period period) {
 
 		JSONObject inputJson = new JSONObject();
 
@@ -125,7 +126,9 @@ public class InputService {
 		JSONObject inputWrapper = new JSONObject();
 		inputWrapper.put("input", inputJson);
 
-		return inputWrapper.toString();
+		JsonFile input = new JsonFile();
+		input.setContent(inputWrapper.toString());
+		return input;
 	}
 
 	public JSONObject generateSellwishJson(List<Object> sellwishes) {

@@ -1,9 +1,15 @@
 package de.hska.periodmanagement.domain;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import de.hska.filemanagement.domain.JsonFile;
 import de.hska.planningmangement.domain.Planning;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "period")
@@ -15,16 +21,14 @@ public class Period {
 
 	private Long counter;
 
-	@Column(name = "\"group\"")
-	private Long group;
-
-	private Long game;
-
 	@OneToOne(cascade = CascadeType.ALL)
-	private JsonFile jsonFile;
+	private JsonFile result;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Planning planning;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private JsonFile input;
 
 	public Period() {
 	}
@@ -45,12 +49,12 @@ public class Period {
 		this.counter = counter;
 	}
 
-	public JsonFile getJsonFile() {
-		return jsonFile;
+	public JsonFile getResult() {
+		return result;
 	}
 
-	public void setJsonFile(JsonFile jsonFile) {
-		this.jsonFile = jsonFile;
+	public void setResult(JsonFile result) {
+		this.result = result;
 	}
 
 	public Planning getPlanning() {
@@ -59,6 +63,14 @@ public class Period {
 
 	public void setPlanning(Planning planning) {
 		this.planning = planning;
+	}
+
+	public JsonFile getInput() {
+		return input;
+	}
+
+	public void setInput(JsonFile input) {
+		this.input = input;
 	}
 
 }
