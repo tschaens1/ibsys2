@@ -25,7 +25,6 @@ import java.text.ParseException;
 @RestController
 @RequestMapping(value = "/api/rest/files", produces = MediaType.APPLICATION_JSON_VALUE)
 public class FileResource {
-
     @Autowired
     private IPeriodRepository periodRepository;
 
@@ -57,7 +56,8 @@ public class FileResource {
     private DispositionService dispositionService;
 
     @RequestMapping(method = RequestMethod.POST, value = "result")
-    public ResponseEntity<String> save(@RequestBody XmlFile xmlFile) throws ParseException {
+    public ResponseEntity<String> save(@RequestBody XmlFile xmlFile)
+            throws ParseException {
         String jsonContent = xmlFile.getContent();
         JSONObject jsonObject = fileConverterService.convertXmlToJson(jsonContent);
         JsonFile jsonFile = new JsonFile();
@@ -78,10 +78,9 @@ public class FileResource {
 
         kpiService.initialize(jsonFile);
         warehouseService.initialize(jsonFile);
-        // productionService.initialize(jsonFile);
-        // inputService.initialize(jsonFile);
+        productionService.initialize(jsonFile);
         simulationService.initialize();
-        // dispositionService.initialize(jsonFile);
+        dispositionService.initialize();
         procurementService.initialize(jsonFile);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -96,6 +95,29 @@ public class FileResource {
     @RequestMapping(method = RequestMethod.GET, value = "periods/{periodCounter}/input")
     public ResponseEntity<String> returnInputForPeriod(@PathVariable Long periodCounter) {
         Period period = periodRepository.findByCounter(periodCounter);
+        return ResponseEntity.ok(inputService.generateInputJson(period).toString());
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "periods/{periodCounter}/result")
+    public ResponseEntity<String> getResultsForPeriod(@PathVariable Long periodCounter) {
+        Period period = periodRepository.findByCounter(periodCounter);
+
+        if (period == null) {
+            return ResponseEntity.badRequest().body("Period not found in database! Have you uploaded the result XML?");
+        }
+
+        JSONObject json = new JSONObject(period.getJsonFile().getContent());
+        return ResponseEntity.ok(json.getJSONObject("results").getJSONObject("result").toString());
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "periods/{periodCounter}/input")
+    public ResponseEntity<String> getInputForPeriod(@PathVariable Long periodCounter) {
+        Period period = periodRepository.findByCounter(periodCounter);
+
+        if (period == null) {
+            return ResponseEntity.badRequest().body("Period not found in database! Have you uploaded the result XML?");
+        }
+
         return ResponseEntity.ok(inputService.generateInputJson(period).toString());
     }
 }

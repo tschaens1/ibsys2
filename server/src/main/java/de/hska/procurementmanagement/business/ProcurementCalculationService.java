@@ -54,7 +54,7 @@ public class ProcurementCalculationService {
 
     public void generateBuyOrders() {
         for (BuyPart part : partsService.getBuyParts()) {
-            Integer useAmount = 0;
+            Integer useAmount0 = 0;
             // TODO: Initialize useAmount with Andi's method from productionService
 
             Integer useAmountFuture1 = 0;
@@ -78,12 +78,17 @@ public class ProcurementCalculationService {
                             + planningService.getForecastThree().get(2).getQuantity() * getAmountInSubTree(partsNodeService.getManManufactoringNode(), part.getNumber())
             );
 
-            Integer[] upcomingAmount = new Integer[]{useAmount, useAmountFuture1, useAmountFuture2, useAmountFuture3};
+            Integer[] upcomingAmount = new Integer[]{useAmount0, useAmountFuture1, useAmountFuture2, useAmountFuture3};
 
             // TODO: Generate orders if necessary
 
-            System.out.println("Product: " + part.getNumber() + " Usage: " + Arrays.toString(upcomingAmount) + " Future orders: " + getOrderRange(part, upcomingAmount)
-                    + " Average: " + getAverageAmountInFuture(upcomingAmount));
+            System.out.println(
+                    "Product: " + part.getNumber()
+                    + " Usage: " + Arrays.toString(upcomingAmount)
+                    + " Average: " + getAverageAmountInFuture(upcomingAmount)
+                    + " Calc amount: " + getCalculationAmount(part)
+                    + " Lager: " + warehouseService.getWarehouseArticle(part.getNumber()).getAmount()
+                    + " Order Range: " + getOrderRange(part, upcomingAmount));
         }
     }
 
@@ -101,9 +106,9 @@ public class ProcurementCalculationService {
 
     public Double getOrderRange(BuyPart buyPart, Integer[] futureAmounts) {
         Integer amountToCalculate = getCalculationAmount(buyPart);
+        Integer averageAmountInFuture = getAverageAmountInFuture(futureAmounts);
 
-
-        return 0.0;
+        return amountToCalculate / averageAmountInFuture - (buyPart.getTimeToRebuy() + buyPart.getRiskFactor() * buyPart.getRebuyDerivation());
     }
 
     private Integer getCalculationAmount(BuyPart buyPart) {
@@ -112,14 +117,12 @@ public class ProcurementCalculationService {
         Integer incomingInFuture = (procurementService.getFutureAmountForPart(buyPart.getNumber()) / 2)
                 + (procurementService.getIncomingAmountForPart(buyPart.getNumber()));
 
-        Integer amountToCalculate = currentAmount + incomingInFuture;
-
-        return amountToCalculate;
+        return currentAmount + incomingInFuture;
     }
 
     private Integer getAverageAmountInFuture(Integer[] futureAmounts) {
-        if(futureAmounts.length == 0) return 0;
-        
+        if (futureAmounts.length == 0) return 0;
+
         int sum = 0;
         for (Integer i : futureAmounts) {
             sum += i;
