@@ -2,7 +2,7 @@ import { BehaviorSubject } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { Component, OnInit, ElementRef, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Http, Headers } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
 var js2xmlparser = require('js2xmlparser');
 var FileSaver = require('file-saver');
 
@@ -172,13 +172,31 @@ export class PlanningService implements OnInit {
             // send data to the server
             new Promise((resolve, reject) => {
                 // this.sendXMLToServer().catch(err => { console.error(err); reject(err) }).then(() => resolve());
-                this.sendInputsToServer().catch(err => { console.error(err); reject(err) }).then(() => resolve());
+                this.sendInputsToServer().catch(err => { console.error(err); reject(err) }).then((response: Response) => {
+                    const result = response.json();
+                    console.log(result);                    
+                    this.inputDataForSimulatorAsJSON.productionlist.production = result.input.productionlist.map(production => {
+                        return {
+                            "@": production
+                        }
+                    });
+
+                    this.inputDataForSimulatorAsJSON.orderlist.order = result.input.orderlist.map(order => {
+                        return {
+                            "@": order
+                        }
+                    });
+
+                    this.inputDataForSimulatorAsJSON.workingtimelist.workingtime = result.input.workingtimelist.map(workingtime => {
+                        return {
+                            "@": workingtime
+                        }
+                    });                    
+                    resolve();
+                });
                 // resolve();
             }).then(() => {
-                setTimeout(() => {
-                    console.log('get results from server...');
-                    resolve();
-                }, 5000);
+                resolve();
             }).catch(err => {
                 reject(err);
             })
@@ -188,10 +206,9 @@ export class PlanningService implements OnInit {
      * Send the input data to server. The input data is required
      * for the calculations on the server.
      */
-    sendInputsToServer() {        
+    sendInputsToServer() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let body = JSON.stringify(this.inputJSON);
-        console.log(this.inputJSON);
         return this.http.post(this.inputUploadUrl, body, { headers: headers }).toPromise();
     }
 

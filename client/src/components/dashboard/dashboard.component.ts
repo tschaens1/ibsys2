@@ -1,3 +1,4 @@
+import { DashboardService } from './dashboard.service';
 import { LoginService } from './../login/login.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,6 +12,9 @@ export class DashBoardComponent implements OnInit {
     optionsChart2: HighchartsOptions;
     optionsChart3: HighchartsOptions;
     optionsChart4: HighchartsOptions;
+
+    period: number = 3;
+    results: any;
 
     ngOnInit() {
         this.optionsChart1 = {
@@ -43,7 +47,7 @@ export class DashBoardComponent implements OnInit {
         };
     }
 
-    constructor() {
+    constructor(private dashboardService: DashboardService) {
     }
 
     public doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
@@ -57,5 +61,12 @@ export class DashBoardComponent implements OnInit {
 
     public chartHovered(e: any): void {
         console.log(e);
+    }
+
+    getResults() {
+        this.dashboardService.getResults(this.period).then(results => {
+            console.log(results);
+            this.results = results;
+        });
     }
 }
