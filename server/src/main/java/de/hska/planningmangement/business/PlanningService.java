@@ -83,7 +83,7 @@ public class PlanningService {
 			int article = Integer.parseInt(objectInArray.get("article").toString());
 			int quantity = Integer.parseInt(objectInArray.get("quantity").toString());
 			double price = Double.parseDouble(objectInArray.get("price").toString());
-			int penalty = Integer.parseInt(objectInArray.get("penalty").toString());
+			double penalty = Double.parseDouble(objectInArray.get("penalty").toString());
 			selldirectItem = new PlanningPosition(article, quantity, price, penalty);
 			this.selldirectItems.add(selldirectItem);
 		}
