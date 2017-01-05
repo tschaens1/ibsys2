@@ -1,13 +1,13 @@
 package de.hska.planningmangement.domain;
 
+import de.hska.filemanagement.domain.JsonFile;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-
-import de.hska.xmlfilemanagement.domain.JsonFile;
 
 @Entity
 public class Planning {

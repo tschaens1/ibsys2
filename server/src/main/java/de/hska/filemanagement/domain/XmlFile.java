@@ -1,4 +1,4 @@
-package de.hska.xmlfilemanagement.domain;
+package de.hska.filemanagement.domain;
 
 import org.hibernate.annotations.Type;
 
@@ -6,16 +6,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "xmlfile")
-public class JsonFile {
+public class XmlFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Type(type="text")
+    @Type(type = "text")
     private String content;
 
-    public JsonFile(){
+    public XmlFile() {
     }
 
     public Long getId() {

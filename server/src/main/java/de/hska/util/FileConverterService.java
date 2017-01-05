@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FileConverterService {
 
-	private static final Integer PRETTY_INDENT_FACTOR = 4;
-
+	@SuppressWarnings("deprecation")
 	public JSONObject convertXmlToJson(String content) {
 		try {
 			final String escapedXml = URLDecoder.decode(content);
