@@ -81,21 +81,24 @@ public class ProcurementCalculationService {
                             + " Calc amount: " + getCalculationAmountForStorage(part)
                             + " Lager: " + warehouseService.getWarehouseArticle(part.getNumber()).getAmount()
                             + " Order Range: " + getOrderRange(part, upcomingAmount)
+                            + " Order? : " + (order != null)
             );
 
-            // Generate order if necessary
             if (order != null) {
-                // procurementService.generateNewBuyOrder(order.....);
+                procurementService.generateNewBuyOrder(part, order.getBuyMode(), order.getAmount(), currentPeriod);
             }
+
+            System.out.println("Current new orders: " + procurementService.getNewBuyOrders().size());
         }
     }
 
     // Returns a new order if necessary and null otherwise
     private BuyOrder checkForBuyInCurrentPeriod(BuyPart buyPart, Integer[] futureAmounts) {
-        Integer amount = 1000;
+        Double orderRange = getOrderRange(buyPart, futureAmounts);
+        Integer amount = Math.abs(futureAmounts[1] + futureAmounts[2] + futureAmounts[3] - getCalculationAmountForStorage(buyPart));
 
-        if (amount > 0) {
-            // Fast
+        // Fast
+        if (orderRange < 0.5 || warehouseService.getWarehouseArticle(buyPart.getNumber()).getAmount() < futureAmounts[0]) {
             if ((procurementService.getBuyCosts(buyPart, BuyMode.Fast, buyPart.getDiscountAmount()) < procurementService.getBuyCosts(buyPart, BuyMode.Fast, amount))
                     && amount < buyPart.getDiscountAmount()) {
                 amount = buyPart.getDiscountAmount();
@@ -105,7 +108,7 @@ public class ProcurementCalculationService {
         }
 
         // Normal
-        if (amount < 0) {
+        if (amount < 1.0) {
             if ((procurementService.getBuyCosts(buyPart, BuyMode.Normal, buyPart.getDiscountAmount()) < procurementService.getBuyCosts(buyPart, BuyMode.Normal, amount))
                     && amount < buyPart.getDiscountAmount()) {
                 amount = buyPart.getDiscountAmount();

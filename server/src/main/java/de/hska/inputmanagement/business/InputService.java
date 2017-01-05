@@ -2,6 +2,8 @@ package de.hska.inputmanagement.business;
 
 import java.util.List;
 
+import de.hska.procurementmanagement.business.ProcurementService;
+import de.hska.procurementmanagement.domain.BuyOrder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class InputService {
 
 	@Autowired
 	private PlanningService planningService;
+
+	@Autowired
+	private ProcurementService procurementService;
 
 	public JsonFile generateInputJson(Period period) {
 
@@ -56,27 +61,14 @@ public class InputService {
 			productionlistItems.put(productionJSON);
 		}
 
-		JSONObject orderlistJson = new JSONObject();
-
-		JSONObject order1Json = new JSONObject();
-		order1Json.put("article", 40);
-		order1Json.put("quantity", 2200);
-		order1Json.put("modus", 5);
-
-		JSONObject order2Json = new JSONObject();
-		order2Json.put("article", 15);
-		order2Json.put("quantity", 1750);
-		order2Json.put("modus", 5);
-
-		JSONObject order3Json = new JSONObject();
-		order3Json.put("article", 13);
-		order3Json.put("quantity", 2000);
-		order3Json.put("modus", 5);
-
-		JSONArray orderItemList = new JSONArray();
-		orderItemList.put(order1Json);
-		orderItemList.put(order2Json);
-		orderItemList.put(order3Json);
+		JSONArray orderlistItems = new JSONArray();
+		for (BuyOrder buyOrder : procurementService.getNewBuyOrders()) {
+			JSONObject buyOrderJSON = new JSONObject();
+			buyOrderJSON.put("article", buyOrder.getBuyPartId());
+			buyOrderJSON.put("quantity", buyOrder.getAmount());
+			buyOrderJSON.put("modus", buyOrder.getBuyMode().getValue());
+			orderlistItems.put(buyOrderJSON);
+		}
 
 		JSONObject workingtime1JSON = new JSONObject();
 		workingtime1JSON.put("station", 1);
@@ -119,7 +111,7 @@ public class InputService {
 		inputJson.put("qualitycontrol", qualitycontrolJson);
 		inputJson.put("sellwish", sellwishItemList);
 		inputJson.put("selldirect", selldirectItemList);
-		inputJson.put("orderlist", orderItemList);
+		inputJson.put("orderlist", orderlistItems);
 		inputJson.put("productionlist", productionlistItems);
 		inputJson.put("workingtimelist", workingtimelistItems);
 

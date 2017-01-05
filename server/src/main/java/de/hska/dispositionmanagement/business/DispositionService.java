@@ -252,11 +252,11 @@ public class DispositionService {
 				partNumber) * dispoP1.getProduction().getAmount();
 
 		Disposition dispoP2 = getDispositionByPartNumber(2);
-		amount += this.partsNodeService.getAmountInTree(this.partsNodeService.getChildrenManufactoringNode(),
+		amount += this.partsNodeService.getAmountInTree(this.partsNodeService.getWomanManufactoringNode(),
 				partNumber) * dispoP2.getProduction().getAmount();
 
 		Disposition dispoP3 = getDispositionByPartNumber(3);
-		amount += this.partsNodeService.getAmountInTree(this.partsNodeService.getChildrenManufactoringNode(),
+		amount += this.partsNodeService.getAmountInTree(this.partsNodeService.getManManufactoringNode(),
 				partNumber) * dispoP3.getProduction().getAmount();
 
 		return amount;
