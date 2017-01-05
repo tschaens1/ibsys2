@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
 
 @Service
 public class ProcurementCalculationService {
@@ -81,11 +80,10 @@ public class ProcurementCalculationService {
 
             Integer[] upcomingAmount = new Integer[]{useAmount, useAmountFuture1, useAmountFuture2, useAmountFuture3};
 
-            // TODO: Use amount, amount1, amount2, amount3 to calculate order range
             // TODO: Generate orders if necessary
-            BuyOrder order = null;
 
-            System.out.println("Product: " + part.getNumber() + " Timeline: " + Arrays.toString(getFutureDailyOrderIncoming(part, upcomingAmount)));
+            System.out.println("Product: " + part.getNumber() + " Usage: " + Arrays.toString(upcomingAmount) + " Future orders: " + getOrderRange(part, upcomingAmount)
+                    + " Average: " + getAverageAmountInFuture(upcomingAmount));
         }
     }
 
@@ -101,82 +99,33 @@ public class ProcurementCalculationService {
         return procurementService.getIncomingBuyOrdersForPart(partNumber);
     }
 
-    public BuyPart findBuyPartByNumber(Integer partNumber) {
-        for (BuyPart part : this.partsService.getBuyParts()) {
-            if (Objects.equals(part.getNumber(), partNumber)) {
-                return part;
-            }
-        }
-
-        return null;
-    }
-
-    public Integer[] getFutureDailyOrderIncoming(BuyPart part, Integer[] futureAmounts) {
-        Integer[] upcomingAmountsDaily = new Integer[]{
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        };
-
-        ArrayList<BuyOrder> pendingBuyOrders = getPendingBuyOrdersForPart(part.getNumber());
-        ArrayList<BuyOrder> newBuyOrders = getNewBuyOrdersForPart(part.getNumber());
-        ArrayList<IncomingBuyOrder> incomingBuyOrders = getIncomingBuyOrdersForPart(part.getNumber());
-
-        incomingBuyOrders.stream().filter(incomingBuyOrder -> Objects.equals(incomingBuyOrder.getArrivePeriod(), this.currentPeriod)).forEach(incomingBuyOrder -> {
-            upcomingAmountsDaily[0] += incomingBuyOrder.getAmount();
-        });
-
-        for (BuyOrder pendingBuyOrder : pendingBuyOrders) {
-            double liefertermin;
-            if (pendingBuyOrder.getBuyMode() == BuyMode.Fast) {
-                liefertermin = Math.toIntExact(Math.round(part.getTimeToRebuy() / 2));
-            } else {
-                liefertermin = (part.getTimeToRebuy() + part.getRiskFactor() * part.getRebuyDerivation() - (currentPeriod - pendingBuyOrder.getOrderPeriod()));
-            }
-            if (liefertermin <= 4) {
-                if (liefertermin * 5 < 0) {
-                    upcomingAmountsDaily[0] += pendingBuyOrder.getAmount();
-                } else {
-                    upcomingAmountsDaily[Math.toIntExact(Math.round(liefertermin * 5))] += pendingBuyOrder.getAmount();
-                }
-            }
-        }
-
-        for (BuyOrder newBuyOrder : newBuyOrders) {
-            double liefertermin;
-            if (newBuyOrder.getBuyMode() == BuyMode.Fast) {
-                liefertermin = Math.toIntExact(Math.round(part.getTimeToRebuy() / 2));
-            } else {
-                liefertermin = (part.getTimeToRebuy() + part.getRiskFactor() * part.getRebuyDerivation() - (currentPeriod - newBuyOrder.getOrderPeriod()));
-            }
-            if (liefertermin <= 4) {
-                if (liefertermin * 5 < 0) {
-                    upcomingAmountsDaily[0] += newBuyOrder.getAmount();
-                } else {
-                    upcomingAmountsDaily[Math.toIntExact(Math.round(liefertermin * 5))] += newBuyOrder.getAmount();
-                }
-            }
-        }
-
-        WarehouseArticle article = warehouseService.getWarehouseArticle(part.getNumber());
-        Integer currentAmount = article.getAmount();
-        Integer week = 1;
-
-        for (int i = 0; i < 20; i++) {
-            currentAmount -= Math.round(futureAmounts[week-1]/5);
-            upcomingAmountsDaily[i] += currentAmount;
-            currentAmount = upcomingAmountsDaily[i];
-            if (i > 0 && i % 5 == 4) {
-                week++;
-            }
-        }
-
-        return upcomingAmountsDaily;
-    }
-
     public Double getOrderRange(BuyPart buyPart, Integer[] futureAmounts) {
-        WarehouseArticle article = warehouseService.getWarehouseArticle(buyPart.getNumber());
-        Integer currentAmount = article.getAmount();
+        Integer amountToCalculate = getCalculationAmount(buyPart);
+
 
         return 0.0;
+    }
+
+    private Integer getCalculationAmount(BuyPart buyPart) {
+        WarehouseArticle article = warehouseService.getWarehouseArticle(buyPart.getNumber());
+        Integer currentAmount = article.getAmount();
+        Integer incomingInFuture = (procurementService.getFutureAmountForPart(buyPart.getNumber()) / 2)
+                + (procurementService.getIncomingAmountForPart(buyPart.getNumber()));
+
+        Integer amountToCalculate = currentAmount + incomingInFuture;
+
+        return amountToCalculate;
+    }
+
+    private Integer getAverageAmountInFuture(Integer[] futureAmounts) {
+        if(futureAmounts.length == 0) return 0;
+        
+        int sum = 0;
+        for (Integer i : futureAmounts) {
+            sum += i;
+        }
+
+        return sum / futureAmounts.length;
     }
 
     // Returns null if there is no need for an order

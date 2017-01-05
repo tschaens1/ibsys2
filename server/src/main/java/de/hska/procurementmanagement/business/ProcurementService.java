@@ -153,6 +153,36 @@ public class ProcurementService {
         return materialCosts + procurementCosts;
     }
 
+    public Integer getIncomingAmountForPart(Integer partNumber) {
+        Integer amount = 0;
+
+        for (IncomingBuyOrder incomingBuyOrder : incomingBuyOrders) {
+            if (Objects.equals(incomingBuyOrder.getBuyPartId(), partNumber)) {
+                amount += incomingBuyOrder.getAmount();
+            }
+        }
+
+        return amount;
+    }
+
+    public Integer getFutureAmountForPart(Integer partNumber) {
+        Integer amount = 0;
+
+        for (BuyOrder buyOrder : pendingBuyOrders) {
+            if (Objects.equals(buyOrder.getBuyPartId(), partNumber)) {
+                amount += buyOrder.getAmount();
+            }
+        }
+
+        for (BuyOrder buyOrder : newBuyOrders) {
+            if (Objects.equals(buyOrder.getBuyPartId(), partNumber)) {
+                amount += buyOrder.getAmount();
+            }
+        }
+
+        return amount;
+    }
+
     private Double convertStringToDouble(String value)
             throws ParseException {
         NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
