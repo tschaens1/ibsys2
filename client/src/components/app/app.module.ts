@@ -1,3 +1,4 @@
+import { DashboardService } from '../dashboard/dashboard.service';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { DashBoardComponent } from '../dashboard/dashboard.component';
 import { ModalService } from '../modal/modal.service';
@@ -109,6 +110,7 @@ let toastOptions: ToastOptions = new ToastOptions({
     SearchService,
     SearchEntries,
     SettingsService,
+    DashboardService,
     UploadService,
     ArticleService,
     PlanningService,

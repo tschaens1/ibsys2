@@ -1,6 +1,6 @@
 <div class="app-page animated fadeIn">
-	<div class="page-heading">
-		<div class="row dashboard-cards">
+	<div class="page-heading">		
+		<div class="row dashboard-cards" *ngIf="results">
 			<div class="col s12 m3">
 				<div class="dashboard-card card-blue">
 					<div class="card-statistic">
@@ -43,7 +43,7 @@
 			<div class="col s12 m3">
 				<div class="dashboard-card card-orange">
 					<div class="card-statistic">
-						3.467,58 €
+						{{results.summary.profit.current}}
 					</div>
 					<div class="card-title">
 						Profit
@@ -54,12 +54,20 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 	<div class="page-content">
 		<div class="row">
 			<div class="col s12 m12 l6">
 				<div class="page-part">
+					<h1>Load period data</h1>
+					<input type="number" [(ngModel)]="period">
+					<a (click)="getResults()">Load period</a>
+				</div>
+			</div>
+			<div class="col s12 m12 l6">
+				<div class="page-part">
 					<h1>Highcharts</h1>
+					<a (click)="getResults()">Load period</a>
 					<chart [options]="optionsChart1"></chart>
 				</div>
 			</div>
@@ -75,17 +83,17 @@
 				<div class="page-part">
 					<h1>Chart.js</h1>
 					<div style="display: block">
-						<canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)"
-							(chartClick)="chartClicked($event)"></canvas>
-					</div>
-				</div>
-			</div>
-			<div class="col s12 m12 l6">
-				<div class="page-part">
-					<h1>Highcharts</h1>
-					<chart [options]="optionsChart3"></chart>
-				</div>
-			</div>
-		</div>
+<canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)"
+	(chartClick)="chartClicked($event)"></canvas>
+</div>
+</div>
+</div>
+<div class="col s12 m12 l6">
+	<div class="page-part">
+		<h1>Highcharts</h1>
+		<chart [options]="optionsChart3"></chart>
 	</div>
+</div>
+</div>
+</div>
 </div>

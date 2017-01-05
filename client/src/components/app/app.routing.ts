@@ -1,6 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { DashBoardComponent } from '../dashboard/dashboard.component';
 import { LoginComponent } from '../login/login.component';
 import { LoggedInGuard } from '../login/logged-in.guard';
 import { LoggedOutGuard } from '../login/logged-out.guard';
@@ -46,6 +47,10 @@ const appRoutes: Routes = [
             {
                 path: 'start',
                 component: WelcomeComponent
+            },
+            {
+                path: 'dashboard',
+                component: DashBoardComponent,
             },
             {
                 path: 'search',
