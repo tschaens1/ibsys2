@@ -231,4 +231,30 @@ public class DispositionService {
 		return workInWaitingQueue;
 	}
 
+	public Disposition getDispositionByPartNumber(int partNumber) {
+		for (Disposition disposition : this.dispositions) {
+			if (disposition.getPartNumber() == partNumber)
+				return disposition;
+		}
+		return null;
+	}
+
+	public int getAmountOfBuyPartInCurrentProduction(int partNumber) {
+		int amount = 0;
+
+		Disposition dispoP1 = getDispositionByPartNumber(1);
+		amount += this.partsNodeService.getAmountInTree(this.partsNodeService.getChildrenManufactoringNode(),
+				partNumber) * dispoP1.getProduction().getAmount();
+
+		Disposition dispoP2 = getDispositionByPartNumber(2);
+		amount += this.partsNodeService.getAmountInTree(this.partsNodeService.getChildrenManufactoringNode(),
+				partNumber) * dispoP2.getProduction().getAmount();
+
+		Disposition dispoP3 = getDispositionByPartNumber(3);
+		amount += this.partsNodeService.getAmountInTree(this.partsNodeService.getChildrenManufactoringNode(),
+				partNumber) * dispoP3.getProduction().getAmount();
+
+		return amount;
+	}
+
 }
