@@ -4,10 +4,10 @@ public class PlanningPosition {
 
 	private int article;
 	private int quantity;
-	private int price;
-	private int penalty;
+	private double price;
+	private double penalty;
 
-	public PlanningPosition(int article, int quantity, int price, int penalty) {
+	public PlanningPosition(int article, int quantity, double price, double penalty) {
 		this.article = article;
 		this.quantity = quantity;
 		this.price = price;
@@ -30,20 +30,12 @@ public class PlanningPosition {
 		this.quantity = quantity;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	public int getPenalty() {
+	public double getPenalty() {
 		return penalty;
-	}
-
-	public void setPenalty(int penalty) {
-		this.penalty = penalty;
 	}
 
 	@Override
