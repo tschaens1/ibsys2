@@ -1,7 +1,8 @@
-package de.hska.xmlfilemanagement.business;
+package de.hska.filemanagement.business;
 
-import de.hska.xmlfilemanagement.domain.JsonFile;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import de.hska.filemanagement.domain.JsonFile;
 
 public interface IJsonFileRepository extends JpaRepository<JsonFile, Long> {
 }
