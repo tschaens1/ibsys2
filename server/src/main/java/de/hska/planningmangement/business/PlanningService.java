@@ -82,7 +82,7 @@ public class PlanningService {
 			JSONObject objectInArray = selldirectItemsJSONArray.getJSONObject(i);
 			int article = Integer.parseInt(objectInArray.get("article").toString());
 			int quantity = Integer.parseInt(objectInArray.get("quantity").toString());
-			int price = Integer.parseInt(objectInArray.get("price").toString());
+			double price = Double.parseDouble(objectInArray.get("price").toString());
 			int penalty = Integer.parseInt(objectInArray.get("penalty").toString());
 			selldirectItem = new PlanningPosition(article, quantity, price, penalty);
 			this.selldirectItems.add(selldirectItem);
