@@ -1,18 +1,22 @@
 package de.hska.productionmanagement.domain;
 
-import de.hska.workplacemanagement.domain.ProductionOrder;
-
 import java.util.ArrayList;
+
+import de.hska.workplacemanagement.domain.ProductionOrder;
 
 public class Waitinglist {
 
-    private ArrayList<ProductionOrder> orders;
+	private ArrayList<ProductionOrder> orders;
 
-    public ArrayList<ProductionOrder> getOrders() {
-        return orders;
-    }
+	public Waitinglist() {
+		orders = new ArrayList<ProductionOrder>();
+	}
 
-    public void setOrders(ArrayList<ProductionOrder> orders) {
-        this.orders = orders;
-    }
+	public ArrayList<ProductionOrder> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(ArrayList<ProductionOrder> orders) {
+		this.orders = orders;
+	}
 }

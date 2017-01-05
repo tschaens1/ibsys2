@@ -1,21 +1,18 @@
 package de.hska.dispositionmanagement.business;
 
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import de.hska.dispositionmanagement.domain.Disposition;
-import de.hska.filemanagement.domain.JsonFile;
 import de.hska.partsmanagement.business.PartsNodeService;
 import de.hska.partsmanagement.business.PartsService;
 import de.hska.partsmanagement.domain.PartNode;
 import de.hska.planningmangement.business.PlanningService;
-import de.hska.planningmangement.domain.PlanningPosition;
 import de.hska.productionmanagement.business.ProductionService;
 import de.hska.warehousemanagement.business.WarehouseService;
-import de.hska.workplacemanagement.business.WorkplaceService;
 import de.hska.workplacemanagement.domain.ProductionOrder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.text.ParseException;
-import java.util.ArrayList;
 
 @Service
 public class DispositionService {
@@ -35,25 +32,91 @@ public class DispositionService {
 	@Autowired
 	private WarehouseService warehouseService;
 
-	@Autowired
-	private WorkplaceService workplaceService;
-
 	private ArrayList<Disposition> dispositionP1;
 	private ArrayList<Disposition> dispositionP2;
 	private ArrayList<Disposition> dispositionP3;
 	private ArrayList<Disposition> dispositions;
 
-	public void initialize(JsonFile jsonFile) throws ParseException {
-		dispositionP1 = new ArrayList<Disposition>();
-		dispositionP2 = new ArrayList<Disposition>();
-		dispositionP3 = new ArrayList<Disposition>();
-		dispositions = new ArrayList<Disposition>();
+	public void initialize() {
+		ConstructContainers();
 
 		this.dispoRecursively(this.partsNodeService.getChildrenManufactoringNode(), new Disposition());
 		this.dispoRecursively(this.partsNodeService.getWomanManufactoringNode(), new Disposition());
 		this.dispoRecursively(this.partsNodeService.getManManufactoringNode(), new Disposition());
 		this.productionService.deployRemainingProductionOrders(dispositions);
-		this.setProductionOfDisposition();
+
+		for (Disposition dispo : this.dispositionP1) {
+			int workInProgress = 0;
+			for (ProductionOrder work : dispo.getProductionOrders()) {
+				workInProgress += work.getAmount();
+			}
+
+			int workInWaitingQueue = 0;
+			for (ProductionOrder work : dispo.getProductionOrderInWaitingQueue()) {
+				workInWaitingQueue += work.getAmount();
+			}
+			System.out.println("Product Order: " + dispo.getPartNumber() + " \t Sellwish "
+					+ dispo.getSellwish().getAmount() + " + SafetyStock " + dispo.getSafetyStockvalue()
+					+ " - Warehouse Stock " + dispo.getWarehouseStock() + " - WorkInProgress " + workInProgress
+					+ " - WorkInWaitingQueue " + workInWaitingQueue + " = " + dispo.getProduction().getAmount());
+		}
+
+		for (Disposition dispo : this.dispositionP2) {
+			int workInProgress = 0;
+			for (ProductionOrder work : dispo.getProductionOrders()) {
+				workInProgress += work.getAmount();
+			}
+
+			int workInWaitingQueue = 0;
+			for (ProductionOrder work : dispo.getProductionOrderInWaitingQueue()) {
+				workInWaitingQueue += work.getAmount();
+			}
+			System.out.println("Product Order: " + dispo.getPartNumber() + " \t Sellwish "
+					+ dispo.getSellwish().getAmount() + " + SafetyStock " + dispo.getSafetyStockvalue()
+					+ " - Warehouse Stock " + dispo.getWarehouseStock() + " - WorkInProgress " + workInProgress
+					+ " - WorkInWaitingQueue " + workInWaitingQueue + " = " + dispo.getProduction().getAmount());
+		}
+
+		for (Disposition dispo : this.dispositionP3) {
+			int workInProgress = 0;
+			for (ProductionOrder work : dispo.getProductionOrders()) {
+				workInProgress += work.getAmount();
+			}
+
+			int workInWaitingQueue = 0;
+			for (ProductionOrder work : dispo.getProductionOrderInWaitingQueue()) {
+				workInWaitingQueue += work.getAmount();
+			}
+			System.out.println("Product Order: " + dispo.getPartNumber() + " \t Sellwish "
+					+ dispo.getSellwish().getAmount() + " + SafetyStock " + dispo.getSafetyStockvalue()
+					+ " - Warehouse Stock " + dispo.getWarehouseStock() + " - WorkInProgress " + workInProgress
+					+ " - WorkInWaitingQueue " + workInWaitingQueue + " = " + dispo.getProduction().getAmount());
+		}
+
+		System.out.println("---------------------");
+
+		for (Disposition dispo : this.dispositions) {
+			int workInProgress = 0;
+			for (ProductionOrder work : dispo.getProductionOrders()) {
+				workInProgress += work.getAmount();
+			}
+
+			int workInWaitingQueue = 0;
+			for (ProductionOrder work : dispo.getProductionOrderInWaitingQueue()) {
+				workInWaitingQueue += work.getAmount();
+			}
+			System.out.println("Product Order: " + dispo.getPartNumber() + " \t Sellwish "
+					+ dispo.getSellwish().getAmount() + " + SafetyStock " + dispo.getSafetyStockvalue()
+					+ " - Warehouse Stock " + dispo.getWarehouseStock() + " - WorkInProgress " + workInProgress
+					+ " - WorkInWaitingQueue " + workInWaitingQueue + " = " + dispo.getProduction().getAmount());
+		}
+	}
+
+	public void ConstructContainers() {
+		dispositionP1 = new ArrayList<Disposition>();
+		dispositionP2 = new ArrayList<Disposition>();
+		dispositionP3 = new ArrayList<Disposition>();
+		dispositions = new ArrayList<Disposition>();
 	}
 
 	public void dispoRecursively(PartNode node, Disposition parent) {
@@ -63,13 +126,10 @@ public class DispositionService {
 
 		if (node.getPartNumber() != 1 || node.getPartNumber() != 2 || node.getPartNumber() != 3) {
 			disposition.setParent(parent);
+			disposition.setAmount(parent.getAmount());
 		}
 
-		disposition.setProduction(planningService.getProductionItemForProduct(node.getPartNumber()));
-		disposition.setSelldirect(planningService.getSelldirectItemForProduct(node.getPartNumber()));
-
-		PlanningPosition safetyStockvaluePosition = planningService.getSafetystockItemForProduct(node.getPartNumber());
-		disposition.setSafetyStockvalue(safetyStockvaluePosition.getQuantity());
+		disposition.setAmount(calculateDispositionAmount(node.getPartNumber(), disposition));
 
 		if (node.getPartNumber() == 1)
 			this.dispositionP1.add(disposition);
@@ -82,74 +142,93 @@ public class DispositionService {
 
 		this.dispositions.add(disposition);
 
-		for (int i = 0; i < node.getParts().size(); i++) {
-			if (node.getParts().get(i).getParts() != null) {
-				this.dispoRecursively(node.getParts().get(i), disposition);
+		for (PartNode partNode : node.getParts()) {
+			if (partNode.getParts() != null) {
+				this.dispoRecursively(partNode, disposition);
 			}
 		}
 	}
 
-	public void setProductionOfDisposition() {
+	public int calculateDispositionAmount(int partNumber, Disposition disposition) {
+		int amountSellwish = 0;
+		int amountSafetyStockvalue = 0;
+		int amountWarehouse = 0;
+		int amountWaitinglist = 0;
+		int amountOrdersInWork = 0;
 
-		ArrayList<ProductionOrder> productionOrders = new ArrayList<ProductionOrder>();
-		ArrayList<ProductionOrder> productionOrdersWithUsedIn = new ArrayList<ProductionOrder>();
+		ProductionOrder sellwish = new ProductionOrder();
 
-		for (int i = 0; i < this.dispositions.size(); i++) {
-			this.dispositions.get(i).setProductionOrders(new ArrayList<ProductionOrder>());
+		if (this.planningService.getSellwishItemForProduct(partNumber) != null) {
+			sellwish.setProductNumber(partNumber);
+			sellwish.setAmount(this.planningService.getSellwishItemForProduct(partNumber).getQuantity());
+			sellwish.setPeriod(this.planningService.getPeriod());
+			sellwish.setInWork(false);
 
-			int amountProduction = this.dispositions.get(i).getProduction().getQuantity();
-			int amountSafetyStockvalue = this.dispositions.get(i).getSafetyStockvalue();
-			int amountWarehouse = this.warehouseService.getWarehouseArticle(this.dispositions.get(i).getPartNumber())
-					.getAmount();
-			int amountOrdersInWork = this.productionService
-					.getOrdersInWorkForProduct(this.dispositions.get(i).getPartNumber()).getAmount();
-			int amountWaitinglist = this.productionService
-					.getWaitinglistForProduct(this.dispositions.get(i).getPartNumber()).getAmount();
+			disposition.setSellwish(sellwish);
+			amountSellwish = disposition.getSellwish().getAmount();
+		} else if (disposition.getParent() != null) {
+			sellwish.setProductNumber(partNumber);
+			sellwish.setAmount(disposition.getParent().getProduction().getAmount()
+					+ getWaitingQueueAmount(disposition.getParent()));
+			sellwish.setPeriod(this.planningService.getPeriod());
+			sellwish.setInWork(false);
 
-			int amount = amountProduction + amountSafetyStockvalue - amountWarehouse + amountOrdersInWork
-					+ amountWaitinglist;
-			this.dispositions.get(i).setAmount(amount);
+			disposition.setSellwish(sellwish);
+			amountSellwish = disposition.getSellwish().getAmount();
+		}
 
-			if (this.dispositions.get(i).getAmount() <= 0)
-				this.dispositions.get(i).setAmount(0);
-			else {
-				this.dispositions.get(i).getProductionOrders()
-						.add(new ProductionOrder(this.dispositions.get(i).getPartNumber(),
-								this.dispositions.get(i).getAmount(), this.planningService.getPeriod()));
+		if (this.planningService.getSafetystockItemForProduct(partNumber) != null) {
+			disposition
+					.setSafetyStockvalue(this.planningService.getSafetystockItemForProduct(partNumber).getQuantity());
+			amountSafetyStockvalue = disposition.getSafetyStockvalue();
+		}
+
+		if (this.warehouseService.getWarehouseArticle(partNumber) != null) {
+			int warehouseStock = this.warehouseService.getWarehouseArticle(partNumber).getAmount();
+			if (this.partsService.getManufacturingPartById(partNumber).getUsedInAllProducts()) {
+				warehouseStock = warehouseStock / 3;
+			}
+			disposition.setWarehouseStock(warehouseStock);
+			amountWarehouse = disposition.getWarehouseStock();
+		}
+
+		if (this.productionService.getOrdersWaitinglistForProduct(partNumber) != null) {
+			disposition.setProductionOrderInWaitingQueue(
+					this.productionService.getOrdersWaitinglistForProduct(partNumber));
+			for (ProductionOrder order : disposition.getProductionOrderInWaitingQueue()) {
+				amountWaitinglist += order.getAmount();
 			}
 		}
 
-		for (Disposition disposition : this.dispositions) {
-			productionOrders.addAll(disposition.getProductionOrders());
-		}
-
-		for (ProductionOrder order : productionOrders) {
-			if (productionOrdersWithUsedIn.isEmpty())
-				productionOrdersWithUsedIn.add(order);
-
-			for (ProductionOrder orderWithUsedIn : productionOrdersWithUsedIn) {
-				if (order.getProductNumber() == orderWithUsedIn.getProductNumber() && this.partsService
-						.getManufacturingPartById(orderWithUsedIn.getProductNumber()).getUsedInAllProducts()) {
-					int amount = order.getAmount() + orderWithUsedIn.getAmount();
-					orderWithUsedIn.setAmount(amount);
-					break;
-				}
+		if (this.productionService.getOrdersInWorkForProduct(partNumber) != null) {
+			disposition.setProductionOrders(this.productionService.getOrdersInWorkForProduct(partNumber));
+			for (ProductionOrder order : disposition.getProductionOrders()) {
+				amountOrdersInWork += order.getAmount();
 			}
 		}
 
-		this.productionService.setProductionOrders(productionOrdersWithUsedIn);
+		int amount = amountSellwish + amountSafetyStockvalue - amountWarehouse - amountOrdersInWork - amountWaitinglist;
 
-		for (ProductionOrder order : productionOrdersWithUsedIn) {
-			order.setWorkplaceId(this.workplaceService.getArbeitsplatzId(order.getProductNumber()));
+		if (amount < 0)
+			amount = 0;
+
+		ProductionOrder production = new ProductionOrder();
+		production.setProductNumber(partNumber);
+		production.setAmount(amount);
+		production.setPeriod(this.planningService.getPeriod());
+		production.setInWork(false);
+
+		disposition.setProduction(production);
+
+		return amount;
+	}
+
+	public int getWaitingQueueAmount(Disposition disposition) {
+		int workInWaitingQueue = 0;
+		for (ProductionOrder work : disposition.getProductionOrderInWaitingQueue()) {
+			workInWaitingQueue += work.getAmount();
 		}
-
-		this.workplaceService.reset();
-
-		for (ProductionOrder order : productionOrders) {
-			this.workplaceService.getProductionLineMap().get(Integer.valueOf(order.getProductNumber()))
-					.addProductionOrder(order);
-		}
-		this.productionService.deployRemainingProductionOrders(this.dispositions);
+		return workInWaitingQueue;
 	}
 
 }

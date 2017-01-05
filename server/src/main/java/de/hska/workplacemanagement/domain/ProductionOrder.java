@@ -8,10 +8,16 @@ public class ProductionOrder {
 	private Boolean isInWork;
 	private Priority priority;
 
-	public ProductionOrder(Integer productNumber, Integer amount, Integer period) {
+	public ProductionOrder() {
+
+	}
+
+	public ProductionOrder(Integer productNumber, Integer amount, Integer period, Boolean isInWork) {
 		this.productNumber = productNumber;
 		this.amount = amount;
 		this.period = period;
+		this.isInWork = isInWork;
+		this.workplaceId = 0;
 	}
 
 	public ProductionOrder(Integer productNumber, Integer amount, Integer period, Integer workplaceId) {
@@ -70,4 +76,11 @@ public class ProductionOrder {
 	public void setPriority(Priority priority) {
 		this.priority = priority;
 	}
+
+	@Override
+	public String toString() {
+		return "ProductionOrder [productNumber=" + productNumber + ", amount=" + amount + ", period=" + period
+				+ ", workplaceId=" + workplaceId + ", isInWork=" + isInWork + ", priority=" + priority + "]";
+	}
+
 }

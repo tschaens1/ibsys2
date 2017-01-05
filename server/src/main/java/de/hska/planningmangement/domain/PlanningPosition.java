@@ -46,4 +46,10 @@ public class PlanningPosition {
 		this.penalty = penalty;
 	}
 
+	@Override
+	public String toString() {
+		return "PlanningPosition [article=" + article + ", quantity=" + quantity + ", price=" + price + ", penalty="
+				+ penalty + "]";
+	}
+
 }

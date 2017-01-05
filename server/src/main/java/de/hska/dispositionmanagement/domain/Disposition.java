@@ -2,33 +2,37 @@ package de.hska.dispositionmanagement.domain;
 
 import java.util.ArrayList;
 
-import de.hska.planningmangement.domain.PlanningPosition;
 import de.hska.workplacemanagement.domain.ProductionOrder;
 
 public class Disposition {
 
 	private int partNumber;
-	private int safetyStockvalue;
 	private int amount;
-	private PlanningPosition production;
-	private PlanningPosition selldirect;
-	private Disposition parent;
+
+	private ProductionOrder production;
+	private ProductionOrder sellwish;
 	private ProductionOrder orderOnMachine;
+	private int safetyStockvalue;
+	private int warehouseStock;
+
 	private ArrayList<ProductionOrder> productionOrderInWaitingQueue;
 	private ArrayList<ProductionOrder> productionOrders;
+
+	private Disposition parent;
 
 	public Disposition() {
 
 	}
 
-	public Disposition(int partNumber, int safetyStockvalue, int amount, PlanningPosition production,
-			PlanningPosition selldirect, Disposition parent, ProductionOrder orderOnMachine,
+	public Disposition(int partNumber, int safetyStockvalue, int warehouseStock, int amount, ProductionOrder production,
+			ProductionOrder sellwish, Disposition parent, ProductionOrder orderOnMachine,
 			ArrayList<ProductionOrder> productionOrderInWaitingQueue, ArrayList<ProductionOrder> productionOrders) {
 		this.partNumber = partNumber;
 		this.safetyStockvalue = safetyStockvalue;
+		this.warehouseStock = warehouseStock;
 		this.amount = amount;
 		this.production = production;
-		this.selldirect = selldirect;
+		this.sellwish = sellwish;
 		this.parent = parent;
 		this.orderOnMachine = orderOnMachine;
 		this.productionOrderInWaitingQueue = productionOrderInWaitingQueue;
@@ -59,20 +63,20 @@ public class Disposition {
 		this.amount = amount;
 	}
 
-	public PlanningPosition getProduction() {
+	public ProductionOrder getProduction() {
 		return production;
 	}
 
-	public void setProduction(PlanningPosition production) {
+	public void setProduction(ProductionOrder production) {
 		this.production = production;
 	}
 
-	public PlanningPosition getSelldirect() {
-		return selldirect;
+	public ProductionOrder getSellwish() {
+		return sellwish;
 	}
 
-	public void setSelldirect(PlanningPosition selldirect) {
-		this.selldirect = selldirect;
+	public void setSellwish(ProductionOrder sellwish) {
+		this.sellwish = sellwish;
 	}
 
 	public Disposition getParent() {
@@ -107,11 +111,27 @@ public class Disposition {
 		this.productionOrderInWaitingQueue = productionOrderInWaitingQueue;
 	}
 
-	public ArrayList<PlanningPosition> getOrders() {
-		ArrayList<PlanningPosition> orders = new ArrayList<PlanningPosition>();
+	public ArrayList<ProductionOrder> getOrders() {
+		ArrayList<ProductionOrder> orders = new ArrayList<ProductionOrder>();
 		orders.add(this.production);
-		orders.add(this.selldirect);
+		orders.add(this.sellwish);
 		return orders;
+	}
+
+	public int getWarehouseStock() {
+		return warehouseStock;
+	}
+
+	public void setWarehouseStock(int warehouseStock) {
+		this.warehouseStock = warehouseStock;
+	}
+
+	@Override
+	public String toString() {
+		return "Disposition [partNumber=" + partNumber + ", amount=" + amount + ", production=" + production
+				+ ", sellwish=" + sellwish + ", orderOnMachine=" + orderOnMachine + ", safetyStockvalue="
+				+ safetyStockvalue + ", warehouseStock=" + warehouseStock + ", productionOrderInWaitingQueue="
+				+ productionOrderInWaitingQueue + ", productionOrders=" + productionOrders + ", parent=" + parent + "]";
 	}
 
 }

@@ -2,8 +2,6 @@ package de.hska.filemanagement.resource;
 
 import java.text.ParseException;
 
-import de.hska.procurementmanagement.business.ProcurementCalculationService;
-import de.hska.procurementmanagement.business.ProcurementService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,18 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.hska.dispositionmanagement.business.DispositionService;
 import de.hska.filemanagement.domain.JsonFile;
 import de.hska.filemanagement.domain.XmlFile;
 import de.hska.inputmanagement.business.InputService;
-import de.hska.kpimanagement.business.KpiService;
 import de.hska.periodmanagement.business.IPeriodRepository;
 import de.hska.periodmanagement.domain.Period;
-import de.hska.planningmangement.business.PlanningService;
-import de.hska.productionmanagement.business.ProductionService;
-import de.hska.simulationmanagement.business.SimulationService;
 import de.hska.util.FileConverterService;
-import de.hska.warehousemanagement.business.WarehouseService;
 
 @RestController
 @RequestMapping(value = "/api/rest/files", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,34 +28,10 @@ public class FileResource {
 	private IPeriodRepository periodRepository;
 
 	@Autowired
-	private FileConverterService fileConverterService;
-
-	@Autowired
-	private KpiService kpiService;
-
-	@Autowired
 	private InputService inputService;
 
 	@Autowired
-	private WarehouseService warehouseService;
-
-	@Autowired
-	private ProductionService productionService;
-
-	@Autowired
-	private ProcurementService procurementService;
-
-	@Autowired
-	private ProcurementCalculationService procurementCalculationService;
-
-	@Autowired
-	private SimulationService simulationService;
-
-	@Autowired
-	private PlanningService planningService;
-
-	@Autowired
-	private DispositionService dispositionService;
+	private FileConverterService fileConverterService;
 
 	@RequestMapping(method = RequestMethod.POST, value = "result")
 	public ResponseEntity<String> save(@RequestBody XmlFile xmlFile) throws ParseException {
@@ -84,16 +52,6 @@ public class FileResource {
 			newPeriod.setJsonFile(jsonFile);
 			periodRepository.save(newPeriod);
 		}
-
-		kpiService.initialize(jsonFile);
-		warehouseService.initialize(jsonFile);
-		planningService.initialize(jsonFile);
-		productionService.initialize(jsonFile);
-		// inputService.initialize(jsonFile);
-		simulationService.initialize();
-		dispositionService.initialize(jsonFile);
-		procurementService.initialize(jsonFile);
-		procurementCalculationService.initialize(jsonFile);
 
 		return new ResponseEntity<String>(HttpStatus.CREATED);
 	}

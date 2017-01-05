@@ -46,6 +46,9 @@ public class PlanningService {
 		this.productionItems = new ArrayList<>();
 		this.selldirectItems = new ArrayList<>();
 		this.safetystockItems = new ArrayList<>();
+		this.forecastOne = new ArrayList<>();
+		this.forecastTwo = new ArrayList<>();
+		this.forecastThree = new ArrayList<>();
 	}
 
 	private void setSellwishItems(JSONObject jsonObject) {
@@ -138,6 +141,14 @@ public class PlanningService {
 
 	public List<PlanningPosition> getSellwishItems() {
 		return this.sellwishItems;
+	}
+
+	public PlanningPosition getSellwishItemForProduct(int partNumber) {
+		for (PlanningPosition position : this.sellwishItems) {
+			if (position.getArticle() == partNumber)
+				return position;
+		}
+		return null;
 	}
 
 	public List<PlanningPosition> getProductionItems() {
