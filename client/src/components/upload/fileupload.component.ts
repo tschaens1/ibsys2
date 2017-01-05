@@ -35,17 +35,9 @@ export class FileUploadComponent {
             myReader.onloadend = (e) => {
                 this.xmlObject = myReader.result;
                 this.planningService.xmlDocument = myReader.result;
+                this.planningService.sendXMLToServer();
             }
             myReader.readAsText(file);
         }
-    }
-
-    sendToServer(content) {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let body = JSON.stringify({ content: encodeURIComponent(content) });
-        return this.http.post(this.uploadUrl, body, { headers: headers })
-            .toPromise()
-            .then(() => this.toastr.success('XML has been uploaded!'))
-            .catch(err => this.toastr.error('Could not upload XML', 'Error'));
     }
 }

@@ -101,6 +101,8 @@ export class PlanningService implements OnInit {
         this.startedPlanning = false;
         this.isLoading = false;
 
+        this.xmlUploadUrl = this.apiEndpoint + `/api/rest/files/result`;
+
         // load the orderlist, productionlist and workingtimelist into the inputDataForSimulatorAsJSON
         // orderlist
         this.inputDataForSimulatorAsJSON.orderlist.order = this.orderlist.map(i => {
@@ -160,17 +162,18 @@ export class PlanningService implements OnInit {
         }
 
         // create the upload url
-        this.xmlUploadUrl = this.apiEndpoint + `/api/rest/files`;
+        this.xmlUploadUrl = this.apiEndpoint + `/api/rest/files/result`;
 
         // create the upload url
-        this.inputUploadUrl = this.apiEndpoint + `/api/rest/games/${1}/groups/${6}/periods/${this.inputJSON.results.period}/plannings`;
+        this.inputUploadUrl = this.apiEndpoint + `/api/rest/periods/${this.inputJSON.results.period}/planning`;
 
+        // send data to the server                                
         return new Promise((resolve, reject) => {
             // send data to the server
             new Promise((resolve, reject) => {
                 // this.sendXMLToServer().catch(err => { console.error(err); reject(err) }).then(() => resolve());
-                // this.sendInputsToServer().catch(err => { console.error(err); reject(err) }).then(() => resolve());
-                resolve();
+                this.sendInputsToServer().catch(err => { console.error(err); reject(err) }).then(() => resolve());
+                // resolve();
             }).then(() => {
                 setTimeout(() => {
                     console.log('get results from server...');
@@ -185,19 +188,20 @@ export class PlanningService implements OnInit {
      * Send the input data to server. The input data is required
      * for the calculations on the server.
      */
-    private sendInputsToServer() {
+    sendInputsToServer() {        
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let body = JSON.stringify(this.inputJSON);
+        console.log(this.inputJSON);
         return this.http.post(this.inputUploadUrl, body, { headers: headers }).toPromise();
     }
 
     /**
      * Send the xml to the server.          
      */
-    private sendXMLToServer() {
+    sendXMLToServer() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let body = JSON.stringify({ content: encodeURIComponent(this.xmlDocument) });
-        return this.http.post(this.xmlUploadUrl, body, { headers: headers }).toPromise()
+        return this.http.post(this.xmlUploadUrl, body, { headers: headers }).toPromise();
     }
 
     /**
