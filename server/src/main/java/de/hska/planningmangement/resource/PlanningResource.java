@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.hska.filemanagement.domain.JsonFile;
+import de.hska.inputmanagement.business.InputService;
 import de.hska.kpimanagement.business.KpiService;
 import de.hska.periodmanagement.business.IPeriodRepository;
 import de.hska.periodmanagement.domain.Period;
@@ -52,6 +53,9 @@ public class PlanningResource {
 	@Autowired
 	private SimulationService simulationService;
 
+	@Autowired
+	private InputService inputService;
+
 	@ExceptionHandler({ org.springframework.http.converter.HttpMessageNotReadableException.class })
 	@RequestMapping(method = RequestMethod.POST, value = "/periods/{counter}/planning")
 	public String save(@PathVariable Long counter, @RequestBody String jsonObject)
@@ -82,7 +86,10 @@ public class PlanningResource {
 		procurementCalculationService.initialize(periodJsonPeriod);
 
 		simulationService.initializeDisposition();
-		return periodRepository.save(period).toString();
+
+		periodRepository.save(period).toString();
+
+		return inputService.generateInputJson(period);
 	}
 
 }

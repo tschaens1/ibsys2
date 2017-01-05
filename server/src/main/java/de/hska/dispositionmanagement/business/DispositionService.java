@@ -257,4 +257,8 @@ public class DispositionService {
 		return amount;
 	}
 
+	public ArrayList<Disposition> getDisposition() {
+		return this.dispositions;
+	}
+
 }

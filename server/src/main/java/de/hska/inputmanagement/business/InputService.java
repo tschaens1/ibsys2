@@ -4,16 +4,20 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import de.hska.dispositionmanagement.business.DispositionService;
+import de.hska.dispositionmanagement.domain.Disposition;
 import de.hska.periodmanagement.domain.Period;
 
 @Service
 public class InputService {
-	// TODO: Load Results.xml from database and throw if not exists
-	// TODO: Do correct calculation
 
-	public JSONObject generateInputJson(Period period) {
+	@Autowired
+	private DispositionService dispositionService;
+
+	public String generateInputJson(Period period) {
 
 		JSONObject inputJson = new JSONObject();
 
@@ -91,43 +95,14 @@ public class InputService {
 		orderItemList.put(order2Json);
 		orderItemList.put(order3Json);
 
-		// TODO: Get correct values from calculation
-		JSONObject productionJson = new JSONObject();
-
-		JSONObject production1JSON = new JSONObject();
-		production1JSON.put("article", 16);
-		production1JSON.put("quantity", 200);
-
-		JSONObject production2JSON = new JSONObject();
-		production2JSON.put("article", 26);
-		production2JSON.put("quantity", 300);
-
-		JSONObject production3JSON = new JSONObject();
-		production3JSON.put("article", 27);
-		production3JSON.put("quantity", 400);
-
-		JSONObject production4JSON = new JSONObject();
-		production4JSON.put("article", 28);
-		production4JSON.put("quantity", 500);
-
-		JSONObject production5JSON = new JSONObject();
-		production5JSON.put("article", 29);
-		production5JSON.put("quantity", 600);
-
-		JSONObject production6JSON = new JSONObject();
-		production6JSON.put("article", 30);
-		production6JSON.put("quantity", 700);
-
 		JSONArray productionlistItems = new JSONArray();
-		productionlistItems.put(production1JSON);
-		productionlistItems.put(production2JSON);
-		productionlistItems.put(production3JSON);
-		productionlistItems.put(production4JSON);
-		productionlistItems.put(production5JSON);
-		productionlistItems.put(production6JSON);
 
-		// TODO: Get correct values from calculation
-		JSONObject workingtimelistJson = new JSONObject();
+		for (Disposition disposition : dispositionService.getDisposition()) {
+			JSONObject productionJSON = new JSONObject();
+			productionJSON.put("article", disposition.getPartNumber());
+			productionJSON.put("quantity", disposition.getProduction().getAmount());
+			productionlistItems.put(productionJSON);
+		}
 
 		JSONObject workingtime1JSON = new JSONObject();
 		workingtime1JSON.put("station", 1);
@@ -177,7 +152,7 @@ public class InputService {
 		JSONObject inputWrapper = new JSONObject();
 		inputWrapper.put("input", inputJson);
 
-		return inputWrapper;
+		return inputWrapper.toString();
 	}
 
 	public JSONObject generateSellwishJson(List<Object> sellwishes) {
