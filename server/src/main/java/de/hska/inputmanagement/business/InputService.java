@@ -10,12 +10,17 @@ import org.springframework.stereotype.Service;
 import de.hska.dispositionmanagement.business.DispositionService;
 import de.hska.dispositionmanagement.domain.Disposition;
 import de.hska.periodmanagement.domain.Period;
+import de.hska.planningmangement.business.PlanningService;
+import de.hska.planningmangement.domain.PlanningPosition;
 
 @Service
 public class InputService {
 
 	@Autowired
 	private DispositionService dispositionService;
+
+	@Autowired
+	private PlanningService planningService;
 
 	public String generateInputJson(Period period) {
 
@@ -26,53 +31,30 @@ public class InputService {
 		qualitycontrolJson.put("losequantity", 0);
 		qualitycontrolJson.put("delay", 0);
 
-		// TODO: Get correct values from calculation
-		JSONObject sellwishJson = new JSONObject();
-
-		JSONObject sellwishItem1Json = new JSONObject();
-		sellwishItem1Json.put("article", 1);
-		sellwishItem1Json.put("quantity", 200);
-
-		JSONObject sellwishItem2Json = new JSONObject();
-		sellwishItem2Json.put("article", 2);
-		sellwishItem2Json.put("quantity", 100);
-
-		JSONObject sellwishItem3Json = new JSONObject();
-		sellwishItem3Json.put("article", 3);
-		sellwishItem3Json.put("quantity", 50);
-
 		JSONArray sellwishItemList = new JSONArray();
-		sellwishItemList.put(sellwishItem1Json);
-		sellwishItemList.put(sellwishItem2Json);
-		sellwishItemList.put(sellwishItem3Json);
-
-		// TODO: Get correct values from calculation
-		JSONObject selldirectJson = new JSONObject();
-
-		JSONObject sellItem1Json = new JSONObject();
-		sellItem1Json.put("article", 1);
-		sellItem1Json.put("quantity", 200);
-		sellItem1Json.put("price", 120.3);
-		sellItem1Json.put("penalty", 10.0);
-
-		JSONObject sellItem2Json = new JSONObject();
-		sellItem2Json.put("article", 2);
-		sellItem2Json.put("quantity", 0);
-		sellItem2Json.put("price", 0.0);
-		sellItem2Json.put("penalty", 0.0);
-
-		JSONObject sellItem3Json = new JSONObject();
-		sellItem3Json.put("article", 2);
-		sellItem3Json.put("quantity", 0);
-		sellItem3Json.put("price", 0.0);
-		sellItem3Json.put("penalty", 0.0);
+		for (PlanningPosition planningPosition : this.planningService.getSellwishItems()) {
+			JSONObject sellwishItemJson = new JSONObject();
+			sellwishItemJson.put("article", planningPosition.getArticle());
+			sellwishItemJson.put("quantity", planningPosition.getQuantity());
+			sellwishItemList.put(sellwishItemJson);
+		}
 
 		JSONArray selldirectItemList = new JSONArray();
-		selldirectItemList.put(sellItem1Json);
-		selldirectItemList.put(sellItem2Json);
-		selldirectItemList.put(sellItem3Json);
+		for (PlanningPosition planningPosition : this.planningService.getSelldirectItems()) {
+			JSONObject selldirectItemJson = new JSONObject();
+			selldirectItemJson.put("article", planningPosition.getArticle());
+			selldirectItemJson.put("quantity", planningPosition.getQuantity());
+			sellwishItemList.put(selldirectItemJson);
+		}
 
-		// TODO: Get correct values from calculation
+		JSONArray productionlistItems = new JSONArray();
+		for (Disposition disposition : dispositionService.getDisposition()) {
+			JSONObject productionJSON = new JSONObject();
+			productionJSON.put("article", disposition.getPartNumber());
+			productionJSON.put("quantity", disposition.getProduction().getAmount());
+			productionlistItems.put(productionJSON);
+		}
+
 		JSONObject orderlistJson = new JSONObject();
 
 		JSONObject order1Json = new JSONObject();
@@ -94,15 +76,6 @@ public class InputService {
 		orderItemList.put(order1Json);
 		orderItemList.put(order2Json);
 		orderItemList.put(order3Json);
-
-		JSONArray productionlistItems = new JSONArray();
-
-		for (Disposition disposition : dispositionService.getDisposition()) {
-			JSONObject productionJSON = new JSONObject();
-			productionJSON.put("article", disposition.getPartNumber());
-			productionJSON.put("quantity", disposition.getProduction().getAmount());
-			productionlistItems.put(productionJSON);
-		}
 
 		JSONObject workingtime1JSON = new JSONObject();
 		workingtime1JSON.put("station", 1);
