@@ -134,7 +134,7 @@ public class ProcurementService {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public Double getBuyCosts(BuyPart part, BuyMode buyMode, Integer amount) {
+    Double getBuyCosts(BuyPart part, BuyMode buyMode, Integer amount) {
         Double materialCosts = 0.0;
         Double procurementCosts = 0.0;
 
@@ -153,7 +153,7 @@ public class ProcurementService {
         return materialCosts + procurementCosts;
     }
 
-    public Integer getIncomingAmountForPart(Integer partNumber) {
+    Integer getIncomingAmountForPart(Integer partNumber) {
         Integer amount = 0;
 
         for (IncomingBuyOrder incomingBuyOrder : incomingBuyOrders) {
@@ -165,7 +165,7 @@ public class ProcurementService {
         return amount;
     }
 
-    public Integer getFutureAmountForPart(Integer partNumber) {
+    Integer getFutureAmountForPart(Integer partNumber) {
         Integer amount = 0;
 
         for (BuyOrder buyOrder : pendingBuyOrders) {

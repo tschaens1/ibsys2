@@ -82,6 +82,8 @@ public class ProcurementCalculationService {
                             + " Lager: " + warehouseService.getWarehouseArticle(part.getNumber()).getAmount()
                             + " Order Range: " + getOrderRange(part, upcomingAmount)
                             + " Order? : " + (order != null)
+                            + " Future: " + procurementService.getFutureAmountForPart(part.getNumber())
+                            + " Incoming: " + procurementService.getIncomingAmountForPart(part.getNumber())
             );
 
             if (order != null) {
@@ -95,7 +97,7 @@ public class ProcurementCalculationService {
     // Returns a new order if necessary and null otherwise
     private BuyOrder checkForBuyInCurrentPeriod(BuyPart buyPart, Integer[] futureAmounts) {
         Double orderRange = getOrderRange(buyPart, futureAmounts);
-        Integer amount = Math.abs(futureAmounts[1] + futureAmounts[2] + futureAmounts[3] - getCalculationAmountForStorage(buyPart));
+        Integer amount = futureAmounts[1] + futureAmounts[2] + futureAmounts[3];
 
         // Fast
         if (orderRange < 0.5 || warehouseService.getWarehouseArticle(buyPart.getNumber()).getAmount() < futureAmounts[0]) {

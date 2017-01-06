@@ -48,79 +48,13 @@ public class DispositionService {
 		this.dispoRecursively(this.partsNodeService.getWomanManufactoringNode(), new Disposition());
 		this.dispoRecursively(this.partsNodeService.getManManufactoringNode(), new Disposition());
 		this.productionService.deployRemainingProductionOrders(dispositions);
-
-		for (Disposition dispo : this.dispositionP1) {
-			int workInProgress = 0;
-			for (ProductionOrder work : dispo.getProductionOrders()) {
-				workInProgress += work.getAmount();
-			}
-
-			int workInWaitingQueue = 0;
-			for (ProductionOrder work : dispo.getProductionOrderInWaitingQueue()) {
-				workInWaitingQueue += work.getAmount();
-			}
-			System.out.println("Product Order: " + dispo.getPartNumber() + " \t Sellwish "
-					+ dispo.getSellwish().getAmount() + " + SafetyStock " + dispo.getSafetyStockvalue()
-					+ " - Warehouse Stock " + dispo.getWarehouseStock() + " - WorkInProgress " + workInProgress
-					+ " - WorkInWaitingQueue " + workInWaitingQueue + " = " + dispo.getProduction().getAmount());
-		}
-
-		for (Disposition dispo : this.dispositionP2) {
-			int workInProgress = 0;
-			for (ProductionOrder work : dispo.getProductionOrders()) {
-				workInProgress += work.getAmount();
-			}
-
-			int workInWaitingQueue = 0;
-			for (ProductionOrder work : dispo.getProductionOrderInWaitingQueue()) {
-				workInWaitingQueue += work.getAmount();
-			}
-			System.out.println("Product Order: " + dispo.getPartNumber() + " \t Sellwish "
-					+ dispo.getSellwish().getAmount() + " + SafetyStock " + dispo.getSafetyStockvalue()
-					+ " - Warehouse Stock " + dispo.getWarehouseStock() + " - WorkInProgress " + workInProgress
-					+ " - WorkInWaitingQueue " + workInWaitingQueue + " = " + dispo.getProduction().getAmount());
-		}
-
-		for (Disposition dispo : this.dispositionP3) {
-			int workInProgress = 0;
-			for (ProductionOrder work : dispo.getProductionOrders()) {
-				workInProgress += work.getAmount();
-			}
-
-			int workInWaitingQueue = 0;
-			for (ProductionOrder work : dispo.getProductionOrderInWaitingQueue()) {
-				workInWaitingQueue += work.getAmount();
-			}
-			System.out.println("Product Order: " + dispo.getPartNumber() + " \t Sellwish "
-					+ dispo.getSellwish().getAmount() + " + SafetyStock " + dispo.getSafetyStockvalue()
-					+ " - Warehouse Stock " + dispo.getWarehouseStock() + " - WorkInProgress " + workInProgress
-					+ " - WorkInWaitingQueue " + workInWaitingQueue + " = " + dispo.getProduction().getAmount());
-		}
-
-		System.out.println("---------------------");
-
-		for (Disposition dispo : this.dispositions) {
-			int workInProgress = 0;
-			for (ProductionOrder work : dispo.getProductionOrders()) {
-				workInProgress += work.getAmount();
-			}
-
-			int workInWaitingQueue = 0;
-			for (ProductionOrder work : dispo.getProductionOrderInWaitingQueue()) {
-				workInWaitingQueue += work.getAmount();
-			}
-			System.out.println("Product Order: " + dispo.getPartNumber() + " \t Sellwish "
-					+ dispo.getSellwish().getAmount() + " + SafetyStock " + dispo.getSafetyStockvalue()
-					+ " - Warehouse Stock " + dispo.getWarehouseStock() + " - WorkInProgress " + workInProgress
-					+ " - WorkInWaitingQueue " + workInWaitingQueue + " = " + dispo.getProduction().getAmount());
-		}
 	}
 
 	public void ConstructContainers() {
-		dispositionP1 = new ArrayList<Disposition>();
-		dispositionP2 = new ArrayList<Disposition>();
-		dispositionP3 = new ArrayList<Disposition>();
-		dispositions = new ArrayList<Disposition>();
+		dispositionP1 = new ArrayList<>();
+		dispositionP2 = new ArrayList<>();
+		dispositionP3 = new ArrayList<>();
+		dispositions = new ArrayList<>();
 	}
 
 	public void dispoRecursively(PartNode node, Disposition parent) {
@@ -146,11 +80,10 @@ public class DispositionService {
 
 		this.dispositions.add(disposition);
 
-		for (PartNode partNode : node.getParts()) {
-			if (partNode.getParts() != null) {
-				this.dispoRecursively(partNode, disposition);
-			}
-		}
+		node.getParts()
+				.stream()
+				.filter(partNode -> partNode.getParts() != null)
+				.forEach(partNode -> this.dispoRecursively(partNode, disposition));
 	}
 
 	public int calculateDispositionAmount(int partNumber, Disposition disposition) {
