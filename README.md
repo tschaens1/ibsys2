@@ -18,6 +18,8 @@
         - [Start application (prod mode)](#start-application-prod-mode)
         - [CSS instructions](#css-instructions)
         - [Links:](#links)
+            - [Design](#design)
+            - [Charts](#charts)
 
 <!-- /TOC -->
 
@@ -162,8 +164,13 @@ background-color: $theme-color;
 ```
 
 ### Links:
+#### Design
 - [MaterializeCSS](http://materializecss.com/)
 - [Angular 2 Material](https://material.angular.io/)
 - [Material Design Icons](https://materialdesignicons.com/)
+
+#### Charts
+- [angular2-highcharts](https://github.com/gevgeny/angular2-highcharts)
+- [highcharts](http://www.highcharts.com/)
 - [ChartJS](http://www.chartjs.org/)
 - [ng2-charts](http://valor-software.com/ng2-charts/)
