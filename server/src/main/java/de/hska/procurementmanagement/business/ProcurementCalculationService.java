@@ -77,30 +77,29 @@ public class ProcurementCalculationService {
 
             BuyOrder order = checkForBuyInCurrentPeriod(part, upcomingAmount);
 
-            System.out.println(
-                    "Product: " + part.getNumber()
-                            + " Usage: " + Arrays.toString(upcomingAmount)
-                            + " Average: " + getAverageAmountInFuture(upcomingAmount)
-                            + " Calc amount: " + getCalculationAmountForStorage(part)
-                            + " Lager: " + warehouseService.getWarehouseArticle(part.getNumber()).getAmount()
-                            + " Order Range: " + getOrderRange(part, upcomingAmount)
-                            + " Order? : " + (order != null)
-                            + " Future: " + procurementService.getFutureAmountForPart(part.getNumber())
-                            + " Incoming: " + procurementService.getIncomingAmountForPart(part.getNumber())
-            );
+            if (order != null) {
+                System.out.println(
+                        "Product: " + part.getNumber()
+                                + " Usage: " + Arrays.toString(upcomingAmount)
+                                + " Average: " + getAverageAmountInFuture(upcomingAmount)
+                                + " Calc amount: " + getCalculationAmountForStorage(part)
+                                + " Lager: " + warehouseService.getWarehouseArticle(part.getNumber()).getAmount()
+                                + " Order Range: " + getOrderRange(part, upcomingAmount)
+                                + " Order? : " + (order != null)
+                );
+            }
 
             if (order != null) {
                 procurementService.generateNewBuyOrder(part, order.getBuyMode(), order.getAmount(), currentPeriod);
             }
-
-            System.out.println("Current new orders: " + procurementService.getNewBuyOrders().size());
         }
     }
 
     // Returns a new order if necessary and null otherwise
     private BuyOrder checkForBuyInCurrentPeriod(BuyPart buyPart, Integer[] futureAmounts) {
         Double orderRange = getOrderRange(buyPart, futureAmounts);
-        Integer amount = futureAmounts[1] + futureAmounts[2] + futureAmounts[3];
+        Integer amount = Double.valueOf(Math.sqrt(200*buyPart.getProcurementCosts()*getAverageAmountInFuture(futureAmounts)/(0.6*buyPart.getPrice()))).intValue();
+        if (amount > 0) System.out.println("Part: " + buyPart.getNumber() + " Amount: " + amount);
 
         // Fast
         if (orderRange < 0 || warehouseService.getWarehouseArticle(buyPart.getNumber()).getAmount() < futureAmounts[0]) {
