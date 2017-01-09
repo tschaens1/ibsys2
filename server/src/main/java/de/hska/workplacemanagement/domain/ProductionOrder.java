@@ -4,6 +4,8 @@ public class ProductionOrder {
 	private Integer productNumber;
 	private Integer amount;
 	private Integer period;
+	private Integer orderId;
+	private Integer timeNeed;
 	private Integer workplaceId;
 	private Boolean isInWork;
 	private Priority priority;
@@ -12,18 +14,32 @@ public class ProductionOrder {
 
 	}
 
-	public ProductionOrder(Integer productNumber, Integer amount, Integer period, Boolean isInWork) {
+	public ProductionOrder(Integer productNumber, Integer amount, Integer period, Boolean isInWork,
+			Integer workplaceId) {
 		this.productNumber = productNumber;
 		this.amount = amount;
 		this.period = period;
 		this.isInWork = isInWork;
-		this.workplaceId = 0;
+		this.workplaceId = workplaceId;
 	}
 
-	public ProductionOrder(Integer productNumber, Integer amount, Integer period, Integer workplaceId) {
+	public ProductionOrder(Integer productNumber, Integer amount, Integer period, Boolean isInWork, Integer workplaceId,
+			Integer orderId, Integer timeNeed) {
 		this.productNumber = productNumber;
 		this.amount = amount;
 		this.period = period;
+		this.orderId = orderId;
+		this.isInWork = isInWork;
+		this.workplaceId = workplaceId;
+		this.timeNeed = timeNeed;
+	}
+
+	public ProductionOrder(Integer productNumber, Integer amount, Integer period, Integer workplaceId,
+			Integer orderId) {
+		this.productNumber = productNumber;
+		this.amount = amount;
+		this.period = period;
+		this.orderId = orderId;
 		this.workplaceId = workplaceId;
 		this.isInWork = false;
 		this.priority = Priority.Normal;
@@ -75,6 +91,30 @@ public class ProductionOrder {
 
 	public void setPriority(Priority priority) {
 		this.priority = priority;
+	}
+
+	public Integer getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+
+	public Boolean getIsInWork() {
+		return isInWork;
+	}
+
+	public void setIsInWork(Boolean isInWork) {
+		this.isInWork = isInWork;
+	}
+
+	public Integer getTimeNeed() {
+		return timeNeed;
+	}
+
+	public void setTimeNeed(Integer timeNeed) {
+		this.timeNeed = timeNeed;
 	}
 
 	@Override

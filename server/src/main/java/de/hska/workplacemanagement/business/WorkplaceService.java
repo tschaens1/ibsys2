@@ -250,10 +250,10 @@ public class WorkplaceService {
 		}
 	}
 
-	public Integer getArbeitsplatzId(Integer part) {
-		for (int i = 0; i < this.allWorkPlaces.size(); i++) {
-			if (Objects.equals(this.allWorkPlaces.get(i).getOutputProductId(), part)) {
-				this.allWorkPlaces.get(i).getNumber();
+	public int getArbeitsplatzId(int part) {
+		for (Workplace workplace : this.allWorkPlaces) {
+			if (workplace.getOutputProductId() == part) {
+				return workplace.getNumber();
 			}
 		}
 		return 0;
@@ -262,4 +262,9 @@ public class WorkplaceService {
 	public Map<Integer, ProductionLine> getProductionLineMap() {
 		return this.productionLineMap;
 	}
+
+	public ArrayList<Workplace> getAllWorkPlaces() {
+		return this.allWorkPlaces;
+	}
+
 }

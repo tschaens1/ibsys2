@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.hska.capacitymanagement.business.CapacityService;
 import de.hska.dispositionmanagement.business.DispositionService;
 import de.hska.filemanagement.domain.JsonFile;
 import de.hska.inputmanagement.business.InputService;
@@ -42,6 +43,9 @@ public class PlanningResource {
 	private ProcurementCalculationService procurementCalculationService;
 
 	@Autowired
+	private CapacityService capacityService;
+
+	@Autowired
 	private InputService inputService;
 
 	@ExceptionHandler({ org.springframework.http.converter.HttpMessageNotReadableException.class })
@@ -66,7 +70,7 @@ public class PlanningResource {
 		productionService.initialize(period.getResult());
 
 		dispositionService.initialize();
-		// capacityService.initialize();
+		capacityService.initialize();
 		procurementCalculationService.initialize();
 
 		period.setInput(inputService.generateInputJson(period));

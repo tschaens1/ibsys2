@@ -15,6 +15,7 @@ import de.hska.planningmangement.domain.PlanningPosition;
 import de.hska.productionmanagement.domain.Waitinglist;
 import de.hska.warehousemanagement.business.WarehouseService;
 import de.hska.warehousemanagement.domain.WarehouseArticle;
+import de.hska.workplacemanagement.business.WorkplaceService;
 import de.hska.workplacemanagement.domain.ProductionOrder;
 
 @Service
@@ -25,6 +26,9 @@ public class ProductionService {
 
 	@Autowired
 	private WarehouseService warehouseService;
+
+	@Autowired
+	private WorkplaceService workplaceService;
 
 	private int period;
 	private Waitinglist waitinglist;
@@ -66,6 +70,8 @@ public class ProductionService {
 
 		for (int i = 0; i < workplacesJSONArray.length(); i++) {
 			JSONObject objectInArray = workplacesJSONArray.getJSONObject(i);
+			int workplace = Integer.parseInt(objectInArray.get("id").toString());
+
 			if (objectInArray.has("waitinglist")) {
 				Object item = objectInArray.get("waitinglist");
 				if (item instanceof JSONArray) {
@@ -76,8 +82,11 @@ public class ProductionService {
 						int period = Integer.parseInt(objectInWaitinglistArray.get("period").toString());
 						int amount = Integer.parseInt(objectInWaitinglistArray.get("amount").toString());
 						int productNumber = Integer.parseInt(objectInWaitinglistArray.get("item").toString());
+						int order = Integer.parseInt(objectInWaitinglistArray.get("order").toString());
+						int timeNeed = Integer.parseInt(objectInWaitinglistArray.get("timeneed").toString());
 
-						orders.add(new ProductionOrder(productNumber, amount, period, false));
+						orders.add(
+								new ProductionOrder(productNumber, amount, period, false, workplace, order, timeNeed));
 					}
 				} else {
 					JSONObject waitinglistJSONObject = (JSONObject) item;
@@ -85,8 +94,10 @@ public class ProductionService {
 					int period = Integer.parseInt(waitinglistJSONObject.get("period").toString());
 					int amount = Integer.parseInt(waitinglistJSONObject.get("amount").toString());
 					int productNumber = Integer.parseInt(waitinglistJSONObject.get("item").toString());
+					int order = Integer.parseInt(waitinglistJSONObject.get("order").toString());
+					int timeNeed = Integer.parseInt(waitinglistJSONObject.get("timeneed").toString());
 
-					orders.add(new ProductionOrder(productNumber, amount, period, false));
+					orders.add(new ProductionOrder(productNumber, amount, period, false, workplace, order, timeNeed));
 				}
 				this.waitinglist.setOrders(orders);
 			}
@@ -103,29 +114,35 @@ public class ProductionService {
 			int period = Integer.parseInt(jsonWorkplaceObject.get("period").toString());
 			int amount = Integer.parseInt(jsonWorkplaceObject.get("amount").toString());
 			int productNumber = Integer.parseInt(jsonWorkplaceObject.get("item").toString());
+			int order = Integer.parseInt(jsonWorkplaceObject.get("order").toString());
+			int timeNeed = Integer.parseInt(jsonWorkplaceObject.get("timeneed").toString());
+			int workplace = Integer.parseInt(jsonWorkplaceObject.get("id").toString());
 
-			this.ordersinwork.add(new ProductionOrder(productNumber, amount, period, true));
+			this.ordersinwork.add(new ProductionOrder(productNumber, amount, period, true, workplace, order, timeNeed));
 		}
 	}
 
 	public void updateSafetyStockvalue() {
 		for (PlanningPosition position : this.planningService.getSafetystockItems()) {
-			this.safetystockvalues.add(new ProductionOrder(position.getArticle(), position.getQuantity(),
-					this.planningService.getPeriod(), false));
+			this.safetystockvalues.add(
+					new ProductionOrder(position.getArticle(), position.getQuantity(), this.planningService.getPeriod(),
+							false, this.workplaceService.getArbeitsplatzId(position.getArticle())));
 		}
 	}
 
 	public void updateStockvalue() {
 		for (WarehouseArticle article : this.warehouseService.getWarehouseArticles()) {
-			this.stockvalues.add(new ProductionOrder(article.getPartNumber(), article.getAmount(),
-					this.warehouseService.getPeriod(), false));
+			this.stockvalues.add(
+					new ProductionOrder(article.getPartNumber(), article.getAmount(), this.warehouseService.getPeriod(),
+							false, this.workplaceService.getArbeitsplatzId(article.getPartNumber())));
 		}
 	}
 
 	public void updatePlanning() {
 		for (PlanningPosition position : this.planningService.getSellwishItems()) {
-			this.planning.add(new ProductionOrder(position.getArticle(), position.getQuantity(),
-					this.planningService.getPeriod(), false));
+			this.planning.add(
+					new ProductionOrder(position.getArticle(), position.getQuantity(), this.planningService.getPeriod(),
+							false, this.workplaceService.getArbeitsplatzId(position.getArticle())));
 		}
 	}
 
@@ -138,12 +155,12 @@ public class ProductionService {
 			this.production.addAll(productionOrders);
 	}
 
-	public ArrayList<ProductionOrder> getProductionOrdersInWork() {
-		return this.ordersinwork;
-	}
-
 	public ArrayList<ProductionOrder> getProductionOrdersInWaitinglist() {
 		return this.waitinglist.getOrders();
+	}
+
+	public ArrayList<ProductionOrder> getProductionOrdersInWork() {
+		return this.ordersinwork;
 	}
 
 	public ArrayList<ProductionOrder> getOrdersInWorkForProduct(int productNumber) {
@@ -154,6 +171,15 @@ public class ProductionService {
 			}
 		}
 		return productionOrdersInWork;
+	}
+
+	public ProductionOrder getProductionOrderInWorkForOrder(int order) {
+		for (ProductionOrder productionOrder : this.ordersinwork) {
+			if (productionOrder.getOrderId() == order) {
+				return productionOrder;
+			}
+		}
+		return null;
 	}
 
 	public ArrayList<ProductionOrder> getOrdersWaitinglistForProduct(int productNumber) {
@@ -183,6 +209,10 @@ public class ProductionService {
 				}
 			}
 		}
+	}
+
+	public ArrayList<ProductionOrder> getProduction() {
+		return this.production;
 	}
 
 	public int getPeriod() {

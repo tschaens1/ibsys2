@@ -12,6 +12,7 @@ import de.hska.partsmanagement.domain.PartNode;
 import de.hska.planningmangement.business.PlanningService;
 import de.hska.productionmanagement.business.ProductionService;
 import de.hska.warehousemanagement.business.WarehouseService;
+import de.hska.workplacemanagement.business.WorkplaceService;
 import de.hska.workplacemanagement.domain.ProductionOrder;
 
 @Service
@@ -31,6 +32,9 @@ public class DispositionService {
 
 	@Autowired
 	private WarehouseService warehouseService;
+
+	@Autowired
+	private WorkplaceService workplaceService;
 
 	private ArrayList<Disposition> dispositionP1;
 	private ArrayList<Disposition> dispositionP2;
@@ -217,6 +221,7 @@ public class DispositionService {
 		production.setAmount(amount);
 		production.setPeriod(this.planningService.getPeriod());
 		production.setInWork(false);
+		production.setWorkplaceId(this.workplaceService.getArbeitsplatzId(partNumber));
 
 		disposition.setProduction(production);
 

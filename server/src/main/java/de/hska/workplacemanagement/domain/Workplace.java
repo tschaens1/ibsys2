@@ -27,6 +27,7 @@ public class Workplace {
 
 		this.productionOrders = new ArrayList<ProductionOrder>();
 		this.ordersFromOtherWorkplaces = new ArrayList<ProductionOrder>();
+		this.workingTime = 0;
 	}
 
 	public Integer getUpcomingProductionCount() {
@@ -122,4 +123,13 @@ public class Workplace {
 	public void setWorkingTime(Integer workingTime) {
 		this.workingTime = workingTime;
 	}
+
+	@Override
+	public String toString() {
+		return "Workplace [name=" + name + ", number=" + number + ", setUpTime=" + setUpTime + ", productionTime="
+				+ productionTime + ", productionOrders=" + productionOrders + ", ordersFromOtherWorkplaces="
+				+ ordersFromOtherWorkplaces + ", productionOrderInWork=" + productionOrderInWork + ", outputProductId="
+				+ outputProductId + ", workingTime=" + workingTime + "]";
+	}
+
 }
