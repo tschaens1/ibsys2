@@ -42,6 +42,9 @@ public class ProcurementCalculationService {
 
         this.currentPeriod = planningService.getPeriod() + 1;
 
+        // Remove calculated orders from previous post
+        this.procurementService.getNewBuyOrders().clear();
+
         generateBuyOrders();
     }
 
@@ -100,7 +103,7 @@ public class ProcurementCalculationService {
         Integer amount = futureAmounts[1] + futureAmounts[2] + futureAmounts[3];
 
         // Fast
-        if (orderRange < 0.5 || warehouseService.getWarehouseArticle(buyPart.getNumber()).getAmount() < futureAmounts[0]) {
+        if (orderRange < 0 || warehouseService.getWarehouseArticle(buyPart.getNumber()).getAmount() < futureAmounts[0]) {
             if ((procurementService.getBuyCosts(buyPart, BuyMode.Fast, buyPart.getDiscountAmount()) < procurementService.getBuyCosts(buyPart, BuyMode.Fast, amount))
                     && amount < buyPart.getDiscountAmount()) {
                 amount = buyPart.getDiscountAmount();
@@ -110,7 +113,7 @@ public class ProcurementCalculationService {
         }
 
         // Normal
-        if (amount < 1.0) {
+        if (orderRange <= 1.0) {
             if ((procurementService.getBuyCosts(buyPart, BuyMode.Normal, buyPart.getDiscountAmount()) < procurementService.getBuyCosts(buyPart, BuyMode.Normal, amount))
                     && amount < buyPart.getDiscountAmount()) {
                 amount = buyPart.getDiscountAmount();

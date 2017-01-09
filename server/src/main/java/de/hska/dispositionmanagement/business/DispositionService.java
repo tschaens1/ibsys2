@@ -51,10 +51,10 @@ public class DispositionService {
 	}
 
 	public void ConstructContainers() {
-		dispositionP1 = new ArrayList<>();
-		dispositionP2 = new ArrayList<>();
-		dispositionP3 = new ArrayList<>();
-		dispositions = new ArrayList<>();
+		this.dispositionP1 = new ArrayList<>();
+		this.dispositionP2 = new ArrayList<>();
+		this.dispositionP3 = new ArrayList<>();
+		this.dispositions = new ArrayList<>();
 	}
 
 	public void dispoRecursively(PartNode node, Disposition parent) {

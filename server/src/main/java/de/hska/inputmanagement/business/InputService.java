@@ -50,7 +50,8 @@ public class InputService {
 			JSONObject selldirectItemJson = new JSONObject();
 			selldirectItemJson.put("article", planningPosition.getArticle());
 			selldirectItemJson.put("quantity", planningPosition.getQuantity());
-			sellwishItemList.put(selldirectItemJson);
+			if(planningPosition.getQuantity() > 0)
+				selldirectItemList.put(selldirectItemJson);
 		}
 
 		JSONArray productionlistItems = new JSONArray();
