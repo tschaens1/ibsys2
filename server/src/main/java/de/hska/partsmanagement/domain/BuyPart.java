@@ -125,9 +125,9 @@ public class BuyPart {
         if (relation > 0.2) {
             return 1.00;
         } else if (relation > 0.15) {
-            return 0.50;
+            return 0.75;
         } else {
-            return 0.25;
+            return 0.50;
         }
     }
 
