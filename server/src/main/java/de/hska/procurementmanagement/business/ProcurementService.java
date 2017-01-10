@@ -43,8 +43,67 @@ public class ProcurementService {
 
         JSONObject jsonObject = new JSONObject(jsonFile.getContent());
         this.resultsJson = jsonObject.getJSONObject("results");
+
         setPendingBuyOrders();
         setIncomingBuyOrders();
+    }
+
+
+    void generateNewBuyOrder(BuyPart part, BuyMode buyMode, Integer amount, Integer period) {
+        Double costs = this.getBuyCosts(part, buyMode, amount);
+
+        BuyOrder newOrder = new BuyOrder(part.getNumber(), buyMode, amount, period, costs);
+        newBuyOrders.add(newOrder);
+    }
+
+    Integer getWorstCaseArrivalPeriodByOrder(BuyOrder order) {
+        BuyPart part = partsService.getBuyPartById(order.getBuyPartId());
+
+        Double worstCaseArrivalTime = order.getBuyMode() == BuyMode.Fast
+                ? order.getOrderPeriod() + (part.getTimeToRebuy() / 2)
+                : order.getOrderPeriod() + (part.getTimeToRebuy() + part.getRiskFactor() * part.getRebuyDerivation());
+
+        Double worstCaseArrivalPeriod = Math.ceil(worstCaseArrivalTime);
+        return worstCaseArrivalPeriod.intValue();
+    }
+
+    ArrayList<BuyOrder> getPendingBuyOrdersForPart(Integer partNumber) {
+        return this.pendingBuyOrders
+                .stream()
+                .filter(pendingBuyOrder
+                        -> Objects.equals(pendingBuyOrder.getBuyPartId(), partNumber))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    Double getBuyCosts(BuyPart part, BuyMode buyMode, Integer amount) {
+        Double materialCosts = 0.0;
+        Double procurementCosts = 0.0;
+
+        if (amount >= part.getDiscountAmount() && buyMode != BuyMode.Fast) {
+            materialCosts += 0.9 * amount * part.getPrice();
+        } else {
+            materialCosts += amount * part.getPrice();
+        }
+
+        if (buyMode == BuyMode.Fast) {
+            procurementCosts += 10 * part.getProcurementCosts();
+        } else {
+            procurementCosts += part.getProcurementCosts();
+        }
+
+        return materialCosts + procurementCosts;
+    }
+
+    Integer getIncomingAmountForPart(Integer partNumber) {
+        Integer amount = 0;
+
+        for (IncomingBuyOrder incomingBuyOrder : incomingBuyOrders) {
+            if (Objects.equals(incomingBuyOrder.getBuyPartId(), partNumber)) {
+                amount += incomingBuyOrder.getAmount();
+            }
+        }
+
+        return amount;
     }
 
     private void setIncomingBuyOrders()
@@ -101,86 +160,6 @@ public class ProcurementService {
             this.pendingBuyOrders.add(new BuyOrder(article, mode, amount, period, totalCosts, materialCosts,
                     procurementCosts, costsPerPiece));
         }
-    }
-
-    public void generateNewBuyOrder(BuyPart part, BuyMode buyMode, Integer amount, Integer period) {
-        Double costs = this.getBuyCosts(part, buyMode, amount);
-
-        BuyOrder newOrder = new BuyOrder(part.getNumber(), buyMode, amount, period, costs);
-        newBuyOrders.add(newOrder);
-    }
-
-    public ArrayList<IncomingBuyOrder> getIncomingBuyOrdersForPart(Integer partNumber) {
-        return this.incomingBuyOrders
-                .stream()
-                .filter(incomingBuyOrder
-                        -> Objects.equals(incomingBuyOrder.getBuyPartId(), partNumber))
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    public ArrayList<BuyOrder> getPendingBuyOrdersForPart(Integer partNumber) {
-        return this.pendingBuyOrders
-                .stream()
-                .filter(pendingBuyOrder
-                        -> Objects.equals(pendingBuyOrder.getBuyPartId(), partNumber))
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    public ArrayList<BuyOrder> getNewBuyOrdersForPart(Integer partNumber) {
-        return this.newBuyOrders
-                .stream()
-                .filter(newBuyOrder
-                        -> Objects.equals(newBuyOrder.getBuyPartId(), partNumber))
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    Double getBuyCosts(BuyPart part, BuyMode buyMode, Integer amount) {
-        Double materialCosts = 0.0;
-        Double procurementCosts = 0.0;
-
-        if (amount >= part.getDiscountAmount() && buyMode != BuyMode.Fast) {
-            materialCosts += 0.9 * amount * part.getPrice();
-        } else {
-            materialCosts += amount * part.getPrice();
-        }
-
-        if (buyMode == BuyMode.Fast) {
-            procurementCosts += 10 * part.getProcurementCosts();
-        } else {
-            procurementCosts += part.getProcurementCosts();
-        }
-
-        return materialCosts + procurementCosts;
-    }
-
-    Integer getIncomingAmountForPart(Integer partNumber) {
-        Integer amount = 0;
-
-        for (IncomingBuyOrder incomingBuyOrder : incomingBuyOrders) {
-            if (Objects.equals(incomingBuyOrder.getBuyPartId(), partNumber)) {
-                amount += incomingBuyOrder.getAmount();
-            }
-        }
-
-        return amount;
-    }
-
-    Integer getFutureAmountForPart(Integer partNumber) {
-        Integer amount = 0;
-
-        for (BuyOrder buyOrder : pendingBuyOrders) {
-            if (Objects.equals(buyOrder.getBuyPartId(), partNumber)) {
-                amount += buyOrder.getAmount();
-            }
-        }
-
-        for (BuyOrder buyOrder : newBuyOrders) {
-            if (Objects.equals(buyOrder.getBuyPartId(), partNumber)) {
-                amount += buyOrder.getAmount();
-            }
-        }
-
-        return amount;
     }
 
     private Double convertStringToDouble(String value)

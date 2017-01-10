@@ -18,7 +18,7 @@ public class ProductionLine {
 
 	public ArrayList<Workplace> getAllWorkplaces() {
 		WorkplaceNode temp = this.firstWorkplace;
-		ArrayList<Workplace> workplaces = new ArrayList<Workplace>();
+		ArrayList<Workplace> workplaces = new ArrayList<>();
 
 		workplaces.add(temp.getWorkplace());
 		while (temp.getFollower() != null) {
@@ -53,7 +53,7 @@ public class ProductionLine {
 	}
 
 	public void addProductionOrder(ProductionOrder order) {
-		WorkplaceNode temp = null;
+		WorkplaceNode temp;
 
 		if (order.getWorkplaceId() != null && order.getWorkplaceId() != 0) {
 			temp = this.workplaceMap.get(order.getWorkplaceId());

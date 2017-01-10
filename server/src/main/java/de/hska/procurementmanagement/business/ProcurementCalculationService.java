@@ -13,6 +13,7 @@ import de.hska.warehousemanagement.domain.WarehouseArticle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 @Service
@@ -41,8 +42,6 @@ public class ProcurementCalculationService {
     public void initialize() {
 
         this.currentPeriod = planningService.getPeriod() + 1;
-
-        // Remove calculated orders from previous post
         this.procurementService.getNewBuyOrders().clear();
 
         generateBuyOrders();
@@ -74,20 +73,7 @@ public class ProcurementCalculationService {
             );
 
             Integer[] upcomingAmount = new Integer[]{useAmount0, useAmountFuture1, useAmountFuture2, useAmountFuture3};
-
             BuyOrder order = checkForBuyInCurrentPeriod(part, upcomingAmount);
-
-            if (order != null) {
-                System.out.println(
-                        "Product: " + part.getNumber()
-                                + " Usage: " + Arrays.toString(upcomingAmount)
-                                + " Average: " + getAverageAmountInFuture(upcomingAmount)
-                                + " Calc amount: " + getCalculationAmountForStorage(part)
-                                + " Lager: " + warehouseService.getWarehouseArticle(part.getNumber()).getAmount()
-                                + " Order Range: " + getOrderRange(part, upcomingAmount)
-                                + " Order? : " + (order != null)
-                );
-            }
 
             if (order != null) {
                 procurementService.generateNewBuyOrder(part, order.getBuyMode(), order.getAmount(), currentPeriod);
@@ -97,59 +83,69 @@ public class ProcurementCalculationService {
 
     // Returns a new order if necessary and null otherwise
     private BuyOrder checkForBuyInCurrentPeriod(BuyPart buyPart, Integer[] futureAmounts) {
-        Double orderRange = getOrderRange(buyPart, futureAmounts);
-        Integer amount = Double.valueOf(Math.sqrt(200*buyPart.getProcurementCosts()*getAverageAmountInFuture(futureAmounts)/(0.6*buyPart.getPrice()))).intValue();
-        if (amount > 0) System.out.println("Part: " + buyPart.getNumber() + " Amount: " + amount);
+        ArrayList<BuyOrder> currentOrders = procurementService.getPendingBuyOrdersForPart(buyPart.getNumber());
+        WarehouseArticle article = warehouseService.getWarehouseArticle(buyPart.getNumber());
+        Integer currentAmount = article.getAmount();
 
-        // Fast
-        if (orderRange < 0 || warehouseService.getWarehouseArticle(buyPart.getNumber()).getAmount() < futureAmounts[0]) {
-            if ((procurementService.getBuyCosts(buyPart, BuyMode.Fast, buyPart.getDiscountAmount()) < procurementService.getBuyCosts(buyPart, BuyMode.Fast, amount))
-                    && amount < buyPart.getDiscountAmount()) {
-                amount = buyPart.getDiscountAmount();
+        Double worstCaseTime = Math.ceil(buyPart.getTimeToRebuy() + buyPart.getRiskFactor() * buyPart.getRebuyDerivation());
+        int worstCaseInt = worstCaseTime < 5 ? worstCaseTime.intValue() : 4;
+
+        Integer neededAmount = 0;
+
+        System.out.print(
+                "Product: " + buyPart.getNumber()
+                        + " Upcoming amount: " + Arrays.toString(futureAmounts)
+        );
+
+        for (int i = 0; i < worstCaseInt; i++) {
+            int calcPeriod = currentPeriod + i;
+
+            if (i == 0) {
+                currentAmount += procurementService.getIncomingAmountForPart(buyPart.getNumber());
             }
 
-            return new BuyOrder(buyPart.getNumber(), BuyMode.Fast, amount, currentPeriod, 0.0);
-        }
-
-        // Normal
-        if (orderRange <= 1.0) {
-            if ((procurementService.getBuyCosts(buyPart, BuyMode.Normal, buyPart.getDiscountAmount()) < procurementService.getBuyCosts(buyPart, BuyMode.Normal, amount))
-                    && amount < buyPart.getDiscountAmount()) {
-                amount = buyPart.getDiscountAmount();
+            // Check for existing order(s) in the future
+            if (currentOrders.size() > 0) {
+                for (BuyOrder order : currentOrders) {
+                    System.out.print(" Incoming order is there. It has arrival period " + procurementService.getWorstCaseArrivalPeriodByOrder(order) + ".");
+                    if (procurementService.getWorstCaseArrivalPeriodByOrder(order) == calcPeriod) {
+                        System.out.print(" Incoming order in period " + calcPeriod + " with amount: " + order.getAmount());
+                        currentAmount += order.getAmount();
+                    }
+                }
             }
 
-            return new BuyOrder(buyPart.getNumber(), BuyMode.Normal, amount, currentPeriod, 0.0);
+            currentAmount -= futureAmounts[i];
+
+            System.out.print(
+                    " Amount in calc Period " + calcPeriod + ": " + currentAmount
+            );
+
+            if (currentAmount < 0) {
+                neededAmount += currentAmount * (-1);
+                if (calcPeriod == (currentPeriod + worstCaseInt - 1)) {
+                    // Normal
+                    if ((procurementService.getBuyCosts(buyPart, BuyMode.Normal, buyPart.getDiscountAmount()) < procurementService.getBuyCosts(buyPart, BuyMode.Normal, neededAmount))
+                            && neededAmount < buyPart.getDiscountAmount()) {
+                        neededAmount = buyPart.getDiscountAmount();
+                    }
+                    System.out.println(" Normal, amount: " + neededAmount);
+                    return new BuyOrder(buyPart.getNumber(), BuyMode.Normal, neededAmount, currentPeriod, 0.0);
+                } else {
+                    // Fast
+                    if ((procurementService.getBuyCosts(buyPart, BuyMode.Fast, buyPart.getDiscountAmount()) < procurementService.getBuyCosts(buyPart, BuyMode.Fast, neededAmount))
+                            && neededAmount < buyPart.getDiscountAmount()) {
+                        neededAmount = buyPart.getDiscountAmount();
+                    }
+                    System.out.println(" Fast, amount: " + neededAmount);
+                    return new BuyOrder(buyPart.getNumber(), BuyMode.Fast, neededAmount, currentPeriod, 0.0);
+                }
+            }
         }
 
         // Else, do not buy stuff
+        System.out.println(" No need to order.");
         return null;
-    }
-
-    private Double getOrderRange(BuyPart buyPart, Integer[] futureAmounts) {
-        Integer amountToCalculate = getCalculationAmountForStorage(buyPart);
-        Integer averageAmountInFuture = getAverageAmountInFuture(futureAmounts);
-
-        return amountToCalculate / averageAmountInFuture - (buyPart.getTimeToRebuy() + buyPart.getRiskFactor() * buyPart.getRebuyDerivation());
-    }
-
-    private Integer getCalculationAmountForStorage(BuyPart buyPart) {
-        WarehouseArticle article = warehouseService.getWarehouseArticle(buyPart.getNumber());
-        Integer currentAmount = article.getAmount();
-        Integer incomingInFuture = (procurementService.getFutureAmountForPart(buyPart.getNumber()) / 2)
-                + (procurementService.getIncomingAmountForPart(buyPart.getNumber()));
-
-        return currentAmount + incomingInFuture;
-    }
-
-    private Integer getAverageAmountInFuture(Integer[] futureAmounts) {
-        if (futureAmounts.length == 0) return 0;
-
-        int sum = 0;
-        for (Integer i : futureAmounts) {
-            sum += i;
-        }
-
-        return sum / futureAmounts.length;
     }
 
     private Integer getAmountInSubTree(PartNode tree, Integer partNumber) {
