@@ -193,4 +193,8 @@ public class CapacityService {
 
 		this.capacities.add(capacity);
 	}
+
+	public ArrayList<Capacity> getCapacities() {
+		return this.capacities;
+	}
 }
