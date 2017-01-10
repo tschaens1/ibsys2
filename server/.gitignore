@@ -1,12 +1,2 @@
-/.idea/*
-/build/*
-/gradle/*
-
-gradle-app.setting
-
-!gradle-wrapper.jar
-
-# Cache of project
-.gradletasknamecache
 /build/
 /bin/
