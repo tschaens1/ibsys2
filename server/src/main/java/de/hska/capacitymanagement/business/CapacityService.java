@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import de.hska.capacitymanagement.domain.Capacity;
 import de.hska.dispositionmanagement.business.DispositionService;
 import de.hska.dispositionmanagement.domain.Disposition;
 import de.hska.partsmanagement.business.PartsService;
@@ -16,6 +17,9 @@ import de.hska.workplacemanagement.domain.Workplace;
 
 @Service
 public class CapacityService {
+
+	private final static int DAYS_PER_WEEK = 5;
+	private final static int SHIFT_DURATION = 2400;
 
 	@Autowired
 	private WorkplaceService workplaceService;
@@ -29,7 +33,10 @@ public class CapacityService {
 	@Autowired
 	private PartsService partsService;
 
+	private ArrayList<Capacity> capacities;
+
 	public void initialize() {
+		capacities = new ArrayList<>();
 		this.deployExistingCapacities();
 		this.getCalculation();
 	}
@@ -129,9 +136,61 @@ public class CapacityService {
 	}
 
 	public void getCalculation() {
+
+		ArrayList<Workplace> workplaces = new ArrayList<Workplace>();
 		for (Workplace workplace : this.workplaceService.getAllWorkPlaces()) {
-			System.out.println("Workplace: " + workplace.getName() + " ------------------------");
-			System.out.println(" -- Working Time: " + workplace.getWorkingTime());
+			boolean contains = false;
+			for (Workplace workplaceUnique : workplaces) {
+				if (workplace.getNumber() == workplaceUnique.getNumber())
+					contains = true;
+			}
+			if (!contains) {
+				workplaces.add(workplace);
+			} else {
+				for (Workplace workplaceUnique : workplaces) {
+					if (workplace.getNumber() == workplaceUnique.getNumber())
+						workplaceUnique.setWorkingTime(workplaceUnique.getWorkingTime() + workplace.getWorkingTime());
+				}
+			}
 		}
+		for (Workplace workplace : workplaces) {
+			this.calculateShifts(workplace);
+			System.out.print("Kapa: " + workplace.getWorkingTime());
+		}
+
+		for (Capacity capacity : this.capacities) {
+			System.out.println(" Capacity: - Station - " + capacity.getStation() + " - Shift - " + capacity.getShift()
+					+ " - Overtime - " + capacity.getOvertime());
+		}
+	}
+
+	public void calculateShifts(Workplace workplace) {
+		Capacity capacity = new Capacity();
+		capacity.setStation(workplace.getNumber());
+
+		int overtime = 0;
+		int shift = 0;
+
+		if (workplace.getWorkingTime() <= 2400) {
+			shift = 1;
+			overtime = 0;
+		} else if (workplace.getWorkingTime() <= 3600) {
+			shift = 1;
+			overtime = (3600 - workplace.getWorkingTime()) / DAYS_PER_WEEK;
+		} else if (workplace.getWorkingTime() <= 4800) {
+			shift = 2;
+			overtime = 0;
+		} else if (workplace.getWorkingTime() <= 6000) {
+			shift = 2;
+			overtime = (6000 - workplace.getWorkingTime()) / DAYS_PER_WEEK;
+		} else {
+			shift = 3;
+			overtime = 0;
+		}
+
+		capacity.setShift(shift);
+		capacity.setOvertime(overtime);
+
+		this.capacities.add(capacity);
 	}
 }

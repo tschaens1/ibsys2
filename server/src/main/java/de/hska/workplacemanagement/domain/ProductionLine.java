@@ -61,30 +61,25 @@ public class ProductionLine {
 			temp = this.firstWorkplace;
 		}
 
-		temp.getWorkplace().getProductionOrders().add(order);
-
-		int workingTime = (order.getAmount() * temp.getWorkplace().getProductionTime())
-				+ temp.getWorkplace().getSetUpTime();
-		temp.getWorkplace().setWorkingTime(workingTime);
-
-		if (order.getInWork()) {
+		if (order.getInWork())
 			temp.getWorkplace().setProductionOrderInWork(order);
-			temp.getWorkplace()
-					.setWorkingTime(temp.getWorkplace().getWorkingTime() - temp.getWorkplace().getSetUpTime());
-		}
+		else
+			temp.getWorkplace().getProductionOrders().add(order);
+
 		temp.getWorkplace().setWorkingTime(
 				temp.getWorkplace().getProductionTime() * temp.getWorkplace().getUpcomingProductionCount()
 						+ (temp.getWorkplace().getProductionOrders().size()
 								+ temp.getWorkplace().getOrdersFromOtherWorkplaces().size())
 								* temp.getWorkplace().getSetUpTime());
 
+		int x = temp.getWorkplace().getUpcomingProductionCount();
 		while (temp.getFollower() != null) {
 			ArrayList<ProductionOrder> allOrders = temp.getWorkplace().getOrdersFromOtherWorkplaces();
 			allOrders.addAll(temp.getWorkplace().getProductionOrders());
 
 			temp.getFollower().getWorkplace().setOrdersFromOtherWorkplaces(allOrders);
 			temp.getFollower().getWorkplace()
-					.setWorkingTime(temp.getFollower().getWorkplace().getWorkingTime()
+					.setWorkingTime(temp.getFollower().getWorkplace().getProductionTime()
 							* temp.getFollower().getWorkplace().getUpcomingProductionCount()
 							+ (temp.getFollower().getWorkplace().getProductionOrders().size()
 									+ temp.getFollower().getWorkplace().getOrdersFromOtherWorkplaces().size())
