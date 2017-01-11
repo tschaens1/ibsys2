@@ -62,10 +62,9 @@ public class PlanningResource {
 		Planning planning = new Planning();
 		planning.setJsonFile(jsonFile);
 
-		Period period = periodRepository.findByCounter(counter);
+		Period period = periodRepository.findByCounter(counter - 1);
 		period.setPlanning(planning);
 
-		// initialize Services
 		planningService.initialize(jsonFile);
 		productionService.initialize(period.getResult());
 
@@ -73,7 +72,7 @@ public class PlanningResource {
 		capacityService.initialize();
 		procurementCalculationService.initialize();
 
-		period.setInput(inputService.generateInputJson(period));
+		period.setInput(inputService.generateInputJson());
 		periodRepository.save(period);
 
 		return periodRepository.findByCounter(counter).getInput().getContent();
