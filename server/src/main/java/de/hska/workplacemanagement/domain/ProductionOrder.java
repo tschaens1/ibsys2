@@ -34,17 +34,6 @@ public class ProductionOrder {
 		this.timeNeed = timeNeed;
 	}
 
-	public ProductionOrder(Integer productNumber, Integer amount, Integer period, Integer workplaceId,
-			Integer orderId) {
-		this.productNumber = productNumber;
-		this.amount = amount;
-		this.period = period;
-		this.orderId = orderId;
-		this.workplaceId = workplaceId;
-		this.isInWork = false;
-		this.priority = Priority.Normal;
-	}
-
 	public Integer getProductNumber() {
 		return productNumber;
 	}
