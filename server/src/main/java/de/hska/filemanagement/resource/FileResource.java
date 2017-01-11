@@ -97,7 +97,7 @@ public class FileResource {
 
 	@RequestMapping(method = RequestMethod.GET, value = "periods/{periodCounter}/input")
 	public ResponseEntity<String> getInputForPeriod(@PathVariable Long periodCounter) {
-		Period period = periodRepository.findByCounter(periodCounter);
+		Period period = periodRepository.findByCounter(periodCounter - 1);
 
 		if (period == null) {
 			return ResponseEntity.badRequest().body("Period not found in database! Have you uploaded the result XML?");

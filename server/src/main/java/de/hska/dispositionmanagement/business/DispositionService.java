@@ -48,6 +48,22 @@ public class DispositionService {
 		this.dispoRecursively(this.partsNodeService.getWomanManufactoringNode(), new Disposition());
 		this.dispoRecursively(this.partsNodeService.getManManufactoringNode(), new Disposition());
 		this.productionService.deployRemainingProductionOrders(dispositions);
+
+		for (Disposition dispo : this.dispositions) {
+			int workInProgress = 0;
+			for (ProductionOrder work : dispo.getProductionOrders()) {
+				workInProgress += work.getAmount();
+			}
+
+			int workInWaitingQueue = 0;
+			for (ProductionOrder work : dispo.getProductionOrderInWaitingQueue()) {
+				workInWaitingQueue += work.getAmount();
+			}
+			System.out.println("Product Order: " + dispo.getPartNumber() + " \t Sellwish "
+					+ dispo.getSellwish().getAmount() + " + SafetyStock " + dispo.getSafetyStockvalue()
+					+ " - Warehouse Stock " + dispo.getWarehouseStock() + " - WorkInProgress " + workInProgress
+					+ " - WorkInWaitingQueue " + workInWaitingQueue + " = " + dispo.getProduction().getAmount());
+		}
 	}
 
 	private void ConstructContainers() {

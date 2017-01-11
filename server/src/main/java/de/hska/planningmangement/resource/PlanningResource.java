@@ -75,7 +75,7 @@ public class PlanningResource {
 		period.setInput(inputService.generateInputJson());
 		periodRepository.save(period);
 
-		return periodRepository.findByCounter(counter).getInput().getContent();
+		return periodRepository.findByCounter(counter - 1).getInput().getContent();
 	}
 
 }

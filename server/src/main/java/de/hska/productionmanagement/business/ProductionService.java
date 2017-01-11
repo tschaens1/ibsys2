@@ -139,20 +139,11 @@ public class ProductionService {
 	}
 
 	public void updatePlanning() {
-		for (PlanningPosition position : this.planningService.getSellwishItems()) {
+		for (PlanningPosition position : this.planningService.getProductionItems()) {
 			this.planning.add(
 					new ProductionOrder(position.getArticle(), position.getQuantity(), this.planningService.getPeriod(),
 							false, this.workplaceService.getArbeitsplatzId(position.getArticle())));
 		}
-	}
-
-	public void setProductionOrders(ArrayList<ProductionOrder> productionOrders) {
-		if (this.ordersinwork != null)
-			this.production.addAll(this.ordersinwork);
-		if (this.waitinglist.getOrders() != null)
-			this.production.addAll(this.waitinglist.getOrders());
-		if (productionOrders != null)
-			this.production.addAll(productionOrders);
 	}
 
 	public ArrayList<ProductionOrder> getProductionOrdersInWaitinglist() {
@@ -164,22 +155,13 @@ public class ProductionService {
 	}
 
 	public ArrayList<ProductionOrder> getOrdersInWorkForProduct(int productNumber) {
-		ArrayList<ProductionOrder> productionOrdersInWork = new ArrayList<ProductionOrder>();
+		ArrayList<ProductionOrder> productionOrdersInWork = new ArrayList<>();
 		for (ProductionOrder order : this.ordersinwork) {
 			if (order.getProductNumber() == productNumber) {
 				productionOrdersInWork.add(order);
 			}
 		}
 		return productionOrdersInWork;
-	}
-
-	public ProductionOrder getProductionOrderInWorkForOrder(int order) {
-		for (ProductionOrder productionOrder : this.ordersinwork) {
-			if (productionOrder.getOrderId() == order) {
-				return productionOrder;
-			}
-		}
-		return null;
 	}
 
 	public ArrayList<ProductionOrder> getOrdersWaitinglistForProduct(int productNumber) {
