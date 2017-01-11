@@ -1,6 +1,7 @@
 import { DashboardService } from './dashboard.service';
 import { LoginService } from './../login/login.service';
 import { Component, OnInit } from '@angular/core';
+import { TranslationService } from '../translate/translate.service';
 
 @Component({
     selector: 'dashboard',
@@ -8,50 +9,139 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashBoardComponent implements OnInit {
-    optionsChart1: HighchartsOptions;
+    //optionsChart1: HighchartsOptions;
     optionsChart2: HighchartsOptions;
     optionsChart3: HighchartsOptions;
     optionsChart4: HighchartsOptions;
 
-    period: number = 3;
+    period: number = 7;
     results: any;
+    stock: any;
 
+    relevantStocksId = [];
+    relevantStocksPct = [];
+
+    productionParts = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 29, 30, 31, 49, 50, 51, 54, 55, 56];
+    productionEndParts = [1, 2, 3];
+    purchaseparts = [21, 22, 23, 24, 25, 27, 28, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 52, 53, 57, 58, 59];
+    valueProductionParts: number = 0;
+    valueProductionEndParts: number = 0;
+    valuePurchaseparts: number = 0;
     ngOnInit() {
+
+    }
+
+    bla() {
+        let self = this;
+
+        //Set the values for the warehouse stock
+        for (let i in self.stock.article) {
+            let id = self.stock.article[i].id;
+            let pct = parseFloat(self.stock.article[i].pct);
+            self.relevantStocksId.push(id);
+            self.relevantStocksPct.push(pct);
+        }
+
+        //Set the values for the donut chart
+        for (let i in self.stock.article) {
+            let id = self.stock.article[i].id;
+            let value = parseInt(self.stock.article[i].stockvalue);
+            console.log(value);
+            if (self.productionParts.includes(id)) {
+                self.valueProductionParts += value;
+            } else if (self.productionEndParts.includes(id)) {
+                self.valueProductionEndParts += value;
+            } else {
+                self.valuePurchaseparts += value;
+            }
+        }
+
+        console.log("Produktion " + self.valueProductionParts);
+        console.log("Fahrräder " + self.valueProductionEndParts);
+        console.log("Kaufteile " + self.valuePurchaseparts);
+
+        /*
         this.optionsChart1 = {
             title: { text: 'simple chart' },
             series: [{
-                data: [29.9, 71.5, 106.4, 129.2],
+                data: [2, 2, 23],
             }],
             credits: false
         };
+        */
+
         this.optionsChart2 = {
-            chart: { type: 'bar' },
-            title: { text: 'dynamic data example' },
-            series: [{ data: [2, 3, 5, 8, 13] }],
-            credits: false
-        };
-        this.optionsChart3 = {
-            chart: { type: 'bar' },
-            title: { text: 'dynamic data example' },
+            chart: { type: 'column' },
+            title: { text: this.translationService.currentLanguage === 'de' ? "Lagerauslastung in %" : "Warehouse stock utilization in %",},
+
+            plotOptions: {
+                column: {
+                    zones: [{
+                        value: 40,
+                        color: 'red'
+                    }, {
+                        value: 139,
+                        color: 'grey'
+                    }, {
+
+                        color: 'orange'
+                    }]
+                },
+            },
+            yAxis: {
+                title: {
+                    text: '%'
+                }
+            },
+            xAxis: {
+                categories: self.relevantStocksId,
+                title: {
+                    text: 'ID´s'
+                }
+            },
             series: [{
-                name: 'John',
-                data: [5, 3, 4, 7, 2]
-            }, {
-                name: 'Jane',
-                data: [2, 2, 3, 2, 1]
-            }, {
-                name: 'Joe',
-                data: [3, 4, 4, 2, 5]
+                name: this.translationService.currentLanguage === 'de' ? "Lager" : "Stock warehouse",
+                data: self.relevantStocksPct,
+
+            }],
+            credits: false,
+        };
+
+        this.optionsChart3 = {
+            chart: { type: 'pie' },
+            title: { text: 'dynamic data example' },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    }
+                }
+            },
+            series: [{
+                data: [{
+                    name: this.translationService.currentLanguage === 'de' ? "Eigenfertigung" : "Own products",
+                    y: self.valueProductionParts
+                }, {
+                    name: this.translationService.currentLanguage === 'de' ? "Endprodukte" : "Final products",
+                    y: self.valueProductionEndParts,
+                }, {
+                    name: this.translationService.currentLanguage === 'de' ? "Kaufteile" : "Purchasing parts",
+                    y: self.valuePurchaseparts
+                },]
             }],
             credits: false
         };
     }
 
-    constructor(private dashboardService: DashboardService) {
-    }
+    constructor(
+        private dashboardService: DashboardService,
+        private translationService: TranslationService,
+    ) { }
+
+
 
     public doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-    public doughnutChartData: number[] = [350, 450, 100];
+    public doughnutChartData: number[] = [100, 200, 300];
     public doughnutChartType: string = 'doughnut';
 
     // events
@@ -67,6 +157,17 @@ export class DashBoardComponent implements OnInit {
         this.dashboardService.getResults(this.period).then(results => {
             console.log(results);
             this.results = results;
+            this.getStock();
+            //this.bla();
+        });
+
+    }
+
+    getStock() {
+        this.dashboardService.getStock(this.period).then(stock => {
+            console.log(stock);
+            this.stock = stock;
+            this.bla();
         });
     }
 }

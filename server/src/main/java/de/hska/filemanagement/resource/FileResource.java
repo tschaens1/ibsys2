@@ -105,4 +105,16 @@ public class FileResource {
 
 		return ResponseEntity.ok(period.getInput().getContent());
 	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "periods/{periodCounter}/stock")
+	public ResponseEntity<String> getStockForPeriod(@PathVariable Long periodCounter) {
+		Period period = periodRepository.findByCounter(periodCounter);
+
+		if (period == null) {
+			return ResponseEntity.badRequest().body("Period not found in database! Have you uploaded the result XML?");
+		}
+
+		JSONObject json = new JSONObject(period.getResult().getContent());
+		return ResponseEntity.ok(json.getJSONObject("results").getJSONObject("warehousestock").toString());
+	}
 }
