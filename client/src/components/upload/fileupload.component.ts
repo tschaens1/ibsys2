@@ -34,6 +34,7 @@ export class FileUploadComponent {
                 this.planningService.errorWithXML = true;
                 return;
             }
+            this.planningService.errorWithXML = false;
 
             xmlFileReader.onloadend = (e) => {
                 this.xmlObject = xmlFileReader.result;

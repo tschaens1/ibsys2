@@ -15,6 +15,7 @@ export class PlanningService implements OnInit {
     errorWithXML: boolean = false;
 
     currentPeriod: number;
+    xmlPeriod: number;
 
     // urls for upload
     xmlUploadUrl: string;
@@ -233,13 +234,13 @@ export class PlanningService implements OnInit {
             $xml = $(xmlDoc),
             title = $xml.find("results").attr('period');
 
+        this.xmlPeriod = parseInt(title);
+
         // if the period of the xml is the last period
-        if ((this.currentPeriod - 1).toString() === title) {
+        if ((this.currentPeriod - 1) === this.xmlPeriod) {
             let body = JSON.stringify({ content: encodeURIComponent(this.xmlDocument) });
-            this.errorWithXML = false;
             return this.http.post(this.xmlUploadUrl, body, { headers: headers }).toPromise();
         } else {
-            this.errorWithXML = true;
             return Promise.reject(this.translationService.instant('planning_overview.toastr.xml_of_wrong_period'));
         }
     }

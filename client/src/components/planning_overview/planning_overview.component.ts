@@ -188,7 +188,7 @@ export class PlanningOverviewComponent implements OnInit {
             return;
         }
         // check if xml is valid (period and type of document)
-        if (this.page === 0 && this.planningService.errorWithXML) {
+        if (this.page === 0 && (this.planningService.errorWithXML || (this.planningService.currentPeriod - 1 !== this.planningService.xmlPeriod))) {
             this.toastr.error(this.translationService.instant('planning_overview.toastr.xml_error'));
             return;
         }
