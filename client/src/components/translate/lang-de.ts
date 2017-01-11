@@ -41,7 +41,7 @@ export const LANG_DE_TRANSLATIONS = {
             "other": "Sonstiges",
             "settings": "Einstellungen",
             "help": "Hilfe",
-            "about": "Über",
+            "about": "Impressum",
         },
     },
 
@@ -300,7 +300,7 @@ export const LANG_DE_TRANSLATIONS = {
         "nothingFound": "Keine Teile gefunden!",
     },
     "about": {
-        "title": "Über",
+        "title": "Impressum",
         "description": 'Hier können Sie mehr über das Projekt erfahren',
         "content": "Dieses Projek wurde erstellt von Andreas Foitzik, Jan Schölch, Sebastian Dittrich und Philipp Kief.",
         "devs": "Entwickler",

@@ -74,8 +74,8 @@ export const searchEntriesDE: SearchEntry[] = [
     },
     {
         id: 12,
-        name: 'Über',
-        tags: ['About', 'Über', 'Info'],
+        name: 'Impressum',
+        tags: ['About', 'Über', 'Info', 'Impressum'],
         route: ['/app/about'],
         description: 'Über die Anwendung',
     },
