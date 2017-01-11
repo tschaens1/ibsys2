@@ -1,3 +1,4 @@
+import { AboutComponent } from '../about/about.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -63,6 +64,10 @@ const appRoutes: Routes = [
             {
                 path: 'help',
                 component: HelpComponent
+            },
+            {
+                path: 'about',
+                component: AboutComponent,
             },
             {
                 path: 'planning',

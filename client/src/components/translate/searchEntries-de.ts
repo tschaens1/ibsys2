@@ -72,4 +72,11 @@ export const searchEntriesDE: SearchEntry[] = [
         route: ['/app/help'],
         description: 'Hilfe bekommen'
     },
+    {
+        id: 12,
+        name: 'Über',
+        tags: ['About', 'Über', 'Info'],
+        route: ['/app/about'],
+        description: 'Über die Anwendung',
+    },
 ];

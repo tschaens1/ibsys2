@@ -1,3 +1,4 @@
+import { AboutComponent } from '../about/about.component';
 import { DashboardService } from '../dashboard/dashboard.service';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { DashBoardComponent } from '../dashboard/dashboard.component';
@@ -100,6 +101,7 @@ let toastOptions: ToastOptions = new ToastOptions({
     FileUploadComponent,
     PartsComponent,
     ModalComponent,
+    AboutComponent,
   ],
   providers: [
     LoginService,

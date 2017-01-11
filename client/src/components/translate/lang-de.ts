@@ -41,6 +41,7 @@ export const LANG_DE_TRANSLATIONS = {
             "other": "Sonstiges",
             "settings": "Einstellungen",
             "help": "Hilfe",
+            "about": "Über",
         },
     },
 
@@ -297,5 +298,16 @@ export const LANG_DE_TRANSLATIONS = {
             "requiredWorkStations": "Benötigte Arbeitsplätze"
         },
         "nothingFound": "Keine Teile gefunden!",
+    },
+    "about": {
+        "title": "Über",
+        "description": 'Hier können Sie mehr über das Projekt erfahren',
+        "content": "Dieses Projek wurde erstellt von Andreas Foitzik, Jan Schölch, Sebastian Dittrich und Philipp Kief.",
+        "devs": "Entwickler",
+        "term_title": "Semester",
+        "term": "Wintersemester 2016/17",
+        "uni_title": "Hochschule",
+        "uni": "Hochschule Karlsruhe - Technik und Wirtschaft",
+        "tech_title": "Technologien",        
     },
 }

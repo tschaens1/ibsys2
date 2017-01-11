@@ -42,6 +42,7 @@ export const LANG_EN_TRANSLATIONS = {
             "other": "Other",
             "settings": "Settings",
             "help": "Help",
+            "about": "About",
         },
     },
     "dashboard": {
@@ -296,5 +297,16 @@ export const LANG_EN_TRANSLATIONS = {
             "requiredWorkStations": "Required work stations"
         },
         "nothingFound": "No parts found!",
+    },
+    "about": {
+        "title": "About",
+        "description": 'Read more about the project',
+        "content": "This project was created by Andreas Foitzik, Jan Schölch, Sebastian Dittrich and Philipp Kief.",
+        "devs": "Developers",
+        "term_title": "Term",
+        "term": "Winter semester 2016/17",
+        "uni_title": "University",
+        "uni": "University of Applied Sciences",
+        "tech_title": "Technologies",
     },
 }
