@@ -134,28 +134,7 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="page-content animated fadeIn" *ngIf="page === 3">
-		<div class="row page-part">
-			<div class="col s12">
-				<h4>{{'planning_overview.amount_planned_production'|translate}}
-					<a class="help-button" (click)="openHelp('planning_overview.modals.planned_production')"><i class="mdi mdi-help-circle"></i></a>
-				</h4>
-				P1:
-				<input type="number" placeholder="P1" [(ngModel)]="produce_p1" (keyup.enter)="next()"> P2:
-				<input type="number" placeholder="P2" [(ngModel)]="produce_p2" (keyup.enter)="next()"> P3:
-				<input type="number" placeholder="P3" [(ngModel)]="produce_p3" (keyup.enter)="next()">
-			</div>
-			<div class="col s12">
-				<div class="button-group">
-					<a class="waves-effect waves-light grey btn" (click)="back()">{{'planning_overview.back'|translate}}</a>
-					<a class="waves-effect waves-light btn" (click)="next()">{{'planning_overview.continue'|translate}}</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="page-content animated fadeIn" *ngIf="page === 4">
 		<div class="row page-part">
 			<div class="col s12">
 				<h4>{{'planning_overview.amount_savety_stock'|translate}}
