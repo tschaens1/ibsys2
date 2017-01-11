@@ -1,3 +1,4 @@
+import { ToastsManager } from 'ng2-toastr';
 import { DashboardService } from './dashboard.service';
 import { LoginService } from './../login/login.service';
 import { Component, OnInit } from '@angular/core';
@@ -27,6 +28,7 @@ export class DashBoardComponent implements OnInit {
     valueProductionParts: number = 0;
     valueProductionEndParts: number = 0;
     valuePurchaseparts: number = 0;
+
     ngOnInit() {
 
     }
@@ -72,7 +74,7 @@ export class DashBoardComponent implements OnInit {
 
         this.optionsChart2 = {
             chart: { type: 'column' },
-            title: { text: this.translationService.currentLanguage === 'de' ? "Lagerauslastung in %" : "Warehouse stock utilization in %",},
+            title: { text: this.translationService.currentLanguage === 'de' ? "Lagerauslastung in %" : "Warehouse stock utilization in %", },
 
             plotOptions: {
                 column: {
@@ -136,6 +138,7 @@ export class DashBoardComponent implements OnInit {
     constructor(
         private dashboardService: DashboardService,
         private translationService: TranslationService,
+        private toastr: ToastsManager,
     ) { }
 
 
@@ -159,6 +162,9 @@ export class DashBoardComponent implements OnInit {
             this.results = results;
             this.getStock();
             //this.bla();
+        }).catch((err) => {
+            console.error(err);
+            this.toastr.error(`Period ${this.period} not available`);
         });
 
     }
@@ -168,6 +174,9 @@ export class DashBoardComponent implements OnInit {
             console.log(stock);
             this.stock = stock;
             this.bla();
+        }).catch((err) => {
+            console.error(err);
+            this.toastr.error(`Period ${this.period} not available`);
         });
     }
 }
