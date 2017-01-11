@@ -14,8 +14,8 @@
 				<tbody>
 					<tr *ngFor="let workplace of workplaces">
 						<td>{{workplace['@'].station}}</td>
-						<td><input type="text" [(ngModel)]="workplace['@'].shift"></td>
-						<td><input type="text" [(ngModel)]="workplace['@'].overtime"></td>
+						<td><input type="number" min="0" max="3" [(ngModel)]="workplace['@'].shift"></td>
+						<td><input type="number" min="0" [(ngModel)]="workplace['@'].overtime"></td>
 					</tr>
 				</tbody>
 			</table>
