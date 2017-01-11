@@ -2,6 +2,7 @@ export interface Part {
   id: string;
   Description: string;
   Usage: string;
+  Discont: number,
   StartAmount: number;
   StartPrice: number;
   CostOfDelivery: number;

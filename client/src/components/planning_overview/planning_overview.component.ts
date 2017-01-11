@@ -61,7 +61,8 @@ export class PlanningOverviewComponent implements OnInit {
     // enabledPartsSafetyStock: boolean = false;
     safetyStock = [];
     productionParts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 29, 30, 31, 49, 50, 51, 54, 55, 56];
-    defaultSafetyStock = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100];
+    defaultSafetyStock = [60, 60, 60, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 70, 70, 50, 50, 50, 70, 50, 50, 50, 50, 50, 50, 50, 50, 50];
+    safetyCategory = ["B", "B", "B", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "A", "A", "C", "C", "C", "A", "C", "C", "C", "C", "C", "C", "C", "C", "C"];
 
     constructor(
         private router: Router,
@@ -81,6 +82,7 @@ export class PlanningOverviewComponent implements OnInit {
             this.safetyStock.push({
                 article: part,
                 quantity: this.defaultSafetyStock[i],
+                category: this.safetyCategory[i],
             });
         });
 

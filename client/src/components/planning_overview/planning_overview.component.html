@@ -183,6 +183,7 @@
 						<th>{{'planning_overview.safety_stock_description'|translate}}</th>
 						<th>{{'planning_overview.safety_stock_price'|translate}}</th>
 						<th>{{'planning_overview.safety_stock_default'|translate}}</th>
+						<th>{{'planning_overview.safety_stock_category'|translate}}</th>
 						<th>{{'planning_overview.safety_stock_quantity'|translate}}</th>
 					</thead>
 					<tbody>
@@ -191,6 +192,7 @@
 							<td>{{getPartInformation(part.article).Description}}</td>
 							<td>€ {{getPartInformation(part.article).StartPrice}}</td>
 							<td>{{defaultSafetyStock[i]}}</td>
+							<td>{{safetyCategory[i]}}</td>
 							<td>
 								<input type="number" placeholder="quantity" [(ngModel)]="part.quantity">
 							</td>

@@ -44,6 +44,14 @@ export const LANG_EN_TRANSLATIONS = {
             "help": "Help",
         },
     },
+    "dashboard": {
+        "title": "Dashboard",
+        "description": "Here you can see all important information",
+        "effiency": "Effiency",
+        "capacity": "Capacity",
+        "delivery_reliability": "Delivery Reliability",
+        "profit": "Profit",
+    },
     "welcome": {
         "title": "Start",
         "description": "With the help of this tool you can plan your bike production",
@@ -143,6 +151,7 @@ export const LANG_EN_TRANSLATIONS = {
         "safety_stock_price": "Price",
         "safety_stock_quantity": "Amount",
         "safety_stock_default": "Default value",
+        "safety_stock_category": "Safety category",
 
         "show_single_items": "Show single parts",
 
@@ -174,7 +183,7 @@ export const LANG_EN_TRANSLATIONS = {
             "sellwish": "The sellwish describes the amount of products that will be selled in the next period. Forecasts can change in the next periods.",
             "selldirect": "The selldirect describes the products that will be selled additionally to the sellwish. These products will be selled directly from the warehouse. Selldirects are optional.",
             "planned_production": "Here you have to specify the production of each product. Beware that these values have a big impact for the planning of the purchasing parts, the capacity planning and the production planning.",
-            "safetyStock": "Here you can specify the safety stock for the warehouse. The safety stock describes how much parts you want to have in the warehouse additionally.",
+            "safetyStock": "Here you can specify the safety stock for the warehouse. The safety stock describes how much parts you want to have in the warehouse additionally at the end of a period. For an better overview are they seperated in Categorys. Category A = 70 Stück, Category B = 60 Stück, Category C = 50 Stück",
         }
     },
     "planning_purchasing": {
@@ -184,6 +193,7 @@ export const LANG_EN_TRANSLATIONS = {
             "article": "Article",
             "description": "Description",
             "usage": "Usage",
+            "discont": "Discont amount",
             "quantity": "Quantity",
             "modus": "Modus",
             "workstations": "Workstations",

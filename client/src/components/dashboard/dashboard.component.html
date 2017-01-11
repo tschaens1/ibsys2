@@ -1,99 +1,104 @@
 <div class="app-page animated fadeIn">
-	<div class="page-heading">		
-		<div class="row dashboard-cards" *ngIf="results">
-			<div class="col s12 m3">
-				<div class="dashboard-card card-blue">
-					<div class="card-statistic">
-						65,58%
-					</div>
-					<div class="card-title">
-						Efficiency
-					</div>
-					<div class="card-icon">
-						<i class="mdi mdi-check"></i>
-					</div>
-				</div>
-			</div>
-			<div class="col s12 m3">
-				<div class="dashboard-card card-red">
-					<div class="card-statistic">
-						300
-					</div>
-					<div class="card-title">
-						Sales
-					</div>
-					<div class="card-icon">
-						<i class="mdi mdi-clipboard-text"></i>
-					</div>
-				</div>
-			</div>
-			<div class="col s12 m3">
-				<div class="dashboard-card card-green">
-					<div class="card-statistic">
-						99%
-					</div>
-					<div class="card-title">
-						Delivery reliability
-					</div>
-					<div class="card-icon">
-						<i class="mdi mdi-elevation-decline"></i>
-					</div>
-				</div>
-			</div>
-			<div class="col s12 m3">
-				<div class="dashboard-card card-orange">
-					<div class="card-statistic">
-						{{results.summary.profit.current}}
-					</div>
-					<div class="card-title">
-						Profit
-					</div>
-					<div class="card-icon">
-						<i class="mdi mdi-bank"></i>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="page-content">
-		<div class="row">
-			<div class="col s12 m12 l6">
-				<div class="page-part">
-					<h1>Load period data</h1>
-					<input type="number" [(ngModel)]="period">
-					<a (click)="getResults()">Load period</a>
-				</div>
-			</div>
-			<div class="col s12 m12 l6">
-				<div class="page-part">
-					<h1>Highcharts</h1>
-					<a (click)="getResults()">Load period</a>
-					<chart [options]="optionsChart1"></chart>
-				</div>
-			</div>
-			<div class="col s12 m12 l6">
-				<div class="page-part">
-					<h1>Highcharts</h1>
-					<chart [options]="optionsChart2"></chart>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col s12 m6 l6">
-				<div class="page-part">
-					<h1>Chart.js</h1>
-					<div style="display: block">
-<canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)"
-	(chartClick)="chartClicked($event)"></canvas>
-</div>
-</div>
-</div>
-<div class="col s12 m12 l6">
-	<div class="page-part">
-		<h1>Highcharts</h1>
-		<chart [options]="optionsChart3"></chart>
-	</div>
-</div>
-</div>
-</div>
+      <!-- Heading of the html, set the period and show data of the period  -->
+      <div class="page-heading">
+            <h1>{{'dashboard.title'|translate}}</h1>
+            <p class="ellipsis">{{'dashboard.description'|translate}}</p>
+            <div class="row">
+                  <div class="col s12 m12 l6">
+                        <div class="page-part">
+                              <h1>Load period data</h1>
+                              <input type="number" [(ngModel)]="period">
+                              <a (click)="getResults()">Load period</a>
+                        </div>
+                  </div>
+            </div>
+      </div>
+
+      <!-- Only show data after period is set -->
+      <div class="page-content" *ngIf="results">
+
+            <!-- Cards for general info on top -->
+            <div class="row dashboard-cards">
+                  <div class="col s12 m3">
+                        <div class="dashboard-card card-blue">
+                              <div class="card-statistic">
+                                    {{results.general.effiency.current}} %
+                              </div>
+                              <div class="card-title">
+                                    {{'dashboard.effiency'|translate}}
+                              </div>
+                              <div class="card-icon">
+                                    <i class="mdi mdi-check"></i>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col s12 m3">
+                        <div class="dashboard-card card-red">
+                              <div class="card-statistic">
+                                    {{results.general.relpossiblenormalcapacity.current}} %
+                              </div>
+                              <div class="card-title">
+                                    {{'dashboard.capacity'|translate}}
+                              </div>
+                              <div class="card-icon">
+                                    <i class="mdi mdi-clipboard-text"></i>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col s12 m3">
+                        <div class="dashboard-card card-green">
+                              <div class="card-statistic">
+                                    {{results.general.deliveryreliability.current}} %
+                              </div>
+                              <div class="card-title">
+                                    {{'dashboard.delivery_reliability'|translate}}
+                              </div>
+                              <div class="card-icon">
+                                    <i class="mdi mdi-elevation-decline"></i>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col s12 m3">
+                        <div class="dashboard-card card-orange">
+                              <div class="card-statistic">
+                                    {{results.summary.profit.current}}
+                              </div>
+                              <div class="card-title">
+                                    {{'dashboard.profit'|translate}}
+                              </div>
+                              <div class="card-icon">
+                                    <i class="mdi mdi-bank"></i>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+
+
+            <div class="row">
+                  <div class="col s12 m12 l6">
+                        <div class="page-part">
+                              <h1>Highcharts</h1>
+                              <chart [options]="optionsChart2"></chart>
+                        </div>
+                  </div>
+
+                  <!--
+         <div class="col s12 m6 l6">
+            <div class="page-part">
+               <h1>Chart.js</h1>
+               <div style="display: block">
+                  <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+               </div>
+            </div>
+         </div>
+         -->
+                  <div class="col s12 m12 l6">
+                        <div class="page-part">
+                              <h1>Highcharts</h1>
+                              <chart [options]="optionsChart3"></chart>
+                        </div>
+                  </div>
+            </div>
+      </div>
 </div>

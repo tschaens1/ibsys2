@@ -16,23 +16,32 @@
 			<div class='wrapper'>
 				<div class='article-container' [dragula]='"purchasing-bag"' [dragulaModel]='parts'>
 					<div class="production-item" *ngFor='let item of parts'>
+
+
+
 						<div class="row">
 							<div class="col s2 m1">
 								<div class="title">{{'planning_purchasing.container.article'|translate}}</div>
 								<div class="detail">{{item['@'].article}}</div>
 							</div>
-							<div class="col s6 m2">
+							<div class="col s6 m1">
 								<div class="title">{{'planning_purchasing.container.description'|translate}}</div>
 								<div class="detail">{{getPartInformation(item['@'].article).Description}}</div>
 							</div>
-							<div class="col s6 m2">
+							<div class="col s6 m1">
 								<div class="title">{{'planning_purchasing.container.usage'|translate}}</div>
 								<div class="detail">{{getPartInformation(item['@'].article).Usage}}</div>
 							</div>
+
+							<div class="col s6 m2">
+								<div class="title">{{'planning_purchasing.container.discont'|translate}}</div>
+								<div class="detail">{{getPartInformation(item['@'].article).Discont}}</div>
+							</div>
+
 							<div class="col s4 m2">
 								<div class="title">{{'planning_purchasing.container.quantity'|translate}}</div>
 								<div class="detail">
-									<input type="text" [(ngModel)]="item['@'].quantity">
+										<input type="text"  [(ngModel)]="item['@'].quantity">
 								</div>
 							</div>
 							<div class="col s4 m5">

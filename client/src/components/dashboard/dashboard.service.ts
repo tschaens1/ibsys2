@@ -20,6 +20,14 @@ export class DashboardService implements OnInit {
             .catch(this.handleError);
     }
 
+     getStock(period: number) {
+        this.uploadUrl = this.apiEndpoint + `/api/rest/files/periods/${period}/stock`;
+        return this.http.get(this.uploadUrl, this.getHeaders())
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+    }
+
     ngOnInit(): void {
 
     }

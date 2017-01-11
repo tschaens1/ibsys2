@@ -43,7 +43,17 @@ export const LANG_DE_TRANSLATIONS = {
             "help": "Hilfe",
         },
     },
-    "welcome":{
+
+    "dashboard": {
+        "title": "Dashboard",
+        "description": "Hier sehen sie alle wichtigen Informationen",
+        "effiency": "Auslastung",
+        "capacity": "Kapazität",
+        "delivery_reliability": "Liefertreue",
+        "profit": "Profit",
+    },
+
+    "welcome": {
         "title": "Start",
         "description": "Mit diesem Tool können Sie Ihre Fahrradproduktion steuern",
         "actions": {
@@ -153,6 +163,7 @@ export const LANG_DE_TRANSLATIONS = {
         "safety_stock_quantity": "Menge",
         "safety_stock_price": "Teile-Wert",
         "safety_stock_default": "Standardwert",
+        "safety_stock_category": "Sicherheitskategorie",
 
         "show_single_items": "Einzelteile zeigen",
 
@@ -183,7 +194,7 @@ export const LANG_DE_TRANSLATIONS = {
             "sellwish": "Der Vertriebswunsch gibt an, wie viele Produkte in der kommenden Periode verkauft werden sollen. Prognosen können sich noch ändern.",
             "selldirect": "Der Direktverkauf gibt an, welche Produkte zusätzlich zum Vertriebswunsch direkt ab Lager verkauft werden. Direktverkäufe sind optional.",
             "planned_production": "Geben Sie hier an, wie viele Produkte tatsächlich produziert werden sollen. Die Angabe dieser Werte hat einen großen Einfluss auf die Kalkulation der Kaufteile, der Eigenfertigung sowie auf die Kapazitätsplanung.",
-            "safetyStock": "Hier kann der Sicherheitsbestand für das Lager angegeben werden. Der Sicherheitsbestand gibt an, wie viele Teile im Lager zur Sicherheit vorhanden sein sollen.",
+            "safetyStock": "Hier kann der Sicherheitsbestand für das Lager angegeben werden. Der Sicherheitsbestand gibt an, wie viele Teile im Lager zur Sicherheit am Ende der Planperiode vorhanden sein sollen. Für eine besser Einschätzung sind die Teilei in Sicherheitskategorien unterteilt. Kategorie A = 70 Stück, Kategorie B = 60 Stück, Kategorie C = 50 Stück.",
         }
     },
     "planning_purchasing": {
@@ -193,6 +204,7 @@ export const LANG_DE_TRANSLATIONS = {
             "article": "Artikel",
             "description": "Beschreibung",
             "usage": "Verwendung",
+            "discont": "Diskontmenge",
             "quantity": "Menge",
             "modus": "Modus",
             "workstations": "Arbeitsplätze",
