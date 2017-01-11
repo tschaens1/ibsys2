@@ -125,14 +125,6 @@ public class CapacityService {
 		}
 
 		tmpMergedContent.addAll(dispositionOrder);
-
-		System.out.println("Production orders --------------> <-------------");
-		for (ProductionOrder order : tmpMergedContent) {
-			System.out.println(order.toString());
-			final ProductionLine productionLine = this.workplaceService.getProductionLineMap()
-					.get(order.getProductNumber());
-			productionLine.addProductionOrder(order);
-		}
 	}
 
 	private void getCalculation() {
@@ -152,12 +144,6 @@ public class CapacityService {
 		}
 		for (Workplace workplace : workplaces) {
 			this.calculateShifts(workplace);
-			System.out.print("Kapa: " + workplace.getWorkingTime());
-		}
-
-		for (Capacity capacity : this.capacities) {
-			System.out.println(" Capacity: - Station - " + capacity.getStation() + " - Shift - " + capacity.getShift()
-					+ " - Overtime - " + capacity.getOvertime());
 		}
 	}
 
