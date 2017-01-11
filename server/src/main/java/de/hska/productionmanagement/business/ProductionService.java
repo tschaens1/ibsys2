@@ -162,7 +162,7 @@ public class ProductionService {
         ArrayList<ProductionOrder> productionOrdersInWork = new ArrayList<>();
         for (ProductionOrder order : this.ordersinwork) {
             if (order.getProductNumber() == productNumber) {
-                int amount = partsService.getManufacturingPartById(productNumber).getUsedInAllProducts() ? order.getAmount() / 3 : order.getAmount();
+                int amount = partsService.getManufacturingPartById(productNumber).getUsedInAllProducts() ? (order.getAmount() / 3) : order.getAmount();
                 order.setAmount(amount);
                 productionOrdersInWork.add(order);
             }
@@ -171,10 +171,10 @@ public class ProductionService {
     }
 
     public ArrayList<ProductionOrder> getOrdersWaitinglistForProduct(int productNumber) {
-        ArrayList<ProductionOrder> productionOrdersInWaitinglist = new ArrayList<ProductionOrder>();
+        ArrayList<ProductionOrder> productionOrdersInWaitinglist = new ArrayList<>();
         for (ProductionOrder order : this.waitinglist.getOrders()) {
             if (order.getProductNumber() == productNumber) {
-                int amount = partsService.getManufacturingPartById(productNumber).getUsedInAllProducts() ? order.getAmount() / 3 : order.getAmount();
+                int amount = partsService.getManufacturingPartById(productNumber).getUsedInAllProducts() ? (order.getAmount() / 3) : order.getAmount();
                 order.setAmount(amount);
                 productionOrdersInWaitinglist.add(order);
             }

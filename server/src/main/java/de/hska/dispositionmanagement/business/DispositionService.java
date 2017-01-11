@@ -49,19 +49,7 @@ public class DispositionService {
         this.productionService.deployRemainingProductionOrders(dispositions);
 
         for (Disposition dispo : this.dispositions) {
-            int workInProgress = 0;
-            for (ProductionOrder work : dispo.getProductionOrders()) {
-                workInProgress += work.getAmount();
-            }
-
-            int workInWaitingQueue = 0;
-            for (ProductionOrder work : dispo.getProductionOrderInWaitingQueue()) {
-                workInWaitingQueue += work.getAmount();
-            }
-            System.out.println("Product Order: " + dispo.getPartNumber() + " \t Sellwish "
-                    + dispo.getSellwish().getAmount() + " + SafetyStock " + dispo.getSafetyStockvalue()
-                    + " - Warehouse Stock " + dispo.getWarehouseStock() + " - WorkInProgress " + workInProgress
-                    + " - WorkInWaitingQueue " + workInWaitingQueue + " = " + dispo.getProduction().getAmount());
+            System.out.println(dispo.toString());
         }
     }
 
@@ -151,7 +139,8 @@ public class DispositionService {
             disposition.setProductionOrderInWaitingQueue(
                     this.productionService.getOrdersWaitinglistForProduct(partNumber));
             for (ProductionOrder order : disposition.getProductionOrderInWaitingQueue()) {
-                amountWaitinglist += order.getAmount();
+                if (order.getProductNumber() == partNumber)
+                    amountWaitinglist += order.getAmount();
             }
 
             if (this.partsService.getManufacturingPartById(partNumber).getUsedInAllProducts()) {
@@ -162,7 +151,8 @@ public class DispositionService {
         if (this.productionService.getOrdersInWorkForProduct(partNumber) != null) {
             disposition.setProductionOrders(this.productionService.getOrdersInWorkForProduct(partNumber));
             for (ProductionOrder order : disposition.getProductionOrders()) {
-                amountOrdersInWork += order.getAmount();
+                if (order.getProductNumber() == partNumber)
+                    amountOrdersInWork += order.getAmount();
             }
 
             if (this.partsService.getManufacturingPartById(partNumber).getUsedInAllProducts()) {
