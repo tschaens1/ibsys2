@@ -3,3 +3,10 @@ npm-debug.log
 server/.gradle/*
 server/.gradle/*
 server/.idea/*
+.gradletasknamecache
+!gradle-wrapper.jar
+gradle-app.setting
+/gradle/*
+/build/*
+/.idea/*
+
