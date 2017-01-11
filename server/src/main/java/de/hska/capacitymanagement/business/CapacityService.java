@@ -1,6 +1,7 @@
 package de.hska.capacitymanagement.business;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,6 @@ import de.hska.workplacemanagement.domain.Workplace;
 public class CapacityService {
 
 	private final static int DAYS_PER_WEEK = 5;
-	private final static int SHIFT_DURATION = 2400;
 
 	@Autowired
 	private WorkplaceService workplaceService;
@@ -41,13 +41,13 @@ public class CapacityService {
 		this.getCalculation();
 	}
 
-	public void deployExistingCapacities() {
-		ArrayList<ProductionOrder> tmpMergedContent = new ArrayList<ProductionOrder>();
+	private void deployExistingCapacities() {
+		ArrayList<ProductionOrder> tmpMergedContent = new ArrayList<>();
 
 		for (ProductionOrder productionOrderInWaitinglist : productionService.getProductionOrdersInWaitinglist()) {
 			for (ProductionOrder orderInWork : this.productionService.getProductionOrdersInWork()) {
 				ProductionOrder order = new ProductionOrder();
-				if (orderInWork.getOrderId() == productionOrderInWaitinglist.getOrderId()) {
+				if (Objects.equals(orderInWork.getOrderId(), productionOrderInWaitinglist.getOrderId())) {
 					order.setInWork(true);
 					order.setOrderId(orderInWork.getOrderId());
 					order.setAmount(productionOrderInWaitinglist.getAmount() + orderInWork.getAmount());
@@ -62,7 +62,7 @@ public class CapacityService {
 		for (ProductionOrder productionOrderInWaitinglist : productionService.getProductionOrdersInWaitinglist()) {
 			boolean contains = false;
 			for (ProductionOrder tmpOrder : tmpMergedContent) {
-				if (tmpOrder.getOrderId() == productionOrderInWaitinglist.getOrderId()) {
+				if (Objects.equals(tmpOrder.getOrderId(), productionOrderInWaitinglist.getOrderId())) {
 					contains = true;
 					break;
 				}
@@ -82,7 +82,7 @@ public class CapacityService {
 		for (ProductionOrder productionOrderInWork : productionService.getProductionOrdersInWork()) {
 			boolean contains = false;
 			for (ProductionOrder tmpOrder : tmpMergedContent) {
-				if (tmpOrder.getOrderId() == productionOrderInWork.getOrderId()) {
+				if (Objects.equals(tmpOrder.getOrderId(), productionOrderInWork.getOrderId())) {
 					contains = true;
 					break;
 				}
@@ -99,20 +99,20 @@ public class CapacityService {
 			}
 		}
 
-		ArrayList<ProductionOrder> dispositionOrder = new ArrayList<ProductionOrder>();
+		ArrayList<ProductionOrder> dispositionOrder = new ArrayList<>();
 		for (Disposition disposition : dispositionService.getDisposition()) {
 			if (this.partsService.getManufacturingPartById(disposition.getProduction().getProductNumber())
 					.getUsedInAllProducts()) {
 				boolean contains = false;
 				for (ProductionOrder order : dispositionOrder) {
-					if (disposition.getProduction().getProductNumber() == order.getProductNumber())
+					if (Objects.equals(disposition.getProduction().getProductNumber(), order.getProductNumber()))
 						contains = true;
 				}
 				if (!contains)
 					dispositionOrder.add(disposition.getProduction());
 
 				for (ProductionOrder order : dispositionOrder) {
-					if (disposition.getProduction().getProductNumber() == order.getProductNumber()) {
+					if (Objects.equals(disposition.getProduction().getProductNumber(), order.getProductNumber())) {
 						if (contains)
 							order.setAmount(order.getAmount() + disposition.getProduction().getAmount());
 						else
@@ -125,51 +125,34 @@ public class CapacityService {
 		}
 
 		tmpMergedContent.addAll(dispositionOrder);
-
-		System.out.println("Production orders --------------> <-------------");
-		for (ProductionOrder order : tmpMergedContent) {
-			System.out.println(order.toString());
-			final ProductionLine productionLine = this.workplaceService.getProductionLineMap()
-					.get(order.getProductNumber());
-			productionLine.addProductionOrder(order);
-		}
 	}
 
-	public void getCalculation() {
+	private void getCalculation() {
 
-		ArrayList<Workplace> workplaces = new ArrayList<Workplace>();
+		ArrayList<Workplace> workplaces = new ArrayList<>();
 		for (Workplace workplace : this.workplaceService.getAllWorkPlaces()) {
 			boolean contains = false;
 			for (Workplace workplaceUnique : workplaces) {
-				if (workplace.getNumber() == workplaceUnique.getNumber())
+				if (Objects.equals(workplace.getNumber(), workplaceUnique.getNumber()))
 					contains = true;
 			}
 			if (!contains) {
 				workplaces.add(workplace);
 			} else {
-				for (Workplace workplaceUnique : workplaces) {
-					if (workplace.getNumber() == workplaceUnique.getNumber())
-						workplaceUnique.setWorkingTime(workplaceUnique.getWorkingTime() + workplace.getWorkingTime());
-				}
+				workplaces.stream().filter(workplaceUnique -> Objects.equals(workplace.getNumber(), workplaceUnique.getNumber())).forEach(workplaceUnique -> workplaceUnique.setWorkingTime(workplaceUnique.getWorkingTime() + workplace.getWorkingTime()));
 			}
 		}
 		for (Workplace workplace : workplaces) {
 			this.calculateShifts(workplace);
-			System.out.print("Kapa: " + workplace.getWorkingTime());
-		}
-
-		for (Capacity capacity : this.capacities) {
-			System.out.println(" Capacity: - Station - " + capacity.getStation() + " - Shift - " + capacity.getShift()
-					+ " - Overtime - " + capacity.getOvertime());
 		}
 	}
 
-	public void calculateShifts(Workplace workplace) {
+	private void calculateShifts(Workplace workplace) {
 		Capacity capacity = new Capacity();
 		capacity.setStation(workplace.getNumber());
 
-		int overtime = 0;
-		int shift = 0;
+		int overtime;
+		int shift;
 
 		if (workplace.getWorkingTime() <= 2400) {
 			shift = 1;

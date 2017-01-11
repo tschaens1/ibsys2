@@ -92,11 +92,6 @@ public class ProcurementCalculationService {
 
         Integer neededAmount = 0;
 
-        System.out.print(
-                "Product: " + buyPart.getNumber()
-                        + " Upcoming amount: " + Arrays.toString(futureAmounts)
-        );
-
         for (int i = 0; i < worstCaseInt; i++) {
             int calcPeriod = currentPeriod + i;
 
@@ -107,19 +102,13 @@ public class ProcurementCalculationService {
             // Check for existing order(s) in the future
             if (currentOrders.size() > 0) {
                 for (BuyOrder order : currentOrders) {
-                    System.out.print(" Incoming order is there. It has arrival period " + procurementService.getWorstCaseArrivalPeriodByOrder(order) + ".");
                     if (procurementService.getWorstCaseArrivalPeriodByOrder(order) == calcPeriod) {
-                        System.out.print(" Incoming order in period " + calcPeriod + " with amount: " + order.getAmount());
                         currentAmount += order.getAmount();
                     }
                 }
             }
 
             currentAmount -= futureAmounts[i];
-
-            System.out.print(
-                    " Amount in calc Period " + calcPeriod + ": " + currentAmount
-            );
 
             if (currentAmount < 0) {
                 neededAmount += currentAmount * (-1);
@@ -129,7 +118,6 @@ public class ProcurementCalculationService {
                             && neededAmount < buyPart.getDiscountAmount()) {
                         neededAmount = buyPart.getDiscountAmount();
                     }
-                    System.out.println(" Normal, amount: " + neededAmount);
                     return new BuyOrder(buyPart.getNumber(), BuyMode.Normal, neededAmount, currentPeriod, 0.0);
                 } else {
                     // Fast
@@ -137,14 +125,12 @@ public class ProcurementCalculationService {
                             && neededAmount < buyPart.getDiscountAmount()) {
                         neededAmount = buyPart.getDiscountAmount();
                     }
-                    System.out.println(" Fast, amount: " + neededAmount);
                     return new BuyOrder(buyPart.getNumber(), BuyMode.Fast, neededAmount, currentPeriod, 0.0);
                 }
             }
         }
 
         // Else, do not buy stuff
-        System.out.println(" No need to order.");
         return null;
     }
 

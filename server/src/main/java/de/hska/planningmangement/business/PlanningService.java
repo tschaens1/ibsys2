@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class PlanningService {
 	private List<PlanningPosition> forecastTwo = new ArrayList<>();
 	private List<PlanningPosition> forecastThree = new ArrayList<>();
 
-	public void initialize(JsonFile jsonFile) throws ParseException {
+	public void initialize(JsonFile jsonFile) throws ParseException, JSONException {
 
 		ConstructContainers();
 
@@ -35,10 +36,10 @@ public class PlanningService {
 		JSONObject inputJSON = jsonObject.getJSONObject("input");
 
 		this.setSellwishItems(inputJSON.getJSONObject("sellwish"));
-		this.setProductionItems(inputJSON.getJSONObject("production"));
 		this.setDirectSaleItems(inputJSON.getJSONObject("selldirect"));
 		this.setSafetyStockItems(inputJSON.getJSONObject("safetystock"));
 		this.setForecasts(inputJSON.getJSONObject("forecasts"));
+		this.setProductionItems();
 	}
 
 	private void ConstructContainers() {
@@ -63,15 +64,10 @@ public class PlanningService {
 		}
 	}
 
-	private void setProductionItems(JSONObject jsonObject) {
-		JSONArray productionItemsJSONArray = jsonObject.getJSONArray("items");
-		PlanningPosition productionItem;
-		for (int i = 0, size = productionItemsJSONArray.length(); i < size; i++) {
-			JSONObject objectInArray = productionItemsJSONArray.getJSONObject(i);
-			int article = Integer.parseInt(objectInArray.get("article").toString());
-			int quantity = Integer.parseInt(objectInArray.get("quantity").toString());
-			productionItem = new PlanningPosition(article, quantity, 0, 0);
-			this.productionItems.add(productionItem);
+	private void setProductionItems() {
+		for (PlanningPosition position : this.getSellwishItems()) {
+			int id = position.getArticle();
+			productionItems.add(new PlanningPosition(id, position.getQuantity() + getSelldirectItemForProduct(id).getQuantity(), 0, 0));
 		}
 	}
 

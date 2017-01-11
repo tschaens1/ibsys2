@@ -54,10 +54,6 @@ export class PlanningOverviewComponent implements OnInit {
     selldirect_penalty_p2: string;
     selldirect_penalty_p3: string;
 
-    produce_p1: number;
-    produce_p2: number;
-    produce_p3: number;
-
     // enabledPartsSafetyStock: boolean = false;
     safetyStock = [];
     productionParts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 29, 30, 31, 49, 50, 51, 54, 55, 56];
@@ -138,10 +134,6 @@ export class PlanningOverviewComponent implements OnInit {
             this.selldirect_penalty_p1 = this.inputOflastPeriod.input.selldirect.items[0].penalty || "0";
             this.selldirect_penalty_p2 = this.inputOflastPeriod.input.selldirect.items[1].penalty || "0";
             this.selldirect_penalty_p3 = this.inputOflastPeriod.input.selldirect.items[2].penalty || "0";
-
-            this.produce_p1 = this.inputOflastPeriod.input.production.items[0].quantity || 0;
-            this.produce_p2 = this.inputOflastPeriod.input.production.items[1].quantity || 0;
-            this.produce_p3 = this.inputOflastPeriod.input.production.items[2].quantity || 0;
         }
         catch (err) {
             console.log('Could not load inputs of last period!', err);
@@ -179,10 +171,6 @@ export class PlanningOverviewComponent implements OnInit {
         this.selldirect_price_p1 = "0.0";
         this.selldirect_price_p2 = "0.0";
         this.selldirect_price_p3 = "0.0";
-
-        this.produce_p1 = 0;
-        this.produce_p2 = 0;
-        this.produce_p3 = 0;
     }
 
     // go to the next step in the formular
@@ -212,15 +200,7 @@ export class PlanningOverviewComponent implements OnInit {
             this.toastr.warning(this.translationService.instant('planning_overview.toastr.very_high_sellwish'));
         }
 
-        // validate produce
-        if (this.page === 3 && (this.produce_p1 < 0 ||
-            this.produce_p2 < 0 ||
-            this.produce_p3 < 0)) {
-            this.toastr.error(this.translationService.instant('planning_overview.toastr.wrong_production_values'));
-            return;
-        }
-
-        if (this.page !== 4) {
+        if (this.page !== 3) {
             this.page++;
         } else {
             this.planningService.startPlanning(this.createInputJSON())
@@ -337,22 +317,6 @@ export class PlanningOverviewComponent implements OnInit {
                             }
                         ]
                     },
-                },
-                production: {
-                    "items": [
-                        {
-                            "article": "1",
-                            "quantity": this.produce_p1 || 0
-                        },
-                        {
-                            "article": "2",
-                            "quantity": this.produce_p2 || 0
-                        },
-                        {
-                            "article": "3",
-                            "quantity": this.produce_p3 || 0
-                        }
-                    ]
                 },
                 "selldirect": {
                     "items": [
