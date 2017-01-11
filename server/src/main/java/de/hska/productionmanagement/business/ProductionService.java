@@ -2,6 +2,7 @@ package de.hska.productionmanagement.business;
 
 import de.hska.dispositionmanagement.domain.Disposition;
 import de.hska.filemanagement.domain.JsonFile;
+import de.hska.partsmanagement.business.PartsService;
 import de.hska.planningmangement.business.PlanningService;
 import de.hska.planningmangement.domain.PlanningPosition;
 import de.hska.productionmanagement.domain.Waitinglist;
@@ -28,6 +29,9 @@ public class ProductionService {
 
     @Autowired
     private WorkplaceService workplaceService;
+
+    @Autowired
+    private PartsService partsService;
 
     private int period;
     private Waitinglist waitinglist;
@@ -158,6 +162,8 @@ public class ProductionService {
         ArrayList<ProductionOrder> productionOrdersInWork = new ArrayList<>();
         for (ProductionOrder order : this.ordersinwork) {
             if (order.getProductNumber() == productNumber) {
+                int amount = partsService.getManufacturingPartById(productNumber).getUsedInAllProducts() ? order.getAmount() / 3 : order.getAmount();
+                order.setAmount(amount);
                 productionOrdersInWork.add(order);
             }
         }
@@ -168,6 +174,8 @@ public class ProductionService {
         ArrayList<ProductionOrder> productionOrdersInWaitinglist = new ArrayList<ProductionOrder>();
         for (ProductionOrder order : this.waitinglist.getOrders()) {
             if (order.getProductNumber() == productNumber) {
+                int amount = partsService.getManufacturingPartById(productNumber).getUsedInAllProducts() ? order.getAmount() / 3 : order.getAmount();
+                order.setAmount(amount);
                 productionOrdersInWaitinglist.add(order);
             }
         }
