@@ -50,14 +50,14 @@ public class DispositionService {
 		this.productionService.deployRemainingProductionOrders(dispositions);
 	}
 
-	public void ConstructContainers() {
+	private void ConstructContainers() {
 		this.dispositionP1 = new ArrayList<>();
 		this.dispositionP2 = new ArrayList<>();
 		this.dispositionP3 = new ArrayList<>();
 		this.dispositions = new ArrayList<>();
 	}
 
-	public void dispoRecursively(PartNode node, Disposition parent) {
+	private void dispoRecursively(PartNode node, Disposition parent) {
 
 		Disposition disposition = new Disposition();
 		disposition.setPartNumber(node.getPartNumber());
@@ -86,31 +86,31 @@ public class DispositionService {
 				.forEach(partNode -> this.dispoRecursively(partNode, disposition));
 	}
 
-	public int calculateDispositionAmount(int partNumber, Disposition disposition) {
+	private int calculateDispositionAmount(int partNumber, Disposition disposition) {
 		int amountSellwish = 0;
 		int amountSafetyStockvalue = 0;
 		int amountWarehouse = 0;
 		int amountWaitinglist = 0;
 		int amountOrdersInWork = 0;
 
-		ProductionOrder sellwish = new ProductionOrder();
+		ProductionOrder sellWishAndDirect = new ProductionOrder();
 
-		if (this.planningService.getSellwishItemForProduct(partNumber) != null) {
-			sellwish.setProductNumber(partNumber);
-			sellwish.setAmount(this.planningService.getSellwishItemForProduct(partNumber).getQuantity());
-			sellwish.setPeriod(this.planningService.getPeriod());
-			sellwish.setInWork(false);
+		if (this.planningService.getProductionItemForProduct(partNumber) != null) {
+			sellWishAndDirect.setProductNumber(partNumber);
+			sellWishAndDirect.setAmount(this.planningService.getProductionItemForProduct(partNumber).getQuantity());
+			sellWishAndDirect.setPeriod(this.planningService.getPeriod());
+			sellWishAndDirect.setInWork(false);
 
-			disposition.setSellwish(sellwish);
+			disposition.setSellwish(sellWishAndDirect);
 			amountSellwish = disposition.getSellwish().getAmount();
 		} else if (disposition.getParent() != null) {
-			sellwish.setProductNumber(partNumber);
-			sellwish.setAmount(disposition.getParent().getProduction().getAmount()
+			sellWishAndDirect.setProductNumber(partNumber);
+			sellWishAndDirect.setAmount(disposition.getParent().getProduction().getAmount()
 					+ getWaitingQueueAmount(disposition.getParent()));
-			sellwish.setPeriod(this.planningService.getPeriod());
-			sellwish.setInWork(false);
+			sellWishAndDirect.setPeriod(this.planningService.getPeriod());
+			sellWishAndDirect.setInWork(false);
 
-			disposition.setSellwish(sellwish);
+			disposition.setSellwish(sellWishAndDirect);
 			amountSellwish = disposition.getSellwish().getAmount();
 		}
 

@@ -48,10 +48,6 @@ public class Workplace {
 		return count;
 	}
 
-	public Workplace clone() {
-		return new Workplace(this.number, this.outputProductId, this.productionTime, this.setUpTime);
-	}
-
 	public String getName() {
 		return name;
 	}

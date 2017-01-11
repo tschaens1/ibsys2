@@ -13,7 +13,6 @@ public class BuyPart {
     private Double procurementCosts;
     private Double timeToRebuy;
     private Double rebuyDerivation;
-    private Double riskFactor;
 
     public BuyPart(Integer number, String description, Double price, Integer stockAmount, Boolean isUsedInAllProducts,
                    Integer discountAmount, Double procurementCosts, Double timeToRebuy, Double rebuyDerivation) {
@@ -129,9 +128,5 @@ public class BuyPart {
         } else {
             return 0.50;
         }
-    }
-
-    private void setRiskFactor(Double riskFactor) {
-        this.riskFactor = riskFactor;
     }
 }

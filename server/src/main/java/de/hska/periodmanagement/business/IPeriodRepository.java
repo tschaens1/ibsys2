@@ -6,5 +6,5 @@ import de.hska.periodmanagement.domain.Period;
 
 public interface IPeriodRepository extends JpaRepository<Period, Long> {
 
-	public Period findByCounter(Long counter);
+	Period findByCounter(Long counter);
 }

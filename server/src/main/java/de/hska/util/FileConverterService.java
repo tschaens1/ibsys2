@@ -15,10 +15,8 @@ public class FileConverterService {
 		try {
 			final String escapedXml = URLDecoder.decode(content);
 			String replacedContent = escapedXml.replace("%", "");
-			JSONObject jsonObject = XML.toJSONObject(replacedContent);
-			return jsonObject;
+			return XML.toJSONObject(replacedContent);
 		} catch (JSONException ex) {
-			System.out.println("Error while converting xml to JSON: " + ex.getMessage());
 			return null;
 		}
 	}
