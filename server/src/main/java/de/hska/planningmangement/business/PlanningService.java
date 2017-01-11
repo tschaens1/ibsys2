@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class PlanningService {
 	private List<PlanningPosition> forecastTwo = new ArrayList<>();
 	private List<PlanningPosition> forecastThree = new ArrayList<>();
 
-	public void initialize(JsonFile jsonFile) throws ParseException {
+	public void initialize(JsonFile jsonFile) throws ParseException, JSONException {
 
 		ConstructContainers();
 
