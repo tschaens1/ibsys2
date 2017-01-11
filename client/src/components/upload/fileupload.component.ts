@@ -1,3 +1,4 @@
+import { TranslationService } from '../translate/translate.service';
 import { Component, ElementRef, Inject } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -17,6 +18,7 @@ export class FileUploadComponent {
         @Inject('ApiEndpoint') private apiEndpoint,
         private toastr: ToastsManager,
         private planningService: PlanningService,
+        private translationService: TranslationService,
     ) {
         this.uploadUrl = apiEndpoint + '/api/rest/file/xml';
     }
@@ -25,19 +27,23 @@ export class FileUploadComponent {
         let inputEl = this.el.nativeElement.firstElementChild;
         if (inputEl.files.length > 0) { // a file was selected
             let file: File = inputEl.files[0];
-            var myReader: FileReader = new FileReader();
+            var xmlFileReader: FileReader = new FileReader();
 
             if (file.type !== 'text/xml') {
-                this.toastr.error('This is not an XML!')
+                this.toastr.error(this.translationService.instant('planning_overview.toastr.wrong_document_type'));
+                this.planningService.errorWithXML = true;
                 return;
             }
 
-            myReader.onloadend = (e) => {
-                this.xmlObject = myReader.result;
-                this.planningService.xmlDocument = myReader.result;
-                this.planningService.sendXMLToServer();
+            xmlFileReader.onloadend = (e) => {
+                this.xmlObject = xmlFileReader.result;
+                this.planningService.xmlDocument = xmlFileReader.result;
+                this.planningService.sendXMLToServer()
+                    .catch(err => {
+                        this.toastr.error(err);
+                    });
             }
-            myReader.readAsText(file);
+            xmlFileReader.readAsText(file);
         }
     }
 }

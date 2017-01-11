@@ -175,9 +175,12 @@ export const LANG_DE_TRANSLATIONS = {
         "toastr": {
             "wrong_period": "Falsche Eingabe für Periode",
             "missing_xml_document": "XML Dokument fehlt",
+            "wrong_document_type": "Das Dokument muss ein XML sein",
+            "xml_error": "Das XML ist nicht aus der letzten Periode oder fehlerhaft",
+            "xml_of_wrong_period": "Das XML hat die falsche Periode",
             "wrong_sellwish": "Falscher Vertriebswunsch",
             "very_high_sellwish": "Sehr hoher Vertriebswunsch",
-            "wrong_production_values": "Falsche Produktionseingaben",
+            "wrong_production_values": "Falsche Produktionseingaben",            
         },
 
         modals: {

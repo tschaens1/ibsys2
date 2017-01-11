@@ -164,6 +164,9 @@ export const LANG_EN_TRANSLATIONS = {
         "toastr": {
             "wrong_period": "Wrong input for period",
             "missing_xml_document": "XML is missing",
+            "wrong_document_type": "Document type must be XML",
+            "xml_error": "The XML is not of the last period or faulty",
+            "xml_of_wrong_period": "The XML has the wrong period",
             "wrong_sellwish": "Wrong sellwish",
             "very_high_sellwish": "Very high sellwish",
             "wrong_production_values": "Wrong inputs for production",

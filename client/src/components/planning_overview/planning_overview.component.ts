@@ -5,7 +5,7 @@ import { ModalService } from '../modal/modal.service';
 import { TranslationService } from '../translate/translate.service';
 import { Component, OnInit, ElementRef, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Http, Headers } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
 import { PlanningService } from './../planning/planning.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
@@ -23,7 +23,7 @@ export class PlanningOverviewComponent implements OnInit {
     data: Part[];
 
     // data
-    period: number;
+    // period: number;
     sellwish_p1: number;
     sellwish_p2: number;
     sellwish_p3: number;
@@ -82,10 +82,12 @@ export class PlanningOverviewComponent implements OnInit {
             });
         });
 
+        // this.period = this.planningService.currentPeriod;
+
         this.loadInputsOfLastPeriod();
-        
+
         this.data = this.translationService.currentLanguage === 'de' ? basic_claims_data_DE : basic_claims_data_EN;
-    }    
+    }
 
     getPartInformation(id: string) {
         let article = this.data.filter(entry => entry.id.indexOf(id) === 0)[0];
@@ -103,7 +105,7 @@ export class PlanningOverviewComponent implements OnInit {
         }
 
         try {
-            this.period = this.inputOflastPeriod.results.period;
+            // this.planningService.currentPeriod = this.inputOflastPeriod.results.period || 1;
 
             this.sellwish_p1 = this.inputOflastPeriod.input.sellwish.items[0].quantity || 0;
             this.sellwish_p2 = this.inputOflastPeriod.input.sellwish.items[1].quantity || 0;
@@ -142,7 +144,7 @@ export class PlanningOverviewComponent implements OnInit {
     }
 
     clearInputs() {
-        this.period = 0;
+        this.planningService.currentPeriod = 0;
 
         this.sellwish_p1 = 0;
         this.sellwish_p2 = 0;
@@ -176,13 +178,18 @@ export class PlanningOverviewComponent implements OnInit {
     // go to the next step in the formular
     next() {
         // validate period  
-        if (this.page === 0 && (!this.period || this.period < 0)) {
+        if (this.page === 0 && (!this.planningService.currentPeriod || this.planningService.currentPeriod < 0)) {
             this.toastr.error(this.translationService.instant('planning_overview.toastr.wrong_period'));
             return;
         }
-        // validate xml upload
+        // check if xml document has been loaded
         if (this.page === 0 && (<HTMLInputElement>document.getElementById("resultsXMLUpload")).value === "") {
             this.toastr.error(this.translationService.instant('planning_overview.toastr.missing_xml_document'));
+            return;
+        }
+        // check if xml is valid (period and type of document)
+        if (this.page === 0 && this.planningService.errorWithXML) {
+            this.toastr.error(this.translationService.instant('planning_overview.toastr.xml_error'));
             return;
         }
         // validate sellwish
@@ -209,14 +216,11 @@ export class PlanningOverviewComponent implements OnInit {
                     this.planningService.isLoading = false;
                     this.planningService.startedPlanning = true;
                     this.router.navigate(['/app/planning/production']);
-                }).catch(err => {
-                    // alert('Trotzdem machen wir für die Entwicklung erstmal weiter!');
-                    this.toastr.error('Error with server connection');
-                    this.router.navigate(['/app/planning/production']);
-
+                }).catch((err: Response) => {
+                    this.toastr.error(err.text());
                     console.error(err);
                     this.planningService.isLoading = false;
-                    this.planningService.startedPlanning = true;
+                    this.planningService.startedPlanning = false;
                     this.page = 0;
                 });
         }
@@ -249,7 +253,7 @@ export class PlanningOverviewComponent implements OnInit {
             results: {
                 game: 1,
                 group: 6,
-                period: this.period
+                period: this.planningService.currentPeriod,
             },
             input: {
                 sellwish: {

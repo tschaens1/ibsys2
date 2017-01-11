@@ -9,7 +9,7 @@
 				<h4>{{'planning_overview.insert_period_to_plan'|translate}}
 					<a class="help-button" (click)="openHelp('planning_overview.modals.period')"><i class="mdi mdi-help-circle"></i></a>
 				</h4>
-				<input type="number" placeholder="Periode" [(ngModel)]="period" (keyup.enter)="next()">
+				<input type="number" placeholder="Periode" [(ngModel)]="this.planningService.currentPeriod" (keyup.enter)="next()">
 			</div>
 			<div class="col s12">
 				<h4>{{'planning_overview.result_upload_last_period'|translate}}
@@ -42,10 +42,10 @@
 					<thead>
 						<tr>
 							<th>{{'planning_overview.sellwish_product'|translate}}</th>
-							<th>{{'planning_overview.sellwish'|translate}} {{period}}</th>
-							<th>{{'planning_overview.sellwish_forecast'|translate}} {{(period + 1)}}</th>
-							<th>{{'planning_overview.sellwish_forecast'|translate}} {{(period + 2)}}</th>
-							<th>{{'planning_overview.sellwish_forecast'|translate}} {{(period + 3)}}</th>
+							<th>{{'planning_overview.sellwish'|translate}} {{this.planningService.currentPeriod}}</th>
+							<th>{{'planning_overview.sellwish_forecast'|translate}} {{(this.planningService.currentPeriod + 1)}}</th>
+							<th>{{'planning_overview.sellwish_forecast'|translate}} {{(this.planningService.currentPeriod + 2)}}</th>
+							<th>{{'planning_overview.sellwish_forecast'|translate}} {{(this.planningService.currentPeriod + 3)}}</th>
 						</tr>
 					</thead>
 

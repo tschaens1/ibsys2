@@ -1,3 +1,4 @@
+import { TranslationService } from '../translate/translate.service';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { Component, OnInit, ElementRef, Inject } from '@angular/core';
@@ -11,6 +12,9 @@ export class PlanningService implements OnInit {
     // for ui states
     startedPlanning: boolean;
     isLoading: boolean;
+    errorWithXML: boolean = false;
+
+    currentPeriod: number;
 
     // urls for upload
     xmlUploadUrl: string;
@@ -96,10 +100,20 @@ export class PlanningService implements OnInit {
 
     constructor(
         private http: Http,
-        @Inject('ApiEndpoint') private apiEndpoint
+        @Inject('ApiEndpoint') private apiEndpoint,
+        private translationService: TranslationService,
     ) {
         this.startedPlanning = false;
         this.isLoading = false;
+
+        const storage = JSON.parse(localStorage.getItem("ibsys2InputLastPeriod"));
+
+        if (storage && storage.results && storage.results.period) {
+            this.currentPeriod = storage.results.period;
+        } else {
+            this.currentPeriod = undefined;
+        }
+
 
         this.xmlUploadUrl = this.apiEndpoint + `/api/rest/files/result`;
 
@@ -169,37 +183,33 @@ export class PlanningService implements OnInit {
 
         // send data to the server                                
         return new Promise((resolve, reject) => {
-            // send data to the server
-            new Promise((resolve, reject) => {
-                // this.sendXMLToServer().catch(err => { console.error(err); reject(err) }).then(() => resolve());
-                this.sendInputsToServer().catch(err => { console.error(err); reject(err) }).then((response: Response) => {
-                    const result = response.json();
-                    console.log(result);                    
-                    this.inputDataForSimulatorAsJSON.productionlist.production = result.input.productionlist.map(production => {
-                        return {
-                            "@": production
-                        }
-                    });
-
-                    this.inputDataForSimulatorAsJSON.orderlist.order = result.input.orderlist.map(order => {
-                        return {
-                            "@": order
-                        }
-                    });
-
-                    this.inputDataForSimulatorAsJSON.workingtimelist.workingtime = result.input.workingtimelist.map(workingtime => {
-                        return {
-                            "@": workingtime
-                        }
-                    });                    
-                    resolve();
+            // send data to the server            
+            this.sendInputsToServer().catch(err => { console.error(err); reject(err) }).then((response: Response) => {
+                if (!response) {
+                    reject('Response is undefined!');
+                    return;
+                }
+                const result = response.json();
+                console.log('Result:', result);
+                this.inputDataForSimulatorAsJSON.productionlist.production = result.input.productionlist.map(production => {
+                    return {
+                        "@": production
+                    }
                 });
-                // resolve();
-            }).then(() => {
+
+                this.inputDataForSimulatorAsJSON.orderlist.order = result.input.orderlist.map(order => {
+                    return {
+                        "@": order
+                    }
+                });
+
+                this.inputDataForSimulatorAsJSON.workingtimelist.workingtime = result.input.workingtimelist.map(workingtime => {
+                    return {
+                        "@": workingtime
+                    }
+                });
                 resolve();
-            }).catch(err => {
-                reject(err);
-            })
+            });
         });
     }
     /**
@@ -217,8 +227,21 @@ export class PlanningService implements OnInit {
      */
     sendXMLToServer() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        let body = JSON.stringify({ content: encodeURIComponent(this.xmlDocument) });
-        return this.http.post(this.xmlUploadUrl, body, { headers: headers }).toPromise();
+
+        // parse the xml to check the period
+        let xmlDoc = $.parseXML(this.xmlDocument),
+            $xml = $(xmlDoc),
+            title = $xml.find("results").attr('period');
+
+        // if the period of the xml is the last period
+        if ((this.currentPeriod - 1).toString() === title) {
+            let body = JSON.stringify({ content: encodeURIComponent(this.xmlDocument) });
+            this.errorWithXML = false;
+            return this.http.post(this.xmlUploadUrl, body, { headers: headers }).toPromise();
+        } else {
+            this.errorWithXML = true;
+            return Promise.reject(this.translationService.instant('planning_overview.toastr.xml_of_wrong_period'));
+        }
     }
 
     /**
