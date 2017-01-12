@@ -6,9 +6,9 @@
             <div class="row">
                   <div class="col s12 m12 l6">
                         <div class="page-part">
-                              <h3>Load period data</h3>
+                              <h3>{{'dashboard.load_period_header'|translate}}</h3>
                               <input type="number" [(ngModel)]="period">
-                              <button class="btn waves-effect waves-light" (click)="getResults()">Load period</button>
+                              <button class="btn waves-effect waves-light" (click)="getResults()">{{'dashboard.load_period_button'|translate}}</button>
                         </div>
                   </div>
             </div>
@@ -77,7 +77,6 @@
             <div class="row">
                   <div class="col s12 m12 l6">
                         <div class="page-part">
-                              <h1>Highcharts</h1>
                               <chart [options]="optionsChart2"></chart>
                         </div>
                   </div>
@@ -95,7 +94,6 @@
          -->
                   <div class="col s12 m12 l6">
                         <div class="page-part">
-                              <h1>Highcharts</h1>
                               <chart [options]="optionsChart3"></chart>
                         </div>
                   </div>

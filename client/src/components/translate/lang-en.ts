@@ -48,6 +48,8 @@ export const LANG_EN_TRANSLATIONS = {
     "dashboard": {
         "title": "Dashboard",
         "description": "Here you can see all important information",
+        "load_period_header": "Choose period",
+        "load_period_button": "Load period",
         "effiency": "Effiency",
         "capacity": "Capacity",
         "delivery_reliability": "Delivery Reliability",
@@ -89,7 +91,7 @@ export const LANG_EN_TRANSLATIONS = {
         },
         "addArticle": {
             "title": "Add article",
-            "help": "Enter a valid id for the production article. The following IDs can be inserted: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 49, 54, 29, 50, 55, 30, 51, 56, 31, 1, 2, 3]",
+            "help": "Enter a valid id for the production article. The following IDs can be inserted: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 26, 49, 54, 29, 50, 55, 30, 51, 56, 31, 1, 2, 3]",
             "addButton": "Add",
         },
         "help": {
@@ -143,9 +145,9 @@ export const LANG_EN_TRANSLATIONS = {
         "contract_penalty": "Contract penalty",
         "deativate_direct_sales": "Deactivate direct sales",
 
-        "amount_planned_production": "4. What´s the planned production",
+        //"amount_planned_production": "4. What´s the planned production",
 
-        "amount_savety_stock": "5. What´s the savety stock",
+        "amount_savety_stock": "4. What´s the savety stock",
         "standard_security": "Standard security",
         "safety_stock_part": "Part",
         "safety_stock_description": "Description",
