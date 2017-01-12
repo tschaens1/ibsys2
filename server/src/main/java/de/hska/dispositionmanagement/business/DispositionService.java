@@ -49,7 +49,9 @@ public class DispositionService {
         this.productionService.deployRemainingProductionOrders(dispositions);
 
         for (Disposition dispo : this.dispositions) {
-            System.out.println(dispo.toString());
+            System.out.println("Artikel: " + dispo.getPartNumber() + " Sellwish/direct: " + dispo.getSellwish().getAmount()
+                    + " + Safetystock: " + dispo.getSafetyStockvalue() + " - Stock: " + dispo.getWarehouseStock()
+                    + " - WaitingQueue - InWork = " + dispo.getProduction().getAmount());
         }
     }
 
@@ -211,7 +213,7 @@ public class DispositionService {
         return amount;
     }
 
-    public ArrayList<Disposition> getDisposition() {
+    public ArrayList<Disposition> getDispositions() {
         return this.dispositions;
     }
 

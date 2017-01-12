@@ -11,6 +11,7 @@ import de.hska.warehousemanagement.domain.WarehouseArticle;
 import de.hska.workplacemanagement.business.WorkplaceService;
 import de.hska.workplacemanagement.domain.ProductionOrder;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class ProductionService {
     private ArrayList<ProductionOrder> planning;
     private ArrayList<ProductionOrder> production;
 
-    public void initialize(JsonFile jsonFile) throws ParseException {
+    public void initialize(JsonFile jsonFile) throws ParseException, JSONException {
         ConstructContainers();
 
         JSONObject jsonResultsObject = new JSONObject(jsonFile.getContent());

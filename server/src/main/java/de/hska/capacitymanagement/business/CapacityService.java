@@ -12,7 +12,6 @@ import de.hska.dispositionmanagement.domain.Disposition;
 import de.hska.partsmanagement.business.PartsService;
 import de.hska.productionmanagement.business.ProductionService;
 import de.hska.workplacemanagement.business.WorkplaceService;
-import de.hska.workplacemanagement.domain.ProductionLine;
 import de.hska.workplacemanagement.domain.ProductionOrder;
 import de.hska.workplacemanagement.domain.Workplace;
 
@@ -100,7 +99,7 @@ public class CapacityService {
 		}
 
 		ArrayList<ProductionOrder> dispositionOrder = new ArrayList<>();
-		for (Disposition disposition : dispositionService.getDisposition()) {
+		for (Disposition disposition : dispositionService.getDispositions()) {
 			if (this.partsService.getManufacturingPartById(disposition.getProduction().getProductNumber())
 					.getUsedInAllProducts()) {
 				boolean contains = false;

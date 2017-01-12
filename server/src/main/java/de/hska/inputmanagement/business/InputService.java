@@ -56,7 +56,7 @@ public class InputService {
 		}
 
 		JSONArray productionItemList = new JSONArray();
-		for (Disposition disposition : dispositionService.getDisposition()) {
+		for (Disposition disposition : dispositionService.getDispositions()) {
 			JSONObject productionItem = new JSONObject();
 			productionItem.put("article", disposition.getPartNumber());
 			productionItem.put("quantity", disposition.getProduction().getAmount());
