@@ -182,8 +182,19 @@ public class ProductionService {
     }
 
     private void updateOrdersInWork(JSONObject jsonResultsObject) {
-        JSONObject jsonWatinglistworkstationObject = jsonResultsObject.getJSONObject("ordersinwork");
-        JSONArray workplacesJSONArray = jsonWatinglistworkstationObject.getJSONArray("workplace");
+        Object jsonOrdersInWork = jsonResultsObject.get("ordersinwork");
+
+        JSONObject jsonOrdersInWorkObject = null;
+
+        if (jsonOrdersInWork instanceof JSONObject) {
+            jsonOrdersInWorkObject = (JSONObject) jsonOrdersInWork;
+        }
+
+        if (jsonOrdersInWorkObject == null) {
+            return;
+        }
+
+        JSONArray workplacesJSONArray = jsonOrdersInWorkObject.getJSONArray("workplace");
 
         for (int i = 0; i < workplacesJSONArray.length(); i++) {
             JSONObject jsonWorkplaceObject = workplacesJSONArray.getJSONObject(i);
@@ -203,7 +214,7 @@ public class ProductionService {
         for (PlanningPosition position : this.planningService.getSafetystockItems()) {
             this.safetystockvalues.add(
                     new ProductionOrder(position.getArticle(), position.getQuantity(), this.planningService.getPeriod(),
-                            false, this.workplaceService.getArbeitsplatzId(position.getArticle())));
+                            false, this.workplaceService.getWorkplaceIdByPart(position.getArticle())));
         }
     }
 
@@ -211,7 +222,7 @@ public class ProductionService {
         for (WarehouseArticle article : this.warehouseService.getWarehouseArticles()) {
             this.stockvalues.add(
                     new ProductionOrder(article.getPartNumber(), article.getAmount(), this.warehouseService.getPeriod(),
-                            false, this.workplaceService.getArbeitsplatzId(article.getPartNumber())));
+                            false, this.workplaceService.getWorkplaceIdByPart(article.getPartNumber())));
         }
     }
 
@@ -219,7 +230,7 @@ public class ProductionService {
         for (PlanningPosition position : this.planningService.getProductionItems()) {
             this.planning.add(
                     new ProductionOrder(position.getArticle(), position.getQuantity(), this.planningService.getPeriod(),
-                            false, this.workplaceService.getArbeitsplatzId(position.getArticle())));
+                            false, this.workplaceService.getWorkplaceIdByPart(position.getArticle())));
         }
     }
 

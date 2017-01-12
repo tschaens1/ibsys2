@@ -213,7 +213,7 @@ public class DispositionService {
         production.setAmount(amount);
         production.setPeriod(this.planningService.getPeriod());
         production.setInWork(false);
-        production.setWorkplaceId(this.workplaceService.getArbeitsplatzId(partNumber));
+        production.setWorkplaceId(this.workplaceService.getWorkplaceIdByPart(partNumber));
 
         disposition.setFinalNewProduction(production);
 

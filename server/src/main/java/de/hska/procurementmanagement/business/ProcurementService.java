@@ -49,10 +49,10 @@ public class ProcurementService {
     }
 
 
-    void generateNewBuyOrder(BuyPart part, BuyMode buyMode, Integer amount, Integer period) {
+    void generateNewBuyOrder(BuyPart part, BuyMode buyMode, Integer amount, Integer period, Boolean isTooLate) {
         Double costs = this.getBuyCosts(part, buyMode, amount);
 
-        BuyOrder newOrder = new BuyOrder(part.getNumber(), buyMode, amount, period, costs);
+        BuyOrder newOrder = new BuyOrder(part.getNumber(), buyMode, amount, period, costs, isTooLate);
         newBuyOrders.add(newOrder);
     }
 

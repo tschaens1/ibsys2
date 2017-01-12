@@ -250,7 +250,7 @@ public class WorkplaceService {
 		}
 	}
 
-	public int getArbeitsplatzId(int part) {
+	public int getWorkplaceIdByPart(int part) {
 		for (Workplace workplace : this.allWorkPlaces) {
 			if (workplace.getOutputProductId() == part) {
 				return workplace.getNumber();

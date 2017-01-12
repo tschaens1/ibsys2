@@ -70,6 +70,7 @@ public class InputService {
             orderItem.put("article", buyOrder.getBuyPartId());
             orderItem.put("quantity", buyOrder.getAmount());
             orderItem.put("modus", buyOrder.getBuyMode().getValue());
+            orderItem.put("toolate", buyOrder.getTooLate());
             if (buyOrder.getAmount() > 0)
                 orderItemList.put(orderItem);
         }

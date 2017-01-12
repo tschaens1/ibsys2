@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 @Service
 public class ProcurementCalculationService {
@@ -41,7 +40,7 @@ public class ProcurementCalculationService {
 
     public void initialize() {
 
-        this.currentPeriod = planningService.getPeriod() + 1;
+        this.currentPeriod = planningService.getPeriod();
         this.procurementService.getNewBuyOrders().clear();
 
         generateBuyOrders();
@@ -76,7 +75,7 @@ public class ProcurementCalculationService {
             BuyOrder order = checkForBuyInCurrentPeriod(part, upcomingAmount);
 
             if (order != null) {
-                procurementService.generateNewBuyOrder(part, order.getBuyMode(), order.getAmount(), currentPeriod);
+                procurementService.generateNewBuyOrder(part, order.getBuyMode(), order.getAmount(), currentPeriod, order.getTooLate());
             }
         }
     }
@@ -112,20 +111,25 @@ public class ProcurementCalculationService {
 
             if (currentAmount < 0) {
                 neededAmount += currentAmount * (-1);
+                Boolean isTooLate = false;
                 if (calcPeriod == (currentPeriod + worstCaseInt - 1)) {
                     // Normal
                     if ((procurementService.getBuyCosts(buyPart, BuyMode.Normal, buyPart.getDiscountAmount()) < procurementService.getBuyCosts(buyPart, BuyMode.Normal, neededAmount))
                             && neededAmount < buyPart.getDiscountAmount()) {
                         neededAmount = buyPart.getDiscountAmount();
                     }
-                    return new BuyOrder(buyPart.getNumber(), BuyMode.Normal, neededAmount, currentPeriod, 0.0);
+                    return new BuyOrder(buyPart.getNumber(), BuyMode.Normal, neededAmount, currentPeriod, 0.0, isTooLate);
                 } else {
                     // Fast
+                    if (i < (buyPart.getTimeToRebuy() / 2)) {
+                        isTooLate = true;
+                    }
+
                     if ((procurementService.getBuyCosts(buyPart, BuyMode.Fast, buyPart.getDiscountAmount()) < procurementService.getBuyCosts(buyPart, BuyMode.Fast, neededAmount))
                             && neededAmount < buyPart.getDiscountAmount()) {
                         neededAmount = buyPart.getDiscountAmount();
                     }
-                    return new BuyOrder(buyPart.getNumber(), BuyMode.Fast, neededAmount, currentPeriod, 0.0);
+                    return new BuyOrder(buyPart.getNumber(), BuyMode.Fast, neededAmount, currentPeriod, 0.0, isTooLate);
                 }
             }
         }
