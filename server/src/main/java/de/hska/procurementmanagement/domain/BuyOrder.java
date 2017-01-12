@@ -12,14 +12,15 @@ public class BuyOrder {
     private Double procurementCosts;
     private Double costsPerPiece;
 
-    private Boolean isTooLate;
+    private Boolean isTooLate = false;
 
-    public BuyOrder(Integer buyPartId, BuyMode buyMode, Integer amount, Integer orderPeriod, Double totalCosts) {
+    public BuyOrder(Integer buyPartId, BuyMode buyMode, Integer amount, Integer orderPeriod, Double totalCosts, Boolean isTooLate) {
         this.buyPartId = buyPartId;
         this.buyMode = buyMode;
         this.amount = amount;
         this.orderPeriod = orderPeriod;
         this.totalCosts = totalCosts;
+        this.isTooLate = isTooLate;
     }
 
     public BuyOrder(Integer buyPartId, BuyMode buyMode, Integer amount, Integer orderPeriod,

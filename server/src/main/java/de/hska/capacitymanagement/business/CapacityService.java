@@ -133,6 +133,8 @@ public class CapacityService {
             System.out.print("Kapa: " + workplace.getWorkingTime());
         }
 
+        System.out.println();
+
         for (Capacity capacity : this.capacities) {
             System.out.println(" Capacity: - Station - " + capacity.getStation() + " - Shift - " + capacity.getShift()
                     + " - Overtime - " + capacity.getOvertime());
