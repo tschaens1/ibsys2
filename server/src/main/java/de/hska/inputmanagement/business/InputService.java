@@ -59,7 +59,7 @@ public class InputService {
 		for (Disposition disposition : dispositionService.getDispositions()) {
 			JSONObject productionItem = new JSONObject();
 			productionItem.put("article", disposition.getPartNumber());
-			productionItem.put("quantity", disposition.getProduction().getAmount());
+			productionItem.put("quantity", disposition.getFinalNewProduction().getAmount());
 			productionItemList.put(productionItem);
 		}
 

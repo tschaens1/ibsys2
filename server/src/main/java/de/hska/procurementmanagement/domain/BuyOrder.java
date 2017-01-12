@@ -12,6 +12,8 @@ public class BuyOrder {
     private Double procurementCosts;
     private Double costsPerPiece;
 
+    private Boolean isTooLate;
+
     public BuyOrder(Integer buyPartId, BuyMode buyMode, Integer amount, Integer orderPeriod, Double totalCosts) {
         this.buyPartId = buyPartId;
         this.buyMode = buyMode;
@@ -94,6 +96,14 @@ public class BuyOrder {
 
     public void setCostsPerPiece(Double costsPerPiece) {
         this.costsPerPiece = costsPerPiece;
+    }
+
+    public Boolean getTooLate() {
+        return isTooLate;
+    }
+
+    public void setTooLate(Boolean tooLate) {
+        isTooLate = tooLate;
     }
 
     @Override

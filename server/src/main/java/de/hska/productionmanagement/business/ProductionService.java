@@ -106,16 +106,51 @@ public class ProductionService {
             }
         }
 
-        JSONObject waitinglistStockObject = resultsJSON.getJSONObject("waitingliststock");
-        Object missingPartJSONArray = waitinglistStockObject.get("missingpart");
+        Object stockObject = resultsJSON.get("waitingliststock");
+        JSONObject waitinglistStockObject = null;
 
-        if (missingPartJSONArray instanceof JSONArray) {
-            JSONArray missingPartArray = (JSONArray) missingPartJSONArray;
+        if (stockObject instanceof JSONObject) {
+            waitinglistStockObject = (JSONObject) stockObject;
+        }
 
-            for (int i = 0; i < missingPartArray.length(); i++) {
-                JSONObject objectInArray = missingPartArray.getJSONObject(i);
-                if (objectInArray.has("waitinglist")) {
-                    Object item = objectInArray.get("waitinglist");
+        if (waitinglistStockObject != null) {
+            Object missingPartJSONArray = waitinglistStockObject.get("missingpart");
+            if (missingPartJSONArray instanceof JSONArray) {
+                JSONArray missingPartArray = (JSONArray) missingPartJSONArray;
+
+                for (int i = 0; i < missingPartArray.length(); i++) {
+                    JSONObject objectInArray = missingPartArray.getJSONObject(i);
+                    if (objectInArray.has("waitinglist")) {
+                        Object item = objectInArray.get("waitinglist");
+                        if (item instanceof JSONArray) {
+                            JSONArray waitinglistStockJSONArray = (JSONArray) item;
+                            for (int a = 0; a < waitinglistStockJSONArray.length(); a++) {
+                                JSONObject objectInWaitinglistArray = waitinglistStockJSONArray.getJSONObject(a);
+
+                                int period = Integer.parseInt(objectInWaitinglistArray.get("period").toString());
+                                int amount = Integer.parseInt(objectInWaitinglistArray.get("amount").toString());
+                                int productNumber = Integer.parseInt(objectInWaitinglistArray.get("item").toString());
+                                int order = Integer.parseInt(objectInWaitinglistArray.get("order").toString());
+
+                                orders.add(
+                                        new ProductionOrder(productNumber, amount, period, false, null, order, 0));
+                            }
+                        } else {
+                            JSONObject waitinglistJSONObject = (JSONObject) item;
+
+                            int period = Integer.parseInt(waitinglistJSONObject.get("period").toString());
+                            int amount = Integer.parseInt(waitinglistJSONObject.get("amount").toString());
+                            int productNumber = Integer.parseInt(waitinglistJSONObject.get("item").toString());
+                            int order = Integer.parseInt(waitinglistJSONObject.get("order").toString());
+
+                            orders.add(new ProductionOrder(productNumber, amount, period, false, null, order, 0));
+                        }
+                    }
+                }
+            } else {
+                JSONObject missingPartJSONObject = (JSONObject) missingPartJSONArray;
+                if (missingPartJSONObject.has("waitinglist")) {
+                    Object item = missingPartJSONObject.get("waitinglist");
                     if (item instanceof JSONArray) {
                         JSONArray waitinglistStockJSONArray = (JSONArray) item;
                         for (int a = 0; a < waitinglistStockJSONArray.length(); a++) {
@@ -139,34 +174,6 @@ public class ProductionService {
 
                         orders.add(new ProductionOrder(productNumber, amount, period, false, null, order, 0));
                     }
-                }
-            }
-        } else {
-            JSONObject missingPartJSONObject = (JSONObject) missingPartJSONArray;
-            if (missingPartJSONObject.has("waitinglist")) {
-                Object item = missingPartJSONObject.get("waitinglist");
-                if (item instanceof JSONArray) {
-                    JSONArray waitinglistStockJSONArray = (JSONArray) item;
-                    for (int a = 0; a < waitinglistStockJSONArray.length(); a++) {
-                        JSONObject objectInWaitinglistArray = waitinglistStockJSONArray.getJSONObject(a);
-
-                        int period = Integer.parseInt(objectInWaitinglistArray.get("period").toString());
-                        int amount = Integer.parseInt(objectInWaitinglistArray.get("amount").toString());
-                        int productNumber = Integer.parseInt(objectInWaitinglistArray.get("item").toString());
-                        int order = Integer.parseInt(objectInWaitinglistArray.get("order").toString());
-
-                        orders.add(
-                                new ProductionOrder(productNumber, amount, period, false, null, order, 0));
-                    }
-                } else {
-                    JSONObject waitinglistJSONObject = (JSONObject) item;
-
-                    int period = Integer.parseInt(waitinglistJSONObject.get("period").toString());
-                    int amount = Integer.parseInt(waitinglistJSONObject.get("amount").toString());
-                    int productNumber = Integer.parseInt(waitinglistJSONObject.get("item").toString());
-                    int order = Integer.parseInt(waitinglistJSONObject.get("order").toString());
-
-                    orders.add(new ProductionOrder(productNumber, amount, period, false, null, order, 0));
                 }
             }
         }
@@ -228,8 +235,6 @@ public class ProductionService {
         ArrayList<ProductionOrder> productionOrdersInWork = new ArrayList<>();
         for (ProductionOrder order : this.ordersinwork) {
             if (order.getProductNumber() == productNumber) {
-                int amount = partsService.getManufacturingPartById(productNumber).getUsedInAllProducts() ? (order.getAmount() / 3) : order.getAmount();
-                order.setAmount(amount);
                 productionOrdersInWork.add(order);
             }
         }
@@ -240,8 +245,6 @@ public class ProductionService {
         ArrayList<ProductionOrder> productionOrdersInWaitinglist = new ArrayList<>();
         for (ProductionOrder order : this.waitinglist.getOrders()) {
             if (order.getProductNumber() == productNumber) {
-                int amount = partsService.getManufacturingPartById(productNumber).getUsedInAllProducts() ? (order.getAmount() / 3) : order.getAmount();
-                order.setAmount(amount);
                 productionOrdersInWaitinglist.add(order);
             }
         }
@@ -258,7 +261,7 @@ public class ProductionService {
         }
 
         for (Disposition disposition : dispositions) {
-            disposition.setProductionOrderInWaitingQueue(new ArrayList<>());
+            disposition.setProductionOrdersInWaitingQueue(new ArrayList<>());
             for (ProductionOrder order : this.getProductionOrdersInWaitinglist()) {
                 if (disposition.getPartNumber() == order.getProductNumber()) {
                     disposition.getProductionOrderInWaitingQueue().add(order);

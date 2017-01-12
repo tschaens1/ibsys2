@@ -9,14 +9,14 @@ public class Disposition {
     private int partNumber;
     private int amount;
 
-    private ProductionOrder production;
     private ProductionOrder sellwish;
-    private ProductionOrder orderOnMachine;
     private int safetyStockvalue;
     private int warehouseStock;
+    private ProductionOrder orderOnMachine;
+    private ProductionOrder finalNewProduction;
 
     private ArrayList<ProductionOrder> productionOrderInWaitingQueue;
-    private ArrayList<ProductionOrder> productionOrders;
+    private ArrayList<ProductionOrder> productionOrdersInWork;
 
     private Disposition parent;
 
@@ -24,19 +24,19 @@ public class Disposition {
 
     }
 
-    public Disposition(int partNumber, int safetyStockvalue, int warehouseStock, int amount, ProductionOrder production,
+    public Disposition(int partNumber, int safetyStockvalue, int warehouseStock, int amount, ProductionOrder finalNewProduction,
                        ProductionOrder sellwish, Disposition parent, ProductionOrder orderOnMachine,
-                       ArrayList<ProductionOrder> productionOrderInWaitingQueue, ArrayList<ProductionOrder> productionOrders) {
+                       ArrayList<ProductionOrder> productionOrderInWaitingQueue, ArrayList<ProductionOrder> productionOrdersInWork) {
         this.partNumber = partNumber;
         this.safetyStockvalue = safetyStockvalue;
         this.warehouseStock = warehouseStock;
         this.amount = amount;
-        this.production = production;
+        this.finalNewProduction = finalNewProduction;
         this.sellwish = sellwish;
         this.parent = parent;
         this.orderOnMachine = orderOnMachine;
         this.productionOrderInWaitingQueue = productionOrderInWaitingQueue;
-        this.productionOrders = productionOrders;
+        this.productionOrdersInWork = productionOrdersInWork;
     }
 
     public int getPartNumber() {
@@ -63,12 +63,12 @@ public class Disposition {
         this.amount = amount;
     }
 
-    public ProductionOrder getProduction() {
-        return production;
+    public ProductionOrder getFinalNewProduction() {
+        return finalNewProduction;
     }
 
-    public void setProduction(ProductionOrder production) {
-        this.production = production;
+    public void setFinalNewProduction(ProductionOrder finalNewProduction) {
+        this.finalNewProduction = finalNewProduction;
     }
 
     public ProductionOrder getSellwish() {
@@ -87,16 +87,12 @@ public class Disposition {
         this.parent = parent;
     }
 
-    public ArrayList<ProductionOrder> getProductionOrders() {
-        return productionOrders;
+    public ArrayList<ProductionOrder> getProductionOrdersInWork() {
+        return productionOrdersInWork;
     }
 
-    public void setProductionOrders(ArrayList<ProductionOrder> productionOrders) {
-        this.productionOrders = productionOrders;
-    }
-
-    public ProductionOrder getOrderOnMachine() {
-        return orderOnMachine;
+    public void setProductionOrdersInWork(ArrayList<ProductionOrder> productionOrdersInWork) {
+        this.productionOrdersInWork = productionOrdersInWork;
     }
 
     public void setOrderOnMachine(ProductionOrder orderOnMachine) {
@@ -107,13 +103,13 @@ public class Disposition {
         return productionOrderInWaitingQueue;
     }
 
-    public void setProductionOrderInWaitingQueue(ArrayList<ProductionOrder> productionOrderInWaitingQueue) {
-        this.productionOrderInWaitingQueue = productionOrderInWaitingQueue;
+    public void setProductionOrdersInWaitingQueue(ArrayList<ProductionOrder> productionOrdersInWaitingQueue) {
+        this.productionOrderInWaitingQueue = productionOrdersInWaitingQueue;
     }
 
     public ArrayList<ProductionOrder> getOrders() {
         ArrayList<ProductionOrder> orders = new ArrayList<ProductionOrder>();
-        orders.add(this.production);
+        orders.add(this.finalNewProduction);
         orders.add(this.sellwish);
         return orders;
     }
@@ -128,10 +124,10 @@ public class Disposition {
 
     @Override
     public String toString() {
-        return "Disposition [partNumber=" + partNumber + ", amount=" + amount + ", production=" + production
+        return "Disposition [partNumber=" + partNumber + ", amount=" + amount + ", finalNewProduction=" + finalNewProduction
                 + ", sellwish=" + sellwish + ", orderOnMachine=" + orderOnMachine + ", safetyStockvalue="
                 + safetyStockvalue + ", warehouseStock=" + warehouseStock + ", productionOrderInWaitingQueue="
-                + productionOrderInWaitingQueue + ", productionOrders=" + productionOrders + ", parent=" + parent + "]";
+                + productionOrderInWaitingQueue + ", productionOrdersInWork=" + productionOrdersInWork + ", parent=" + parent + "]";
     }
 
 }

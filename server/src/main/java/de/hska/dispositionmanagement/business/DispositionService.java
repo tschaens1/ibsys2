@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 @Service
 public class DispositionService {
@@ -46,13 +47,26 @@ public class DispositionService {
         this.dispoRecursively(this.partsNodeService.getChildrenManufactoringNode(), new Disposition());
         this.dispoRecursively(this.partsNodeService.getWomanManufactoringNode(), new Disposition());
         this.dispoRecursively(this.partsNodeService.getManManufactoringNode(), new Disposition());
+        this.mergeDispositions();
         this.productionService.deployRemainingProductionOrders(dispositions);
 
         for (Disposition dispo : this.dispositions) {
+            int waiting = 0;
+            for (ProductionOrder order : dispo.getProductionOrderInWaitingQueue()) {
+                waiting += order.getAmount();
+            }
+
+            int work = 0;
+            for (ProductionOrder order : dispo.getProductionOrdersInWork()) {
+                work += order.getAmount();
+            }
+
             System.out.println("Artikel: " + dispo.getPartNumber() + " Sellwish/direct: " + dispo.getSellwish().getAmount()
                     + " + Safetystock: " + dispo.getSafetyStockvalue() + " - Stock: " + dispo.getWarehouseStock()
-                    + " - WaitingQueue - InWork = " + dispo.getProduction().getAmount());
+                    + " - WaitingQueue: " + waiting + " - InWork: " + work + " = " + dispo.getFinalNewProduction().getAmount());
         }
+
+
     }
 
     private void ConstructContainers() {
@@ -91,6 +105,33 @@ public class DispositionService {
                 .forEach(partNode -> this.dispoRecursively(partNode, disposition));
     }
 
+    private void mergeDispositions() {
+        ArrayList<Disposition> mergedDispositions = new ArrayList<>();
+        final Iterator<Disposition> iterator = dispositions.iterator();
+        while (iterator.hasNext()) {
+            Disposition disposition = iterator.next();
+            boolean contains = false;
+            for (Disposition mergedDisposition : mergedDispositions) {
+                if (disposition.getPartNumber() == mergedDisposition.getPartNumber()) {
+                    contains = true;
+                    mergedDisposition.getSellwish().setAmount(mergedDisposition.getSellwish().getAmount() + disposition.getSellwish().getAmount());
+                    mergedDisposition.setSafetyStockvalue(mergedDisposition.getSafetyStockvalue() + disposition.getSafetyStockvalue());
+                    mergedDisposition.setWarehouseStock(mergedDisposition.getWarehouseStock() + disposition.getWarehouseStock());
+                    mergedDisposition.getFinalNewProduction().setAmount(mergedDisposition.getFinalNewProduction().getAmount() + disposition.getFinalNewProduction().getAmount());
+                    mergedDisposition.setProductionOrdersInWork(disposition.getProductionOrdersInWork());
+                    mergedDisposition.setProductionOrdersInWaitingQueue(disposition.getProductionOrderInWaitingQueue());
+                    iterator.remove();
+                }
+            }
+            if (!contains) {
+                mergedDispositions.add(disposition);
+                iterator.remove();
+            }
+        }
+
+        this.dispositions = mergedDispositions;
+    }
+
     private int calculateDispositionAmount(int partNumber, Disposition disposition) {
         int amountSellwish = 0;
         int amountSafetyStockvalue = 0;
@@ -110,7 +151,7 @@ public class DispositionService {
             amountSellwish = disposition.getSellwish().getAmount();
         } else if (disposition.getParent() != null) {
             sellWishAndDirect.setProductNumber(partNumber);
-            sellWishAndDirect.setAmount(disposition.getParent().getProduction().getAmount()
+            sellWishAndDirect.setAmount(disposition.getParent().getFinalNewProduction().getAmount()
                     + getWaitingQueueAmount(disposition.getParent()));
             sellWishAndDirect.setPeriod(this.planningService.getPeriod());
             sellWishAndDirect.setInWork(false);
@@ -138,7 +179,7 @@ public class DispositionService {
         }
 
         if (this.productionService.getOrdersWaitinglistForProduct(partNumber) != null) {
-            disposition.setProductionOrderInWaitingQueue(
+            disposition.setProductionOrdersInWaitingQueue(
                     this.productionService.getOrdersWaitinglistForProduct(partNumber));
             for (ProductionOrder order : disposition.getProductionOrderInWaitingQueue()) {
                 if (order.getProductNumber() == partNumber)
@@ -151,8 +192,8 @@ public class DispositionService {
         }
 
         if (this.productionService.getOrdersInWorkForProduct(partNumber) != null) {
-            disposition.setProductionOrders(this.productionService.getOrdersInWorkForProduct(partNumber));
-            for (ProductionOrder order : disposition.getProductionOrders()) {
+            disposition.setProductionOrdersInWork(this.productionService.getOrdersInWorkForProduct(partNumber));
+            for (ProductionOrder order : disposition.getProductionOrdersInWork()) {
                 if (order.getProductNumber() == partNumber)
                     amountOrdersInWork += order.getAmount();
             }
@@ -174,7 +215,7 @@ public class DispositionService {
         production.setInWork(false);
         production.setWorkplaceId(this.workplaceService.getArbeitsplatzId(partNumber));
 
-        disposition.setProduction(production);
+        disposition.setFinalNewProduction(production);
 
         return amount;
     }
@@ -200,15 +241,15 @@ public class DispositionService {
 
         Disposition dispoP1 = getDispositionByPartNumber(1);
         amount += this.partsNodeService.getAmountInTree(this.partsNodeService.getChildrenManufactoringNode(),
-                partNumber) * dispoP1.getProduction().getAmount();
+                partNumber) * dispoP1.getFinalNewProduction().getAmount();
 
         Disposition dispoP2 = getDispositionByPartNumber(2);
         amount += this.partsNodeService.getAmountInTree(this.partsNodeService.getWomanManufactoringNode(),
-                partNumber) * dispoP2.getProduction().getAmount();
+                partNumber) * dispoP2.getFinalNewProduction().getAmount();
 
         Disposition dispoP3 = getDispositionByPartNumber(3);
         amount += this.partsNodeService.getAmountInTree(this.partsNodeService.getManManufactoringNode(),
-                partNumber) * dispoP3.getProduction().getAmount();
+                partNumber) * dispoP3.getFinalNewProduction().getAmount();
 
         return amount;
     }
