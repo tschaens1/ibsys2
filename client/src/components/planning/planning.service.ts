@@ -254,8 +254,12 @@ export class PlanningService implements OnInit {
         // slice the first 22 characters because they are like this: <?xml version='1.0'?>
         return new Promise((resolve, reject) => {
             try {
-                console.info(this.inputDataForSimulatorAsJSON);
-                const xml: string = js2xmlparser.parse("input", this.inputDataForSimulatorAsJSON).slice(22);
+                let outputxmlJSON = JSON.parse(JSON.stringify(this.inputDataForSimulatorAsJSON));
+                outputxmlJSON.orderlist.order.map(item => {
+                    delete item['@'].toolate;
+                });
+                console.info(outputxmlJSON);
+                const xml: string = js2xmlparser.parse("input", outputxmlJSON).slice(22);
 
                 // download the XML file
                 var blob = new Blob([xml], { type: "text/plain;charset=utf-8" });
