@@ -81,7 +81,8 @@ public class PlanningResource {
 
     @ExceptionHandler(JSONException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public @ResponseBody ResponseEntity<String> handleJsonException() {
+    public @ResponseBody ResponseEntity<String> handleJsonException(JSONException ex) {
+        System.out.println(ex.getMessage());
         return ResponseEntity.badRequest().body("Could not parse JSON! Have you uploaded the correct file?");
     }
 }

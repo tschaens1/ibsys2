@@ -106,6 +106,71 @@ public class ProductionService {
             }
         }
 
+        JSONObject waitinglistStockObject = resultsJSON.getJSONObject("waitingliststock");
+        Object missingPartJSONArray = waitinglistStockObject.get("missingpart");
+
+        if (missingPartJSONArray instanceof JSONArray) {
+            JSONArray missingPartArray = (JSONArray) missingPartJSONArray;
+
+            for (int i = 0; i < missingPartArray.length(); i++) {
+                JSONObject objectInArray = missingPartArray.getJSONObject(i);
+                if (objectInArray.has("waitinglist")) {
+                    Object item = objectInArray.get("waitinglist");
+                    if (item instanceof JSONArray) {
+                        JSONArray waitinglistStockJSONArray = (JSONArray) item;
+                        for (int a = 0; a < waitinglistStockJSONArray.length(); a++) {
+                            JSONObject objectInWaitinglistArray = waitinglistStockJSONArray.getJSONObject(a);
+
+                            int period = Integer.parseInt(objectInWaitinglistArray.get("period").toString());
+                            int amount = Integer.parseInt(objectInWaitinglistArray.get("amount").toString());
+                            int productNumber = Integer.parseInt(objectInWaitinglistArray.get("item").toString());
+                            int order = Integer.parseInt(objectInWaitinglistArray.get("order").toString());
+
+                            orders.add(
+                                    new ProductionOrder(productNumber, amount, period, false, null, order, 0));
+                        }
+                    } else {
+                        JSONObject waitinglistJSONObject = (JSONObject) item;
+
+                        int period = Integer.parseInt(waitinglistJSONObject.get("period").toString());
+                        int amount = Integer.parseInt(waitinglistJSONObject.get("amount").toString());
+                        int productNumber = Integer.parseInt(waitinglistJSONObject.get("item").toString());
+                        int order = Integer.parseInt(waitinglistJSONObject.get("order").toString());
+
+                        orders.add(new ProductionOrder(productNumber, amount, period, false, null, order, 0));
+                    }
+                }
+            }
+        } else {
+            JSONObject missingPartJSONObject = (JSONObject) missingPartJSONArray;
+            if (missingPartJSONObject.has("waitinglist")) {
+                Object item = missingPartJSONObject.get("waitinglist");
+                if (item instanceof JSONArray) {
+                    JSONArray waitinglistStockJSONArray = (JSONArray) item;
+                    for (int a = 0; a < waitinglistStockJSONArray.length(); a++) {
+                        JSONObject objectInWaitinglistArray = waitinglistStockJSONArray.getJSONObject(a);
+
+                        int period = Integer.parseInt(objectInWaitinglistArray.get("period").toString());
+                        int amount = Integer.parseInt(objectInWaitinglistArray.get("amount").toString());
+                        int productNumber = Integer.parseInt(objectInWaitinglistArray.get("item").toString());
+                        int order = Integer.parseInt(objectInWaitinglistArray.get("order").toString());
+
+                        orders.add(
+                                new ProductionOrder(productNumber, amount, period, false, null, order, 0));
+                    }
+                } else {
+                    JSONObject waitinglistJSONObject = (JSONObject) item;
+
+                    int period = Integer.parseInt(waitinglistJSONObject.get("period").toString());
+                    int amount = Integer.parseInt(waitinglistJSONObject.get("amount").toString());
+                    int productNumber = Integer.parseInt(waitinglistJSONObject.get("item").toString());
+                    int order = Integer.parseInt(waitinglistJSONObject.get("order").toString());
+
+                    orders.add(new ProductionOrder(productNumber, amount, period, false, null, order, 0));
+                }
+            }
+        }
+
         this.waitinglist.setOrders(orders);
     }
 
