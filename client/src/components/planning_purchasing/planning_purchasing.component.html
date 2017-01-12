@@ -16,7 +16,7 @@
 			<div class='wrapper'>
 				<div class='article-container' [dragula]='"purchasing-bag"' [dragulaModel]='parts'>
 					<div class="production-item" *ngFor='let item of parts'>
-						<div class="row">
+						<div class="row" [ngStyle]="{'background-color': list.enabled? 'red' : '#f9f9f9'}">>
 							<div class="col s4 m1">
 								<div class="title">{{'planning_purchasing.container.article'|translate}}</div>
 								<div class="detail">{{item['@'].article}}</div>

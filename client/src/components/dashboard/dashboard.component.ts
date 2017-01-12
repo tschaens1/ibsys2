@@ -30,10 +30,9 @@ export class DashBoardComponent implements OnInit {
     valuePurchaseparts: number = 0;
 
     ngOnInit() {
-
     }
 
-    bla() {
+    loadCharts() {
         let self = this;
 
         //Set the values for the warehouse stock
@@ -173,7 +172,7 @@ export class DashBoardComponent implements OnInit {
         this.dashboardService.getStock(this.period).then(stock => {
             console.log(stock);
             this.stock = stock;
-            this.bla();
+            this.loadCharts();
         }).catch((err) => {
             console.error(err);
             this.toastr.error(`Period ${this.period} not available`);
