@@ -111,7 +111,7 @@ export class DashBoardComponent implements OnInit {
 
         this.optionsChart3 = {
             chart: { type: 'pie' },
-            title: { text: 'dynamic data example' },
+            title: { text: this.translationService.currentLanguage === 'de' ? "Zusammensetzung Lager" : "Composition warehouse", },
             plotOptions: {
                 pie: {
                     dataLabels: {

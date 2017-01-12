@@ -47,7 +47,9 @@ export const LANG_DE_TRANSLATIONS = {
 
     "dashboard": {
         "title": "Dashboard",
-        "description": "Hier sehen sie alle wichtigen Informationen",
+        "description": "Hier sehen Sie alle wichtigen Informationen",
+        "load_period_header": "Periode auswählen",
+        "load_period_button": "Periode laden",
         "effiency": "Auslastung",
         "capacity": "Kapazität",
         "delivery_reliability": "Liefertreue",
@@ -90,7 +92,7 @@ export const LANG_DE_TRANSLATIONS = {
         },
         "addArticle": {
             "title": "Artikel hinzufügen",
-            "help": "Geben Sie eine valide ID in das Eingabefeld ein und drücken Sie auf 'hinzufügen' um die Produktion weiter aufzuteilen. Folgende IDs können Sie einsetzen: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 49, 54, 29, 50, 55, 30, 51, 56, 31, 1, 2, 3]",
+            "help": "Geben Sie eine valide ID in das Eingabefeld ein und drücken Sie auf 'hinzufügen' um die Produktion weiter aufzuteilen. Folgende IDs können Sie einsetzen: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 26, 49, 54, 29, 50, 55, 30, 51, 56, 31, 1, 2, 3]",
             "addButton": "Hinzufügen",
         },
         "help": {
@@ -105,7 +107,7 @@ export const LANG_DE_TRANSLATIONS = {
         },
     },
     "planning_production": {
-        "title": "Prouktionsplanung",
+        "title": "Produktionsplanung",
         "description": "Auf dieser Seite wird die Produktion geplant.",
         "table": {
             "header_product": "Produkt",
@@ -155,9 +157,9 @@ export const LANG_DE_TRANSLATIONS = {
         "contract_penalty": "Konventionalstrafe",
         "deativate_direct_sales": "Direktverkäufe deaktivieren",
 
-        "amount_planned_production": "4. Wie hoch ist die geplante Produktion",
+        //"amount_planned_production": "4. Wie hoch ist die geplante Produktion",
 
-        "amount_savety_stock": "5. Wie hoch ist der Sicherheitsbestand?",
+        "amount_savety_stock": "4. Wie hoch ist der Sicherheitsbestand?",
         "standard_security": "Standardsicherheit",
         "safety_stock_part": "Teil",
         "safety_stock_description": "Beschreibung",
