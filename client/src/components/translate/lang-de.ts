@@ -60,7 +60,7 @@ export const LANG_DE_TRANSLATIONS = {
         "title": "Start",
         "description": "Mit diesem Tool können Sie Ihre Fahrradproduktion steuern",
         "actions": {
-            "title": "Aktionen",
+            "title": "Schnellzugriff",
             "start_planning": "Periode planen",
             "search_parts": "Teilesuche",
         },

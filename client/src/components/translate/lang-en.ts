@@ -59,7 +59,7 @@ export const LANG_EN_TRANSLATIONS = {
         "title": "Start",
         "description": "With the help of this tool you can plan your bike production",
         "actions": {
-            "title": "Actions",
+            "title": "Quick start",
             "start_planning": "Start planning",
             "search_parts": "Search parts",
         },
