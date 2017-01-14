@@ -12,7 +12,10 @@
 			</div>
 		</div>
 		<div class="row page-part">
-			<p class="help-text">{{'planning_material.help.text'|translate}}</p>
+			<p class="help-text">
+				{{'planning_material.help.text'|translate}}
+				<a class="help-button" (click)="openHelp('planning_purchasing.dropitems.help')"><i class="mdi mdi-help-circle"></i></a>
+			</p>
 			<div class='wrapper'>
 				<div class='article-container' [dragula]='"purchasing-bag"' [dragulaModel]='parts'>
 					<div [ngClass]="{'production-item': true, 'toolate': item['@'].toolate}" *ngFor='let item of parts'>

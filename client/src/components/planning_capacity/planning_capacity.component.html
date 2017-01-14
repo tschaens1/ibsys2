@@ -5,12 +5,12 @@
 				<thead>
 					<tr>
 						<th data-field="workstation_number">{{'planning_capacity.table.workstation_number'|translate}}</th>						
-						<th data-field="shift">{{'planning_capacity.table.shift'|translate}}</th>
+						<th data-field="shift">{{'planning_capacity.table.shift'|translate}} <a class="help-button" (click)="openHelp('planning_capacity.help')"><i class="mdi mdi-help-circle"></i></a></th>
 						<th data-field="overtime">{{'planning_capacity.table.overtime'|translate}}</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let workplace of workplaces">
+					<tr *ngFor="let workplace of workplaces" [ngClass]="{'toomuchwork': workplace['@'].toomuchwork}">
 						<td>{{workplace['@'].station}}</td>
 						<td><input type="number" min="0" max="3" [(ngModel)]="workplace['@'].shift"></td>
 						<td><input type="number" min="0" [(ngModel)]="workplace['@'].overtime"></td>

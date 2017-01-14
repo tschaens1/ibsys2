@@ -130,14 +130,6 @@ public class CapacityService {
         }
         for (Workplace workplace : workplaces) {
             this.calculateShifts(workplace);
-            System.out.print("Kapa: " + workplace.getWorkingTime());
-        }
-
-        System.out.println();
-
-        for (Capacity capacity : this.capacities) {
-            System.out.println(" Capacity: - Station - " + capacity.getStation() + " - Shift - " + capacity.getShift()
-                    + " - Overtime - " + capacity.getOvertime());
         }
     }
 
@@ -167,6 +159,10 @@ public class CapacityService {
 
         capacity.setShift(shift);
         capacity.setOvertime(overtime);
+
+        if (workplace.getWorkingTime() > 7200) {
+            capacity.setTooMuchWork(true);
+        }
 
         this.capacities.add(capacity);
         this.capacities.sort(Comparator.comparing(Capacity::getStation));

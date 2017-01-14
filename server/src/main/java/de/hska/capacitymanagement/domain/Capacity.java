@@ -6,8 +6,10 @@ public class Capacity {
 	private int overtime;
 	private int station;
 
-	public Capacity() {
+	private Boolean tooMuchWork;
 
+	public Capacity() {
+		this.tooMuchWork = false;
 	}
 
 	public Capacity(int shift, int overtime, int station) {
@@ -15,6 +17,7 @@ public class Capacity {
 		this.shift = shift;
 		this.overtime = overtime;
 		this.station = station;
+		this.tooMuchWork = false;
 	}
 
 	public int getShift() {
@@ -41,4 +44,11 @@ public class Capacity {
 		this.station = station;
 	}
 
+	public Boolean getTooMuchWork() {
+		return tooMuchWork;
+	}
+
+	public void setTooMuchWork(Boolean tooMuchWork) {
+		this.tooMuchWork = tooMuchWork;
+	}
 }

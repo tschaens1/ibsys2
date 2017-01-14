@@ -216,6 +216,9 @@ export const LANG_EN_TRANSLATIONS = {
             "help": "Enter a valid id for the production article. The following IDs can be inserted: [21, 22, 23, 24, 25, 27, 32, 34, 36, 37, 38, 39, 40, 41, 42, 44, 46, 47, 48, 52, 53, 57, 58, 59]",
             "addButton": "Add",
         },
+        "dropitems": {
+            "help": "If the required amount cannot be fulfilled even by a fast order then the appropriate line is red. Please order the part at the marketplace.",
+        },
     },
     "planning_capacity": {
         "title": "Capacity planning",
@@ -226,6 +229,7 @@ export const LANG_EN_TRANSLATIONS = {
             "shift": "Shifts",
             "overtime": "Overtime"
         },
+        "help": "For each workplace there is a maximal workload of 3 shifts (without overtime). If the production program requires more capacity than possible the appropriate line is marked red. As a result, not all waiting queues can be resolved.",
     },
     "planning_inserts": {
         "title": "Input table",
