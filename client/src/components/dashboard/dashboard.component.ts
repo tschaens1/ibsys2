@@ -15,7 +15,9 @@ export class DashBoardComponent implements OnInit {
     optionsChart3: HighchartsOptions;
     optionsChart4: HighchartsOptions;
 
-    period: number = 7;
+    //chart1: HighchartsChart;
+
+    period: number = 1;
     results: any;
     stock: any;
 
@@ -33,8 +35,11 @@ export class DashBoardComponent implements OnInit {
 
     }
 
-    bla() {
+    loadCharts() {
         let self = this;
+
+        self.relevantStocksId = [];
+        self.relevantStocksPct = [];
 
         //Set the values for the warehouse stock
         for (let i in self.stock.article) {
@@ -58,22 +63,8 @@ export class DashBoardComponent implements OnInit {
             }
         }
 
-        console.log("Produktion " + self.valueProductionParts);
-        console.log("Fahrräder " + self.valueProductionEndParts);
-        console.log("Kaufteile " + self.valuePurchaseparts);
-
-        /*
-        this.optionsChart1 = {
-            title: { text: 'simple chart' },
-            series: [{
-                data: [2, 2, 23],
-            }],
-            credits: false
-        };
-        */
-
         this.optionsChart2 = {
-            chart: { type: 'column' },
+            chart: {type: 'column' },
             title: { text: this.translationService.currentLanguage === 'de' ? "Lagerauslastung in %" : "Warehouse stock utilization in %", },
 
             plotOptions: {
@@ -104,11 +95,10 @@ export class DashBoardComponent implements OnInit {
             series: [{
                 name: this.translationService.currentLanguage === 'de' ? "Lager" : "Stock warehouse",
                 data: self.relevantStocksPct,
-
             }],
             credits: false,
         };
-
+       
         this.optionsChart3 = {
             chart: { type: 'pie' },
             title: { text: this.translationService.currentLanguage === 'de' ? "Zusammensetzung Lager" : "Composition warehouse", },
@@ -134,7 +124,7 @@ export class DashBoardComponent implements OnInit {
             credits: false
         };
     }
-
+    
     constructor(
         private dashboardService: DashboardService,
         private translationService: TranslationService,
@@ -173,7 +163,7 @@ export class DashBoardComponent implements OnInit {
         this.dashboardService.getStock(this.period).then(stock => {
             console.log(stock);
             this.stock = stock;
-            this.bla();
+            this.loadCharts();
         }).catch((err) => {
             console.error(err);
             this.toastr.error(`Period ${this.period} not available`);
