@@ -81,6 +81,7 @@ public class InputService {
             capacityItem.put("station", capacity.getStation());
             capacityItem.put("shift", capacity.getShift());
             capacityItem.put("overtime", capacity.getOvertime());
+            capacityItem.put("toomuchwork", capacity.getTooMuchWork());
             capacityItemList.put(capacityItem);
         }
 
