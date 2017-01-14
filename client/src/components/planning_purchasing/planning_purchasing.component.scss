@@ -10,6 +10,11 @@ select {
     background-color: rgba(238, 110, 115, 0.3) !important;;
 }
 
+.errorInput {
+    border: 2px solid red !important;
+    color: red;
+}
+
 .wrapper {
     .article-container {
         width: 100% !important;        

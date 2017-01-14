@@ -4,16 +4,20 @@
 			<table>
 				<thead>
 					<tr>
-						<th data-field="workstation_number">{{'planning_capacity.table.workstation_number'|translate}}</th>						
-						<th data-field="shift">{{'planning_capacity.table.shift'|translate}} <a class="help-button" (click)="openHelp('planning_capacity.help')"><i class="mdi mdi-help-circle"></i></a></th>
+						<th data-field="workstation_number">{{'planning_capacity.table.workstation_number'|translate}}</th>
+						<th data-field="shift">{{'planning_capacity.table.shift'|translate}}
+							<a class="help-button" (click)="openHelp('planning_capacity.help')"><i class="mdi mdi-help-circle"></i></a>
+						</th>
 						<th data-field="overtime">{{'planning_capacity.table.overtime'|translate}}</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let workplace of workplaces" [ngClass]="{'toomuchwork': workplace['@'].toomuchwork}">
 						<td>{{workplace['@'].station}}</td>
-						<td><input type="number" min="0" max="3" [(ngModel)]="workplace['@'].shift"></td>
-						<td><input type="number" min="0" [(ngModel)]="workplace['@'].overtime"></td>
+						<td><input type="number" [ngClass]="{'errorInput': shiftInput.errors?.range || shiftInput.errors?.required}" min="0"
+								max="3" [(ngModel)]="workplace['@'].shift" name="shiftInput" #shiftInput="ngModel" [range]="[0, 3]" required></td>
+						<td><input type="number" [ngClass]="{'errorInput': overtimeInput.errors?.min || overtimeInput.errors?.required}" min="0"
+								[(ngModel)]="workplace['@'].overtime" name="overtimeInput" #overtimeInput="ngModel" [min]="0" required></td>
 					</tr>
 				</tbody>
 			</table>

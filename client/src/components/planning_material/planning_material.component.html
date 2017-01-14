@@ -5,7 +5,7 @@
 				<a class="help-button" (click)="openHelp('planning_material.addArticle.help')"><i class="mdi mdi-help-circle"></i></a>
 			</h4>
 			<div class="col s3">
-				<input type="text" placeholder="ID" #id (keyup.enter)="addPart(id)">
+				<input type="number" placeholder="ID" #id (keyup.enter)="addPart(id)">
 			</div>
 			<div class="col s3">
 				<a class="waves-effect waves-light btn grey lighten-1" (click)="addPart(id)">{{'planning_material.addArticle.addButton'|translate}}</a>
@@ -32,7 +32,8 @@
 							<div class="col s4 m2">
 								<div class="title">{{'planning_material.container.quantity'|translate}}</div>
 								<div class="detail">
-									<input type="text" [(ngModel)]="item['@'].quantity">
+									<input type="number" [(ngModel)]="item['@'].quantity" [ngClass]="{'errorInput': quantityInput.errors?.min || quantityInput.errors?.required}"
+										min="0" name="quantityInput" #quantityInput="ngModel" [min]="0" required>
 								</div>
 							</div>
 							<div class="col s6 m5">
