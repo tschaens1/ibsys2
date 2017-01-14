@@ -213,7 +213,7 @@ export const LANG_EN_TRANSLATIONS = {
         },
         "addArticle": {
             "title": "Add article",
-            "help": "Enter a valid id for the production article. The following IDs can be inserted: [22, 23, 24, 25, 27, 32, 34, 36, 37, 38, 39, 40, 41, 42, 44, 46, 47, 48, 52, 53, 57, 58, 59]",
+            "help": "Enter a valid id for the production article. The following IDs can be inserted: [21, 22, 23, 24, 25, 27, 32, 34, 36, 37, 38, 39, 40, 41, 42, 44, 46, 47, 48, 52, 53, 57, 58, 59]",
             "addButton": "Add",
         },
         "dropitems": {
