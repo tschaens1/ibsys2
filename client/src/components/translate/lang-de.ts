@@ -224,7 +224,7 @@ export const LANG_DE_TRANSLATIONS = {
         },
         "addArticle": {
             "title": "Artikel hinzufügen",
-            "help": "Geben Sie eine valide ID in das Eingabefeld ein und drücken Sie auf 'hinzufügen'. Folgende IDs können Sie einsetzen: [22, 23, 24, 25, 27, 32, 34, 36, 37, 38, 39, 40, 41, 42, 44, 46, 47, 48, 52, 53, 57, 58, 59]",
+            "help": "Geben Sie eine valide ID in das Eingabefeld ein und drücken Sie auf 'hinzufügen'. Folgende IDs können Sie einsetzen: [21, 22, 23, 24, 25, 27, 32, 34, 36, 37, 38, 39, 40, 41, 42, 44, 46, 47, 48, 52, 53, 57, 58, 59]",
             "addButton": "Hinzufügen",
         },
     },
