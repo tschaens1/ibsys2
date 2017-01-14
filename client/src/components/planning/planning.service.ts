@@ -258,6 +258,9 @@ export class PlanningService implements OnInit {
                 outputxmlJSON.orderlist.order.map(item => {
                     delete item['@'].toolate;
                 });
+                outputxmlJSON.workingtimelist.workingtime.map(item => {
+                    delete item['@'].toomuchwork;
+                });
                 console.info(outputxmlJSON);
                 const xml: string = js2xmlparser.parse("input", outputxmlJSON).slice(22);
 

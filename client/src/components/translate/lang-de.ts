@@ -128,6 +128,7 @@ export const LANG_DE_TRANSLATIONS = {
             "shift": "Schichten",
             "overtime": "Mehrarbeit [min/Tag]"
         },
+        "help": "Pro Arbeitsplatz sind maximal 3 Schichten zu je 8 Stunden zulässig (keine Überstunden). Erfordern die Produktionsaufträge mehr Kapazität als zulässig, so wird die entsprechende Zeile rot markiert. In diesem Fall können nicht alle Warteschlangen abgearbeitet werden."
     },
     "planning_overview": {
         "title": "Beginn Planung",
@@ -226,6 +227,9 @@ export const LANG_DE_TRANSLATIONS = {
             "title": "Artikel hinzufügen",
             "help": "Geben Sie eine valide ID in das Eingabefeld ein und drücken Sie auf 'hinzufügen'. Folgende IDs können Sie einsetzen: [22, 23, 24, 25, 27, 32, 34, 36, 37, 38, 39, 40, 41, 42, 44, 46, 47, 48, 52, 53, 57, 58, 59]",
             "addButton": "Hinzufügen",
+        },
+        "dropitems": {
+            "help": "Kann der Bedarf selbst durch eine Eilbestellung nicht mehr rechtzeitig gedeckt werden, so wird die Zeile rot markiert. In diesem Fall sollte das Teil über den Marktplatz beschafft werden.",
         },
     },
     "planning_inserts": {
