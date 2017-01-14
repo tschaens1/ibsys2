@@ -217,7 +217,8 @@ export class PlanningOverviewComponent implements OnInit {
                     this.planningService.startedPlanning = true;
                     this.router.navigate(['/app/planning/production']);
                 }).catch((err: Response) => {
-                    this.toastr.error(err.text());
+                    // this.toastr.error(err.text());
+                    this.toastr.error('Server error');
                     console.error(err);
                     this.planningService.isLoading = false;
                     this.planningService.startedPlanning = false;
