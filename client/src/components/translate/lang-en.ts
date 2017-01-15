@@ -314,5 +314,6 @@ export const LANG_EN_TRANSLATIONS = {
         "uni_title": "University",
         "uni": "University of Applied Sciences",
         "tech_title": "Technologies",
+        "docu_download": "Show documentation",
     },
 }

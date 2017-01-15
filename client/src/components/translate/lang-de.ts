@@ -184,7 +184,7 @@ export const LANG_DE_TRANSLATIONS = {
             "xml_of_wrong_period": "Das XML hat die falsche Periode",
             "wrong_sellwish": "Falscher Vertriebswunsch",
             "very_high_sellwish": "Sehr hoher Vertriebswunsch",
-            "wrong_production_values": "Falsche Produktionseingaben",            
+            "wrong_production_values": "Falsche Produktionseingaben",
         },
 
         modals: {
@@ -314,6 +314,7 @@ export const LANG_DE_TRANSLATIONS = {
         "term": "Wintersemester 2016/17",
         "uni_title": "Hochschule",
         "uni": "Hochschule Karlsruhe - Technik und Wirtschaft",
-        "tech_title": "Technologien",        
+        "tech_title": "Technologien",
+        "docu_download": "Dokumentation anzeigen",
     },
 }
