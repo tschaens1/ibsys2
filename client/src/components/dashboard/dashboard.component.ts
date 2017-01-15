@@ -64,9 +64,19 @@ export class DashBoardComponent implements OnInit {
         }
 
         this.optionsChart2 = {
-            chart: {type: 'column' },
+            chart: { type: 'column' },
             title: { text: this.translationService.currentLanguage === 'de' ? "Lagerauslastung in %" : "Warehouse stock utilization in %", },
 
+            tooltip: {
+                formatter: function () {
+                    let id = this.x;
+
+                    return 'Id: <b>' + id + '</b>' +
+                        '<br/>%: <b>' + this.y + '</b>'+
+                          '<br/>Total: <b>' +self.stock.article[id-1].amount + '</b>';
+                    
+                }
+            },
             plotOptions: {
                 column: {
                     zones: [{
@@ -81,6 +91,7 @@ export class DashBoardComponent implements OnInit {
                     }]
                 },
             },
+
             yAxis: {
                 title: {
                     text: '%'
@@ -98,7 +109,7 @@ export class DashBoardComponent implements OnInit {
             }],
             credits: false,
         };
-       
+
         this.optionsChart3 = {
             chart: { type: 'pie' },
             title: { text: this.translationService.currentLanguage === 'de' ? "Zusammensetzung Lager" : "Composition warehouse", },
@@ -124,7 +135,7 @@ export class DashBoardComponent implements OnInit {
             credits: false
         };
     }
-    
+
     constructor(
         private dashboardService: DashboardService,
         private translationService: TranslationService,
