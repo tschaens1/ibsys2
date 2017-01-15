@@ -138,7 +138,7 @@ export class PlanningOverviewComponent implements OnInit {
             this.selldirect_penalty_p3 = this.inputOflastPeriod.input.selldirect.items[2].penalty || "0";
         }
         catch (err) {
-            console.log('Could not load inputs of last period!', err);
+            // console.log('Could not load inputs of last period!', err);
             this.clearInputs();
         }
     }
