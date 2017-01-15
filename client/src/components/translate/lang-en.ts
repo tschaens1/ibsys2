@@ -189,7 +189,7 @@ export const LANG_EN_TRANSLATIONS = {
             "sellwish": "The sellwish describes the amount of products that will be selled in the next period. Forecasts can change in the next periods.",
             "selldirect": "The selldirect describes the products that will be selled additionally to the sellwish. These products will be selled directly from the warehouse. Selldirects are optional.",
             "planned_production": "Here you have to specify the production of each product. Beware that these values have a big impact for the planning of the purchasing parts, the capacity planning and the production planning.",
-            "safetyStock": "Here you can specify the safety stock for the warehouse. The safety stock describes how much parts you want to have in the warehouse additionally at the end of a period. For an better overview are they seperated in Categorys. Category A = 70 Stück, Category B = 60 Stück, Category C = 50 Stück",
+            "safetyStock": "Here you can specify the safety stock for the warehouse. The safety stock describes how much parts you want to have in the warehouse additionally at the end of a period. For an better overview are they seperated in Categorys. Category A = 70 pieces, Category B = 60 pieces, Category C = 50 pieces",
         }
     },
     "planning_purchasing": {
